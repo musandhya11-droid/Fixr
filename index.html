@@ -11,6 +11,10 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Fixr">
 
+  <!-- Google Firebase SDK (Compat) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
   <style>
     * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; padding: 0; }
     body { background: #f8fafc; padding-bottom: 90px; color: #1e293b; }
@@ -24,6 +28,9 @@
     .admin-btn { background: #334155; color: #38bdf8; border: 1px solid #475569; padding: 5px 8px; border-radius: 12px; font-size: 11px; font-weight: bold; cursor: pointer; }
     .auth-btn { background: #38bdf8; color: #0f172a; border: none; padding: 6px 12px; border-radius: 20px; font-weight: bold; font-size: 11px; cursor: pointer; }
     .user-profile { font-size: 11px; color: #38bdf8; font-weight: bold; display: flex; align-items: center; gap: 4px; }
+
+    /* Sync Indicator */
+    .sync-bar { background: #e0f2fe; color: #0369a1; padding: 4px 16px; font-size: 11px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #bae6fd; }
 
     /* All India Search */
     .search-box { padding: 12px 16px 4px; }
@@ -68,11 +75,14 @@
     .close-btn { width: 100%; background: none; border: none; color: #64748b; margin-top: 10px; font-size: 13px; cursor: pointer; }
     
     /* GPay Payment Box in Partner Form */
-    .payment-box { background: #f0fdf4; border: 1px solid #86efac; border-radius: 12px; padding: 12px; margin: 12px 0; }
-    .payment-title { font-size: 13px; font-weight: bold; color: #166534; display: flex; align-items: center; justify-content: space-between; }
-    .payment-amount { background: #22c55e; color: white; padding: 2px 8px; border-radius: 10px; font-size: 13px; }
-    .upi-info { font-size: 12px; color: #1e293b; margin: 8px 0 10px; line-height: 1.5; }
-    .gpay-btn { display: block; text-align: center; background: #0f172a; color: #38bdf8; text-decoration: none; padding: 10px; border-radius: 8px; font-weight: bold; font-size: 13px; border: 1px solid #38bdf8; }
+    .payment-box { background: #f0fdf4; border: 1px solid #86efac; border-radius: 14px; padding: 14px; margin: 12px 0; text-align: center; }
+    .payment-title { font-size: 13px; font-weight: bold; color: #166534; display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+    .payment-amount { background: #22c55e; color: white; padding: 3px 10px; border-radius: 12px; font-size: 13px; font-weight: 800; }
+    .qr-container { display: flex; justify-content: center; margin: 10px 0; }
+    .qr-img { width: 130px; height: 130px; border-radius: 10px; border: 2px solid #bbf7d0; background: white; padding: 4px; }
+    .upi-details-row { background: white; padding: 8px 10px; border-radius: 8px; border: 1px dashed #86efac; margin-bottom: 10px; text-align: left; font-size: 12px; }
+    .copy-chip { background: #e0f2fe; color: #0284c7; border: none; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold; cursor: pointer; margin-left: 6px; }
+    .gpay-btn { display: block; text-align: center; background: #0f172a; color: #38bdf8; text-decoration: none; padding: 12px; border-radius: 10px; font-weight: bold; font-size: 14px; border: 1px solid #38bdf8; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
 
     /* Admin Technician Table */
     .admin-tech-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #f1f5f9; font-size: 13px; }
@@ -93,6 +103,12 @@
       </div>
     </div>
   </header>
+
+  <!-- Live Cloud Sync Status -->
+  <div class="sync-bar">
+    <span id="cloudStatusText">☁️ Google Cloud Database: இணைக்கப்பட்டது (Online)</span>
+    <span id="serviceCountBadge" style="background:#0284c7; color:white; padding:1px 7px; border-radius:10px; font-size:10px;">Live</span>
+  </div>
 
   <!-- All India Search -->
   <div class="search-box">
@@ -126,7 +142,7 @@
     </div>
   </div>
 
-  <!-- 2. டெக்னீசியன் விண்ணப்ப படிவம் (₹49 Registration Fee + GPay) -->
+  <!-- 2. டெக்னீசியன் விண்ணப்ப படிவம் (₹49 Registration Fee + Direct GPay & QR) -->
   <div class="modal-overlay" id="partnerModal">
     <div class="modal-box">
       <div class="modal-title" id="pModalTitle">தொழிலாளராக இணைக 💼</div>
@@ -134,16 +150,26 @@
       
       <div class="payment-box">
         <div class="payment-title">
-          <span id="pPayTitle">💳 பதிவுக் கட்டணம் (Registration Fee)</span>
+          <span id="pPayTitle">💳 ஒருமுறை பதிவுக் கட்டணம்</span>
           <span class="payment-amount">₹49 Only</span>
         </div>
-        <div class="upi-info" id="pPayInfo">
-          <b>GPay / PhonePe எண்:</b> 9884334097<br>
-          <span style="font-size:11px; color:#475569;">GPay மூலம் ₹49 செலுத்தி, அதன் ஸ்கிரீன்ஷாட்டை வாட்ஸ்அப்பில் அனுப்பவும்.</span>
+
+        <div class="upi-details-row">
+          <div><b>GPay / UPI ID:</b> <span id="upiIdText">yugamugesh52-3@oksbi</span> <button class="copy-chip" onclick="copyText('yugamugesh52-3@oksbi')">Copy</button></div>
+          <div style="margin-top:4px;"><b>GPay எண்:</b> <span id="gpayPhoneText">9884334097</span> <button class="copy-chip" onclick="copyText('9884334097')">Copy</button></div>
         </div>
-        <a href="upi://pay?pa=9884334097@upi&pn=Fixr%20Services&am=49&cu=INR" class="gpay-btn" id="pGpayLink">
-          ⚡ Pay ₹49 via GPay / UPI
+
+        <!-- Direct GPay / UPI Button with exact UPI ID -->
+        <a href="upi://pay?pa=yugamugesh52-3@oksbi&pn=Fixr%20Services&am=49&cu=INR&tn=Fixr%20Partner%20Registration%20Fee" class="gpay-btn" id="pGpayLink">
+          ⚡ Pay ₹49 directly via GPay / UPI
         </a>
+
+        <div class="qr-container">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=upi%3A%2F%2Fpay%3Fpa%3Dyugamugesh52-3%40oksbi%26pn%3DFixr%2520Services%26am%3D49%26cu%3DINR%26tn%3DFixr%2520Partner%2520Registration%2520Fee" alt="GPay QR Code" class="qr-img">
+        </div>
+        <div style="font-size:11px; color:#166534;" id="pQrNotice">
+          ஸ்கேன் செய்து ₹49 செலுத்தலாம் (Scan & Pay ₹49)
+        </div>
       </div>
 
       <div class="form-group">
@@ -176,7 +202,7 @@
       </div>
 
       <div style="background:#fefce8; border:1px solid #fef08a; padding:10px; border-radius:8px; font-size:12px; color:#854d0e; margin:10px 0;" id="pDocNotice">
-        ⚠️ <b>விண்ணப்பித்த பின்:</b> GPay ₹49 ரசீது மற்றும் ஆதார் அட்டை புகைப்படத்தை அட்மின் வாட்ஸ்அப்பிற்கு அனுப்பவும்.
+        ⚠️ <b>விண்ணப்பித்த பின்:</b> GPay ₹49 ரசீது ஸ்கிரீன்ஷாட் மற்றும் ஆதார் அட்டை புகைப்படத்தை அட்மின் வாட்ஸ்அப்பிற்கு அனுப்பவும்.
       </div>
 
       <button class="submit-btn" style="background:#25d366;" id="pSubmitBtn" onclick="handlePartnerSubmit()">
@@ -200,7 +226,7 @@
     </div>
   </div>
 
-  <!-- 4. அட்மின் கண்ட்ரோல் பேனல் (Free Add & Edit/Delete) -->
+  <!-- 4. அட்மின் கண்ட்ரோல் பேனல் (Free Add & Edit/Delete - Cloud Sync) -->
   <div class="modal-overlay" id="adminPanelModal">
     <div class="modal-box" style="max-width: 480px;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
@@ -231,18 +257,40 @@
         <button class="submit-btn" id="admSaveBtn" onclick="adminSaveTechnician()">ஆப்பில் உடனே சேர் ➕</button>
       </div>
 
-      <h4 id="admListHeading" style="font-size:14px; margin-bottom:8px; font-weight:bold;">தற்போதுள்ள சேவைகள் (திருத்த / நீக்க):</h4>
+      <h4 id="admListHeading" style="font-size:14px; margin-bottom:8px; font-weight:bold;">கிளவுட் சேவைகள் (திருத்த / நீக்க):</h4>
       <div id="adminListContainer" style="max-height: 200px; overflow-y: auto;"></div>
     </div>
   </div>
 
   <script>
     const ADMIN_PHONE = "919884334097";
+    const ADMIN_UPI_ID = "yugamugesh52-3@oksbi";
     const ADMIN_SECRET_PIN = "8843";
+
+    // 1. Google Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCYTbmYkdxitjh6yfd7vLu76m41I4kYyiY",
+      authDomain: "fixr-33ba6.firebaseapp.com",
+      projectId: "fixr-33ba6",
+      storageBucket: "fixr-33ba6.firebasestorage.app",
+      messagingSenderId: "46524357435",
+      appId: "1:46524357435:web:c6446ddd93d0ec912f751e",
+      measurementId: "G-YSYNM3EP61"
+    };
+
+    // Firebase Initialize
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
 
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('./sw.js');
+      });
+    }
+
+    function copyText(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert(currentLang === 'ta' ? 'நகலெடுக்கப்பட்டது: ' + text : 'Copied: ' + text);
       });
     }
 
@@ -266,15 +314,15 @@
         cancelBtn: "ரத்து",
         pModalTitle: "தொழிலாளராக இணைக 💼",
         pModalSub: "உங்கள் விவரங்களை அளித்து Fixr பார்ட்னராக பதிவு செய்யவும்",
-        pPayTitle: "💳 பதிவுக் கட்டணம் (Registration Fee)",
-        pPayInfo: "<b>GPay / PhonePe எண்:</b> 9884334097<br><span style='font-size:11px; color:#475569;'>GPay மூலம் ₹49 செலுத்தி, அதன் ஸ்கிரீன்ஷாட்டை வாட்ஸ்அப்பில் அனுப்பவும்.</span>",
-        pGpayBtn: "⚡ Pay ₹49 via GPay / UPI",
+        pPayTitle: "💳 ஒருமுறை பதிவுக் கட்டணம்",
+        pGpayBtn: "⚡ Pay ₹49 directly via GPay / UPI",
+        pQrNotice: "ஸ்கேன் செய்து ₹49 செலுத்தலாம் (Scan & Pay ₹49)",
         lblPName: "பெயர் / நிறுவன பெயர்",
         lblPCat: "சேவை வகை",
         lblPArea: "ஊர் & மாவட்டம் / நகரம்",
         lblPPhone: "தொடர்பு எண் (WhatsApp Number)",
         lblPPrice: "கட்டணம் & சேவை விவரம்",
-        pDocNotice: "⚠️ <b>விண்ணப்பித்த பின்:</b> GPay ₹49 ரசீது மற்றும் ஆதார் அட்டை புகைப்படத்தை அட்மின் வாட்ஸ்அப்பிற்கு அனுப்பவும்.",
+        pDocNotice: "⚠️ <b>விண்ணப்பித்த பின்:</b> GPay ₹49 ரசீது ஸ்கிரீன்ஷாட் மற்றும் ஆதார் அட்டை புகைப்படத்தை அட்மின் வாட்ஸ்அப்பிற்கு அனுப்பவும்.",
         pSubmitBtn: "வாட்ஸ்அப்பில் விண்ணப்பிக்கவும் 🚀",
         admLoginTitle: "🔒 Fixr அட்மின் உள்நுழைவு",
         admLoginSub: "நிர்வாகிகள் மட்டுமே அணுகலாம்",
@@ -284,9 +332,11 @@
         admFormEdit: "✏️ சேவையைத் திருத்தவும்",
         admSaveBtnAdd: "ஆப்பில் உடனே சேர் ➕",
         admSaveBtnEdit: "மாற்றங்களைச் சேமி (Update) 💾",
-        admListHead: "தற்போதுள்ள சேவைகள் (திருத்த / நீக்க):",
+        admListHead: "கிளவுட் சேவைகள் (திருத்த / நீக்க):",
         edit: "✏️ திருத்து",
-        del: "🗑️ நீக்கு"
+        del: "🗑️ நீக்கு",
+        cloudOnline: "☁️ Google Cloud Database: இணைக்கப்பட்டது (Online)",
+        cloudOffline: "⚠️ Offline Mode (லோக்கல் மெமரி)"
       },
       en: {
         langBtn: "🌐 தமிழ்",
@@ -305,8 +355,8 @@
         pModalTitle: "Join as a Partner 💼",
         pModalSub: "Register your service and start receiving customer orders",
         pPayTitle: "💳 One-Time Registration Fee",
-        pPayInfo: "<b>GPay / PhonePe Number:</b> 9884334097<br><span style='font-size:11px; color:#475569;'>Pay ₹49 via GPay and share the screenshot on WhatsApp.</span>",
-        pGpayBtn: "⚡ Pay ₹49 via GPay / UPI",
+        pGpayBtn: "⚡ Pay ₹49 directly via GPay / UPI",
+        pQrNotice: "Scan with any UPI app to pay ₹49",
         lblPName: "Name / Business Name",
         lblPCat: "Service Category",
         lblPArea: "City / Area & State",
@@ -322,9 +372,11 @@
         admFormEdit: "✏️ Edit Service Details",
         admSaveBtnAdd: "Add to App ➕",
         admSaveBtnEdit: "Update Service 💾",
-        admListHead: "Active Services (Edit / Delete):",
+        admListHead: "Active Cloud Services (Edit / Delete):",
         edit: "✏️ Edit",
-        del: "🗑️ Delete"
+        del: "🗑️ Delete",
+        cloudOnline: "☁️ Google Cloud Database: Connected (Online)",
+        cloudOffline: "⚠️ Offline Mode (Local Memory)"
       }
     };
 
@@ -339,6 +391,7 @@
       document.getElementById('langToggleBtn').innerText = t.langBtn;
       document.getElementById('searchInput').placeholder = t.searchPlaceholder;
       document.getElementById('partnerFabText').innerText = t.partnerFab;
+      document.getElementById('cloudStatusText').innerText = t.cloudOnline;
       
       document.getElementById('loginTitle').innerText = t.loginTitle;
       document.getElementById('loginSub').innerText = t.loginSub;
@@ -350,8 +403,8 @@
       document.getElementById('pModalTitle').innerText = t.pModalTitle;
       document.getElementById('pModalSub').innerText = t.pModalSub;
       document.getElementById('pPayTitle').innerText = t.pPayTitle;
-      document.getElementById('pPayInfo').innerHTML = t.pPayInfo;
       document.getElementById('pGpayLink').innerText = t.pGpayBtn;
+      document.getElementById('pQrNotice').innerText = t.pQrNotice;
       document.getElementById('lblPName').innerText = t.lblPName;
       document.getElementById('lblPCat').innerText = t.lblPCat;
       document.getElementById('lblPArea').innerText = t.lblPArea;
@@ -395,34 +448,47 @@
       });
     }
 
-    // Default Sample Services (Multi-City & Caretaker included)
+    // Default Seed Data
     const defaultData = [
-      { id: "1", name: "அன்பு முதியோர் கேர் டேக்கர் (Anbu Care)", category: "கேர் டேக்கர்", area: "அடையாறு, சென்னை (Chennai)", phone: "9876543210", price: "₹650/நாள்", rating: "★ 4.9", desc: "24/7 முதியோர், நோயாளி & குழந்தை பராமரிப்பு" },
-      { id: "2", name: "CoolCare AC Solutions", category: "AC சர்வீஸ்", area: "தி. நகர், சென்னை (Chennai)", phone: "9876543211", price: "₹499 முதல்", rating: "★ 4.9", desc: "Gas filling, ஜெட் சர்வீஸ் & இன்ஸ்டாலேஷன்" },
-      { id: "3", name: "AquaPure RO Care", category: "RO சர்வீஸ்", area: "வேளச்சேரி, சென்னை (Chennai)", phone: "9876543212", price: "₹350 முதல்", rating: "★ 4.8", desc: "Filter மாற்றம் & வாட்டர் பியூரிஃபையர் பழுது" },
-      { id: "4", name: "PowerMax Inverter & Battery", category: "இன்வெர்ட்டர் & பேட்டரி", area: "காந்திபுரம், கோயம்புத்தூர் (Coimbatore)", phone: "9876543213", price: "₹399 முதல்", rating: "★ 4.7", desc: "Water top-up & புதிய பேட்டரி சர்வீஸ்" },
-      { id: "5", name: "மீனாட்சி எலக்ட்ரிக்கல்ஸ்", category: "எலக்ட்ரீஷியன்", area: "அண்ணா நகர், மதுரை (Madurai)", phone: "9876543214", price: "₹250 முதல்", rating: "★ 4.8", desc: "வீட்டு வயரிங் & MCB பழுது நீக்குதல்" },
-      { id: "6", name: "காவேரி பிளம்பிங் ஒர்க்ஸ்", category: "பிளம்பர்", area: "தில்லை நகர், திருச்சி (Trichy)", phone: "9876543215", price: "₹300 முதல்", rating: "★ 4.6", desc: "மோட்டார் பழுது & பைப் லீக்கேஜ் சரிசெய்தல்" },
-      { id: "7", name: "TechFix Bangalore Care", category: "AC சர்வீஸ்", area: "Whitefield, பெங்களூரு (Bengaluru)", phone: "9876543216", price: "₹599 முதல்", rating: "★ 4.9", desc: "Deep cleaning & gas top-up" }
+      { name: "அன்பு முதியோர் கேர் டேக்கர் (Anbu Care)", category: "கேர் டேக்கர்", area: "அடையாறு, சென்னை (Chennai)", phone: "9876543210", price: "₹650/நாள்", rating: "★ 4.9", desc: "24/7 முதியோர், நோயாளி & குழந்தை பராமரிப்பு" },
+      { name: "CoolCare AC Solutions", category: "AC சர்வீஸ்", area: "தி. நகர், சென்னை (Chennai)", phone: "9876543211", price: "₹499 முதல்", rating: "★ 4.9", desc: "Gas filling, ஜெட் சர்வீஸ் & இன்ஸ்டாலேஷன்" },
+      { name: "AquaPure RO Care", category: "RO சர்வீஸ்", area: "வேளச்சேரி, சென்னை (Chennai)", phone: "9876543212", price: "₹350 முதல்", rating: "★ 4.8", desc: "Filter மாற்றம் & வாட்டர் பியூரிஃபையர் பழுது" },
+      { name: "PowerMax Inverter & Battery", category: "இன்வெர்ட்டர் & பேட்டரி", area: "காந்திபுரம், கோயம்புத்தூர் (Coimbatore)", phone: "9876543213", price: "₹399 முதல்", rating: "★ 4.7", desc: "Water top-up & புதிய பேட்டரி சர்வீஸ்" },
+      { name: "மீனாட்சி எலக்ட்ரிக்கல்ஸ்", category: "எலக்ட்ரீஷியன்", area: "அண்ணா நகர், மதுரை (Madurai)", phone: "9876543214", price: "₹250 முதல்", rating: "★ 4.8", desc: "வீட்டு வயரிங் & MCB பழுது நீக்குதல்" },
+      { name: "காவேரி பிளம்பிங் ஒர்க்ஸ்", category: "பிளம்பர்", area: "தில்லை நகர், திருச்சி (Trichy)", phone: "9876543215", price: "₹300 முதல்", rating: "★ 4.6", desc: "மோட்டார் பழுது & பைப் லீக்கேஜ் சரிசெய்தல்" },
+      { name: "TechFix Bangalore Care", category: "AC சர்வீஸ்", area: "Whitefield, பெங்களூரு (Bengaluru)", phone: "9876543216", price: "₹599 முதல்", rating: "★ 4.9", desc: "Deep cleaning & gas top-up" }
     ];
 
+    let liveServicesList = [];
     let currentCategory = 'அனைத்தும்';
     let searchQuery = '';
     let editingTechId = null;
 
-    function getStoredServices() {
-      const stored = localStorage.getItem('fixr_services_v4');
-      if (stored) {
-        return JSON.parse(stored);
-      }
-      localStorage.setItem('fixr_services_v4', JSON.stringify(defaultData));
-      return defaultData;
-    }
-
-    function saveServices(list) {
-      localStorage.setItem('fixr_services_v4', JSON.stringify(list));
-      render();
-      renderAdminList();
+    // Realtime Firestore Listener
+    function initFirebaseFirestore() {
+      db.collection('services').onSnapshot((snapshot) => {
+        if (snapshot.empty) {
+          console.log("Seeding initial services to Firebase...");
+          defaultData.forEach(item => {
+            db.collection('services').add(item);
+          });
+        } else {
+          liveServicesList = [];
+          snapshot.forEach(doc => {
+            liveServicesList.push({ id: doc.id, ...doc.data() });
+          });
+          localStorage.setItem('fixr_services_cached', JSON.stringify(liveServicesList));
+          render();
+          renderAdminList();
+        }
+      }, (error) => {
+        console.error("Firebase error, using local cache:", error);
+        document.getElementById('cloudStatusText').innerText = translations[currentLang].cloudOffline;
+        const cached = localStorage.getItem('fixr_services_cached');
+        liveServicesList = cached ? JSON.parse(cached) : defaultData;
+        render();
+        renderAdminList();
+      });
     }
 
     function openModal(id) { document.getElementById(id).classList.add('active'); }
@@ -444,7 +510,7 @@
       }
     }
 
-    // Admin Save (Free Addition or Update)
+    // Admin Save to Firebase (Free for Admin)
     function adminSaveTechnician() {
       const name = document.getElementById('admName').value.trim();
       const category = document.getElementById('admCategory').value;
@@ -458,42 +524,36 @@
         return;
       }
 
-      let list = getStoredServices();
+      const techData = {
+        name: name,
+        category: category,
+        area: area,
+        phone: phone,
+        price: price || (currentLang === 'ta' ? "தொடர்பு கொள்க" : "Contact for price"),
+        rating: "★ 5.0 (Verified)",
+        desc: desc || (currentLang === 'ta' ? "அங்கீகரிக்கப்பட்ட சேவை" : "Verified Partner")
+      };
 
       if (editingTechId) {
-        const idx = list.findIndex(item => item.id === editingTechId);
-        if (idx !== -1) {
-          list[idx].name = name;
-          list[idx].category = category;
-          list[idx].area = area;
-          list[idx].phone = phone;
-          list[idx].price = price || "தொடர்பு கொள்க";
-          list[idx].desc = desc || "அங்கீகரிக்கப்பட்ட சேவை";
-        }
-        alert(currentLang === 'ta' ? 'சேவை விவரங்கள் வெற்றிகரமாகப் புதுப்பிக்கப்பட்டன!' : 'Service details updated successfully!');
+        db.collection('services').doc(editingTechId).set(techData, { merge: true })
+          .then(() => {
+            alert(currentLang === 'ta' ? 'கிளவுடில் சேவை வெற்றிகரமாகப் புதுப்பிக்கப்பட்டது!' : 'Service updated in Cloud successfully!');
+            cancelAdminEdit();
+          })
+          .catch(err => alert("Error updating: " + err.message));
       } else {
-        const newTech = {
-          id: Date.now().toString(),
-          name: name,
-          category: category,
-          area: area,
-          phone: phone,
-          price: price || (currentLang === 'ta' ? "தொடர்பு கொள்க" : "Contact for price"),
-          rating: "★ 5.0 (Verified)",
-          desc: desc || (currentLang === 'ta' ? "அங்கீகரிக்கப்பட்ட சேவை" : "Verified Partner")
-        };
-        list.unshift(newTech);
-        alert(currentLang === 'ta' ? 'புதிய சேவை இலவசமாகச் சேர்க்கப்பட்டது!' : 'New service added successfully (Free)!');
+        db.collection('services').add(techData)
+          .then(() => {
+            alert(currentLang === 'ta' ? 'புதிய சேவை கிளவுடில் நேரலையாகச் சேர்க்கப்பட்டது!' : 'New service added to Cloud live!');
+            cancelAdminEdit();
+          })
+          .catch(err => alert("Error saving: " + err.message));
       }
-
-      saveServices(list);
-      cancelAdminEdit();
     }
 
     // Admin Edit Action
     function startAdminEdit(id) {
-      const list = getStoredServices();
-      const tech = list.find(item => item.id === id);
+      const tech = liveServicesList.find(item => item.id === id);
       if (!tech) return;
 
       editingTechId = id;
@@ -507,7 +567,7 @@
       document.getElementById('admArea').value = tech.area;
       document.getElementById('admPhone').value = tech.phone;
       document.getElementById('admPrice').value = tech.price;
-      document.getElementById('admDesc').value = tech.desc;
+      document.getElementById('admDesc').value = tech.desc || '';
 
       document.getElementById('adminPanelModal').querySelector('.modal-box').scrollTop = 0;
     }
@@ -527,23 +587,21 @@
     }
 
     function adminDeleteTechnician(id) {
-      const confirmMsg = currentLang === 'ta' ? 'இந்த சேவையை ஆப்பில் இருந்து நீக்க விரும்புகிறீர்களா?' : 'Do you want to delete this service from the app?';
+      const confirmMsg = currentLang === 'ta' ? 'இந்த சேவையை கிளவுட் டேட்டாபேஸிலிருந்து நீக்க விரும்புகிறீர்களா?' : 'Delete this service from Cloud Database?';
       if (confirm(confirmMsg)) {
-        let list = getStoredServices();
-        list = list.filter(item => item.id !== id);
-        saveServices(list);
-        if (editingTechId === id) {
-          cancelAdminEdit();
-        }
+        db.collection('services').doc(id).delete()
+          .then(() => {
+            if (editingTechId === id) cancelAdminEdit();
+          })
+          .catch(err => alert("Error deleting: " + err.message));
       }
     }
 
     function renderAdminList() {
       const container = document.getElementById('adminListContainer');
-      const list = getStoredServices();
       const t = translations[currentLang];
       container.innerHTML = '';
-      list.forEach(item => {
+      liveServicesList.forEach(item => {
         const row = document.createElement('div');
         row.className = 'admin-tech-item';
         row.innerHTML = `
@@ -594,7 +652,7 @@
       checkUserLoggedIn();
     }
 
-    // Partner Registration with ₹49 Fee
+    // Partner Registration with exact UPI ID & Fee
     function handlePartnerSubmit() {
       const name = document.getElementById('pName').value.trim();
       const category = document.getElementById('pCategory').value;
@@ -613,7 +671,7 @@
 • ஊர்/நகரம்: ${area}
 • மொபைல்: ${phone}
 • கட்டணம்/அனுபவம்: ${price || 'தொடர்பு கொள்க'}
-• பதிவு கட்டணம்: ₹49 GPay-ல் செலுத்திவிட்டேன் (ரசீது & ஆதார் அட்டை இதனுடன் இணைக்கப்பட்டுள்ளது)`;
+• பதிவுக் கட்டணம்: ₹49 (${ADMIN_UPI_ID}-க்கு GPay-ல் செலுத்தப்பட்டது. ரசீது ஸ்கிரீன்ஷாட் & ஆதார் அட்டை இதனுடன் இணைக்கப்பட்டுள்ளது)`;
 
       window.open(`https://wa.me/${ADMIN_PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
       closeModal('partnerModal');
@@ -622,17 +680,16 @@
     // Render Services for Users
     function render() {
       const container = document.getElementById('servicesList');
-      const services = getStoredServices();
       const t = translations[currentLang];
       container.innerHTML = '';
 
-      const filtered = services.filter(item => {
+      const filtered = liveServicesList.filter(item => {
         const catMatch = currentCategory === 'அனைத்தும்' || item.category === currentCategory;
         const q = searchQuery.toLowerCase();
         const searchMatch = item.name.toLowerCase().includes(q) || 
                             item.area.toLowerCase().includes(q) || 
-                            item.category.toLowerCase().includes(q) ||
-                            item.desc.toLowerCase().includes(q);
+                            item.category.toLowerCase().includes(q) || 
+                            (item.desc && item.desc.toLowerCase().includes(q));
         return catMatch && searchMatch;
       });
 
@@ -652,9 +709,9 @@
             </div>
             <span class="badge">${item.category}</span>
           </div>
-          <div style="font-size:12px; color:#475569; margin: 6px 0;">${item.desc}</div>
+          <div style="font-size:12px; color:#475569; margin: 6px 0;">${item.desc || ''}</div>
           <div class="rating-row">
-            <span class="rating">${item.rating}</span>
+            <span class="rating">${item.rating || '★ 5.0'}</span>
             <span class="price">${item.price}</span>
           </div>
           <div class="actions">
@@ -677,9 +734,10 @@
       render();
     });
 
-    // Initial load
+    // Start App & Firebase
     applyLanguage();
     checkUserLoggedIn();
+    initFirebaseFirestore();
   </script>
 </body>
 </html>
