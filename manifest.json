@@ -2,16 +2,19 @@
   "name": "Fixr - Instant Home Services",
   "short_name": "Fixr",
   "description": "Book verified AC, RO, Inverter, Electrician and Plumber services near you",
-  "id": "/Fixr/",
-  "start_url": "/Fixr/",
-  "scope": "/Fixr/",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#ffffff",
   "theme_color": "#0f172a",
   "lang": "ta",
   "dir": "ltr",
-  "categories": ["lifestyle", "utilities", "business"],
+  "categories": [
+    "lifestyle",
+    "utilities",
+    "business"
+  ],
   "icons": [
     {
       "src": "icon-192.png",
