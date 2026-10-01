@@ -53,7 +53,7 @@
     .partner-fab { position: fixed; bottom: 20px; right: 20px; background: #0f172a; color: white; padding: 14px 20px; border-radius: 30px; font-weight: bold; font-size: 13px; border: none; box-shadow: 0 4px 14px rgba(15,23,42,0.35); cursor: pointer; display: flex; align-items: center; gap: 8px; z-index: 90; }
     .partner-fab span { background: #38bdf8; color: #0f172a; padding: 2px 6px; border-radius: 10px; font-size: 10px; }
 
-    /* Modals (Login & Partner) */
+    /* Modals */
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
     .modal-overlay.active { display: flex; }
     .modal-box { background: white; width: 100%; max-width: 380px; border-radius: 20px; padding: 22px; max-height: 90vh; overflow-y: auto; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
@@ -170,11 +170,158 @@
   </div>
 
   <script>
-    // உங்கள் அட்மின் வாட்ஸ்அப் எண் இணைக்கப்பட்டுள்ளது
+    // உங்கள் அட்மின் வாட்ஸ்அப் எண்
     const ADMIN_PHONE = "919884334097";
 
+    // Service Worker பதிவு (மாற்றப்பட்ட சரியான ./sw.js பாதை)
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js');
+        navigator.serviceWorker.register('./sw.js')
+          .then(reg => console.log('SW Registered!', reg))
+          .catch(err => console.log('SW Error:', err));
       });
     }
+
+    const data = [
+      { name: "CoolCare AC Solutions", category: "AC சர்வீஸ்", area: "தி. நகர் (T. Nagar)", phone: "9876543210", price: "₹499 முதல்", rating: "★ 4.9", desc: "Gas filling, ஜெட் சர்வீஸ் & இன்ஸ்டாலேஷன்" },
+      { name: "AquaPure RO Care", category: "RO சர்வீஸ்", area: "வேளச்சேரி (Velachery)", phone: "9876543211", price: "₹350 முதல்", rating: "★ 4.8", desc: "Filter மாற்றம் & வாட்டர் பியூரிஃபையர் பழுது" },
+      { name: "PowerMax Battery & Inverter", category: "இன்வெர்ட்டர் & பேட்டரி", area: "தாம்பரம் (Tambaram)", phone: "9876543212", price: "₹399 முதல்", rating: "★ 4.7", desc: "Water top-up, பேட்டரி டெஸ்டிங் & புதிய இன்வெர்ட்டர்" },
+      { name: "பாலாஜி எலக்ட்ரிக்கல்ஸ்", category: "எலக்ட்ரீஷியன்", area: "அண்ணா நகர் (Anna Nagar)", phone: "9876543213", price: "₹250 முதல்", rating: "★ 4.8", desc: "Short circuit, MCB & வீட்டு வயரிங்" },
+      { name: "குமார் பிளம்பிங் சர்வீஸ்", category: "பிளம்பர்", area: "போரூர் (Porur)", phone: "9876543214", price: "₹300 முதல்", rating: "★ 4.6", desc: "Motor பழுது, பைப் லீக்கேஜ் & டேங்க் கிளீனிங்" },
+      { name: "2 BHK குடும்ப வாடகை வீடு", category: "வாடகை வீடுகள்", area: "அடையாறு (Adyar)", phone: "9876543215", price: "₹16,000/மாதம்", rating: "புதியது", desc: "லிப்ட், கார் பார்க்கிங் வசதியுடன்" }
+    ];
+
+    let currentCategory = 'அனைத்தும்';
+    let searchQuery = '';
+
+    function checkUserLoggedIn() {
+      const savedUser = localStorage.getItem('fixr_user');
+      const authContainer = document.getElementById('authContainer');
+      if (savedUser) {
+        const user = JSON.parse(savedUser);
+        authContainer.innerHTML = `
+          <div class="user-profile">
+            <span>👤 ${user.name}</span>
+            <button onclick="logout()" style="background:none; border:none; color:#f87171; font-size:11px; cursor:pointer; margin-left:4px;">(Logout)</button>
+          </div>
+        `;
+      } else {
+        authContainer.innerHTML = `<button class="auth-btn" onclick="openModal('loginModal')">Login / Sign Up</button>`;
+      }
+    }
+
+    function openModal(id) {
+      document.getElementById(id).classList.add('active');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+    }
+
+    function handleLogin() {
+      const name = document.getElementById('userNameInput').value.trim();
+      const phone = document.getElementById('userPhoneInput').value.trim();
+
+      if (!name || phone.length < 10) {
+        alert('தயவுசெய்து சரியான பெயர் மற்றும் 10 இலக்க மொபைல் எண்ணை உள்ளிடவும்.');
+        return;
+      }
+
+      localStorage.setItem('fixr_user', JSON.stringify({ name: name, phone: phone }));
+      closeModal('loginModal');
+      checkUserLoggedIn();
+      alert('வெற்றிகரமாக உள்நுழைந்துவிட்டீர்கள்!');
+    }
+
+    function logout() {
+      localStorage.removeItem('fixr_user');
+      checkUserLoggedIn();
+    }
+
+    function handlePartnerSubmit() {
+      const name = document.getElementById('pName').value.trim();
+      const category = document.getElementById('pCategory').value;
+      const area = document.getElementById('pArea').value.trim();
+      const phone = document.getElementById('pPhone').value.trim();
+      const price = document.getElementById('pPrice').value.trim();
+
+      if (!name || !area || phone.length < 10) {
+        alert('தயவுசெய்து பெயர், ஊர் மற்றும் மொபைல் எண்ணை முழுமையாக உள்ளிடவும்.');
+        return;
+      }
+
+      const msg = `வணக்கம் Fixr அட்மின்! நான் செயலியில் சேவை வழங்க விரும்புகிறேன்:
+• பெயர்: ${name}
+• சேவை: ${category}
+• பகுதி: ${area}
+• மொபைல்: ${phone}
+• கட்டணம்/விவரம்: ${price || 'தொடர்பு கொள்க'}
+
+(சரிபார்ப்பிற்காக எனது ஆதார் அட்டை புகைப்படத்தை இதனுடன் அனுப்புகிறேன்)`;
+
+      const encodedMsg = encodeURIComponent(msg);
+      window.open(`https://wa.me/${ADMIN_PHONE}?text=${encodedMsg}`, '_blank');
+      closeModal('partnerModal');
+    }
+
+    function render() {
+      const container = document.getElementById('servicesList');
+      container.innerHTML = '';
+
+      const filtered = data.filter(item => {
+        const catMatch = currentCategory === 'அனைத்தும்' || item.category === currentCategory;
+        const searchMatch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                            item.area.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                            item.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                            item.desc.toLowerCase().includes(searchQuery.toLowerCase());
+        return catMatch && searchMatch;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<p style="text-align:center; padding:40px; color:#94a3b8;">சேவைகள் எதுவும் கிடைக்கவில்லை</p>';
+        return;
+      }
+
+      filtered.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="card-top">
+            <div>
+              <div class="name">${item.name}</div>
+              <div class="details">📍 ${item.area}</div>
+            </div>
+            <span class="badge">${item.category}</span>
+          </div>
+          <div style="font-size:12px; color:#475569; margin: 6px 0;">${item.desc}</div>
+          <div class="rating-row">
+            <span class="rating">${item.rating}</span>
+            <span class="price">${item.price}</span>
+          </div>
+          <div class="actions">
+            <a href="tel:${item.phone}" class="btn btn-call">📞 Call</a>
+            <a href="https://wa.me/91${item.phone}?text=வணக்கம் ${item.name}, Fixr ஆப்பில் உங்கள் சேவையைப் பார்த்தேன். விவரம் தேவை." class="btn btn-wa">💬 WhatsApp</a>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function filterCategory(cat) {
+      currentCategory = cat;
+      document.querySelectorAll('.chip').forEach(el => {
+        el.classList.toggle('active', el.innerText.includes(cat));
+      });
+      render();
+    }
+
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      searchQuery = e.target.value.trim();
+      render();
+    });
+
+    checkUserLoggedIn();
+    render();
+  </script>
+</body>
+</html>
