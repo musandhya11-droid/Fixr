@@ -1,9 +1,10 @@
 {
+  "id": "https://musandhya11-droid.github.io/Fixr/",
   "name": "Fixr - Instant Home Services",
   "short_name": "Fixr",
   "description": "Book verified AC, RO, Inverter, Electrician and Plumber services near you",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "https://musandhya11-droid.github.io/Fixr/",
+  "scope": "https://musandhya11-droid.github.io/Fixr/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#ffffff",
@@ -17,16 +18,44 @@
   ],
   "icons": [
     {
-      "src": "icon-192.png",
+      "src": "https://musandhya11-droid.github.io/Fixr/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "icon-512.png",
+      "src": "https://musandhya11-droid.github.io/Fixr/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "https://musandhya11-droid.github.io/Fixr/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "https://musandhya11-droid.github.io/Fixr/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "https://musandhya11-droid.github.io/Fixr/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Fixr Home Screen"
+    },
+    {
+      "src": "https://musandhya11-droid.github.io/Fixr/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Fixr Dashboard"
     }
   ]
 }
