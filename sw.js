@@ -1,14 +1,6 @@
-const CACHE_NAME = 'fixr-v2';
-const ASSETS_TO_CACHE = [
-  './',
-  './index.html',
-  './manifest.json'
-];
+const CACHE_NAME = 'fixr-v3';
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS_TO_CACHE))
-  );
   self.skipWaiting();
 });
 
@@ -25,8 +17,17 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
+// Network-First: இணையத்திலிருந்து எப்போதும் புதிய பக்கத்தை எடுக்கும்
 self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.match(event.request).then((response) => response || fetch(event.request))
+    fetch(event.request)
+      .then((response) => {
+        const responseClone = response.clone();
+        caches.open(CACHE_NAME).then((cache) => {
+          cache.put(event.request, responseClone);
+        });
+        return response;
+      })
+      .catch(() => caches.match(event.request))
   );
 });
