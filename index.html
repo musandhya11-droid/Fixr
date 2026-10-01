@@ -13,7 +13,7 @@
 
   <style>
     * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; padding: 0; }
-    body { background: #f8fafc; padding-bottom: 80px; color: #1e293b; }
+    body { background: #f8fafc; padding-bottom: 90px; color: #1e293b; }
     
     /* Header */
     header { background: #0f172a; color: white; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
@@ -49,16 +49,21 @@
     .btn-call { background: #f1f5f9; color: #334155; }
     .btn-wa { background: #25d366; color: white; }
 
-    /* Login Modal Popup */
-    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
+    /* Floating Join as Partner Button */
+    .partner-fab { position: fixed; bottom: 20px; right: 20px; background: #0f172a; color: white; padding: 14px 20px; border-radius: 30px; font-weight: bold; font-size: 13px; border: none; box-shadow: 0 4px 14px rgba(15,23,42,0.35); cursor: pointer; display: flex; align-items: center; gap: 8px; z-index: 90; }
+    .partner-fab span { background: #38bdf8; color: #0f172a; padding: 2px 6px; border-radius: 10px; font-size: 10px; }
+
+    /* Modals (Login & Partner) */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
     .modal-overlay.active { display: flex; }
-    .modal-box { background: white; width: 100%; max-width: 360px; border-radius: 20px; padding: 24px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
-    .modal-title { font-size: 18px; font-weight: bold; margin-bottom: 6px; }
-    .modal-sub { font-size: 13px; color: #64748b; margin-bottom: 16px; }
-    .form-group { margin-bottom: 12px; }
+    .modal-box { background: white; width: 100%; max-width: 380px; border-radius: 20px; padding: 22px; max-height: 90vh; overflow-y: auto; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+    .modal-title { font-size: 18px; font-weight: bold; margin-bottom: 4px; }
+    .modal-sub { font-size: 12px; color: #64748b; margin-bottom: 14px; }
+    .form-group { margin-bottom: 10px; }
     .form-group label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #475569; }
-    .form-input { width: 100%; padding: 10px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; outline: none; }
-    .submit-btn { width: 100%; background: #0f172a; color: white; border: none; padding: 12px; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 8px; }
+    .form-input { width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; outline: none; }
+    .notice-box { background: #fefce8; border: 1px solid #fef08a; padding: 10px; border-radius: 8px; font-size: 12px; color: #854d0e; margin: 12px 0; }
+    .submit-btn { width: 100%; background: #0284c7; color: white; border: none; padding: 12px; border-radius: 10px; font-weight: bold; cursor: pointer; }
     .close-btn { width: 100%; background: none; border: none; color: #64748b; margin-top: 10px; font-size: 13px; cursor: pointer; }
   </style>
 </head>
@@ -69,7 +74,7 @@
       <div class="brand">Fix<span>r</span></div>
     </div>
     <div id="authContainer">
-      <button class="auth-btn" onclick="openLoginModal()">Login / Sign Up</button>
+      <button class="auth-btn" onclick="openModal('loginModal')">Login / Sign Up</button>
     </div>
   </header>
 
@@ -89,7 +94,12 @@
 
   <div class="list" id="servicesList"></div>
 
-  <!-- லாகின் / சைன்-அப் பாப்-அப் திரை (Modal) -->
+  <!-- தொழிலாளர் சேர்க்கைக்கான Floating Button -->
+  <button class="partner-fab" onclick="openModal('partnerModal')">
+    🛠️ தொழிலாளர் பதிவு <span>Join</span>
+  </button>
+
+  <!-- 1. வாடிக்கையாளர் லாகின் பாப்-அப் -->
   <div class="modal-overlay" id="loginModal">
     <div class="modal-box">
       <div class="modal-title">Fixr-ல் இணைக 👋</div>
@@ -106,134 +116,65 @@
       </div>
 
       <button class="submit-btn" onclick="handleLogin()">உள்நுழைக (Submit)</button>
-      <button class="close-btn" onclick="closeLoginModal()">ரத்து செய்க (Cancel)</button>
+      <button class="close-btn" onclick="closeModal('loginModal')">ரத்து செய்க (Cancel)</button>
+    </div>
+  </div>
+
+  <!-- 2. டெக்னீசியன் பதிவு பாப்-அப் -->
+  <div class="modal-overlay" id="partnerModal">
+    <div class="modal-box">
+      <div class="modal-title">தொழிலாளராக இணைக 💼</div>
+      <div class="modal-sub">உங்கள் சேவை விவரங்களை உள்ளிட்டு Fixr-ல் ஆர்டர்களைப் பெறுங்கள்</div>
+      
+      <div class="form-group">
+        <label>தொழிலாளர் / கடை பெயர்</label>
+        <input type="text" id="pName" class="form-input" placeholder="எ.கா: முருகன் எலக்ட்ரிக்கல்ஸ்">
+      </div>
+
+      <div class="form-group">
+        <label>சேவை வகை</label>
+        <select id="pCategory" class="form-input">
+          <option value="AC சர்வீஸ்">AC சர்வீஸ்</option>
+          <option value="RO சர்வீஸ்">RO சர்வீஸ்</option>
+          <option value="இன்வெர்ட்டர் & பேட்டரி">இன்வெர்ட்டர் & பேட்டரி</option>
+          <option value="எலக்ட்ரீஷியன்">எலக்ட்ரீஷியன்</option>
+          <option value="பிளம்பர்">பிளம்பர்</option>
+          <option value="வாடகை வீடுகள்">வாடகை வீடுகள்</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>ஊர் / பகுதி (Locality)</label>
+        <input type="text" id="pArea" class="form-input" placeholder="எ.கா: வேளச்சேரி, சென்னை">
+      </div>
+
+      <div class="form-group">
+        <label>தொடர்பு எண் (WhatsApp Phone)</label>
+        <input type="tel" id="pPhone" class="form-input" placeholder="10 இலக்க மொபைல் எண்">
+      </div>
+
+      <div class="form-group">
+        <label>தொடக்கக் கட்டணம் & அனுபவம்</label>
+        <input type="text" id="pPrice" class="form-input" placeholder="எ.கா: ₹350 முதல் (5 வருட அனுபவம்)">
+      </div>
+
+      <div class="notice-box">
+        ⚠️ <b>பாதுகாப்பு விதி:</b> விண்ணப்பத்தை சமர்ப்பித்த பிறகு, உங்கள் ஆதார் அட்டை புகைப்படத்தை அட்மின் வாட்ஸ்அப்பிற்கு அனுப்ப வேண்டும்.
+      </div>
+
+      <button class="submit-btn" style="background:#25d366;" onclick="handlePartnerSubmit()">
+        வாட்ஸ்அப்பில் விண்ணப்பிக்கவும் 🚀
+      </button>
+      <button class="close-btn" onclick="closeModal('partnerModal')">மூடுக (Close)</button>
     </div>
   </div>
 
   <script>
+    // உங்கள் அட்மின் வாட்ஸ்அப் எண் இணைக்கப்பட்டுள்ளது
+    const ADMIN_PHONE = "919884334097";
+
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js');
       });
     }
-
-    const data = [
-      { name: "CoolCare AC Solutions", category: "AC சர்வீஸ்", area: "தி. நகர் (T. Nagar)", phone: "9876543210", price: "₹499 முதல்", rating: "★ 4.9", desc: "Gas filling, ஜெட் சர்வீஸ் & இன்ஸ்டாலேஷன்" },
-      { name: "AquaPure RO Care", category: "RO சர்வீஸ்", area: "வேளச்சேரி (Velachery)", phone: "9876543211", price: "₹350 முதல்", rating: "★ 4.8", desc: "Filter மாற்றம் & வாட்டர் பியூரிஃபையர் பழுது" },
-      { name: "PowerMax Battery & Inverter", category: "இன்வெர்ட்டர் & பேட்டரி", area: "தாம்பரம் (Tambaram)", phone: "9876543212", price: "₹399 முதல்", rating: "★ 4.7", desc: "Water top-up, பேட்டரி டெஸ்டிங் & புதிய இன்வெர்ட்டர்" },
-      { name: "பாலாஜி எலக்ட்ரிக்கல்ஸ்", category: "எலக்ட்ரீஷியன்", area: "அண்ணா நகர் (Anna Nagar)", phone: "9876543213", price: "₹250 முதல்", rating: "★ 4.8", desc: "Short circuit, MCB & வீட்டு வயரிங்" },
-      { name: "குமார் பிளம்பிங் சர்வீஸ்", category: "பிளம்பர்", area: "போரூர் (Porur)", phone: "9876543214", price: "₹300 முதல்", rating: "★ 4.6", desc: "Motor பழுது, பைப் லீக்கேஜ் & டேங்க் கிளீனிங்" },
-      { name: "2 BHK குடும்ப வாடகை வீடு", category: "வாடகை வீடுகள்", area: "அடையாறு (Adyar)", phone: "9876543215", price: "₹16,000/மாதம்", rating: "புதியது", desc: "லிப்ட், கார் பார்க்கிங் வசதியுடன்" }
-    ];
-
-    let currentCategory = 'அனைத்தும்';
-    let searchQuery = '';
-
-    // Login State Management
-    function checkUserLoggedIn() {
-      const savedUser = localStorage.getItem('fixr_user');
-      const authContainer = document.getElementById('authContainer');
-      if (savedUser) {
-        const user = JSON.parse(savedUser);
-        authContainer.innerHTML = `
-          <div class="user-profile">
-            <span>👤 ${user.name}</span>
-            <button onclick="logout()" style="background:none; border:none; color:#f87171; font-size:11px; cursor:pointer; margin-left:4px;">(Logout)</button>
-          </div>
-        `;
-      } else {
-        authContainer.innerHTML = `<button class="auth-btn" onclick="openLoginModal()">Login / Sign Up</button>`;
-      }
-    }
-
-    function openLoginModal() {
-      document.getElementById('loginModal').classList.add('active');
-    }
-
-    function closeLoginModal() {
-      document.getElementById('loginModal').classList.remove('active');
-    }
-
-    function handleLogin() {
-      const name = document.getElementById('userNameInput').value.trim();
-      const phone = document.getElementById('userPhoneInput').value.trim();
-
-      if (!name || phone.length < 10) {
-        alert('தயவுசெய்து சரியான பெயர் மற்றும் 10 இலக்க மொபைல் எண்ணை உள்ளிடவும்.');
-        return;
-      }
-
-      const userData = { name: name, phone: phone };
-      localStorage.setItem('fixr_user', JSON.stringify(userData));
-      closeLoginModal();
-      checkUserLoggedIn();
-      alert('வெற்றிகரமாக உள்நுழைந்துவிட்டீர்கள்!');
-    }
-
-    function logout() {
-      localStorage.removeItem('fixr_user');
-      checkUserLoggedIn();
-    }
-
-    function render() {
-      const container = document.getElementById('servicesList');
-      container.innerHTML = '';
-
-      const filtered = data.filter(item => {
-        const catMatch = currentCategory === 'அனைத்தும்' || item.category === currentCategory;
-        const searchMatch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                            item.area.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                            item.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                            item.desc.toLowerCase().includes(searchQuery.toLowerCase());
-        return catMatch && searchMatch;
-      });
-
-      if (filtered.length === 0) {
-        container.innerHTML = '<p style="text-align:center; padding:40px; color:#94a3b8;">சேவைகள் எதுவும் கிடைக்கவில்லை</p>';
-        return;
-      }
-
-      filtered.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-          <div class="card-top">
-            <div>
-              <div class="name">${item.name}</div>
-              <div class="details">📍 ${item.area}</div>
-            </div>
-            <span class="badge">${item.category}</span>
-          </div>
-          <div style="font-size:12px; color:#475569; margin: 6px 0;">${item.desc}</div>
-          <div class="rating-row">
-            <span class="rating">${item.rating}</span>
-            <span class="price">${item.price}</span>
-          </div>
-          <div class="actions">
-            <a href="tel:${item.phone}" class="btn btn-call">📞 Call</a>
-            <a href="https://wa.me/91${item.phone}?text=வணக்கம் ${item.name}, Fixr ஆப்பில் உங்கள் சேவையைப் பார்த்தேன். விவரம் தேவை." class="btn btn-wa">💬 WhatsApp</a>
-          </div>
-        `;
-        container.appendChild(card);
-      });
-    }
-
-    function filterCategory(cat) {
-      currentCategory = cat;
-      document.querySelectorAll('.chip').forEach(el => {
-        el.classList.toggle('active', el.innerText.includes(cat));
-      });
-      render();
-    }
-
-    document.getElementById('searchInput').addEventListener('input', (e) => {
-      searchQuery = e.target.value.trim();
-      render();
-    });
-
-    // Initialize
-    checkUserLoggedIn();
-    render();
-  </script>
-</body>
-</html>
