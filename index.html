@@ -806,6 +806,85 @@
 
     let currentLang = localStorage.getItem('fixr_lang') || 'ta';
 
+
+    // Category Name Translation Map
+
+    const categoryNameMap = {
+
+      "அனைத்தும்": { ta: "அனைத்தும்", en: "All Services" },
+
+      "கேர் டேக்கர்": { ta: "கேர் டேக்கர்", en: "Care Taker" },
+
+      "AC சர்வீஸ்": { ta: "AC சர்வீஸ்", en: "AC Service" },
+
+      "RO சர்வீஸ்": { ta: "RO சர்வீஸ்", en: "RO Service" },
+
+      "இன்வெர்ட்டர் & பேட்டரி": { ta: "இன்வெர்ட்டர் & பேட்டரி", en: "Battery & Inverter" },
+
+      "எலக்ட்ரீஷியன்": { ta: "எலக்ட்ரீஷியன்", en: "Electrician" },
+
+      "பிளம்பர்": { ta: "பிளம்பர்", en: "Plumber" },
+
+      "வாடகை வீடுகள்": { ta: "வாடகை வீடுகள்", en: "House Rentals" }
+
+    };
+
+
+    function getDisplayCategory(cat) {
+
+      if (!cat) return "";
+
+      const trimmed = cat.trim();
+
+      if (categoryNameMap[trimmed]) {
+
+        return (currentLang === 'ta') ? categoryNameMap[trimmed].ta : categoryNameMap[trimmed].en;
+
+      }
+
+      for (const key in categoryNameMap) {
+
+        if (trimmed.includes(key) || (categoryNameMap[key].en && trimmed.toLowerCase().includes(categoryNameMap[key].en.toLowerCase()))) {
+
+          return (currentLang === 'ta') ? categoryNameMap[key].ta : categoryNameMap[key].en;
+
+        }
+
+      }
+
+      return cat;
+
+    }
+
+
+    function getDisplayPrice(price) {
+
+      if (!price) return currentLang === 'ta' ? 'தொடர்பு கொள்க' : 'Contact for price';
+
+      if (currentLang === 'en') {
+
+        return price.replace('/நாள்', '/day').replace('முதல்', 'onwards');
+
+      }
+
+      return price;
+
+    }
+
+
+    function getDisplayDesc(desc) {
+
+      if (!desc || desc === 'அங்கீகரிக்கப்பட்ட சேவை' || desc === 'அங்கீகரிக்கப்பட்ட Fixr சேவை') {
+
+        return currentLang === 'ta' ? 'அங்கீகரிக்கப்பட்ட Fixr சேவை' : 'Verified Fixr Partner';
+
+      }
+
+      return desc;
+
+    }
+
+
     const translations = {
 
       ta: {
@@ -1500,11 +1579,17 @@
 
         const catMatch = currentCategory === 'அனைத்தும்' || item.category === currentCategory;
 
+        const displayCat = getDisplayCategory(item.category).toLowerCase();
+
+        const rawCat = (item.category || '').toLowerCase();
+
         const sMatch = (item.name && item.name.toLowerCase().includes(q)) ||
 
                        (item.area && item.area.toLowerCase().includes(q)) ||
 
-                       (item.category && item.category.toLowerCase().includes(q));
+                       rawCat.includes(q) || displayCat.includes(q) ||
+
+                       (item.desc && item.desc.toLowerCase().includes(q));
 
         return catMatch && sMatch;
 
@@ -1538,17 +1623,17 @@
 
             </div>
 
-            <span class="badge">${item.category}</span>
+            <span class="badge">${getDisplayCategory(item.category)}</span>
 
           </div>
 
-          <div style="font-size:12px; color:#475569; margin: 6px 0;">${item.desc || 'அங்கீகரிக்கப்பட்ட சேவை'}</div>
+          <div style="font-size:12px; color:#475569; margin: 6px 0;">${getDisplayDesc(item.desc)}</div>
 
           <div class="rating-row">
 
             <span class="rating">${item.rating || '★ 5.0'}</span>
 
-            <span class="price">${item.price}</span>
+            <span class="price">${getDisplayPrice(item.price)}</span>
 
           </div>
 
@@ -1577,7 +1662,7 @@
 
       if (!selectedBookingTech) return;
 
-      document.getElementById('bookTechSummary').innerText = `${selectedBookingTech.name} (${selectedBookingTech.category})`;
+      document.getElementById('bookTechSummary').innerText = `${selectedBookingTech.name} (${getDisplayCategory(selectedBookingTech.category)})`;
 
       openModal('bookingModal');
 
