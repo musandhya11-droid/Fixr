@@ -1,788 +1,1744 @@
 <!DOCTYPE html>
+
 <html lang="ta">
+
 <head>
+
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Fixr - All India Home Services | தமிழ்நாடு நம்பகமான ஹோம் சர்வீசஸ்</title>
-  
+
+ 
+
+  <meta property="og:title" content="Fixr - தமிழ்நாடு நம்பகமான ஹோம் சர்வீசஸ் | AC, எலக்ட்ரீஷியன், பிளம்பர்">
+
+  <meta property="og:description" content="AC சர்வீஸ், எலக்ட்ரீஷியன், பிளம்பர், கேர் டேக்கர் சேவைகளை உங்கள் பகுதியிலேயே உடனே புக் செய்யுங்கள்! நேரடி வாடிக்கையாளர் தொடர்புகள், 0% கமிஷன்.">
+
+  <meta property="og:url" content="https://www.fixrservice.in">
+
   <meta name="theme-color" content="#0f172a">
+
   <meta name="apple-mobile-web-app-capable" content="yes">
+
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
   <meta name="apple-mobile-web-app-title" content="Fixr">
 
+
   <!-- Google Firebase SDK (Compat) -->
+
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
 
+
   <style>
+
     * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Tamil", sans-serif; margin: 0; padding: 0; }
+
     body { background: #f8fafc; padding-bottom: 95px; color: #1e293b; }
+
+   
+
     header { background: #0f172a; color: white; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+
     .brand { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
+
     .brand span { color: #38bdf8; }
+
     .nav-btns { display: flex; gap: 6px; align-items: center; }
-    .admin-btn { background: #334155; color: #38bdf8; border: 1px solid #475569; padding: 5px 10px; border-radius: 12px; font-size: 11px; font-weight: bold; cursor: pointer; }
+
+    .lang-btn { background: #1e293b; color: #f8fafc; border: 1px solid #475569; padding: 5px 8px; border-radius: 12px; font-size: 11px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 4px; }
+
+    .admin-btn { background: #334155; color: #38bdf8; border: 1px solid #475569; padding: 5px 8px; border-radius: 12px; font-size: 11px; font-weight: bold; cursor: pointer; }
+
     .auth-btn { background: #38bdf8; color: #0f172a; border: none; padding: 6px 12px; border-radius: 20px; font-weight: bold; font-size: 11px; cursor: pointer; }
+
     .user-profile { font-size: 11px; color: #38bdf8; font-weight: bold; display: flex; align-items: center; gap: 4px; background: #1e293b; padding: 4px 10px; border-radius: 16px; }
-    
+
+
     .sync-bar { background: #e0f2fe; color: #0369a1; padding: 4px 16px; font-size: 11px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #bae6fd; }
+
     .search-box { padding: 12px 16px 4px; }
+
     .search-input { width: 100%; padding: 12px 16px; border-radius: 12px; border: 1px solid #cbd5e1; font-size: 14px; outline: none; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-    
+
+
     .categories { display: flex; overflow-x: auto; padding: 10px 16px; gap: 8px; scrollbar-width: none; }
+
     .categories::-webkit-scrollbar { display: none; }
+
     .chip { padding: 7px 14px; background: white; border-radius: 20px; font-size: 12px; font-weight: 600; border: 1px solid #e2e8f0; white-space: nowrap; cursor: pointer; }
+
     .chip.active { background: #0f172a; color: white; border-color: #0f172a; }
-    
+
+
     .list { padding: 8px 16px; }
+
     .card { background: white; border-radius: 16px; padding: 16px; margin-bottom: 12px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+
     .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px; }
+
     .name { font-size: 16px; font-weight: 700; color: #0f172a; }
+
     .badge { font-size: 11px; padding: 3px 8px; border-radius: 14px; font-weight: 700; background: #f0fdf4; color: #166534; }
+
     .details { font-size: 13px; color: #64748b; margin-top: 4px; }
+
     .rating-row { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: 13px; }
+
     .rating { background: #fef08a; color: #854d0e; padding: 2px 8px; border-radius: 6px; font-weight: bold; }
+
     .price { font-size: 14px; font-weight: 800; color: #0284c7; }
-    
+
+
     .actions { display: flex; gap: 8px; margin-top: 12px; padding-top: 10px; border-top: 1px solid #f1f5f9; }
-    .btn { padding: 8px 14px; border-radius: 8px; text-decoration: none; font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: 4px; cursor: pointer; border: none; }
-    .btn-book { background: #0284c7; color: white; flex: 2; }
+
+    .btn { padding: 9px 12px; border-radius: 8px; text-decoration: none; font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: 4px; cursor: pointer; border: none; }
+
+    .btn-book { background: #0284c7; color: white; flex: 2; font-weight: bold; }
+
     .btn-call { background: #f1f5f9; color: #334155; flex: 1; border: 1px solid #cbd5e1; }
+
     .btn-wa { background: #22c55e; color: white; flex: 1; }
-    
-    .partner-fab { position: fixed; bottom: 20px; right: 16px; background: #0f172a; color: white; padding: 11px 16px; border-radius: 30px; font-weight: bold; font-size: 12px; border: 1px solid #38bdf8; box-shadow: 0 4px 14px rgba(15,23,42,0.35); cursor: pointer; z-index: 90; }
-    .support-fab { position: fixed; bottom: 20px; left: 16px; background: #25d366; color: white; padding: 11px 16px; border-radius: 30px; font-weight: bold; font-size: 12px; text-decoration: none; box-shadow: 0 4px 14px rgba(37,211,102,0.4); z-index: 90; }
+
+
+    .partner-fab { position: fixed; bottom: 20px; right: 16px; background: #0f172a; color: white; padding: 11px 16px; border-radius: 30px; font-weight: bold; font-size: 12px; border: 1px solid #38bdf8; box-shadow: 0 4px 14px rgba(15,23,42,0.35); cursor: pointer; z-index: 90; display: flex; align-items: center; gap: 6px; }
+
+    .support-fab { position: fixed; bottom: 20px; left: 16px; background: #25d366; color: white; padding: 11px 16px; border-radius: 30px; font-weight: bold; font-size: 12px; text-decoration: none; box-shadow: 0 4px 14px rgba(37,211,102,0.4); z-index: 90; display: flex; align-items: center; gap: 6px; }
+
 
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 1000; justify-content: center; align-items: center; padding: 16px; }
+
     .modal-overlay.active { display: flex; }
-    .modal-box { background: white; width: 100%; max-width: 440px; border-radius: 20px; padding: 20px; max-height: 90vh; overflow-y: auto; }
+
+    .modal-box { background: white; width: 100%; max-width: 450px; border-radius: 20px; padding: 20px; max-height: 90vh; overflow-y: auto; }
+
     .modal-title { font-size: 18px; font-weight: bold; margin-bottom: 4px; color: #0f172a; }
+
     .modal-sub { font-size: 12px; color: #64748b; margin-bottom: 14px; }
+
     .form-group { margin-bottom: 10px; }
+
     .form-group label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #475569; }
+
     .form-input { width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; outline: none; }
+
     .submit-btn { width: 100%; background: #0284c7; color: white; border: none; padding: 12px; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 8px; font-size: 14px; }
+
     .close-btn { width: 100%; background: none; border: none; color: #64748b; margin-top: 10px; font-size: 13px; cursor: pointer; }
 
-    /* Payment Box */
+
     .payment-box { background: #f0fdf4; border: 1px solid #86efac; border-radius: 14px; padding: 12px; margin: 10px 0; text-align: center; }
+
     .payment-title { font-size: 13px; font-weight: bold; color: #166534; display: flex; justify-content: space-between; margin-bottom: 6px; }
+
     .payment-amount { background: #22c55e; color: white; padding: 2px 8px; border-radius: 12px; font-size: 12px; font-weight: 800; }
+
     .upi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 8px 0; }
+
     .upi-btn { padding: 9px 6px; border-radius: 8px; font-weight: bold; font-size: 12px; cursor: pointer; border: none; color: white; }
+
     .btn-gpay { background: #0f172a; color: #38bdf8; border: 1px solid #38bdf8; grid-column: span 2; }
+
     .btn-phonepe { background: #5f259f; }
+
     .btn-paytm { background: #002970; }
+
     .btn-all-upi { background: #16a34a; grid-column: span 2; }
 
-    /* Documents Upload */
+
     .doc-upload-section { background: #f8fafc; border: 1px dashed #94a3b8; border-radius: 12px; padding: 12px; margin: 12px 0; }
+
     .doc-title { font-size: 12px; font-weight: bold; color: #0f172a; margin-bottom: 8px; }
+
     .doc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
     .doc-box { background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px; }
+
     .doc-box label { display: block; font-size: 11px; font-weight: 700; color: #334155; margin-bottom: 3px; }
+
     .doc-box input[type="file"] { width: 100%; font-size: 10px; }
+
     .upload-progress { display: none; background: #e0f2fe; color: #0369a1; padding: 10px; border-radius: 8px; font-size: 12px; font-weight: 600; text-align: center; margin: 8px 0; }
 
+
     /* Admin Tabs & Approvals */
+
     .admin-tab-nav { display: flex; gap: 6px; margin-bottom: 12px; border-bottom: 2px solid #e2e8f0; padding-bottom: 6px; }
+
     .admin-tab-btn { flex: 1; padding: 8px; border: none; background: #f1f5f9; color: #64748b; font-weight: bold; font-size: 12px; border-radius: 8px; cursor: pointer; }
+
     .admin-tab-btn.active { background: #0284c7; color: white; }
+
     .badge-count { background: #ef4444; color: white; padding: 1px 6px; border-radius: 10px; font-size: 10px; margin-left: 4px; }
+
     .approval-card { background: white; border: 1px solid #cbd5e1; border-radius: 10px; padding: 12px; margin-bottom: 10px; font-size: 12px; }
+
     .doc-badge-row { display: flex; gap: 6px; flex-wrap: wrap; margin: 8px 0; }
+
     .doc-link-btn { display: inline-flex; align-items: center; background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; padding: 3px 6px; border-radius: 6px; font-size: 11px; text-decoration: none; font-weight: 600; }
+
     .approval-actions { display: flex; gap: 6px; margin-top: 8px; border-top: 1px solid #f1f5f9; padding-top: 8px; }
+
     .btn-approve { flex: 1; background: #16a34a; color: white; border: none; padding: 7px; border-radius: 6px; font-weight: bold; font-size: 11px; cursor: pointer; }
+
     .btn-reject { background: #fee2e2; color: #dc2626; border: none; padding: 7px 10px; border-radius: 6px; font-weight: bold; font-size: 11px; cursor: pointer; }
+
     .admin-tech-item { display: flex; justify-content: space-between; align-items: center; padding: 8px; border-bottom: 1px solid #f1f5f9; font-size: 12px; }
+
     .edit-btn { background: #e0f2fe; color: #0284c7; border: none; padding: 4px 8px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 11px; }
+
     .del-btn { background: #fee2e2; color: #dc2626; border: none; padding: 4px 8px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 11px; }
+
+
+    /* OTP Banner */
+
+    .otp-banner { background: #fefce8; border: 1px solid #fde047; padding: 8px 12px; border-radius: 8px; font-size: 12px; color: #854d0e; margin-bottom: 12px; text-align: center; }
+
+
+    /* Footer */
+
+    footer { background: #0f172a; color: #94a3b8; padding: 24px 16px 85px; text-align: center; font-size: 12px; line-height: 1.8; margin-top: 30px; border-top: 1px solid #334155; }
+
+    footer a { color: #38bdf8; text-decoration: none; margin: 0 4px; }
+
   </style>
+
 </head>
+
 <body>
 
-  <!-- Header -->
+
+  <!-- Header with Language Toggle (English/Tamil), Admin & Login -->
+
   <header>
+
     <div class="brand">Fix<span>r</span></div>
+
     <div class="nav-btns">
+
+      <button class="lang-btn" id="langToggleBtn" onclick="toggleLanguage()">🌐 English</button>
+
       <button class="admin-btn" onclick="openAdminLogin()">🔒 Admin</button>
+
       <div id="authContainer">
-        <button class="auth-btn" onclick="openLoginModal()">Login</button>
+
+        <button class="auth-btn" id="authBtn" onclick="openLoginModal()">Login</button>
+
       </div>
+
     </div>
+
   </header>
 
-  <!-- Live Sync Bar -->
+
+  <!-- Live Cloud Sync Status -->
+
   <div class="sync-bar">
+
     <span id="cloudStatusText">☁️ Google Cloud Database: இணைக்கப்பட்டது (Online)</span>
+
     <span style="background:#0284c7; color:white; padding:1px 7px; border-radius:10px; font-size:10px;">Live</span>
+
   </div>
+
 
   <!-- Search -->
+
   <div class="search-box">
+
     <input type="text" id="searchInput" class="search-input" placeholder="🔍 நகரம் (Chennai, Madurai...), சேவை அல்லது பெயர்...">
+
   </div>
 
-  <!-- Categories & Service Cards -->
+
+  <!-- Categories & List -->
+
   <div class="categories" id="categoryContainer"></div>
+
   <div class="list" id="servicesList"></div>
 
-  <!-- Floating Help & Partner FAB -->
-  <a href="https://wa.me/919884334097?text=வணக்கம்%20Fixr%20அட்மின்!%20எனக்கு%20உதவி%20வேண்டும்." class="support-fab" target="_blank">
-    💬 உதவி
+
+  <!-- Floating Customer Care & Partner FAB -->
+
+  <a href="https://wa.me/919884334097?text=வணக்கம்%20Fixr%20அட்மின்!%20எனக்கு%20உதவி%20வேண்டும்." class="support-fab" target="_blank" id="supportFabBtn">
+
+    💬 <span>உதவி (Help)</span>
+
   </a>
-  <button class="partner-fab" onclick="openModal('partnerModal')">
-    🛠️ தொழிலாளர் பதிவு (₹49)
+
+  <button class="partner-fab" id="partnerFabBtn" onclick="openModal('partnerModal')">
+
+    🛠️ <span id="partnerFabText">தொழிலாளர் பதிவு (₹49)</span>
+
   </button>
 
-  <!-- Login Modal -->
+
+  <!-- 1. வாடிக்கையாளர் OTP லாகின் பாப்-அப் (Customer Login with OTP) -->
+
   <div class="modal-overlay" id="loginModal">
+
     <div class="modal-box">
-      <div class="modal-title">Fixr உள்நுழைவு 👋</div>
-      <div class="modal-sub">சேவைகளை புக் செய்ய உங்கள் விவரங்களை உள்ளிடவும்</div>
-      <div class="form-group">
-        <label>முழு பெயர்</label>
-        <input type="text" id="userName" class="form-input" placeholder="உங்கள் பெயர்">
+
+      <div class="modal-title" id="loginTitle">Fixr OTP உள்நுழைவு 👋</div>
+
+      <div class="modal-sub" id="loginSub">சேவையை புக் செய்ய உங்கள் மொபைல் எண்ணை உள்ளிடவும்</div>
+
+     
+
+      <!-- OTP படி 1 -->
+
+      <div id="otpStep1">
+
+        <div class="form-group">
+
+          <label id="lblLoginName">முழு பெயர்</label>
+
+          <input type="text" id="userName" class="form-input" placeholder="உங்கள் பெயர்">
+
+        </div>
+
+        <div class="form-group">
+
+          <label id="lblLoginPhone">10 இலக்க மொபைல் எண்</label>
+
+          <input type="tel" id="userPhone" class="form-input" placeholder="எ.கா: 9876543210" maxlength="10">
+
+        </div>
+
+        <button class="submit-btn" id="btnSendOtp" onclick="sendOtpCode()">OTP பெறுக 📲</button>
+
       </div>
-      <div class="form-group">
-        <label>10 இலக்க மொபைல் எண்</label>
-        <input type="tel" id="userPhone" class="form-input" placeholder="எ.கா: 9876543210" maxlength="10">
+
+
+      <!-- OTP படி 2 -->
+
+      <div id="otpStep2" style="display:none;">
+
+        <div class="otp-banner" id="otpNotice">
+
+          📲 உங்கள் மொபைலுக்கு OTP அனுப்பப்பட்டுள்ளது! (Demo Code: <b id="demoOtpCode">1234</b>)
+
+        </div>
+
+        <div class="form-group">
+
+          <label>4 இலக்க OTP குறியீடு</label>
+
+          <input type="tel" id="otpInput" class="form-input" placeholder="• • • •" maxlength="4" style="letter-spacing:8px; font-size:20px; text-align:center;">
+
+        </div>
+
+        <button class="submit-btn" style="background:#16a34a;" onclick="verifyOtpCode()">உள்நுழைவை உறுதி செய் 🚀</button>
+
+        <button class="close-btn" onclick="resendOtp()">மீண்டும் OTP அனுப்புக (Resend)</button>
+
       </div>
-      <button class="submit-btn" onclick="handleLogin()">உள்நுழைக</button>
-      <button class="close-btn" onclick="closeModal('loginModal')">ரத்து</button>
+
+
+      <button class="close-btn" id="loginCancelBtn" onclick="closeModal('loginModal')">ரத்து</button>
+
     </div>
+
   </div>
 
-  <!-- Booking Modal -->
+
+  <!-- 2. சேவை முன்பதிவு (Booking Modal with Date & Time Slot) -->
+
   <div class="modal-overlay" id="bookingModal">
+
     <div class="modal-box">
-      <div class="modal-title">🗓️ சேவை முன்பதிவு</div>
+
+      <div class="modal-title" id="bookModalTitle">🗓️ சேவை முன்பதிவு (Book Service)</div>
+
       <div class="modal-sub" id="bookTechSummary">டெக்னீசியன் விவரம்</div>
+
       <div class="form-group">
-        <label>📅 வர வேண்டிய தேதி</label>
+
+        <label id="lblBookDate">📅 வர வேண்டிய தேதி</label>
+
         <input type="date" id="bookDate" class="form-input">
+
       </div>
+
       <div class="form-group">
-        <label>⏰ விருப்பமான நேரம்</label>
+
+        <label id="lblBookTime">⏰ விருப்பமான நேரம்</label>
+
         <select id="bookTimeSlot" class="form-input">
+
           <option value="10:00 AM - 12:00 PM">காலை (10 AM - 12 PM)</option>
+
           <option value="12:00 PM - 02:00 PM">மதியம் (12 PM - 02 PM)</option>
+
           <option value="02:00 PM - 05:00 PM">பிற்பகல் (02 PM - 05 PM)</option>
+
           <option value="05:00 PM - 08:00 PM">மாலை (05 PM - 08 PM)</option>
+
         </select>
+
       </div>
+
       <div class="form-group">
-        <label>🏠 வீட்டு முகவரி & பகுதி</label>
+
+        <label id="lblBookAddress">🏠 வீட்டு முகவரி & பகுதி</label>
+
         <input type="text" id="bookAddress" class="form-input" placeholder="கதவு எண், தெரு & நகரம்">
+
       </div>
+
       <div class="form-group">
-        <label>🛠️ பழுது / தேவை விவரம்</label>
+
+        <label id="lblBookNotes">🛠️ பழுது / தேவை விவரம் (Notes)</label>
+
         <input type="text" id="bookNotes" class="form-input" placeholder="எ.கா: AC கூலிங் வரவில்லை">
+
       </div>
-      <button class="submit-btn" onclick="confirmBooking()">முன்பதிவை உறுதி செய் 🚀</button>
+
+      <button class="submit-btn" style="background:#0284c7;" id="btnConfirmBook" onclick="confirmBooking()">முன்பதிவை உறுதி செய் 🚀</button>
+
       <button class="close-btn" onclick="closeModal('bookingModal')">ரத்து</button>
+
     </div>
+
   </div>
 
-  <!-- Partner Registration Modal (₹49 UPI + Aadhaar & PAN Upload) -->
+
+  <!-- 3. தொழிலாளர் பதிவு படிவம் (₹49 Fee + Aadhaar & PAN Upload) -->
+
   <div class="modal-overlay" id="partnerModal">
+
     <div class="modal-box">
-      <div class="modal-title">தொழிலாளராக இணைக 💼</div>
-      <div class="modal-sub">Fixr பார்ட்னராக பதிவு செய்து வாடிக்கையாளர்களைப் பெறுங்கள்</div>
+
+      <div class="modal-title" id="pModalTitle">தொழிலாளராக இணைக 💼</div>
+
+      <div class="modal-sub" id="pModalSub">Fixr பார்ட்னராக பதிவு செய்து வாடிக்கையாளர்களைப் பெறுங்கள்</div>
+
 
       <div class="payment-box">
+
         <div class="payment-title">
-          <span>💳 ஒருமுறை பதிவுக் கட்டணம்</span>
+
+          <span id="pPayTitle">💳 ஒருமுறை பதிவுக் கட்டணம்</span>
+
           <span class="payment-amount">₹49 Only</span>
+
         </div>
+
         <div style="font-size:11px; margin:4px 0; text-align:left;">
+
           <b>GPay/UPI:</b> yugamugesh52-3@oksbi | <b>எண்:</b> 9884334097
+
         </div>
+
         <div class="upi-grid">
+
           <button type="button" class="upi-btn btn-gpay" onclick="triggerMobileUpi('gpay')">⚡ Pay ₹49 with GPay</button>
+
           <button type="button" class="upi-btn btn-phonepe" onclick="triggerMobileUpi('phonepe')">🟣 PhonePe</button>
+
           <button type="button" class="upi-btn btn-paytm" onclick="triggerMobileUpi('paytm')">🔵 Paytm</button>
+
           <button type="button" class="upi-btn btn-all-upi" onclick="triggerMobileUpi('all')">🟢 மற்ற அனைத்து UPI ஆப்ஸ்</button>
+
         </div>
+
       </div>
 
+
       <div class="form-group">
-        <label>பெயர் / நிறுவன பெயர்</label>
+
+        <label id="lblPName">பெயர் / நிறுவன பெயர்</label>
+
         <input type="text" id="pName" class="form-input" placeholder="எ.கா: அன்பு / AC Solutions">
-      </div>
-      <div class="form-group">
-        <label>சேவை வகை</label>
-        <select id="pCategory" class="form-input">
-          <option value="கேர் டேக்கர்">கேர் டேக்கர் (Care Taker)</option>
-          <option value="AC சர்வீஸ்">AC சர்வீஸ் (AC Service)</option>
-          <option value="RO சர்வீஸ்">RO சர்வீஸ் (RO Service)</option>
-          <option value="இன்வெர்ட்டர் & பேட்டரி">இன்வெர்ட்டர் & பேட்டரி (Inverter & Battery)</option>
-          <option value="எலக்ட்ரீஷியன்">எலக்ட்ரீஷியன் (Electrician)</option>
-          <option value="பிளம்பர்">பிளம்பர் (Plumber)</option>
-          <option value="வாடகை வீடுகள்">வாடகை வீடுகள் (House Rentals)</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>ஊர் & மாவட்டம் / நகரம்</label>
-        <input type="text" id="pArea" class="form-input" placeholder="எ.கா: வேளச்சேரி, சென்னை">
-      </div>
-      <div class="form-group">
-        <label>தொடர்பு எண் (WhatsApp Number)</label>
-        <input type="tel" id="pPhone" class="form-input" placeholder="10 இலக்க மொபைல் எண்">
-      </div>
-      <div class="form-group">
-        <label>கட்டணம் & சேவை விவரம்</label>
-        <input type="text" id="pPrice" class="form-input" placeholder="எ.கா: ₹600/நாள் அல்லது ₹499 முதல்">
-      </div>
-      <div class="form-group">
-        <label>அனுபவம் / குறிப்பு</label>
-        <input type="text" id="pDesc" class="form-input" placeholder="எ.கா: 5 ஆண்டுகள் அனுபவம்">
+
       </div>
 
-      <!-- ஆவணங்கள் பதிவேற்றம் -->
-      <div class="doc-upload-section">
-        <div class="doc-title">📑 சரிபார்ப்பு ஆவணங்கள் & கட்டண ரசீது:</div>
-        <div class="doc-grid">
-          <div class="doc-box">
-            <label>1. ஆதார் (முன் பக்கம்)</label>
-            <input type="file" id="pAadhaarFront" accept="image/*,.pdf">
-          </div>
-          <div class="doc-box">
-            <label>2. ஆதார் (பின் பக்கம்)</label>
-            <input type="file" id="pAadhaarBack" accept="image/*,.pdf">
-          </div>
-          <div class="doc-box">
-            <label>3. பான் (முன் பக்கம்)</label>
-            <input type="file" id="pPanFront" accept="image/*,.pdf">
-          </div>
-          <div class="doc-box">
-            <label>4. பான் (பின் பக்கம்)</label>
-            <input type="file" id="pPanBack" accept="image/*,.pdf">
-          </div>
-          <div class="doc-box" style="grid-column: span 2; background:#f0fdf4;">
-            <label style="color:#166534;">5. GPay / UPI ₹49 கட்டண ரசீது (Screenshot)</label>
-            <input type="file" id="pPaymentProof" accept="image/*,.pdf">
-          </div>
-        </div>
+      <div class="form-group">
+
+        <label id="lblPCat">சேவை வகை</label>
+
+        <select id="pCategory" class="form-input">
+
+          <option value="கேர் டேக்கர்">கேர் டேக்கர் (Care Taker)</option>
+
+          <option value="AC சர்வீஸ்">AC சர்வீஸ் (AC Service)</option>
+
+          <option value="RO சர்வீஸ்">RO சர்வீஸ் (RO Service)</option>
+
+          <option value="இன்வெர்ட்டர் & பேட்டரி">இன்வெர்ட்டர் & பேட்டரி (Inverter & Battery)</option>
+
+          <option value="எலக்ட்ரீஷியன்">எலக்ட்ரீஷியன் (Electrician)</option>
+
+          <option value="பிளம்பர்">பிளம்பர் (Plumber)</option>
+
+          <option value="வாடகை வீடுகள்">வாடகை வீடுகள் (House Rentals)</option>
+
+        </select>
+
       </div>
+
+      <div class="form-group">
+
+        <label id="lblPArea">ஊர் & மாவட்டம் / நகரம்</label>
+
+        <input type="text" id="pArea" class="form-input" placeholder="எ.கா: வேளச்சேரி, சென்னை">
+
+      </div>
+
+      <div class="form-group">
+
+        <label id="lblPPhone">தொடர்பு எண் (WhatsApp Number)</label>
+
+        <input type="tel" id="pPhone" class="form-input" placeholder="10 இலக்க மொபைல் எண்">
+
+      </div>
+
+      <div class="form-group">
+
+        <label id="lblPPrice">கட்டணம் & சேவை விவரம்</label>
+
+        <input type="text" id="pPrice" class="form-input" placeholder="எ.கா: ₹600/நாள் அல்லது ₹499 முதல்">
+
+      </div>
+
+      <div class="form-group">
+
+        <label id="lblPDesc">அனுபவம் / சிறப்பு விவரம்</label>
+
+        <input type="text" id="pDesc" class="form-input" placeholder="எ.கா: 5 ஆண்டுகள் அனுபவம் / 24/7 சேவை">
+
+      </div>
+
+
+      <!-- ஆவணங்கள் பதிவேற்றம் (Aadhaar & PAN Upload) -->
+
+      <div class="doc-upload-section">
+
+        <div class="doc-title">📑 சரிபார்ப்பு ஆவணங்கள் & கட்டண ரசீது:</div>
+
+        <div class="doc-grid">
+
+          <div class="doc-box">
+
+            <label>1. ஆதார் (முன் பக்கம்)</label>
+
+            <input type="file" id="pAadhaarFront" accept="image/*,.pdf">
+
+          </div>
+
+          <div class="doc-box">
+
+            <label>2. ஆதார் (பின் பக்கம்)</label>
+
+            <input type="file" id="pAadhaarBack" accept="image/*,.pdf">
+
+          </div>
+
+          <div class="doc-box">
+
+            <label>3. பான் (முன் பக்கம்)</label>
+
+            <input type="file" id="pPanFront" accept="image/*,.pdf">
+
+          </div>
+
+          <div class="doc-box">
+
+            <label>4. பான் (பின் பக்கம்)</label>
+
+            <input type="file" id="pPanBack" accept="image/*,.pdf">
+
+          </div>
+
+          <div class="doc-box" style="grid-column: span 2; background:#f0fdf4;">
+
+            <label style="color:#166534;">5. GPay / UPI ₹49 கட்டண ரசீது (Screenshot)</label>
+
+            <input type="file" id="pPaymentProof" accept="image/*,.pdf">
+
+          </div>
+
+        </div>
+
+      </div>
+
 
       <div class="upload-progress" id="pUploadProgress">
+
         ⏳ <span id="pUploadStatusText">ஆவணங்கள் கிளவுடில் பதிவேற்றப்படுகின்றன...</span>
+
       </div>
+
 
       <button class="submit-btn" style="background:#0284c7;" id="pSubmitBtn" onclick="handlePartnerSubmitWithDocs()">
+
         பதிவு செய்து ஒப்புதலுக்கு அனுப்பு 🚀
+
       </button>
+
       <button class="close-btn" onclick="closeModal('partnerModal')">மூடுக</button>
+
     </div>
+
   </div>
 
-  <!-- Admin Login Modal -->
+
+  <!-- 4. அட்மின் லாகின் பாப்-அப் (Admin PIN: 8843) -->
+
   <div class="modal-overlay" id="adminLoginModal">
+
     <div class="modal-box">
+
       <div class="modal-title">🔒 Fixr அட்மின் உள்நுழைவு</div>
+
       <div class="modal-sub">நிர்வாகிகள் மட்டுமே அணுகலாம்</div>
+
       <div class="form-group">
+
         <label>அட்மின் ரகசிய பின் (Admin PIN)</label>
+
         <input type="password" id="adminPinInput" class="form-input" placeholder="4 இலக்க PIN">
+
       </div>
+
       <button class="submit-btn" onclick="verifyAdminPin()">உள்நுழைக</button>
+
       <button class="close-btn" onclick="closeModal('adminLoginModal')">ரத்து</button>
+
     </div>
+
   </div>
 
-  <!-- Admin Panel Modal -->
+
+  <!-- 5. அட்மின் நிர்வாக பேனல் (Admin Control Panel - Approvals + Free Form) -->
+
   <div class="modal-overlay" id="adminPanelModal">
-    <div class="modal-box" style="max-width: 500px;">
+
+    <div class="modal-box" style="max-width: 520px;">
+
       <div class="modal-title">🛠️ Fixr அட்மின் நிர்வாக பேனல்</div>
-      <div class="modal-sub">பார்ட்னர் ஒப்புதல்கள் மற்றும் நேரடி சேவைகள்</div>
+
+      <div class="modal-sub">பார்ட்னர் ஒப்புதல்கள் மற்றும் நேரடி சேவைகள் மேலாண்மை</div>
+
 
       <div class="admin-tab-nav">
-        <button type="button" class="admin-tab-btn active" id="tabBtnApprovals" onclick="switchAdminTab('approvals')">
+
+        <button type="button" class="admin-tab-btn active" id="tabBtnServices" onclick="switchAdminTab('services')">
+
+          📋 சேவைகள் & புதிய சேர்க்கை (இலவசம்)
+
+        </button>
+
+        <button type="button" class="admin-tab-btn" id="tabBtnApprovals" onclick="switchAdminTab('approvals')">
+
           🔔 ஒப்புதல்கள் <span class="badge-count" id="pendingApprovalsBadge">0</span>
+
         </button>
-        <button type="button" class="admin-tab-btn" id="tabBtnServices" onclick="switchAdminTab('services')">
-          📋 நேரடி சேவைகள்
-        </button>
+
       </div>
 
-      <!-- Tab 1: Approvals -->
-      <div id="adminTabApprovals">
-        <div id="adminApprovalList" style="max-height: 360px; overflow-y: auto;">
-          <p style="text-align:center; padding:20px; color:#94a3b8; font-size:12px;">நிலுவையில் விண்ணப்பங்கள் எதுவும் இல்லை.</p>
-        </div>
-      </div>
 
-      <!-- Tab 2: Live Services -->
-      <div id="adminTabServices" style="display:none;">
+      <!-- Tab 1: நேரடி சேவை சேர்க்கை & திருத்தம் (Free Admin Form) -->
+
+      <div id="adminTabServices">
+
         <div style="background:#f8fafc; padding:12px; border-radius:12px; border:1px solid #e2e8f0; margin-bottom:14px;">
-          <h4 id="admFormTitle" style="font-size:13px; font-weight:bold; margin-bottom:8px;">+ புதிய சேவையைச் சேர்க்க (இலவசம்)</h4>
-          <input type="text" id="admName" class="form-input" placeholder="பெயர் / நிறுவனம்" style="margin-bottom:6px;">
+
+          <h4 id="admFormTitle" style="font-size:14px; font-weight:bold; margin-bottom:8px; color:#0284c7;">+ புதிய சேவையைச் சேர்க்க (இலவசம்)</h4>
+
+          <input type="text" id="admName" class="form-input" placeholder="பெயர் / நிறுவன பெயர்" style="margin-bottom:6px;">
+
           <select id="admCategory" class="form-input" style="margin-bottom:6px;">
-            <option value="கேர் டேக்கர்">கேர் டேக்கர்</option>
-            <option value="AC சர்வீஸ்">AC சர்வீஸ்</option>
-            <option value="RO சர்வீஸ்">RO சர்வீஸ்</option>
-            <option value="இன்வெர்ட்டர் & பேட்டரி">இன்வெர்ட்டர் & பேட்டரி</option>
-            <option value="எலக்ட்ரீஷியன்">எலக்ட்ரீஷியன்</option>
-            <option value="பிளம்பர்">பிளம்பர்</option>
-            <option value="வாடகை வீடுகள்">வாடகை வீடுகள்</option>
+
+            <option value="கேர் டேக்கர்">கேர் டேக்கர் (Care Taker)</option>
+
+            <option value="AC சர்வீஸ்">AC சர்வீஸ் (AC Service)</option>
+
+            <option value="RO சர்வீஸ்">RO சர்வீஸ் (RO Service)</option>
+
+            <option value="இன்வெர்ட்டர் & பேட்டரி">இன்வெர்ட்டர் & பேட்டரி (Inverter & Battery)</option>
+
+            <option value="எலக்ட்ரீஷியன்">எலக்ட்ரீஷியன் (Electrician)</option>
+
+            <option value="பிளம்பர்">பிளம்பர் (Plumber)</option>
+
+            <option value="வாடகை வீடுகள்">வாடகை வீடுகள் (House Rentals)</option>
+
           </select>
-          <input type="text" id="admArea" class="form-input" placeholder="ஊர், நகரம்" style="margin-bottom:6px;">
-          <input type="tel" id="admPhone" class="form-input" placeholder="தொலைபேசி எண்" style="margin-bottom:6px;">
+
+          <input type="text" id="admArea" class="form-input" placeholder="ஊர், நகரம் (எ.கா: சென்னை)" style="margin-bottom:6px;">
+
+          <input type="tel" id="admPhone" class="form-input" placeholder="10 இலக்க மொபைல் எண்" style="margin-bottom:6px;">
+
           <input type="text" id="admPrice" class="form-input" placeholder="கட்டணம் (எ.கா: ₹499 முதல்)" style="margin-bottom:6px;">
-          <input type="text" id="admDesc" class="form-input" placeholder="விவரக் குறிப்பு" style="margin-bottom:8px;">
+
+          <input type="text" id="admRating" class="form-input" placeholder="மதிப்பீடு (எ.கா: ★ 4.9)" style="margin-bottom:6px;">
+
+          <input type="text" id="admDesc" class="form-input" placeholder="சேவை விவரக் குறிப்பு" style="margin-bottom:8px;">
+
           <button class="submit-btn" id="admSaveBtn" onclick="saveAdminService()">ஆப்பில் உடனே சேர் ➕</button>
+
           <button class="close-btn" id="admCancelEditBtn" style="display:none;" onclick="cancelAdminEdit()">ரத்து</button>
+
         </div>
-        <h4 style="font-size:13px; font-weight:bold; margin-bottom:8px;">கிளவுட் சேவைகள்:</h4>
+
+        <h4 style="font-size:13px; font-weight:bold; margin-bottom:8px;">கிளவுட் சேவைகள் (திருத்த / நீக்க):</h4>
+
         <div id="adminServiceList" style="max-height:220px; overflow-y:auto;"></div>
+
       </div>
+
+
+      <!-- Tab 2: புதிய பார்ட்னர் ஒப்புதல்கள் (Approval Flow) -->
+
+      <div id="adminTabApprovals" style="display:none;">
+
+        <div id="adminApprovalList" style="max-height: 360px; overflow-y: auto;">
+
+          <p style="text-align:center; padding:20px; color:#94a3b8; font-size:12px;">நிலுவையில் விண்ணப்பங்கள் எதுவும் இல்லை.</p>
+
+        </div>
+
+      </div>
+
 
       <button class="close-btn" style="margin-top:12px; font-weight:bold;" onclick="closeModal('adminPanelModal')">வெளியேறு (Close)</button>
+
     </div>
+
   </div>
 
+
+  <!-- 6. தனியுரிமைக் கொள்கை (Privacy Policy Modal) -->
+
+  <div class="modal-overlay" id="privacyModal">
+
+    <div class="modal-box">
+
+      <div class="modal-title">🔒 தனியுரிமைக் கொள்கை (Privacy Policy)</div>
+
+      <div style="font-size: 13px; line-height: 1.7; color: #334155; margin: 12px 0;">
+
+        <p><b>1. தகவல் பாதுகாப்பு:</b> Fixr இணையதளத்தில் நீங்கள் அளிக்கும் பெயர் மற்றும் மொபைல் எண்கள் சேவை முன்பதிவு மற்றும் டெக்னீசியன் தொடர்புக்கு மட்டுமே பயன்படுத்தப்படும்.</p>
+
+        <p style="margin-top:8px;"><b>2. மூன்றாம் தரப்பு பகிர்வு இல்லை:</b> உங்கள் தொலைபேசி எண்கள் எந்தவொரு மூன்றாம் தரப்பு மார்க்கெட்டிங் ஏஜென்சிகளுக்கும் விற்கப்படாது.</p>
+
+        <p style="margin-top:8px;"><b>3. கட்டண பாதுகாப்பு:</b> தொழிலாளர் பதிவுக் கட்டணம் ₹49 அதிகாரப்பூர்வ UPI வழியாக மட்டுமே பெறப்படுகிறது.</p>
+
+        <p style="margin-top:8px;"><b>4. தொடர்பு:</b> ஏதேனும் சந்தேகம் இருந்தால் veeraadspromotions@gmail.com அல்லது +91 9884334097 என்ற எண்ணில் தொடர்பு கொள்ளலாம்.</p>
+
+      </div>
+
+      <button class="submit-btn" onclick="closeModal('privacyModal')">புரிந்தது (OK)</button>
+
+    </div>
+
+  </div>
+
+
+  <!-- முழுமையான Footer (Complete Professional Footer) -->
+
+  <footer>
+
+    <div style="font-weight: bold; color: white; margin-bottom: 6px; font-size: 14px;">Fixr - Home Services & Partner Network</div>
+
+    <div>🛡️ 100% பின்னணி சரிபார்க்கப்பட்ட தொழிலாளர்கள் | 0% கமிஷன் தளம்</div>
+
+    <div style="margin: 8px 0;">📞 தொடர்பு: +91 9884334097 | ✉️ veeraadspromotions@gmail.com</div>
+
+    <div>
+
+      <a href="javascript:void(0)" onclick="openModal('privacyModal')">Privacy Policy (தனியுரிமை கொள்கை)</a> •
+
+      <a href="https://www.fixrservice.in">www.fixrservice.in</a>
+
+    </div>
+
+    <div style="margin-top: 10px; font-size: 11px; color: #64748b;">© 2026 Fixr Services. All rights reserved.</div>
+
+  </footer>
+
+
   <script>
+
     const ADMIN_PHONE = "919884334097";
+
     const ADMIN_UPI_ID = "yugamugesh52-3@oksbi";
+
     const ADMIN_SECRET_PIN = "8843";
 
+
     // Firebase Configuration
+
     const firebaseConfig = {
+
       apiKey: "AIzaSyCYTbmYkdxitjh6yfd7vLu76m41I4kYyiY",
+
       authDomain: "fixr-33ba6.firebaseapp.com",
+
       projectId: "fixr-33ba6",
+
       storageBucket: "fixr-33ba6.firebasestorage.app",
+
       messagingSenderId: "46524357435",
+
       appId: "1:46524357435:web:c6446ddd93d0ec912f751e",
+
       measurementId: "G-YSYNM3EP61"
+
     };
 
+
     firebase.initializeApp(firebaseConfig);
+
     const db = firebase.firestore();
+
     const storage = firebase.storage();
 
+
+    // Language System
+
+    let currentLang = localStorage.getItem('fixr_lang') || 'ta';
+
+    const translations = {
+
+      ta: {
+
+        langBtn: "🌐 English",
+
+        searchPlaceholder: "🔍 நகரம் (Chennai, Madurai...), சேவை அல்லது பெயர்...",
+
+        partnerFab: "தொழிலாளர் பதிவு (₹49)",
+
+        book: "முன்பதிவு",
+
+        cloudOnline: "☁️ Google Cloud Database: இணைக்கப்பட்டது (Online)",
+
+        empty: "இந்த நகரம் அல்லது தேடலுக்கு எந்த சேவையும் கிடைக்கவில்லை.<br>வேறு நகரத்தைத் தேடவும்."
+
+      },
+
+      en: {
+
+        langBtn: "🌐 தமிழ்",
+
+        searchPlaceholder: "🔍 Search city (Chennai, Madurai...), service or name...",
+
+        partnerFab: "Join as Partner (₹49)",
+
+        book: "Book Now",
+
+        cloudOnline: "☁️ Google Cloud Database: Connected (Online)",
+
+        empty: "No services found for this city or search.<br>Try searching another city."
+
+      }
+
+    };
+
+
+    function toggleLanguage() {
+
+      currentLang = (currentLang === 'ta') ? 'en' : 'ta';
+
+      localStorage.setItem('fixr_lang', currentLang);
+
+      applyLanguage();
+
+    }
+
+
+    function applyLanguage() {
+
+      const t = translations[currentLang];
+
+      document.getElementById('langToggleBtn').innerText = t.langBtn;
+
+      document.getElementById('searchInput').placeholder = t.searchPlaceholder;
+
+      document.getElementById('partnerFabText').innerText = t.partnerFab;
+
+      document.getElementById('cloudStatusText').innerText = t.cloudOnline;
+
+      renderCategories();
+
+      render();
+
+    }
+
+
     const categoriesList = [
-      "அனைத்தும்", "கேர் டேக்கர்", "AC சர்வீஸ்", "RO சர்வீஸ்", "இன்வெர்ட்டர் & பேட்டரி", "எலக்ட்ரீஷியன்", "பிளம்பர்", "வாடகை வீடுகள்"
+
+      { key: "அனைத்தும்", ta: "அனைத்தும் (All India)", en: "All Services" },
+
+      { key: "கேர் டேக்கர்", ta: "❤️ கேர் டேக்கர்", en: "❤️ Care Taker" },
+
+      { key: "AC சர்வீஸ்", ta: "❄️ AC சர்வீஸ்", en: "❄️ AC Service" },
+
+      { key: "RO சர்வீஸ்", ta: "💧 RO சர்வீஸ்", en: "💧 RO Service" },
+
+      { key: "இன்வெர்ட்டர் & பேட்டரி", ta: "🔋 இன்வெர்ட்டர் & பேட்டரி", en: "🔋 Battery & Inverter" },
+
+      { key: "எலக்ட்ரீஷியன்", ta: "⚡ எலக்ட்ரீஷியன்", en: "⚡ Electrician" },
+
+      { key: "பிளம்பர்", ta: "🔧 பிளம்பர்", en: "🔧 Plumber" },
+
+      { key: "வாடகை வீடுகள்", ta: "🏠 வாடகை வீடுகள்", en: "🏠 House Rentals" }
+
     ];
 
+
     let liveServicesList = [];
+
     let currentCategory = 'அனைத்தும்';
+
     let searchQuery = '';
+
     let selectedBookingTech = null;
+
     let editingTechId = null;
+
     let pendingRequestsList = [];
+
     let approvalsListenerAttached = false;
 
+
     function openModal(id) { document.getElementById(id).classList.add('active'); }
+
     function closeModal(id) { document.getElementById(id).classList.remove('active'); }
 
+
     function openAdminLogin() { openModal('adminLoginModal'); }
+
     function verifyAdminPin() {
+
       const pin = document.getElementById('adminPinInput').value;
+
       if (pin === ADMIN_SECRET_PIN) {
+
         closeModal('adminLoginModal');
+
         document.getElementById('adminPinInput').value = '';
+
         cancelAdminEdit();
+
         renderAdminList();
+
         initAdminApprovals();
+
         openModal('adminPanelModal');
+
       } else {
-        alert('தவறான PIN எண்!');
+
+        alert(currentLang === 'ta' ? 'தவறான PIN எண்!' : 'Incorrect PIN!');
+
       }
+
     }
+
 
     function switchAdminTab(tab) {
-      document.getElementById('adminTabApprovals').style.display = tab === 'approvals' ? 'block' : 'none';
+
       document.getElementById('adminTabServices').style.display = tab === 'services' ? 'block' : 'none';
-      document.getElementById('tabBtnApprovals').classList.toggle('active', tab === 'approvals');
+
+      document.getElementById('adminTabApprovals').style.display = tab === 'approvals' ? 'block' : 'none';
+
       document.getElementById('tabBtnServices').classList.toggle('active', tab === 'services');
+
+      document.getElementById('tabBtnApprovals').classList.toggle('active', tab === 'approvals');
+
     }
+
 
     // Realtime Listener for Approved Services
+
     function initFirebaseFirestore() {
+
       db.collection('services').onSnapshot((snapshot) => {
+
         liveServicesList = [];
+
         snapshot.forEach((doc) => {
+
           liveServicesList.push({ id: doc.id, ...doc.data() });
+
         });
+
         render();
+
         renderAdminList();
+
       }, (err) => console.error("Firestore error:", err));
+
     }
+
 
     // Realtime Listener for Pending Approvals
+
     function initAdminApprovals() {
+
       if (approvalsListenerAttached) return;
+
       approvalsListenerAttached = true;
 
+
       db.collection('partner_requests').where('status', '==', 'pending').onSnapshot((snapshot) => {
+
         pendingRequestsList = [];
+
         snapshot.forEach((doc) => {
+
           pendingRequestsList.push({ id: doc.id, ...doc.data() });
+
         });
-        document.getElementById('pendingApprovalsBadge').innerText = pendingRequestsList.length;
+
+        const badge = document.getElementById('pendingApprovalsBadge');
+
+        if (badge) badge.innerText = pendingRequestsList.length;
+
         renderAdminApprovals();
+
       });
+
     }
+
 
     function renderAdminApprovals() {
+
       const container = document.getElementById('adminApprovalList');
+
       if (!container) return;
+
       container.innerHTML = '';
+
 
       if (pendingRequestsList.length === 0) {
-        container.innerHTML = '<p style="text-align:center; padding:30px; color:#94a3b8; font-size:12px;">நிலுவையில் உள்ள புதிய விண்ணப்பங்கள் எதுவும் இல்லை.</p>';
+
+        container.innerHTML = `<p style="text-align:center; padding:30px; color:#94a3b8; font-size:12px;">${currentLang === 'ta' ? 'நிலுவையில் உள்ள புதிய விண்ணப்பங்கள் எதுவும் இல்லை.' : 'No pending approval requests.'}</p>`;
+
         return;
+
       }
+
 
       pendingRequestsList.forEach((req) => {
+
         const card = document.createElement('div');
+
         card.className = 'approval-card';
+
         let docsHtml = '';
+
         if (req.aadhaarFrontUrl) docsHtml += `<a href="${req.aadhaarFrontUrl}" target="_blank" class="doc-link-btn">📄 ஆதார் Front</a> `;
+
         if (req.aadhaarBackUrl) docsHtml += `<a href="${req.aadhaarBackUrl}" target="_blank" class="doc-link-btn">📄 ஆதார் Back</a> `;
+
         if (req.panFrontUrl) docsHtml += `<a href="${req.panFrontUrl}" target="_blank" class="doc-link-btn">📄 பான் Front</a> `;
+
         if (req.panBackUrl) docsHtml += `<a href="${req.panBackUrl}" target="_blank" class="doc-link-btn">📄 பான் Back</a> `;
+
         if (req.paymentProofUrl) docsHtml += `<a href="${req.paymentProofUrl}" target="_blank" class="doc-link-btn" style="background:#fef08a; color:#854d0e;">💳 ₹49 ரசீது</a>`;
 
+
         card.innerHTML = `
+
           <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+
             <div>
+
               <b style="font-size:14px; color:#0f172a;">${req.name}</b>
+
               <div style="font-size:11px; color:#64748b;">📍 ${req.area} | 📞 ${req.phone}</div>
+
             </div>
+
             <span class="badge">${req.category}</span>
+
           </div>
+
           <div style="font-size:11px; margin:4px 0;">💰 கட்டணம்: <b>${req.price}</b> ${req.desc ? `| ${req.desc}` : ''}</div>
+
           <div class="doc-badge-row">${docsHtml || '<span style="color:#ef4444; font-size:10px;">ஆவணங்கள் இல்லை</span>'}</div>
+
           <div class="approval-actions">
+
             <button class="btn-approve" onclick="approvePartnerRequest('${req.id}')">✓ அனுமதி (Approve)</button>
+
             <button class="btn-reject" onclick="rejectPartnerRequest('${req.id}')">✕ நிராகரி</button>
+
           </div>
+
         `;
+
         container.appendChild(card);
+
       });
+
     }
+
 
     async function approvePartnerRequest(id) {
+
       const req = pendingRequestsList.find(r => r.id === id);
+
       if (!req) return;
+
       if (!confirm(`"${req.name}" சேவையை ஆப்பில் வெளியிட விரும்புகிறீர்களா?`)) return;
 
+
       try {
+
         await db.collection('services').add({
+
           name: req.name,
+
           category: req.category,
+
           area: req.area,
+
           phone: req.phone,
+
           price: req.price,
+
           rating: '★ 5.0 (Verified)',
+
           desc: req.desc || 'அங்கீகரிக்கப்பட்ட Fixr சேவை'
+
         });
+
         await db.collection('partner_requests').doc(id).update({
+
           status: 'approved',
+
           approvedAt: firebase.firestore.FieldValue.serverTimestamp()
+
         });
+
         alert(`✅ "${req.name}" அங்கீகரிக்கப்பட்டார்! ஆப்பில் நேரலையாகத் தெரியும்.`);
+
       } catch (e) { alert("Error: " + e.message); }
+
     }
+
 
     async function rejectPartnerRequest(id) {
+
       if (!confirm('இந்த விண்ணப்பத்தை நிராகரிக்க விரும்புகிறீர்களா?')) return;
+
       try {
+
         await db.collection('partner_requests').doc(id).update({
+
           status: 'rejected',
+
           rejectedAt: firebase.firestore.FieldValue.serverTimestamp()
+
         });
+
         alert('விண்ணப்பம் நிராகரிக்கப்பட்டது.');
+
       } catch (e) { alert("Error: " + e.message); }
+
     }
+
 
     // Partner Registration with Document Uploads
+
     async function uploadDocFile(file, path) {
+
       if (!file) return "";
+
       try {
+
         const ref = storage.ref().child(path);
+
         const snap = await ref.put(file);
+
         return await snap.ref.getDownloadURL();
+
       } catch (e) { return ""; }
+
     }
+
 
     async function handlePartnerSubmitWithDocs() {
+
       const name = document.getElementById('pName').value.trim();
+
       const category = document.getElementById('pCategory').value;
+
       const area = document.getElementById('pArea').value.trim();
+
       const phone = document.getElementById('pPhone').value.trim();
+
       const price = document.getElementById('pPrice').value.trim();
+
       const desc = document.getElementById('pDesc').value.trim();
 
+
       const aFront = document.getElementById('pAadhaarFront').files[0];
+
       const aBack = document.getElementById('pAadhaarBack').files[0];
+
       const pFront = document.getElementById('pPanFront').files[0];
+
       const pBack = document.getElementById('pPanBack').files[0];
+
       const payProof = document.getElementById('pPaymentProof').files[0];
 
+
       if (!name || !area || phone.length < 10) {
-        alert('பெயர், ஊர் மற்றும் 10 இலக்க மொபைல் எண்ணை உள்ளிடவும்.');
+
+        alert(currentLang === 'ta' ? 'பெயர், ஊர் மற்றும் 10 இலக்க மொபைல் எண்ணை உள்ளிடவும்.' : 'Please enter Name, Location and 10-digit Phone number.');
+
         return;
+
       }
+
       if (!aFront || !aBack) {
-        alert('ஆதார் அட்டையின் முன் மற்றும் பின் பக்க புகைப்படங்களை அப்லோட் செய்யவும்.');
+
+        alert(currentLang === 'ta' ? 'ஆதார் அட்டையின் முன் மற்றும் பின் பக்க புகைப்படங்களை அப்லோட் செய்யவும்.' : 'Please upload Aadhaar Front & Back images.');
+
         return;
+
       }
+
 
       const pBox = document.getElementById('pUploadProgress');
+
       const sBtn = document.getElementById('pSubmitBtn');
+
       pBox.style.display = 'block';
+
       sBtn.disabled = true;
 
+
       try {
+
         const ts = Date.now();
+
         const fld = `partner_verifications/${phone}_${ts}`;
 
-        document.getElementById('pUploadStatusText').innerText = "ஆவணங்கள் பதிவேற்றப்படுகின்றன...";
+
+        document.getElementById('pUploadStatusText').innerText = currentLang === 'ta' ? "ஆவணங்கள் பதிவேற்றப்படுகின்றன..." : "Uploading documents...";
+
         const aFrontUrl = await uploadDocFile(aFront, `${fld}/aadhaar_front_${aFront.name}`);
+
         const aBackUrl = await uploadDocFile(aBack, `${fld}/aadhaar_back_${aBack.name}`);
+
         const pFrontUrl = pFront ? await uploadDocFile(pFront, `${fld}/pan_front_${pFront.name}`) : "";
+
         const pBackUrl = pBack ? await uploadDocFile(pBack, `${fld}/pan_back_${pBack.name}`) : "";
+
         const payProofUrl = payProof ? await uploadDocFile(payProof, `${fld}/payment_${payProof.name}`) : "";
 
+
         await db.collection('partner_requests').add({
+
           name: name,
+
           category: category,
+
           area: area,
+
           phone: phone,
-          price: price || 'தொடர்பு கொள்க',
-          desc: desc || 'அங்கீகரிக்கப்பட்ட Fixr சேவை',
+
+          price: price || (currentLang === 'ta' ? 'தொடர்பு கொள்க' : 'Contact for price'),
+
+          desc: desc || (currentLang === 'ta' ? 'அங்கீகரிக்கப்பட்ட Fixr சேவை' : 'Verified Fixr Partner'),
+
           rating: '★ 5.0 (Verified)',
+
           aadhaarFrontUrl: aFrontUrl,
+
           aadhaarBackUrl: aBackUrl,
+
           panFrontUrl: pFrontUrl,
+
           panBackUrl: pBackUrl,
+
           paymentProofUrl: payProofUrl,
+
           status: 'pending',
+
           createdAt: firebase.firestore.FieldValue.serverTimestamp()
+
         });
 
-        alert('🎉 உங்கள் விண்ணப்பம் பெறப்பட்டது! அட்மின் சரிபார்த்து ஒப்புதல் அளித்ததும் உங்கள் பெயர் ஆப்பில் தோன்றும்.');
+
+        alert(currentLang === 'ta' ? '🎉 உங்கள் விண்ணப்பம் பெறப்பட்டது! அட்மின் சரிபார்த்து ஒப்புதல் அளித்ததும் உங்கள் பெயர் ஆப்பில் தோன்றும்.' : '🎉 Application received! It will be live once verified by Admin.');
+
         closeModal('partnerModal');
+
       } catch (e) {
+
         alert("Error: " + e.message);
+
       } finally {
+
         pBox.style.display = 'none';
+
         sBtn.disabled = false;
+
       }
+
     }
+
 
     function triggerMobileUpi(app) {
+
       const upiUri = `upi://pay?pa=${ADMIN_UPI_ID}&pn=Fixr%20Services&am=49&cu=INR&tn=Fixr%20Partner%20Fee`;
+
       if (navigator.clipboard) navigator.clipboard.writeText(ADMIN_UPI_ID).catch(()=>{});
+
       window.location.href = upiUri;
+
     }
+
+
+    // Free Admin Service Save & Edit
 
     function saveAdminService() {
+
       const name = document.getElementById('admName').value.trim();
+
       const category = document.getElementById('admCategory').value;
+
       const area = document.getElementById('admArea').value.trim();
+
       const phone = document.getElementById('admPhone').value.trim();
+
       const price = document.getElementById('admPrice').value.trim();
+
+      const rating = document.getElementById('admRating').value.trim();
+
       const desc = document.getElementById('admDesc').value.trim();
 
+
       if (!name || !area || phone.length < 10) {
-        alert('விவரங்களைச் சரியாக உள்ளிடவும்.');
+
+        alert(currentLang === 'ta' ? 'பெயர், ஊர் மற்றும் மொபைல் எண்ணை உள்ளிடவும்.' : 'Please enter Name, Area and Phone number.');
+
         return;
+
       }
+
 
       const techData = {
+
         name, category, area, phone,
-        price: price || 'தொடர்பு கொள்க',
-        rating: '★ 5.0 (Verified)',
-        desc: desc || 'அங்கீகரிக்கப்பட்ட சேவை'
+
+        price: price || (currentLang === 'ta' ? 'தொடர்பு கொள்க' : 'Contact'),
+
+        rating: rating || '★ 5.0 (Verified)',
+
+        desc: desc || (currentLang === 'ta' ? 'அங்கீகரிக்கப்பட்ட சேவை' : 'Verified Partner')
+
       };
 
+
       if (editingTechId) {
+
         db.collection('services').doc(editingTechId).set(techData, { merge: true })
+
           .then(() => { alert('சேவை புதுப்பிக்கப்பட்டது!'); cancelAdminEdit(); });
+
       } else {
+
         db.collection('services').add(techData)
-          .then(() => { alert('புதிய சேவை சேர்க்கப்பட்டது!'); cancelAdminEdit(); });
+
+          .then(() => { alert('புதிய சேவை கிளவுடில் சேர்க்கப்பட்டது!'); cancelAdminEdit(); });
+
       }
+
     }
+
 
     function cancelAdminEdit() {
+
       editingTechId = null;
+
       document.getElementById('admFormTitle').innerText = "+ புதிய சேவையைச் சேர்க்க (இலவசம்)";
+
       document.getElementById('admSaveBtn').innerText = "ஆப்பில் உடனே சேர் ➕";
+
       document.getElementById('admCancelEditBtn').style.display = 'none';
+
       document.getElementById('admName').value = '';
+
       document.getElementById('admArea').value = '';
+
       document.getElementById('admPhone').value = '';
+
       document.getElementById('admPrice').value = '';
+
+      document.getElementById('admRating').value = '';
+
       document.getElementById('admDesc').value = '';
+
     }
+
 
     function renderAdminList() {
+
       const c = document.getElementById('adminServiceList');
+
       if (!c) return;
+
       c.innerHTML = '';
+
       liveServicesList.forEach(item => {
+
         const row = document.createElement('div');
+
         row.className = 'admin-tech-item';
+
         row.innerHTML = `
+
           <div><b>${item.name}</b> (${item.category})<br><span style="color:#64748b; font-size:11px;">📍 ${item.area} | 📞 ${item.phone}</span></div>
+
           <div>
+
             <button class="edit-btn" onclick="startAdminEdit('${item.id}')">✏️</button>
+
             <button class="del-btn" onclick="deleteAdminService('${item.id}')">🗑️</button>
+
           </div>
+
         `;
+
         c.appendChild(row);
+
       });
+
     }
+
 
     function startAdminEdit(id) {
+
       const item = liveServicesList.find(x => x.id === id);
+
       if (!item) return;
+
       editingTechId = id;
+
       document.getElementById('admFormTitle').innerText = "✏️ சேவையைத் திருத்தவும்";
+
       document.getElementById('admSaveBtn').innerText = "சேமி 💾";
+
       document.getElementById('admCancelEditBtn').style.display = 'inline-block';
+
       document.getElementById('admName').value = item.name;
+
       document.getElementById('admCategory').value = item.category;
+
       document.getElementById('admArea').value = item.area;
+
       document.getElementById('admPhone').value = item.phone;
+
       document.getElementById('admPrice').value = item.price;
+
+      document.getElementById('admRating').value = item.rating || '';
+
       document.getElementById('admDesc').value = item.desc || '';
+
     }
+
 
     function deleteAdminService(id) {
-      if (confirm('இந்த சேவையை நீக்க விரும்புகிறீர்களா?')) {
+
+      if (confirm(currentLang === 'ta' ? 'இந்த சேவையை நீக்க விரும்புகிறீர்களா?' : 'Delete this service?')) {
+
         db.collection('services').doc(id).delete();
+
       }
+
     }
+
 
     function renderCategories() {
+
       const c = document.getElementById('categoryContainer');
+
       c.innerHTML = '';
+
       categoriesList.forEach(cat => {
+
         const chip = document.createElement('div');
-        chip.className = 'chip' + (currentCategory === cat ? ' active' : '');
-        chip.innerText = cat;
-        chip.onclick = () => { currentCategory = cat; renderCategories(); render(); };
+
+        chip.className = 'chip' + (currentCategory === cat.key ? ' active' : '');
+
+        chip.innerText = (currentLang === 'ta') ? cat.ta : cat.en;
+
+        chip.onclick = () => { currentCategory = cat.key; renderCategories(); render(); };
+
         c.appendChild(chip);
+
       });
+
     }
+
 
     function render() {
+
       const container = document.getElementById('servicesList');
+
       if (!container) return;
+
       container.innerHTML = '';
 
+
       const q = searchQuery.toLowerCase();
+
       const filtered = liveServicesList.filter(item => {
+
         const catMatch = currentCategory === 'அனைத்தும்' || item.category === currentCategory;
+
         const sMatch = (item.name && item.name.toLowerCase().includes(q)) ||
+
                        (item.area && item.area.toLowerCase().includes(q)) ||
+
                        (item.category && item.category.toLowerCase().includes(q));
+
         return catMatch && sMatch;
+
       });
+
 
       if (filtered.length === 0) {
-        container.innerHTML = '<p style="text-align:center; padding:40px; color:#94a3b8; font-size:13px;">சேவைகள் எதுவும் கிடைக்கவில்லை.<br>வேறு நகரத்தைத் தேடவும்.</p>';
+
+        container.innerHTML = `<p style="text-align:center; padding:40px; color:#94a3b8; font-size:13px;">${translations[currentLang].empty}</p>`;
+
         return;
+
       }
+
 
       filtered.forEach(item => {
+
         const card = document.createElement('div');
+
         card.className = 'card';
+
         card.innerHTML = `
+
           <div class="card-top">
+
             <div>
+
               <div class="name">${item.name}</div>
+
               <div class="details">📍 ${item.area}</div>
+
             </div>
+
             <span class="badge">${item.category}</span>
+
           </div>
+
           <div style="font-size:12px; color:#475569; margin: 6px 0;">${item.desc || 'அங்கீகரிக்கப்பட்ட சேவை'}</div>
+
           <div class="rating-row">
+
             <span class="rating">${item.rating || '★ 5.0'}</span>
+
             <span class="price">${item.price}</span>
+
           </div>
+
           <div class="actions">
-            <button class="btn btn-book" onclick="startBooking('${item.id}')">முன்பதிவு</button>
+
+            <button class="btn btn-book" onclick="startBooking('${item.id}')">${translations[currentLang].book}</button>
+
             <a href="tel:${item.phone}" class="btn btn-call">📞</a>
+
             <a href="https://wa.me/91${item.phone}?text=வணக்கம் ${item.name}, Fixr ஆப்பில் உங்கள் சேவையைப் பார்த்தேன்." class="btn btn-wa" target="_blank">💬</a>
+
           </div>
+
         `;
+
         container.appendChild(card);
+
       });
+
     }
+
 
     function startBooking(id) {
+
       selectedBookingTech = liveServicesList.find(x => x.id === id);
+
       if (!selectedBookingTech) return;
+
       document.getElementById('bookTechSummary').innerText = `${selectedBookingTech.name} (${selectedBookingTech.category})`;
+
       openModal('bookingModal');
+
     }
+
 
     function confirmBooking() {
+
       const date = document.getElementById('bookDate').value;
+
       const time = document.getElementById('bookTimeSlot').value;
+
       const addr = document.getElementById('bookAddress').value.trim();
+
       const notes = document.getElementById('bookNotes').value.trim();
 
+
       if (!date || !addr) {
-        alert('தேதி மற்றும் முகவரியை உள்ளிடவும்.');
+
+        alert(currentLang === 'ta' ? 'தேதி மற்றும் முகவரியை உள்ளிடவும்.' : 'Please enter Date and Address.');
+
         return;
+
       }
+
 
       const msg = `வணக்கம் ${selectedBookingTech.name}! நான் Fixr ஆப் மூலம் சேவை முன்பதிவு செய்துள்ளேன்:
+
 • தேதி: ${date}
+
 • நேரம்: ${time}
+
 • முகவரி: ${addr}
+
 • விவரம்: ${notes || 'பொதுவான சேவை'}`;
 
+
       window.open(`https://wa.me/91${selectedBookingTech.phone}?text=${encodeURIComponent(msg)}`, '_blank');
+
       closeModal('bookingModal');
+
     }
 
-    function openLoginModal() { openModal('loginModal'); }
-    function handleLogin() {
-      const name = document.getElementById('userName').value.trim();
-      const phone = document.getElementById('userPhone').value.trim();
-      if (!name || phone.length < 10) { alert('சரியான விவரங்களை உள்ளிடவும்.'); return; }
-      localStorage.setItem('fixr_user', JSON.stringify({ name, phone }));
-      closeModal('loginModal');
-      checkUserLoggedIn();
+
+    // Customer Login with OTP
+
+    function openLoginModal() {
+
+      document.getElementById('otpStep1').style.display = 'block';
+
+      document.getElementById('otpStep2').style.display = 'none';
+
+      openModal('loginModal');
+
     }
+
+
+    function sendOtpCode() {
+
+      const name = document.getElementById('userName').value.trim();
+
+      const phone = document.getElementById('userPhone').value.trim();
+
+      if (!name || phone.length < 10) {
+
+        alert(currentLang === 'ta' ? 'பெயர் மற்றும் 10 இலக்க மொபைல் எண்ணை உள்ளிடவும்.' : 'Please enter valid Name and 10-digit mobile number.');
+
+        return;
+
+      }
+
+      document.getElementById('otpStep1').style.display = 'none';
+
+      document.getElementById('otpStep2').style.display = 'block';
+
+    }
+
+
+    function resendOtp() {
+
+      alert(currentLang === 'ta' ? 'OTP மீண்டும் அனுப்பப்பட்டது! (Demo Code: 1234)' : 'OTP resent! (Demo Code: 1234)');
+
+    }
+
+
+    function verifyOtpCode() {
+
+      const code = document.getElementById('otpInput').value.trim();
+
+      if (code === '1234' || code.length === 4) {
+
+        const name = document.getElementById('userName').value.trim();
+
+        const phone = document.getElementById('userPhone').value.trim();
+
+        localStorage.setItem('fixr_user', JSON.stringify({ name, phone }));
+
+        closeModal('loginModal');
+
+        checkUserLoggedIn();
+
+        alert(currentLang === 'ta' ? `வணக்கம் ${name}! நீங்கள் உள்நுழைந்துள்ளீர்கள்.` : `Welcome ${name}! You are logged in.`);
+
+      } else {
+
+        alert(currentLang === 'ta' ? 'தவறான OTP! தயவுசெய்து 1234 என உள்ளிடவும்.' : 'Invalid OTP! Please enter 1234.');
+
+      }
+
+    }
+
 
     function checkUserLoggedIn() {
+
       const saved = localStorage.getItem('fixr_user');
+
       const c = document.getElementById('authContainer');
+
       if (saved) {
+
         const u = JSON.parse(saved);
+
         c.innerHTML = `<div class="user-profile"><span>👤 ${u.name}</span> <button onclick="logout()" style="background:none; border:none; color:#f87171; cursor:pointer;">✕</button></div>`;
+
       } else {
+
         c.innerHTML = `<button class="auth-btn" onclick="openLoginModal()">Login</button>`;
+
       }
+
     }
+
 
     function logout() {
+
       localStorage.removeItem('fixr_user');
+
       checkUserLoggedIn();
+
     }
 
+
     document.getElementById('searchInput').addEventListener('input', (e) => {
+
       searchQuery = e.target.value.trim();
+
       render();
+
     });
 
-    // Start App
-    renderCategories();
+
+    // Start App & Sync
+
+    applyLanguage();
+
     checkUserLoggedIn();
+
     initFirebaseFirestore();
+
   </script>
+
 </body>
+
 </html>
