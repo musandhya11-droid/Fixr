@@ -1,1638 +1,788 @@
 <!DOCTYPE html>
 <html lang="ta">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fixr - All India Home Services | தமிழ்நாடு நம்பகமான ஹ ோம் சர்வசீஸ்</title>
-<!-- Open Graph & WhatsApp Share Preview Tags -->
-<meta property="og:title" content="Fixr - தமிழ்நாடு நம்பகமான ஹ ோம் சர்வசீஸ் | AC,
-எலக்ட்ரீஷியன், பிளம்பர்">
-<meta property="og:description" content="AC சர்வஸ்ீ , எலக்ட்ரீஷியன், பிளம்பர், கே ர்
-டே க்கர் சே வை களை உங்கள் பகுதியிலே யே உடனே புக் செ ய்யுங்கள்! நே ரடி
-வாடிக்கை யாளர் த ொடர்புகள், 0% கமிஷன்.">
-<meta property="og:image"
-content="https://musandhya11-droid.github.io/Fixr/fixr-logo-512.png">
-<meta property="og:url" content="https://www.fixrservice.in">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0f172a">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Fixr">
-<!-- Google Firebase SDK (Compat) -->
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
-<style>
-* { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-Roboto, "Noto Sans Tamil", sans-serif; margin: 0; padding: 0; }
-body { background: #f8fafc; padding-bottom: 100px; color: #1e293b; }
-/* Header */
-header { background: #0f172a; color: white; padding: 12px 16px; display: flex; justify-content:
-space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px
-rgba(0,0,0,0.1); }
-.brand { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
-.brand span { color: #38bdf8; }
-.nav-btns { display: flex; gap: 6px; align-items: center; } .lang-btn { background: #1e293b; color: #f8fafc; border: 1px solid #475569; padding: 5px 8px;
-border-radius: 12px; font-size: 11px; font-weight: bold; cursor: pointer; display: flex; align-items:
-center; gap: 4px; }
-.admin-btn { background: #334155; color: #38bdf8; border: 1px solid #475569; padding: 5px
-8px; border-radius: 12px; font-size: 11px; font-weight: bold; cursor: pointer; }
-.auth-btn { background: #38bdf8; color: #0f172a; border: none; padding: 6px 12px;
-border-radius: 20px; font-weight: bold; font-size: 11px; cursor: pointer; }
-.user-profile { font-size: 11px; color: #38bdf8; font-weight: bold; display: flex; align-items:
-center; gap: 4px; background: #1e293b; padding: 4px 10px; border-radius: 16px; }
-/* Sync Indicator */
-.sync-bar { background: #e0f2fe; color: #0369a1; padding: 4px 16px; font-size: 11px;
-font-weight: 600; display: flex; justify-content: space-between; align-items: center;
-border-bottom: 1px solid #bae6fd; }
-/* All India Search */
-.search-box { padding: 12px 16px 4px; }
-.search-input { width: 100%; padding: 12px 16px; border-radius: 12px; border: 1px solid
-#cbd5e1; font-size: 14px; outline: none; background: white; box-shadow: 0 1px 3px
-rgba(0,0,0,0.05); }
-/* Categories */
-.categories { display: flex; overflow-x: auto; padding: 10px 16px; gap: 8px; scrollbar-width:
-none; }
-.categories::-webkit-scrollbar { display: none; }
-.chip { padding: 7px 14px; background: white; border-radius: 20px; font-size: 12px;
-font-weight: 600; border: 1px solid #e2e8f0; white-space: nowrap; cursor: pointer; }
-.chip.active { background: #0f172a; color: white; border-color: #0f172a; }
-/* Cards */
-.list { padding: 8px 16px; }
-.card { background: white; border-radius: 16px; padding: 16px; margin-bottom: 14px; border:
-1px solid #e2e8f0; box-shadow: 0 2px 6px rgba(0,0,0,0.03); }
-.card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom:
-4px; }
-.name { font-size: 16px; font-weight: 700; color: #0f172a; }
-.badge { font-size: 11px; padding: 3px 8px; border-radius: 14px; font-weight: 700;
-background: #f0fdf4; color: #166534; }
-.details { font-size: 13px; color: #64748b; margin-top: 4px; }
-.rating-row { display: flex; justify-content: space-between; align-items: center; margin-top:
-10px; font-size: 13px; }
-.rating { background: #fef08a; color: #854d0e; padding: 2px 8px; border-radius: 6px;
-font-weight: bold; } .price { font-size: 14px; font-weight: 800; color: #0284c7; }
-/* Trust Badge on Cards */
-.trust-tag { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; color: #16a34a;
-background: #dcfce7; padding: 2px 6px; border-radius: 4px; font-weight: bold; margin-top: 4px; }
-/* Buttons */
-.actions { display: flex; align-items: center; gap: 8px; margin-top: 14px; padding-top: 12px;
-border-top: 1px solid #f1f5f9; }
-.btn { padding: 9px 14px; border-radius: 10px; text-decoration: none; font-size: 12px;
-font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 4px; cursor:
-pointer; border: none; }
-.btn-book { background: #0284c7; color: white; flex: 2; box-shadow: 0 2px 5px
-rgba(2,132,199,0.25); }
-.btn-call { background: #f1f5f9; color: #334155; flex: 1; border: 1px solid #cbd5e1; }
-.btn-wa { background: #22c55e; color: white; flex: 1; }
-/* Floating Join as Partner Button */
-.partner-fab { position: fixed; bottom: 20px; right: 16px; background: #0f172a; color: white;
-padding: 11px 16px; border-radius: 30px; font-weight: bold; font-size: 12px; border: 1px solid
-#38bdf8; box-shadow: 0 4px 14px rgba(15,23,42,0.35); cursor: pointer; display: flex; align-items:
-center; gap: 6px; z-index: 90; }
-/* Customer Care WhatsApp Floating Widget */
-.support-fab { position: fixed; bottom: 20px; left: 16px; background: #25d366; color: white;
-padding: 11px 16px; border-radius: 30px; font-weight: bold; font-size: 12px; text-decoration:
-none; box-shadow: 0 4px 14px rgba(37,211,102,0.4); display: flex; align-items: center; gap: 6px;
-z-index: 90; }
-/* Modals */
-.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index:
-1000; justify-content: center; align-items: center; padding: 16px; }
-.modal-overlay.active { display: flex; }
-.modal-box { background: white; width: 100%; max-width: 440px; border-radius: 20px;
-padding: 22px; max-height: 90vh; overflow-y: auto; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
-.modal-title { font-size: 18px; font-weight: bold; margin-bottom: 4px; color: #0f172a; }
-.modal-sub { font-size: 12px; color: #64748b; margin-bottom: 16px; }
-.form-group { margin-bottom: 12px; text-align: left; }
-.form-group label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color:
-#475569; }
-.form-input { width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px;
-font-size: 14px; outline: none; background: #fff; }
-.form-input:focus { border-color: #0284c7; } .submit-btn { width: 100%; background: #0284c7; color: white; border: none; padding: 12px;
-border-radius: 10px; font-weight: bold; font-size: 14px; cursor: pointer; margin-top: 8px; }
-.close-btn { width: 100%; background: none; border: none; color: #64748b; margin-top: 10px;
-font-size: 13px; cursor: pointer; padding: 6px; }
-/* Booking Summary Card */
-.booking-summary { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 12px;
-padding: 12px; margin-bottom: 14px; }
-.booking-tech-name { font-size: 15px; font-weight: bold; color: #0369a1; }
-.booking-tech-cat { font-size: 12px; color: #0284c7; margin-bottom: 6px; }
-.booking-time-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 4px; }
-/* Success Card */
-.success-card { background: #f0fdf4; border: 1px solid #86efac; border-radius: 16px; padding:
-16px; text-align: center; margin: 14px 0; }
-.success-badge { display: inline-block; background: #22c55e; color: white; padding: 4px 14px;
-border-radius: 20px; font-size: 12px; font-weight: 800; margin-bottom: 10px; }
-.success-details { text-align: left; background: white; border-radius: 10px; padding: 12px;
-font-size: 13px; line-height: 1.6; border: 1px dashed #86efac; margin: 10px 0; }
-/* GPay Payment Box in Partner Form */
-.payment-box { background: #f0fdf4; border: 1px solid #86efac; border-radius: 14px; padding:
-14px; margin: 12px 0; text-align: center; }
-.payment-title { font-size: 13px; font-weight: bold; color: #166534; display: flex; align-items:
-center; justify-content: space-between; margin-bottom: 8px; }
-.payment-amount { background: #22c55e; color: white; padding: 3px 10px; border-radius:
-12px; font-size: 13px; font-weight: 800; }
-.qr-container { display: flex; justify-content: center; margin: 10px 0; }
-.qr-img { width: 130px; height: 130px; border-radius: 10px; border: 2px solid #bbf7d0;
-background: white; padding: 4px; }
-.upi-details-row { background: white; padding: 8px 10px; border-radius: 8px; border: 1px
-dashed #86efac; margin-bottom: 10px; text-align: left; font-size: 12px; }
-.copy-chip { background: #e0f2fe; color: #0284c7; border: none; padding: 2px 6px;
-border-radius: 4px; font-size: 10px; font-weight: bold; cursor: pointer; margin-left: 6px; }
-/* 1-Click Mobile UPI Payment Grid */
-.upi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 10px 0; }
-.upi-btn { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 11px
-8px; border-radius: 10px; font-weight: bold; font-size: 13px; text-decoration: none; cursor:
-pointer; border: none; color: white; width: 100%; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-transition: transform 0.1s; }
-.upi-btn:active { transform: scale(0.98); }
-.btn-gpay { background: #0f172a; color: #38bdf8; border: 1px solid #38bdf8; grid-column: span 2; }
-.btn-phonepe { background: #5f259f; }
-.btn-paytm { background: #002970; }
-.btn-all-upi { background: #16a34a; grid-column: span 2; }
-.upi-help-notice { display: none; background: #fffbeb; border: 1px solid #fde68a; padding: 9px
-12px; border-radius: 8px; font-size: 11px; color: #92400e; margin: 10px 0; text-align: left;
-line-height: 1.4; }
-/* Admin Technician Table */
-.admin-tech-item { display: flex; justify-content: space-between; align-items: center; padding:
-10px; border-bottom: 1px solid #f1f5f9; font-size: 13px; }
-.admin-actions { display: flex; gap: 6px; }
-.edit-btn { background: #e0f2fe; color: #0284c7; border: none; padding: 5px 10px;
-border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 11px; }
-.del-btn { background: #fee2e2; color: #dc2626; border: none; padding: 5px 10px;
-border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 11px; }
-/* OTP Inputs */
-.otp-banner { background: #fefce8; border: 1px solid #fde047; padding: 8px 12px;
-border-radius: 8px; font-size: 12px; color: #854d0e; margin-bottom: 12px; text-align: center; }
-/* Professional Footer */
-footer { background: #0f172a; color: #94a3b8; padding: 24px 16px 80px; text-align: center;
-font-size: 12px; line-height: 1.8; margin-top: 30px; border-top: 1px solid #334155; }
-footer a { color: #38bdf8; text-decoration: none; margin: 0 6px; }
-/* Partner Document Uploads */
-.doc-upload-section { background: #f8fafc; border: 1px dashed #94a3b8; border-radius: 12px;
-padding: 12px; margin: 12px 0; }
-.doc-title { font-size: 13px; font-weight: bold; color: #0f172a; margin-bottom: 8px; display: flex;
-align-items: center; gap: 6px; }
-.doc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.doc-box { background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px; }
-.doc-box label { display: block; font-size: 11px; font-weight: 700; color: #334155;
-margin-bottom: 4px; }
-.doc-box input[type="file"] { width: 100%; font-size: 11px; color: #64748b; }
-.upload-progress { display: none; background: #e0f2fe; color: #0369a1; padding: 10px;
-border-radius: 8px; font-size: 12px; font-weight: 600; text-align: center; margin: 10px 0; }
-.spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid #bae6fd;
-border-top-color: #0284c7; border-radius: 50%; animation: spin 0.7s linear infinite; vertical-align:
-middle; margin-right: 6px; }
-@keyframes spin { to { transform: rotate(360deg); } } /* Admin Tabs & Approval Cards */
-.admin-tab-nav { display: flex; gap: 6px; margin-bottom: 14px; border-bottom: 2px solid
-#e2e8f0; padding-bottom: 8px; }
-.admin-tab-btn { flex: 1; padding: 8px 6px; border: none; background: #f1f5f9; color: #64748b;
-font-weight: bold; font-size: 12px; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
-.admin-tab-btn.active { background: #0284c7; color: white; }
-.badge-count { background: #ef4444; color: white; padding: 1px 6px; border-radius: 10px;
-font-size: 10px; margin-left: 4px; }
-.approval-card { background: white; border: 1px solid #cbd5e1; border-radius: 12px; padding:
-12px; margin-bottom: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
-.approval-header { display: flex; justify-content: space-between; align-items: flex-start;
-margin-bottom: 6px; }
-.approval-name { font-size: 14px; font-weight: bold; color: #0f172a; }
-.doc-badge-row { display: flex; gap: 6px; flex-wrap: wrap; margin: 8px 0; }
-.doc-link-btn { display: inline-flex; align-items: center; gap: 4px; background: #f0fdf4; color:
-#166534; border: 1px solid #bbf7d0; padding: 4px 8px; border-radius: 6px; font-size: 11px;
-text-decoration: none; font-weight: 600; }
-.doc-link-btn:hover { background: #dcfce7; }
-.approval-actions { display: flex; gap: 8px; margin-top: 10px; border-top: 1px solid #f1f5f9;
-padding-top: 8px; }
-.btn-approve { flex: 1; background: #16a34a; color: white; border: none; padding: 8px;
-border-radius: 8px; font-weight: bold; font-size: 12px; cursor: pointer; }
-.btn-reject { background: #fee2e2; color: #dc2626; border: none; padding: 8px 12px;
-border-radius: 8px; font-weight: bold; font-size: 12px; cursor: pointer; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fixr - All India Home Services | தமிழ்நாடு நம்பகமான ஹோம் சர்வீசஸ்</title>
+  
+  <meta name="theme-color" content="#0f172a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Fixr">
+
+  <!-- Google Firebase SDK (Compat) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+
+  <style>
+    * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Tamil", sans-serif; margin: 0; padding: 0; }
+    body { background: #f8fafc; padding-bottom: 95px; color: #1e293b; }
+    header { background: #0f172a; color: white; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .brand { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
+    .brand span { color: #38bdf8; }
+    .nav-btns { display: flex; gap: 6px; align-items: center; }
+    .admin-btn { background: #334155; color: #38bdf8; border: 1px solid #475569; padding: 5px 10px; border-radius: 12px; font-size: 11px; font-weight: bold; cursor: pointer; }
+    .auth-btn { background: #38bdf8; color: #0f172a; border: none; padding: 6px 12px; border-radius: 20px; font-weight: bold; font-size: 11px; cursor: pointer; }
+    .user-profile { font-size: 11px; color: #38bdf8; font-weight: bold; display: flex; align-items: center; gap: 4px; background: #1e293b; padding: 4px 10px; border-radius: 16px; }
+    
+    .sync-bar { background: #e0f2fe; color: #0369a1; padding: 4px 16px; font-size: 11px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #bae6fd; }
+    .search-box { padding: 12px 16px 4px; }
+    .search-input { width: 100%; padding: 12px 16px; border-radius: 12px; border: 1px solid #cbd5e1; font-size: 14px; outline: none; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    
+    .categories { display: flex; overflow-x: auto; padding: 10px 16px; gap: 8px; scrollbar-width: none; }
+    .categories::-webkit-scrollbar { display: none; }
+    .chip { padding: 7px 14px; background: white; border-radius: 20px; font-size: 12px; font-weight: 600; border: 1px solid #e2e8f0; white-space: nowrap; cursor: pointer; }
+    .chip.active { background: #0f172a; color: white; border-color: #0f172a; }
+    
+    .list { padding: 8px 16px; }
+    .card { background: white; border-radius: 16px; padding: 16px; margin-bottom: 12px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+    .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px; }
+    .name { font-size: 16px; font-weight: 700; color: #0f172a; }
+    .badge { font-size: 11px; padding: 3px 8px; border-radius: 14px; font-weight: 700; background: #f0fdf4; color: #166534; }
+    .details { font-size: 13px; color: #64748b; margin-top: 4px; }
+    .rating-row { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: 13px; }
+    .rating { background: #fef08a; color: #854d0e; padding: 2px 8px; border-radius: 6px; font-weight: bold; }
+    .price { font-size: 14px; font-weight: 800; color: #0284c7; }
+    
+    .actions { display: flex; gap: 8px; margin-top: 12px; padding-top: 10px; border-top: 1px solid #f1f5f9; }
+    .btn { padding: 8px 14px; border-radius: 8px; text-decoration: none; font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: 4px; cursor: pointer; border: none; }
+    .btn-book { background: #0284c7; color: white; flex: 2; }
+    .btn-call { background: #f1f5f9; color: #334155; flex: 1; border: 1px solid #cbd5e1; }
+    .btn-wa { background: #22c55e; color: white; flex: 1; }
+    
+    .partner-fab { position: fixed; bottom: 20px; right: 16px; background: #0f172a; color: white; padding: 11px 16px; border-radius: 30px; font-weight: bold; font-size: 12px; border: 1px solid #38bdf8; box-shadow: 0 4px 14px rgba(15,23,42,0.35); cursor: pointer; z-index: 90; }
+    .support-fab { position: fixed; bottom: 20px; left: 16px; background: #25d366; color: white; padding: 11px 16px; border-radius: 30px; font-weight: bold; font-size: 12px; text-decoration: none; box-shadow: 0 4px 14px rgba(37,211,102,0.4); z-index: 90; }
+
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 1000; justify-content: center; align-items: center; padding: 16px; }
+    .modal-overlay.active { display: flex; }
+    .modal-box { background: white; width: 100%; max-width: 440px; border-radius: 20px; padding: 20px; max-height: 90vh; overflow-y: auto; }
+    .modal-title { font-size: 18px; font-weight: bold; margin-bottom: 4px; color: #0f172a; }
+    .modal-sub { font-size: 12px; color: #64748b; margin-bottom: 14px; }
+    .form-group { margin-bottom: 10px; }
+    .form-group label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #475569; }
+    .form-input { width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; outline: none; }
+    .submit-btn { width: 100%; background: #0284c7; color: white; border: none; padding: 12px; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 8px; font-size: 14px; }
+    .close-btn { width: 100%; background: none; border: none; color: #64748b; margin-top: 10px; font-size: 13px; cursor: pointer; }
+
+    /* Payment Box */
+    .payment-box { background: #f0fdf4; border: 1px solid #86efac; border-radius: 14px; padding: 12px; margin: 10px 0; text-align: center; }
+    .payment-title { font-size: 13px; font-weight: bold; color: #166534; display: flex; justify-content: space-between; margin-bottom: 6px; }
+    .payment-amount { background: #22c55e; color: white; padding: 2px 8px; border-radius: 12px; font-size: 12px; font-weight: 800; }
+    .upi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 8px 0; }
+    .upi-btn { padding: 9px 6px; border-radius: 8px; font-weight: bold; font-size: 12px; cursor: pointer; border: none; color: white; }
+    .btn-gpay { background: #0f172a; color: #38bdf8; border: 1px solid #38bdf8; grid-column: span 2; }
+    .btn-phonepe { background: #5f259f; }
+    .btn-paytm { background: #002970; }
+    .btn-all-upi { background: #16a34a; grid-column: span 2; }
+
+    /* Documents Upload */
+    .doc-upload-section { background: #f8fafc; border: 1px dashed #94a3b8; border-radius: 12px; padding: 12px; margin: 12px 0; }
+    .doc-title { font-size: 12px; font-weight: bold; color: #0f172a; margin-bottom: 8px; }
+    .doc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .doc-box { background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px; }
+    .doc-box label { display: block; font-size: 11px; font-weight: 700; color: #334155; margin-bottom: 3px; }
+    .doc-box input[type="file"] { width: 100%; font-size: 10px; }
+    .upload-progress { display: none; background: #e0f2fe; color: #0369a1; padding: 10px; border-radius: 8px; font-size: 12px; font-weight: 600; text-align: center; margin: 8px 0; }
+
+    /* Admin Tabs & Approvals */
+    .admin-tab-nav { display: flex; gap: 6px; margin-bottom: 12px; border-bottom: 2px solid #e2e8f0; padding-bottom: 6px; }
+    .admin-tab-btn { flex: 1; padding: 8px; border: none; background: #f1f5f9; color: #64748b; font-weight: bold; font-size: 12px; border-radius: 8px; cursor: pointer; }
+    .admin-tab-btn.active { background: #0284c7; color: white; }
+    .badge-count { background: #ef4444; color: white; padding: 1px 6px; border-radius: 10px; font-size: 10px; margin-left: 4px; }
+    .approval-card { background: white; border: 1px solid #cbd5e1; border-radius: 10px; padding: 12px; margin-bottom: 10px; font-size: 12px; }
+    .doc-badge-row { display: flex; gap: 6px; flex-wrap: wrap; margin: 8px 0; }
+    .doc-link-btn { display: inline-flex; align-items: center; background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; padding: 3px 6px; border-radius: 6px; font-size: 11px; text-decoration: none; font-weight: 600; }
+    .approval-actions { display: flex; gap: 6px; margin-top: 8px; border-top: 1px solid #f1f5f9; padding-top: 8px; }
+    .btn-approve { flex: 1; background: #16a34a; color: white; border: none; padding: 7px; border-radius: 6px; font-weight: bold; font-size: 11px; cursor: pointer; }
+    .btn-reject { background: #fee2e2; color: #dc2626; border: none; padding: 7px 10px; border-radius: 6px; font-weight: bold; font-size: 11px; cursor: pointer; }
+    .admin-tech-item { display: flex; justify-content: space-between; align-items: center; padding: 8px; border-bottom: 1px solid #f1f5f9; font-size: 12px; }
+    .edit-btn { background: #e0f2fe; color: #0284c7; border: none; padding: 4px 8px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 11px; }
+    .del-btn { background: #fee2e2; color: #dc2626; border: none; padding: 4px 8px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 11px; }
+  </style>
 </head>
 <body>
-<header>
-<div class="brand">Fix<span>r</span></div>
-<div class="nav-btns">
-<button class="lang-btn" id="langToggleBtn" onclick="toggleLanguage()">🌐
-English</button>
-<button class="admin-btn" onclick="openAdminLogin()">🔒 Admin</button>
-<div id="authContainer">
-<button class="auth-btn" id="authBtn" onclick="openLoginModal()">Login</button>
-</div>
-</div>
-</header>
-<!-- Live Cloud Sync Status -->
-<div class="sync-bar">
-<span id="cloudStatusText">☁️ Google Cloud Database: இணை க்கப்பட்டது (Online)</span>
-<span id="serviceCountBadge" style="background:#0284c7; color:white; padding:1px 7px;
-border-radius:10px; font-size:10px;">Live</span>
-</div>
-<!-- All India Search -->
-<div class="search-box">
-<input type="text" id="searchInput" class="search-input" placeholder="🔍 நகரம் (Chennai,
-Madurai...), சே வை அல்லது பெ யர்...">
-</div>
-<!-- வகை ப் பிரிவுகள் (Categories) -->
-<div class="categories" id="categoryContainer"></div>
-<div class="list" id="servicesList"></div>
-<!-- 1. உதவி மை யம் (Customer Care WhatsApp Floating Widget) -->
-<a
-href="https://wa.me/919884334097?text=வணக்கம்%20Fixr%20அட்மின்!%20எனக்கு%20
-சே வை %20முன்பதிவு%20த ொடர்பாக%20உதவி%20வே ண்டும்." class="support-fab"
-target="_blank" id="supportFabBtn">
-💬 <span>உதவி (Help)</span>
-</a>
-<!-- 2. த ொழிலாளர் சே ர்க்கை பட்டன் -->
-<button class="partner-fab" id="partnerFabBtn" onclick="openModal('partnerModal')">
-🛠️ <span id="partnerFabText">த ொழிலாளர் பதிவு (₹49)</span>
-</button>
-<!-- 1. வாடிக்கை யாளர் OTP லாகின் பாப்-அப் -->
-<div class="modal-overlay" id="loginModal">
-<div class="modal-box">
-<div class="modal-title" id="loginTitle">Fixr OTP உள்நுழை வு 👋</div>
-<div class="modal-sub" id="loginSub">சே வை யை புக் செ ய்ய உங்கள் ம ொபை ல்
-எண்ணை உள்ளிடவும்</div>
-<div id="otpStep1">
-<div class="form-group">
-<label id="lblLoginName">முழு பெ யர்</label>
-<input type="text" id="userName" class="form-input" placeholder="உங்கள் பெ யர்">
-</div>
-<div class="form-group">
-<label id="lblLoginPhone">10 இலக்க ம ொபை ல் எண்</label> <input type="tel" id="userPhone" class="form-input" placeholder="எ.கா: 9876543210"
-maxlength="10">
-</div>
-<button class="submit-btn" id="btnSendOtp" onclick="sendOtpCode()">OTP பெ றுக
-📲</button>
-</div>
-<div id="otpStep2" style="display:none;">
-<div class="otp-banner" id="otpNotice">
-📲 உங்கள் ம ொபை லுக்கு OTP அனுப்பப்பட்டுள்ளது! (Demo Code: <b
-id="demoOtpCode">1234</b>)
-</div>
-<div class="form-group">
-<label>4 இலக்க OTP குறியடுீ </label>
-<input type="tel" id="otpInput" class="form-input" placeholder="• • • •" maxlength="4"
-style="letter-spacing:8px; font-size:20px; text-align:center;">
-</div>
-<button class="submit-btn" style="background:#16a34a;"
-onclick="verifyOtpCode()">உள்நுழை வை உறுதி செ ய் 🚀</button>
-<button class="close-btn" onclick="resendOtp()">மீண்டும் OTP அனுப்புக
-(Resend)</button>
-</div>
-<button class="close-btn" id="loginCancelBtn"
-onclick="closeModal('loginModal')">ரத்து</button>
-</div>
-</div>
-<!-- 2. சே வை முன்பதிவு (Booking Modal with Time Slot) -->
-<div class="modal-overlay" id="bookingModal">
-<div class="modal-box">
-<div class="modal-title" id="bookModalTitle">🗓️ சே வை முன்பதிவு (Book Service)</div>
-<div class="modal-sub" id="bookModalSub">விரும்பிய தே தி மற்றும் நே ரத்தை
-தே ர்வு செ ய்யவும்</div>
-<div class="booking-summary" id="bookingSummaryCard">
-<div class="booking-tech-name" id="bookTechName">CoolCare AC Solutions</div>
-<div class="booking-tech-cat" id="bookTechCategory">AC சர்வஸ்ீ | ₹499 முதல்</div>
-<div style="font-size:12px; color:#475569;">📍 <span
-id="bookTechArea">செ ன்னை </span></div>
-</div>
-<div class="booking-time-grid"> <div class="form-group">
-<label id="lblBookDate">📅 வர வே ண்டிய தே தி</label>
-<input type="date" id="bookDate" class="form-input">
-</div>
-<div class="form-group">
-<label id="lblBookTime">⏰ விருப்பமான நே ரம்</label>
-<select id="bookTimeSlot" class="form-input">
-<option value="10:00 AM - 12:00 PM">காலை (10 AM - 12 PM)</option>
-<option value="12:00 PM - 02:00 PM">மதியம் (12 PM - 02 PM)</option>
-<option value="02:00 PM - 05:00 PM">பிற்பகல் (02 PM - 05 PM)</option>
-<option value="05:00 PM - 08:00 PM">மாலை (05 PM - 08 PM)</option>
-</select>
-</div>
-</div>
-<div class="form-group">
-<label id="lblBookAddress">🏠 உங்கள் வட்ீ டு முகவரி & லே ண்ட்மார்க்</label>
-<input type="text" id="bookAddress" class="form-input" placeholder="கதவு எண், தெ ரு,
-பகுதி & நகரம்">
-</div>
-<div class="form-group">
-<label id="lblBookNotes">🛠️ பழுது / தே வை விவரம் (Notes)</label>
-<input type="text" id="bookNotes" class="form-input" placeholder="எ.கா: ஏசி கூலிங்
-வரவில்லை / கே ஸ் ரீஃபில்">
-</div>
-<button class="submit-btn" style="background:#0284c7;" onclick="confirmBooking()">
-முன்பதிவை உறுதி செ ய் 🚀 (Confirm Booking)
-</button>
-<button class="close-btn" onclick="closeModal('bookingModal')">ரத்து</button>
-</div>
-</div>
-<!-- 3. முன்பதிவு உறுதியான தகவல் & வாட்ஸ்அப் மெ சே ஜ் (Booking Success
-Modal) -->
-<div class="modal-overlay" id="bookingSuccessModal">
-<div class="modal-box">
-<div class="modal-title" style="color:#16a34a;">🎉 முன்பதிவு உறுதியானது!</div>
-<div class="modal-sub">உங்கள் உள்ளூர் டெ க்னசீியன் விவரங்கள் தயார்</div>
-<div class="success-card">
-<div class="success-badge" id="succBookingId">#FXR-1001</div> <div class="success-details" id="succDetailsText"></div>
-<p style="font-size:12px; color:#15803d; margin-top:8px; line-height:1.4;">
-📲 <b>டெ க்னசீியன் உங்கள் வட்ீ டிற்கு வர:</b> கீழே உள்ள வாட்ஸ்அப்
-பட்டனை த் த ொட்டு முன்பதிவு விவரங்களை உடனே அனுப்பவும்.
-</p>
-<a href="#" class="submit-btn" style="background:#25d366; text-decoration:none;
-display:flex; align-items:center; justify-content:center; gap:8px;" id="succWaBtn"
-target="_blank">
-💬 டெ க்னசீியனுக்கு வாட்ஸ்அப் மெ சே ஜ் அனுப்புக
-</a>
-</div>
-<button class="close-btn" style="font-weight:bold;"
-onclick="closeModal('bookingSuccessModal')">முடிந்தது (Done)</button>
-</div>
-</div>
-<!-- 4. டெ க்னசீியன் விண்ணப்ப படிவம் (₹49 Registration Fee + Direct GPay & QR) -->
-<div class="modal-overlay" id="partnerModal">
-<div class="modal-box">
-<div class="modal-title" id="pModalTitle">த ொழிலாளராக இணை க 💼</div>
-<div class="modal-sub" id="pModalSub">உங்கள் விவரங்களை அளித்து Fixr
-பார்ட்னராக பதிவு செ ய்யவும்</div>
-<div class="payment-box">
-<div class="payment-title">
-<span id="pPayTitle">💳 ஒருமுறை பதிவுக் கட்டணம்</span>
-<span class="payment-amount">₹49 Only</span>
-</div>
-<div class="upi-details-row">
-<div><b>GPay / UPI ID:</b> <span id="upiIdText">yugamugesh52-3@oksbi</span>
-<button class="copy-chip" onclick="copyText('yugamugesh52-3@oksbi')">Copy</button></div>
-<div style="margin-top:4px;"><b>GPay எண்:</b> <span
-id="gpayPhoneText">9884334097</span> <button class="copy-chip"
-onclick="copyText('9884334097')">Copy</button></div>
-</div>
-<!-- 1-Click Mobile UPI Payment Buttons -->
-<div class="upi-grid">
-<button type="button" class="upi-btn btn-gpay" id="pGpayLink" onclick="triggerMobileUpi('gpay')">
-⚡ Pay ₹49 with Google Pay (GPay)
-</button>
-<button type="button" class="upi-btn btn-phonepe"
-onclick="triggerMobileUpi('phonepe')">
-🟣 PhonePe
-</button>
-<button type="button" class="upi-btn btn-paytm" onclick="triggerMobileUpi('paytm')">
-🔵 Paytm
-</button>
-<button type="button" class="upi-btn btn-all-upi" id="pAllUpiBtn"
-onclick="triggerMobileUpi('all')">
-🟢 மற்ற அனை த்து UPI ஆப்ஸ் (Any UPI App)
-</button>
-</div>
-<div class="upi-help-notice" id="upiHelpNotice">
-💡 <b>குறிப்பு:</b> ஆப் தானாக திறக்காவிட்டால், UPI ID
-(<b>yugamugesh52-3@oksbi</b>) தானாக காப்பி செ ய்யப்பட்டுள்ளது! உங்கள் GPay
-அல்லது PhonePe ஆப்பை த் திறந்து நே ரடியாக பே ஸ்ட் செ ய்து ₹49 அனுப்பலாம்.
-</div>
-<div class="qr-container">
-<img
-src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=upi%3A%2F%2Fpay%3F
-pa%3Dyugamugesh52-3%40oksbi%26pn%3DFixr%2520Services%26am%3D49%26cu%3DIN
-R%26tn%3DFixr%2520Partner%2520Registration%2520Fee" alt="GPay QR Code"
-class="qr-img">
-</div>
-<div style="font-size:11px; color:#166534;" id="pQrNotice">
-ஸ்கே ன் செ ய்து ₹49 செ லுத்தலாம் (Scan & Pay ₹49)
-</div>
-</div>
-<div class="form-group">
-<label id="lblPName">பெ யர் / நிறுவன பெ யர்</label>
-<input type="text" id="pName" class="form-input" placeholder="எ.கா: அன்பு ஹ ோம்
-கே ர் / குமார்">
-</div>
-<div class="form-group">
-<label id="lblPCat">சே வை வகை </label>
-<select id="pCategory" class="form-input">
-<option value="கே ர் டே க்கர்">கே ர் டே க்கர் (Care Taker)</option> <option value="AC சர்வஸ்ீ ">AC சர்வஸ்ீ (AC Service)</option>
-<option value="RO சர்வஸ்ீ ">RO சர்வஸ்ீ (RO Service)</option>
-<option value="இன்வெ ர்ட்டர் & பே ட்டரி">இன்வெ ர்ட்டர் & பே ட்டரி (Inverter &
-Battery)</option>
-<option value="எலக்ட்ரீஷியன்">எலக்ட்ரீஷியன் (Electrician)</option>
-<option value="பிளம்பர்">பிளம்பர் (Plumber)</option>
-<option value="வாடகை வடுீ கள்">வாடகை வடுீ கள் (House Rentals)</option>
-</select>
-</div>
-<div class="form-group">
-<label id="lblPArea">ஊர் & மாவட்டம் / நகரம்</label>
-<input type="text" id="pArea" class="form-input" placeholder="எ.கா: வே ளச்சே ரி,
-செ ன்னை ">
-</div>
-<div class="form-group">
-<label id="lblPPhone">த ொடர்பு எண் (WhatsApp Number)</label>
-<input type="tel" id="pPhone" class="form-input" placeholder="10 இலக்க ம ொபை ல்
-எண்">
-</div>
-<div class="form-group">
-<label id="lblPPrice">கட்டணம் & சே வை விவரம்</label>
-<input type="text" id="pPrice" class="form-input" placeholder="எ.கா: ₹600/நாள்
-(முதிய ோர் பராமரிப்பு)">
-</div>
-<div class="form-group">
-<label id="lblPDesc">சிறப்பு விவரம் / அனுபவம்</label>
-<input type="text" id="pDesc" class="form-input" placeholder="எ.கா: 5 ஆண்டுகள்
-அனுபவம் / 24/7 சே வை ">
-</div>
-<!-- ஆவணங்கள் & கட்டண ரசீது பதிவே ற்றம் (Firebase Storage) -->
-<div class="doc-upload-section">
-<div class="doc-title">
-<span>📑 சரிபார்ப்பு ஆவணங்கள் & கட்டண ரசீது:</span>
-</div>
-<div class="doc-grid">
-<div class="doc-box">
-<label>1. ஆதார் அட்டை (முன் பக்கம்)</label>
-<input type="file" id="pAadhaarFront" accept="image/*,.pdf">
-</div>
-<div class="doc-box">
-<label>2. ஆதார் அட்டை (பின் பக்கம்)</label> <input type="file" id="pAadhaarBack" accept="image/*,.pdf">
-</div>
-<div class="doc-box">
-<label>3. பான் கார்டு (முன் பக்கம்)</label>
-<input type="file" id="pPanFront" accept="image/*,.pdf">
-</div>
-<div class="doc-box">
-<label>4. பான் கார்டு (பின் பக்கம்)</label>
-<input type="file" id="pPanBack" accept="image/*,.pdf">
-</div>
-<div class="doc-box" style="grid-column: span 2; background:#f0fdf4;
-border-color:#86efac;">
-<label style="color:#166534;">5. GPay / UPI ₹49 கட்டண ரசீது (Payment
-Screenshot)</label>
-<input type="file" id="pPaymentProof" accept="image/*,.pdf">
-</div>
-</div>
-<div style="font-size:10px; color:#64748b; margin-top:6px;">
-🔒 உங்கள் ஆவணங்கள் Fixr நிர்வாகி சரிபார்ப்பிற்கு மட்டுமே பாதுகாப்பாகப்
-பயன்படுத்தப்படும்.
-</div>
-</div>
-<div class="upload-progress" id="pUploadProgress">
-<span class="spinner"></span> <span id="pUploadStatusText">ஆவணங்கள்
-கிளவுடில் பதிவே ற்றப்படுகின்றன... தயவுசெ ய்து காத்திருக்கவும்...</span>
-</div>
-<button class="submit-btn" style="background:#0284c7;" id="pSubmitBtn"
-onclick="handlePartnerSubmitWithDocs()">
-பதிவு செ ய்து ஒப்புதலுக்கு அனுப்பு 🚀
-</button>
-<div style="text-align:center; margin-top:10px;">
-<button type="button" onclick="handlePartnerSubmitWhatsApp()" style="background:none;
-border:none; color:#25d366; font-size:11px; font-weight:bold; cursor:pointer;">
-💬 அல்லது வாட்ஸ்அப் மூலம் ஆவணங்களை அனுப்ப
-</button>
-</div>
-<button class="close-btn" id="pCloseBtn"
-onclick="closeModal('partnerModal')">மூடுக</button>
-</div>
-</div> <!-- 5. அட்மின் லாகின் பாப்-அப் (Admin PIN: 8843) -->
-<div class="modal-overlay" id="adminLoginModal">
-<div class="modal-box">
-<div class="modal-title" id="admLoginTitle">🔒 Fixr அட்மின் உள்நுழை வு</div>
-<div class="modal-sub" id="admLoginSub">நிர்வாகிகள் மட்டுமே அணுகலாம்</div>
-<div class="form-group">
-<label id="lblAdmPin">அட்மின் ரகசிய பின் (Admin PIN)</label>
-<input type="password" id="adminPinInput" class="form-input" placeholder="ரகசிய பின்
-(PIN) உள்ளிடவும்">
-</div>
-<button class="submit-btn" onclick="verifyAdminPin()">உள்நுழை க ➡️</button>
-<button class="close-btn" onclick="closeModal('adminLoginModal')">ரத்து</button>
-</div>
-</div>
-<!-- 6. அட்மின் கண்ட்ர ோல் பே னல் -->
-<div class="modal-overlay" id="adminPanelModal">
-<div class="modal-box" style="max-width: 520px;">
-<div class="modal-title" id="admPanelTitle">🛠️ Fixr அட்மின் நிர்வாக பே னல்</div>
-<div class="modal-sub">பார்ட்னர் ஒப்புதல்கள் மற்றும் சே வை கள் மே லாண்மை
-(Firebase Live)</div>
-<!-- அட்மின் டே ப் நே விகே ஷன் -->
-<div class="admin-tab-nav">
-<button type="button" class="admin-tab-btn active" id="tabBtnApprovals"
-onclick="switchAdminTab('approvals')">
-🔔 ஒப்புதல்கள் <span class="badge-count" id="pendingApprovalsBadge">0</span>
-</button>
-<button type="button" class="admin-tab-btn" id="tabBtnServices"
-onclick="switchAdminTab('services')">
-📋 நே ரடி சே வை கள்
-</button>
-</div>
-<!-- Tab 1: புதிய பார்ட்னர் விண்ணப்பங்கள் (Approval Flow) -->
-<div id="adminTabApprovals">
-<div id="adminApprovalList" style="max-height: 360px; overflow-y: auto;">
-<p style="text-align:center; padding:20px; color:#94a3b8;
-font-size:12px;">நிலுவை யில் விண்ணப்பங்கள் எதுவும் இல்லை .</p>
-</div>
-</div> <!-- Tab 2: நே ரடி சே வை சே ர்க்கை & திருத்தம் -->
-<div id="adminTabServices" style="display:none;">
-<div style="background: #f8fafc; padding: 12px; border-radius: 12px; border: 1px solid
-#e2e8f0; margin-bottom: 16px;">
-<h4 id="adminFormTitle" style="font-size: 14px; margin-bottom: 8px; color: #0284c7;">+
-புதிய சே வை யை ச் சே ர்க்க (இலவசம்)</h4>
-<div class="form-group">
-<input type="text" id="admName" class="form-input" placeholder="பெ யர் / நிறுவன
-பெ யர்">
-</div>
-<div class="form-group">
-<select id="admCategory" class="form-input">
-<option value="கே ர் டே க்கர்">கே ர் டே க்கர் (Care Taker)</option>
-<option value="AC சர்வஸ்ீ ">AC சர்வஸ்ீ (AC Service)</option>
-<option value="RO சர்வஸ்ீ ">RO சர்வஸ்ீ (RO Service)</option>
-<option value="இன்வெ ர்ட்டர் & பே ட்டரி">இன்வெ ர்ட்டர் & பே ட்டரி (Inverter &
-Battery)</option>
-<option value="எலக்ட்ரீஷியன்">எலக்ட்ரீஷியன் (Electrician)</option>
-<option value="பிளம்பர்">பிளம்பர் (Plumber)</option>
-<option value="வாடகை வடுீ கள்">வாடகை வடுீ கள் (House Rentals)</option>
-</select>
-</div>
-<div class="form-group">
-<input type="text" id="admArea" class="form-input" placeholder="ஊர்,
-மாவட்டம்/நகரம் (எ.கா: தி. நகர், செ ன்னை )">
-</div>
-<div class="form-group">
-<input type="tel" id="admPhone" class="form-input" placeholder="10 இலக்க
-ம ொபை ல் எண்">
-</div>
-<div class="form-group">
-<input type="text" id="admPrice" class="form-input" placeholder="கட்டணம் (எ.கா:
-₹499 முதல்)">
-</div>
-<div class="form-group">
-<input type="text" id="admRating" class="form-input" placeholder="மதிப்படுீ (எ.கா: ★
-4.9)">
-</div>
-<div class="form-group">
-<input type="text" id="admDesc" class="form-input" placeholder="சே வை விவரக்
-குறிப்பு">
-</div> <button class="submit-btn" id="admSaveBtn" onclick="saveAdminService()">ஆப்பில்
-உடனே சே ர் ➕</button>
-<button class="close-btn" id="admCancelEditBtn" style="display:none;"
-onclick="cancelAdminEdit()">திருத்துவதை ரத்து செ ய்</button>
-</div>
-<h4 style="font-size: 13px; font-weight: bold; margin-bottom: 8px;"
-id="admListHeading">கிளவுட் சே வை கள் (திருத்த / நீக்க):</h4>
-<div id="adminServiceList" style="max-height: 250px; overflow-y: auto;"></div>
-</div>
-<button class="close-btn" style="margin-top: 14px; font-weight: bold;"
-onclick="closeModal('adminPanelModal')">வெ ளியே று (Close)</button>
-</div>
-</div>
-<!-- 7. தனியுரிமை க் க ொள்கை (Privacy Policy Modal for Facebook/Google Ads) -->
-<div class="modal-overlay" id="privacyModal">
-<div class="modal-box">
-<div class="modal-title">🔒 தனியுரிமை க் க ொள்கை (Privacy Policy)</div>
-<div style="font-size: 13px; line-height: 1.7; color: #334155; margin: 12px 0;">
-<p><b>1. தகவல் பாதுகாப்பு:</b> Fixr இணை யதளத்தில் நீங்கள் அளிக்கும்
-பெ யர் மற்றும் ம ொபை ல் எண்கள் சே வை முன்பதிவு மற்றும் டெ க்னசீியன்
-த ொடர்புக்கு மட்டுமே பயன்படுத்தப்படும்.</p>
-<p style="margin-top:8px;"><b>2. மூன்றாம் தரப்பு பகிர்வு இல்லை :</b> உங்கள்
-த ொலை பே சி எண்கள் எந்தவ ொரு மூன்றாம் தரப்பு மார்க்கெ ட்டிங்
-ஏஜெ ன்சிகளுக்கும் விற்கப்படாது.</p>
-<p style="margin-top:8px;"><b>3. கட்டண பாதுகாப்பு:</b> த ொழிலாளர் பதிவுக்
-கட்டணம் ₹49 அதிகாரப்பூர்வ UPI வழியாக மட்டுமே பெ றப்படுகிறது.</p>
-<p style="margin-top:8px;"><b>4. த ொடர்பு:</b> ஏதே னும் சந்தே கம் இருந்தால்
-veeraadspromotions@gmail.com அல்லது +91 9884334097 என்ற எண்ணில் த ொடர்பு
-க ொள்ளலாம்.</p>
-</div>
-<button class="submit-btn" onclick="closeModal('privacyModal')">புரிந்தது (OK)</button>
-</div>
-</div>
-<!-- Professional Footer -->
-<footer>
-<div style="font-weight: bold; color: white; margin-bottom: 6px; font-size: 14px;">Fixr - Home
-Services & Partner Network</div>
-<div>🛡️ 100% பின்னணி சரிபார்க்கப்பட்ட த ொழிலாளர்கள் | 0% கமிஷன் தளம்</div>
-<div style="margin: 8px 0;">📞 த ொடர்பு: +91 9884334097 | ✉️
-veeraadspromotions@gmail.com</div>
-<div>
-<a href="javascript:void(0)" onclick="openModal('privacyModal')">Privacy Policy
-(தனியுரிமை க ொள்கை )</a> •
-<a href="https://www.fixrservice.in">www.fixrservice.in</a>
-</div>
-<div style="margin-top: 10px; font-size: 11px; color: #64748b;">© 2026 Fixr Services. All
-rights reserved.</div>
-</footer>
-<script>
-// Configuration & Keys
-const ADMIN_PHONE = "919884334097";
-const ADMIN_UPI_ID = "yugamugesh52-3@oksbi";
-const ADMIN_SECRET_PIN = "8843";
-// Firebase Configuration
-const firebaseConfig = {
-apiKey: "AIzaSyCYTbmYkdxitjh6yfd7vLu76m41I4kYyiY",
-authDomain: "fixr-33ba6.firebaseapp.com",
-projectId: "fixr-33ba6",
-storageBucket: "fixr-33ba6.firebasestorage.app",
-messagingSenderId: "46524357435",
-appId: "1:46524357435:web:c6446ddd93d0ec912f751e",
-measurementId: "G-YSYNM3EP61"
-};
-let db;
-let storage;
-try {
-firebase.initializeApp(firebaseConfig);
-db = firebase.firestore();
-storage = firebase.storage();
-db.enablePersistence({ synchronizeTabs: true }).catch(() => {});
-} catch (e) {
-console.log("Firebase initialized");
-}
-// PWA Service Worker Registration
-if ('serviceWorker' in navigator) {
-window.addEventListener('load', () => { navigator.serviceWorker.register('./sw.js').catch(() => {});
-});
-}
-function copyText(text) {
-if (navigator.clipboard) {
-navigator.clipboard.writeText(text).then(() => {
-alert(currentLang === 'ta' ? 'நகலெ டுக்கப்பட்டது: ' + text : 'Copied: ' + text);
-}).catch(() => {
-prompt(currentLang === 'ta' ? 'நகலெ டுக்க Ctrl+C அழுத்தவும்:' : 'Copy to clipboard:',
-text);
-});
-} else {
-prompt(currentLang === 'ta' ? 'நகலெ டுக்க Ctrl+C அழுத்தவும்:' : 'Copy to clipboard:',
-text);
-}
-}
-// Language Translations
-let currentLang = localStorage.getItem('fixr_lang') || 'ta';
-const translations = {
-ta: {
-langBtn: "🌐 English",
-searchPlaceholder: "🔍 நகரம் (Chennai, Madurai...), சே வை அல்லது பெ யர்...",
-allIndia: "அனை த்தும் (All India)",
-partnerFab: "த ொழிலாளர் பதிவு (₹49)",
-call: "அழை க்க",
-whatsapp: "வாட்ஸ்அப்",
-bookNow: "முன்பதிவு",
-empty: "இந்த நகரம் அல்லது தே டலுக்கு எந்த சே வை யும்
-கிடை க்கவில்லை .<br>வே று நகரத்தை த் தே டவும்.",
-loginTitle: "Fixr OTP உள்நுழை வு 👋",
-loginSub: "சே வை களை புக் செ ய்ய உங்கள் ம ொபை ல் எண்ணை உள்ளிடவும்",
-lblName: "முழு பெ யர்",
-lblPhone: "10 இலக்க ம ொபை ல் எண்",
-loginBtn: "உள்நுழை க",
-cancelBtn: "ரத்து",
-pModalTitle: "த ொழிலாளராக இணை க 💼",
-pModalSub: "உங்கள் விவரங்களை அளித்து Fixr பார்ட்னராக பதிவு செ ய்யவும்",
-pPayTitle: "💳 ஒருமுறை பதிவுக் கட்டணம்",
-pGpayBtn: "⚡ Pay ₹49 with Google Pay (GPay)",
-pAllUpiBtn: "🟢 மற்ற அனை த்து UPI ஆப்ஸ் (Any UPI App)",
-pQrNotice: "ஸ்கே ன் செ ய்து ₹49 செ லுத்தலாம் (Scan & Pay ₹49)", lblPName: "பெ யர் / நிறுவன பெ யர்",
-lblPCat: "சே வை வகை ",
-lblPArea: "ஊர் & மாவட்டம் / நகரம்",
-lblPPhone: "த ொடர்பு எண் (WhatsApp Number)",
-lblPPrice: "கட்டணம் & சே வை விவரம்",
-pDocNotice: "⚠️ <b>விண்ணப்பித்த பின்:</b> GPay ₹49 ரசீது ஸ்கிரீன்ஷாட்
-மற்றும் ஆதார் அட்டை புகை ப்படத்தை அட்மின் வாட்ஸ்அப்பிற்கு அனுப்பவும்.",
-pSubmitBtn: "வாட்ஸ்அப்பில் விண்ணப்பிக்கவும் 🚀",
-admLoginTitle: "🔒 Fixr அட்மின் உள்நுழை வு",
-admLoginSub: "நிர்வாகிகள் மட்டுமே அணுகலாம்",
-admPin: "அட்மின் ரகசிய பின் (Admin PIN)",
-admPanelTitle: "🛠️ அட்மின் கண்ட்ர ோல் பே னல்",
-admFormAdd: "+ புதிய சே வை யை ச் சே ர்க்க (இலவசம்)",
-admFormEdit: "✏️ சே வை யை த் திருத்தவும்",
-admSaveBtnAdd: "ஆப்பில் உடனே சே ர் ➕",
-admSaveBtnEdit: "மாற்றங்களை ச் சே மி (Update) 💾",
-admListHead: "கிளவுட் சே வை கள் (திருத்த / நீக்க):",
-edit: "✏️ திருத்து",
-del: "🗑️ நீக்கு",
-cloudOnline: "☁️ Google Cloud Database: இணை க்கப்பட்டது (Online)",
-cloudOffline: "⚠️ Offline Mode (ல ோக்கல் மெ மரி)"
-},
-en: {
-langBtn: "🌐 தமிழ்",
-searchPlaceholder: "🔍 Search city (Chennai, Bangalore...), service or name...",
-allIndia: "All Services (All India)",
-partnerFab: "Join as Partner (₹49)",
-call: "Call",
-whatsapp: "WhatsApp",
-bookNow: "Book Service",
-empty: "No services found for this city or keyword.<br>Try searching another city or
-service.",
-loginTitle: "Fixr OTP Sign In 👋",
-loginSub: "Enter mobile number to book verified services",
-lblName: "Full Name",
-lblPhone: "10-Digit Mobile Number",
-loginBtn: "Sign In",
-cancelBtn: "Cancel",
-pModalTitle: "Join as a Partner 💼",
-pModalSub: "Register your service and start receiving customer orders",
-pPayTitle: "💳 One-Time Registration Fee",
-pGpayBtn: "⚡ Pay ₹49 with Google Pay (GPay)",
-pAllUpiBtn: "🟢 Open Any UPI App (All Apps)", pQrNotice: "Scan with any UPI app to pay ₹49",
-lblPName: "Name / Business Name",
-lblPCat: "Service Category",
-lblPArea: "City / Area & State",
-lblPPhone: "Contact Number (WhatsApp)",
-lblPPrice: "Starting Fee & Experience",
-pDocNotice: "⚠️ <b>After applying:</b> Send your ₹49 GPay receipt and Aadhaar ID
-proof on WhatsApp.",
-pSubmitBtn: "Apply via WhatsApp 🚀",
-admLoginTitle: "🔒 Fixr Admin Login",
-admLoginSub: "Authorized administrators only",
-admPin: "Admin Secret PIN",
-admPanelTitle: "🛠️ Admin Control Panel",
-admFormAdd: "+ Add New Service (Free)",
-admFormEdit: "✏️ Edit Service Details",
-admSaveBtnAdd: "Add to App ➕",
-admSaveBtnEdit: "Update Service 💾",
-admListHead: "Active Cloud Services (Edit / Delete):",
-edit: "✏️ Edit",
-del: "🗑️ Delete",
-cloudOnline: "☁️ Google Cloud Database: Connected (Online)",
-cloudOffline: "⚠️ Offline Mode (Local Memory)"
-}
-};
-function toggleLanguage() {
-currentLang = (currentLang === 'ta') ? 'en' : 'ta';
-localStorage.setItem('fixr_lang', currentLang);
-applyLanguage();
-}
-function applyLanguage() {
-const t = translations[currentLang];
-document.getElementById('langToggleBtn').innerText = t.langBtn;
-document.getElementById('searchInput').placeholder = t.searchPlaceholder;
-document.getElementById('partnerFabText').innerText = t.partnerFab;
-document.getElementById('cloudStatusText').innerText = t.cloudOnline;
-document.getElementById('loginTitle').innerText = t.loginTitle;
-document.getElementById('loginSub').innerText = t.loginSub;
-document.getElementById('lblLoginName').innerText = t.lblName;
-document.getElementById('lblLoginPhone').innerText = t.lblPhone; document.getElementById('pModalTitle').innerText = t.pModalTitle;
-document.getElementById('pModalSub').innerText = t.pModalSub;
-document.getElementById('pPayTitle').innerText = t.pPayTitle;
-document.getElementById('pGpayLink').innerText = t.pGpayBtn;
-const allUpi = document.getElementById('pAllUpiBtn');
-if (allUpi) allUpi.innerText = t.pAllUpiBtn;
-document.getElementById('pQrNotice').innerText = t.pQrNotice;
-document.getElementById('lblPName').innerText = t.lblPName;
-document.getElementById('lblPCat').innerText = t.lblPCat;
-document.getElementById('lblPArea').innerText = t.lblPArea;
-document.getElementById('lblPPhone').innerText = t.lblPPhone;
-document.getElementById('lblPPrice').innerText = t.lblPPrice;
-document.getElementById('pDocNotice').innerHTML = t.pDocNotice;
-document.getElementById('pSubmitBtn').innerText = t.pSubmitBtn;
-document.getElementById('admLoginTitle').innerText = t.admLoginTitle;
-document.getElementById('admLoginSub').innerText = t.admLoginSub;
-document.getElementById('lblAdmPin').innerText = t.admPin;
-document.getElementById('admPanelTitle').innerText = t.admPanelTitle;
-document.getElementById('admListHeading').innerText = t.admListHead;
-// Booking Modal Labels
-const bookTitle = document.getElementById('bookModalTitle');
-if (bookTitle) bookTitle.innerText = (currentLang === 'ta') ? "🗓️ சே வை முன்பதிவு (Book
-Service)" : "🗓️ Book a Service";
-const bookSub = document.getElementById('bookModalSub');
-if (bookSub) bookSub.innerText = (currentLang === 'ta') ? "விரும்பிய தே தி மற்றும்
-நே ரத்தை தே ர்வு செ ய்யவும்" : "Select your preferred date & time slot";
-const lblDate = document.getElementById('lblBookDate');
-if (lblDate) lblDate.innerText = (currentLang === 'ta') ? "📅 வர வே ண்டிய தே தி" : "📅
-Service Date";
-const lblTime = document.getElementById('lblBookTime');
-if (lblTime) lblTime.innerText = (currentLang === 'ta') ? "⏰ விருப்பமான நே ரம்" : "⏰
-Preferred Time Slot";
-const lblAddr = document.getElementById('lblBookAddress');
-if (lblAddr) lblAddr.innerText = (currentLang === 'ta') ? "🏠 உங்கள் வட்ீ டு முகவரி &
-லே ண்ட்மார்க்" : "🏠 House Address & Landmark";
-const lblNotes = document.getElementById('lblBookNotes');
-if (lblNotes) lblNotes.innerText = (currentLang === 'ta') ? "🛠️ பழுது / தே வை விவரம்
-(Notes)" : "🛠️ Problem / Service Details";
-// Support Button Label
-const suppBtn = document.getElementById('supportFabBtn'); if (suppBtn) suppBtn.querySelector('span').innerText = (currentLang === 'ta') ? "உதவி
-(Help)" : "Help & Support";
-// Time Slot Options
-const slotSelect = document.getElementById('bookTimeSlot');
-if (slotSelect) {
-if (currentLang === 'en') {
-slotSelect.innerHTML = `
-<option value="10:00 AM - 12:00 PM">Morning (10:00 AM - 12:00 PM)</option>
-<option value="12:00 PM - 02:00 PM">Noon (12:00 PM - 02:00 PM)</option>
-<option value="02:00 PM - 05:00 PM">Afternoon (02:00 PM - 05:00 PM)</option>
-<option value="05:00 PM - 08:00 PM">Evening (05:00 PM - 08:00 PM)</option>
-`;
-} else {
-slotSelect.innerHTML = `
-<option value="10:00 AM - 12:00 PM">காலை (10 AM - 12 PM)</option>
-<option value="12:00 PM - 02:00 PM">மதியம் (12 PM - 02 PM)</option>
-<option value="02:00 PM - 05:00 PM">பிற்பகல் (02 PM - 05 PM)</option>
-<option value="05:00 PM - 08:00 PM">மாலை (05 PM - 08 PM)</option>
-`;
-}
-}
-renderCategories();
-render();
-renderAdminList();
-}
-// Category Translation Helper
-const categoryNameMap = {
-"அனை த்தும்": { ta: "அனை த்தும் (All India)", en: "All Services" },
-"கே ர் டே க்கர்": { ta: "கே ர் டே க்கர்", en: "Care Taker" },
-"AC சர்வஸ்ீ ": { ta: "AC சர்வஸ்ீ ", en: "AC Service" },
-"RO சர்வஸ்ீ ": { ta: "RO சர்வஸ்ீ ", en: "RO Service" },
-"இன்வெ ர்ட்டர் & பே ட்டரி": { ta: "இன்வெ ர்ட்டர் & பே ட்டரி", en: "Inverter & Battery"
-},
-"எலக்ட்ரீஷியன்": { ta: "எலக்ட்ரீஷியன்", en: "Electrician" },
-"பிளம்பர்": { ta: "பிளம்பர்", en: "Plumber" },
-"வாடகை வடுீ கள்": { ta: "வாடகை வடுீ கள்", en: "House Rentals" }
-};
-function getDisplayCategory(cat) {
-if (categoryNameMap[cat]) { return (currentLang === 'ta') ? categoryNameMap[cat].ta : categoryNameMap[cat].en;
-}
-return cat;
-}
-// Categories
-const categoriesList = [
-{ key: "அனை த்தும்", ta: "அனை த்தும் (All India)", en: "All Services" },
-{ key: "கே ர் டே க்கர்", ta: "❤️ கே ர் டே க்கர்", en: "❤️ Care Taker" },
-{ key: "AC சர்வஸ்ீ ", ta: "❄️ AC சர்வஸ்ீ ", en: "❄️ AC Service" },
-{ key: "RO சர்வஸ்ீ ", ta: "💧 RO சர்வஸ்ீ ", en: "💧 RO Service" },
-{ key: "இன்வெ ர்ட்டர் & பே ட்டரி", ta: "🔋 இன்வெ ர்ட்டர் & பே ட்டரி", en: "🔋 Battery
-& Inverter" },
-{ key: "எலக்ட்ரீஷியன்", ta: "⚡ எலக்ட்ரீஷியன்", en: "⚡ Electrician" },
-{ key: "பிளம்பர்", ta: "🔧 பிளம்பர்", en: "🔧 Plumber" },
-{ key: "வாடகை வடுீ கள்", ta: "🏠 வாடகை வடுீ கள்", en: "🏠 House Rentals" }
-];
-function renderCategories() {
-const container = document.getElementById('categoryContainer');
-if (!container) return;
-container.innerHTML = '';
-categoriesList.forEach(cat => {
-const chip = document.createElement('div');
-chip.className = 'chip' + (currentCategory === cat.key ? ' active' : '');
-chip.innerText = (currentLang === 'ta') ? cat.ta : cat.en;
-chip.onclick = () => filterCategory(cat.key);
-container.appendChild(chip);
-});
-}
-// Default Seed Data
-const defaultData = [
-{ id: "seed-1", name: "அன்பு முதிய ோர் கே ர் டே க்கர் (Anbu Care)", nameEn: "Anbu
-Elderly Care (Anbu Care)", category: "கே ர் டே க்கர்", area: "அடை யாறு, செ ன்னை
-(Chennai)", phone: "9876543210", price: "₹650/நாள்", priceEn: "₹650/day", rating: "★ 4.9",
-desc: "24/7 முதிய ோர், ந ோயாளி & குழந்தை பராமரிப்பு", descEn: "24/7 Elderly, patient
-& child care services" },
-{ id: "seed-2", name: "CoolCare AC Solutions", nameEn: "CoolCare AC Solutions", category:
-"AC சர்வஸ்ீ ", area: "தி. நகர், செ ன்னை (Chennai)", phone: "9876543211", price: "₹499
-முதல்", priceEn: "₹499 onwards", rating: "★ 4.9", desc: "Gas filling, ஜெ ட் சர்வஸ்ீ &
-இன்ஸ்டாலே ஷன்", descEn: "Gas filling, jet service & installation" },
-{ id: "seed-3", name: "AquaPure RO Care", nameEn: "AquaPure RO Care", category: "RO சர்வஸ்ீ ", area: "வே ளச்சே ரி, செ ன்னை (Chennai)", phone: "9876543212", price: "₹350
-முதல்", priceEn: "₹350 onwards", rating: "★ 4.8", desc: "Filter மாற்றம் & வாட்டர்
-பியூரிஃபை யர் பழுது", descEn: "Filter replacement & water purifier repair" },
-{ id: "seed-4", name: "PowerMax Inverter & Battery", nameEn: "PowerMax Inverter &
-Battery", category: "இன்வெ ர்ட்டர் & பே ட்டரி", area: "காந்திபுரம், க ோயம்புத்தூர்
-(Coimbatore)", phone: "9876543213", price: "₹399 முதல்", priceEn: "₹399 onwards", rating:
-"★ 4.7", desc: "Water top-up & புதிய பே ட்டரி சர்வஸ்ீ ", descEn: "Water top-up & new
-battery service" },
-{ id: "seed-5", name: "மீனாட்சி எலக்ட்ரிக்கல்ஸ்", nameEn: "Meenakshi Electricals",
-category: "எலக்ட்ரீஷியன்", area: "அண்ணா நகர், மதுரை (Madurai)", phone:
-"9876543214", price: "₹250 முதல்", priceEn: "₹250 onwards", rating: "★ 4.8", desc: "வட்ீ டு
-வயரிங் & MCB பழுது நீக்குதல்", descEn: "Home wiring & MCB repair works" },
-{ id: "seed-6", name: "காவே ரி பிளம்பிங் ஒர்க்ஸ்", nameEn: "Kaveri Plumbing Works",
-category: "பிளம்பர்", area: "தில்லை நகர், திருச்சி (Trichy)", phone: "9876543215", price:
-"₹300 முதல்", priceEn: "₹300 onwards", rating: "★ 4.6", desc: "ம ோட்டார் பழுது & பை ப்
-லீக்கே ஜ் சரிசெ ய்தல்", descEn: "Motor repair & pipe leakage fixing" },
-{ id: "seed-7", name: "TechFix Bangalore Care", nameEn: "TechFix Bangalore Care",
-category: "AC சர்வஸ்ீ ", area: "Whitefield, பெ ங்களூரு (Bengaluru)", phone: "9876543216",
-price: "₹599 முதல்", priceEn: "₹599 onwards", rating: "★ 4.9", desc: "Deep cleaning & gas
-top-up", descEn: "Deep cleaning & gas top-up" }
-];
-// Load cached or defaultData immediately so screen is NEVER blank
-const cachedServices = localStorage.getItem('fixr_services_cached');
-let liveServicesList = [];
-try {
-liveServicesList = cachedServices ? JSON.parse(cachedServices) : [...defaultData];
-} catch(e) {
-liveServicesList = [...defaultData];
-}
-if (!liveServicesList || liveServicesList.length === 0) {
-liveServicesList = [...defaultData];
-}
-let currentCategory = 'அனை த்தும்';
-let searchQuery = '';
-let editingTechId = null;
-let selectedServiceForBooking = null;
-let generatedOtp = null;
-// Realtime Firestore Listener
-function initFirebaseFirestore() {
-renderCategories(); render();
-if (!db) return;
-db.collection('services').onSnapshot((snapshot) => {
-if (!snapshot || snapshot.empty) {
-console.log("Firebase collection empty, using default seed services...");
-if (!liveServicesList || liveServicesList.length === 0) {
-liveServicesList = [...defaultData];
-render();
-renderAdminList();
-}
-defaultData.forEach(item => {
-const dataToSeed = { ...item };
-delete dataToSeed.id;
-db.collection('services').add(dataToSeed).catch(() => {});
-});
-} else {
-liveServicesList = [];
-snapshot.forEach(doc => {
-liveServicesList.push({ id: doc.id, ...doc.data() });
-});
-localStorage.setItem('fixr_services_cached', JSON.stringify(liveServicesList));
-render();
-renderAdminList();
-}
-}, (error) => {
-console.warn("Firebase offline/restricted, continuing with offline data:", error);
-document.getElementById('cloudStatusText').innerText =
-translations[currentLang].cloudOffline;
-if (!liveServicesList || liveServicesList.length === 0) {
-liveServicesList = [...defaultData];
-}
-render();
-renderAdminList();
-});
-}
-function openModal(id) { document.getElementById(id).classList.add('active'); }
-function closeModal(id) { document.getElementById(id).classList.remove('active'); }
-// Admin Access
-function openAdminLogin() { openModal('adminLoginModal'); } function verifyAdminPin() {
-const pin = document.getElementById('adminPinInput').value;
-if (pin === ADMIN_SECRET_PIN) {
-closeModal('adminLoginModal');
-document.getElementById('adminPinInput').value = '';
-cancelAdminEdit();
-renderAdminList();
-initAdminApprovals();
-openModal('adminPanelModal');
-} else {
-alert(currentLang === 'ta' ? 'தவறான PIN எண்! மீண்டும் முயற்சிக்கவும்.' :
-'Incorrect PIN! Try again.');
-}
-}
-// Save or Update Service
-function saveAdminService() {
-const name = document.getElementById('admName').value.trim();
-const category = document.getElementById('admCategory').value;
-const area = document.getElementById('admArea').value.trim();
-const phone = document.getElementById('admPhone').value.trim();
-const price = document.getElementById('admPrice').value.trim();
-const rating = document.getElementById('admRating').value.trim() || '★ 4.9';
-const desc = document.getElementById('admDesc').value.trim();
-if (!name || !area || phone.length < 10) {
-alert(currentLang === 'ta' ? 'அனை த்து விவரங்களை யும் சரியாக உள்ளிடவும்.' :
-'Please enter valid details.');
-return;
-}
-const serviceData = { name, category, area, phone, price, rating, desc };
-if (editingTechId) {
-db.collection('services').doc(editingTechId).update(serviceData).then(() => {
-alert(currentLang === 'ta' ? 'சே வை வெ ற்றிகரமாக திருத்தப்பட்டது!' : 'Service
-updated successfully!');
-cancelAdminEdit();
-}).catch(err => alert("Error: " + err.message));
-} else {
-db.collection('services').add(serviceData).then(() => {
-alert(currentLang === 'ta' ? 'புதிய சே வை கிளவுடில் சே ர்க்கப்பட்டது!' : 'New service added to cloud!');
-clearAdminInputs();
-}).catch(err => alert("Error: " + err.message));
-}
-}
-function editAdminService(id) {
-const item = liveServicesList.find(s => s.id === id);
-if (!item) return;
-editingTechId = id;
-document.getElementById('adminFormTitle').innerText =
-translations[currentLang].admFormEdit;
-document.getElementById('admSaveBtn').innerText =
-translations[currentLang].admSaveBtnEdit;
-document.getElementById('admCancelEditBtn').style.display = 'block';
-document.getElementById('admName').value = item.name;
-document.getElementById('admCategory').value = item.category;
-document.getElementById('admArea').value = item.area;
-document.getElementById('admPhone').value = item.phone;
-document.getElementById('admPrice').value = item.price;
-document.getElementById('admRating').value = item.rating;
-document.getElementById('admDesc').value = item.desc || '';
-}
-function cancelAdminEdit() {
-editingTechId = null;
-document.getElementById('adminFormTitle').innerText =
-translations[currentLang].admFormAdd;
-document.getElementById('admSaveBtn').innerText =
-translations[currentLang].admSaveBtnAdd;
-document.getElementById('admCancelEditBtn').style.display = 'none';
-clearAdminInputs();
-}
-function clearAdminInputs() {
-document.getElementById('admName').value = '';
-document.getElementById('admArea').value = '';
-document.getElementById('admPhone').value = '';
-document.getElementById('admPrice').value = '';
-document.getElementById('admRating').value = '';
-document.getElementById('admDesc').value = ''; }
-function deleteAdminService(id) {
-if (confirm(currentLang === 'ta' ? 'இந்த சே வை யை நிச்சயமாக நீக்க
-விரும்புகிறர்ீகளா?' : 'Are you sure you want to delete this service?')) {
-db.collection('services').doc(id).delete().then(() => {
-alert(currentLang === 'ta' ? 'சே வை நீக்கப்பட்டது!' : 'Service deleted!');
-}).catch(err => alert("Error: " + err.message));
-}
-}
-function renderAdminList() {
-const listContainer = document.getElementById('adminServiceList');
-if (!listContainer) return;
-const t = translations[currentLang];
-listContainer.innerHTML = '';
-liveServicesList.forEach(item => {
-const row = document.createElement('div');
-row.className = 'admin-tech-item';
-row.innerHTML = `
-<div>
-<b>${item.name}</b> (${item.category})<br>
-<span style="font-size:11px; color:#64748b;">📍 ${item.area} | 📞
-${item.phone}</span>
-</div>
-<div class="admin-actions">
-<button class="edit-btn" onclick="editAdminService('${item.id}')">${t.edit}</button>
-<button class="del-btn" onclick="deleteAdminService('${item.id}')">${t.del}</button>
-</div>
-`;
-listContainer.appendChild(row);
-});
-}
-// OTP Login System
-function openLoginModal() {
-document.getElementById('otpStep1').style.display = 'block';
-document.getElementById('otpStep2').style.display = 'none';
-document.getElementById('otpInput').value = '';
-openModal('loginModal');
-} function checkUserLoggedIn() {
-const user = localStorage.getItem('fixr_user');
-const authContainer = document.getElementById('authContainer');
-if (user) {
-const u = JSON.parse(user);
-authContainer.innerHTML = `
-<div class="user-profile">
-👤 <span>${u.name.split(' ')[0]}</span>
-<button onclick="logout()" style="background:none; border:none; color:#94a3b8;
-font-size:10px; cursor:pointer; margin-left:4px;">(Logout)</button>
-</div>
-`;
-} else {
-authContainer.innerHTML = `<button class="auth-btn" id="authBtn"
-onclick="openLoginModal()">${translations[currentLang].loginBtn}</button>`;
-}
-}
-function sendOtpCode() {
-const name = document.getElementById('userName').value.trim();
-const phone = document.getElementById('userPhone').value.trim();
-if (!name || phone.length < 10) {
-alert(currentLang === 'ta' ? 'தயவுசெ ய்து உங்கள் பெ யர் மற்றும் 10 இலக்க
-ம ொபை ல் எண்ணை உள்ளிடவும்.' : 'Please enter your name and valid 10-digit mobile
-number.');
-return;
-}
-generatedOtp = Math.floor(1000 + Math.random() * 9000).toString();
-document.getElementById('demoOtpCode').innerText = generatedOtp;
-document.getElementById('otpStep1').style.display = 'none';
-document.getElementById('otpStep2').style.display = 'block';
-alert(currentLang === 'ta' ? `உங்கள் Fixr OTP குறியடுீ : ${generatedOtp}` : `Your Fixr
-OTP code is: ${generatedOtp}`);
-}
-function resendOtp() {
-generatedOtp = Math.floor(1000 + Math.random() * 9000).toString();
-document.getElementById('demoOtpCode').innerText = generatedOtp;
-alert(currentLang === 'ta' ? `புதிய OTP: ${generatedOtp}` : `New OTP: ${generatedOtp}`); }
-function verifyOtpCode() {
-const entered = document.getElementById('otpInput').value.trim();
-const name = document.getElementById('userName').value.trim();
-const phone = document.getElementById('userPhone').value.trim();
-if (entered === generatedOtp || entered === '1234') {
-localStorage.setItem('fixr_user', JSON.stringify({ name, phone, verified: true }));
-closeModal('loginModal');
-checkUserLoggedIn();
-alert(currentLang === 'ta' ? `வணக்கம் ${name}! உள்நுழை வு வெ ற்றிகரமாக
-முடிந்தது.` : `Welcome ${name}! Login successful.`);
-if (selectedServiceForBooking) {
-openBookingWindow(selectedServiceForBooking);
-}
-} else {
-alert(currentLang === 'ta' ? 'தவறான OTP! சரியான குறியட்ீ டை உள்ளிடவும்.' :
-'Incorrect OTP! Please enter correct code.');
-}
-}
-function logout() {
-localStorage.removeItem('fixr_user');
-checkUserLoggedIn();
-}
-// Booking Flow with Date & Time Slot
-function startBooking(serviceId) {
-const service = liveServicesList.find(s => s.id === serviceId);
-if (!service) return;
-selectedServiceForBooking = service;
-const user = localStorage.getItem('fixr_user');
-if (!user) {
-alert(currentLang === 'ta' ? 'சே வை யை புக் செ ய்ய முதலில் உங்கள் ம ொபை ல்
-எண்ணை OTP மூலம் சரிபார்க்கவும்.' : 'Please verify mobile number with OTP to book
-service.');
-openLoginModal();
-return;
-} openBookingWindow(service);
-}
-function openBookingWindow(service) {
-const catBadge = getDisplayCategory(service.category);
-const displayName = (currentLang === 'en' && service.nameEn) ? service.nameEn :
-service.name;
-const displayPrice = (currentLang === 'en')
-? ((service.priceEn) ? service.priceEn : (service.price ? service.price.replace('/நாள்',
-'/day').replace('முதல்', 'onwards') : ''))
-: (service.price ? service.price.replace('/day', '/நாள்').replace('onwards', 'முதல்') : '');
-document.getElementById('bookTechName').innerText = displayName;
-document.getElementById('bookTechCategory').innerText = `${catBadge} | ${displayPrice}`;
-document.getElementById('bookTechArea').innerText = service.area;
-const today = new Date().toISOString().split('T')[0];
-const dateInput = document.getElementById('bookDate');
-dateInput.min = today;
-dateInput.value = today;
-openModal('bookingModal');
-}
-function confirmBooking() {
-const date = document.getElementById('bookDate').value;
-const timeSlot = document.getElementById('bookTimeSlot').value;
-const address = document.getElementById('bookAddress').value.trim();
-const notes = document.getElementById('bookNotes').value.trim();
-if (!date || !address) {
-alert(currentLang === 'ta' ? 'தயவுசெ ய்து தே தி மற்றும் உங்கள் வட்ீ டு
-முகவரியை உள்ளிடவும்.' : 'Please select date and enter your address.');
-return;
-}
-const user = JSON.parse(localStorage.getItem('fixr_user') || '{}');
-const bookingId = 'FXR-' + Math.floor(1000 + Math.random() * 9000);
-const bookingRecord = {
-bookingId,
-serviceName: selectedServiceForBooking.name, category: selectedServiceForBooking.category,
-techPhone: selectedServiceForBooking.phone,
-techArea: selectedServiceForBooking.area,
-customerName: user.name || 'வாடிக்கை யாளர்',
-customerPhone: user.phone || '',
-date,
-timeSlot,
-address,
-notes: notes || 'வழக்கமான சே வை ',
-status: 'CONFIRMED',
-timestamp: new Date().toISOString()
-};
-if (db) {
-db.collection('bookings').add(bookingRecord).catch(() => {});
-}
-closeModal('bookingModal');
-// Populate Success Modal
-document.getElementById('succBookingId').innerText = `#${bookingId}`;
-document.getElementById('succDetailsText').innerHTML = `
-<b>👨‍🔧 டெ க்னசீியன்:</b> ${selectedServiceForBooking.name}<br>
-<b>📞 த ொடர்பு எண்:</b> ${selectedServiceForBooking.phone}<br>
-<b>🛠️ சே வை :</b> ${selectedServiceForBooking.category}
-(${selectedServiceForBooking.price})<br>
-<b>📅 திட்டமிட்ட தே தி:</b> ${date}<br>
-<b>⏰ நே ரம்:</b> ${timeSlot}<br>
-<b>📍 முகவரி:</b> ${address}
-`;
-// Build WhatsApp message for Technician and Customer
-const waMsg = `*Fixr சே வை முன்பதிவு உறுதியானது!* 🎉
------------------------------------
-• முன்பதிவு எண்: #${bookingId}
-• சே வை : ${selectedServiceForBooking.category} (${selectedServiceForBooking.name})
-• டெ க்னசீியன் எண்: ${selectedServiceForBooking.phone}
-• வாடிக்கை யாளர்: ${user.name} (📞 ${user.phone})
-• தே தி: ${date}
-• நே ரம்: ${timeSlot}
-• முகவரி: ${address}
-• விவரம்: ${notes || 'வழக்கமான சே வை '} நன்றி! Fixr Home Services (www.fixrservice.in)`;
-const waBtn = document.getElementById('succWaBtn');
-waBtn.href =
-`https://wa.me/91${selectedServiceForBooking.phone}?text=${encodeURIComponent(waMsg)}`
-;
-openModal('bookingSuccessModal');
-}
-// Direct 1-Click Mobile UPI Payment Handler
-function triggerMobileUpi(app) {
-const upiId = ADMIN_UPI_ID;
-const name = encodeURIComponent('Fixr Services');
-const amount = '49';
-const note = encodeURIComponent('Fixr Partner Registration Fee');
-if (navigator.clipboard && navigator.clipboard.writeText) {
-navigator.clipboard.writeText(upiId).catch(() => {});
-}
-const helpBox = document.getElementById('upiHelpNotice');
-if (helpBox) helpBox.style.display = 'block';
-const isAndroid = /Android/i.test(navigator.userAgent);
-const rawUpi = `upi://pay?pa=${upiId}&pn=${name}&am=${amount}&cu=INR&tn=${note}`;
-if (isAndroid) {
-let intentUrl = '';
-if (app === 'gpay') {
-intentUrl =
-`intent://pay?pa=${upiId}&pn=${name}&am=${amount}&cu=INR&tn=${note}#Intent;scheme=upi;
-package=com.google.android.apps.nbu.paisa.user;end;`;
-} else if (app === 'phonepe') {
-intentUrl =
-`intent://pay?pa=${upiId}&pn=${name}&am=${amount}&cu=INR&tn=${note}#Intent;scheme=upi;
-package=com.phonepe.app;end;`;
-} else if (app === 'paytm') {
-intentUrl =
-`intent://pay?pa=${upiId}&pn=${name}&am=${amount}&cu=INR&tn=${note}#Intent;scheme=upi;
-package=net.one97.paytm;end;`;
-} else {
-intentUrl = `intent://pay?pa=${upiId}&pn=${name}&am=${amount}&cu=INR&tn=${note}#Intent;scheme=upi;
-end;`;
-}
-window.location.href = intentUrl;
-setTimeout(() => {
-if (app === 'all') {
-window.location.href = rawUpi;
-}
-}, 800);
-} else {
-window.location.href = rawUpi;
-}
-}
-// Partner Registration
-function handlePartnerSubmit() {
-const name = document.getElementById('pName').value.trim();
-const category = document.getElementById('pCategory').value;
-const area = document.getElementById('pArea').value.trim();
-const phone = document.getElementById('pPhone').value.trim();
-const price = document.getElementById('pPrice').value.trim();
-if (!name || !area || phone.length < 10) {
-alert(currentLang === 'ta' ? 'தயவுசெ ய்து அனை த்து விவரங்களை யும் நிரப்பவும்.'
-: 'Please fill all required details.');
-return;
-}
-const msg = `வணக்கம் Fixr அட்மின்! நான் செ யலியில் பார்ட்னராக இணை ய
-விரும்புகிறே ன்:
-• பெ யர்: ${name}
-• சே வை : ${category}
-• ஊர்/நகரம்: ${area}
-• ம ொபை ல்: ${phone}
-• கட்டணம்/அனுபவம்: ${price || 'த ொடர்பு க ொள்க'}
-• பதிவுக் கட்டணம்: ₹49 (${ADMIN_UPI_ID}-க்கு GPay-ல் செ லுத்தப்பட்டது. ரசீது
-ஸ்கிரீன்ஷாட் & ஆதார் அட்டை இதனுடன் இணை க்கப்பட்டுள்ளது)`;
-window.open(`https://wa.me/${ADMIN_PHONE}?text=${encodeURIComponent(msg)}`,
-'_blank');
-closeModal('partnerModal'); }
-// Render Services for Users
-function render() {
-const container = document.getElementById('servicesList');
-if (!container) return;
-const t = translations[currentLang];
-container.innerHTML = '';
-const filtered = liveServicesList.filter(item => {
-const catMatch = currentCategory === 'அனை த்தும்' || item.category ===
-currentCategory;
-const q = searchQuery.toLowerCase();
-const searchMatch = item.name.toLowerCase().includes(q) ||
-item.area.toLowerCase().includes(q) ||
-item.category.toLowerCase().includes(q) ||
-(item.desc && item.desc.toLowerCase().includes(q));
-return catMatch && searchMatch;
-});
-if (filtered.length === 0) {
-container.innerHTML = `<p style="text-align:center; padding:40px; color:#94a3b8;
-line-height:1.6;">${t.empty}</p>`;
-return;
-}
-filtered.forEach(item => {
-const card = document.createElement('div');
-card.className = 'card';
-const catBadge = getDisplayCategory(item.category);
-const displayName = (currentLang === 'en' && item.nameEn) ? item.nameEn : item.name;
-const displayDesc = (currentLang === 'en' && item.descEn) ? item.descEn : (item.desc ||
-'');
-const displayPrice = (currentLang === 'en')
-? ((item.priceEn) ? item.priceEn : (item.price ? item.price.replace('/நாள்',
-'/day').replace('முதல்', 'onwards') : ''))
-: (item.price ? item.price.replace('/day', '/நாள்').replace('onwards', 'முதல்') : '');
-card.innerHTML = `
-<div class="card-top">
-<div>
-<div class="name">${displayName}</div> <div class="details">📍 ${item.area}</div>
-<div class="trust-tag">🛡️ ${currentLang === 'ta' ? 'ஆதார் சரிபார்க்கப்பட்ட
-பார்ட்னர்' : 'Aadhaar Verified Partner'}</div>
-</div>
-<span class="badge">${catBadge}</span>
-</div>
-<div style="font-size:12px; color:#475569; margin: 6px 0;">${displayDesc}</div>
-<div class="rating-row">
-<span class="rating">${item.rating || '★ 5.0'}</span>
-<span class="price">${displayPrice}</span>
-</div>
-<div class="actions">
-<button class="btn btn-book" onclick="startBooking('${item.id}')">🗓️
-${t.bookNow}</button>
-<a href="tel:${item.phone}" class="btn btn-call">📞 ${t.call}</a>
-<a href="https://wa.me/91${item.phone}?text=வணக்கம்
-${encodeURIComponent(displayName)}, Fixr ஆப்பில் உங்கள் சே வை யை ப் பார்த்தே ன்."
-class="btn btn-wa">💬</a>
-</div>
-`;
-container.appendChild(card);
-});
-}
-function filterCategory(cat) {
-currentCategory = cat;
-renderCategories();
-render();
-}
-document.getElementById('searchInput').addEventListener('input', (e) => {
-searchQuery = e.target.value.trim();
-render();
-});
-// Start App & Firebase
-applyLanguage();
-checkUserLoggedIn();
-initFirebaseFirestore();
-// ==========================================
-// Partner Document Upload & Admin Approval System
-// ========================================== let pendingRequestsList = [];
-let approvalsListenerAttached = false;
-// Helper: Upload file to Firebase Storage with fallback
-async function uploadDocFile(file, path) {
-if (!file) return "";
-try {
-const fileRef = storage.ref().child(path);
-const snapshot = await fileRef.put(file);
-return await snapshot.ref.getDownloadURL();
-} catch (err) {
-console.warn("Storage upload failed for " + path + ":", err);
-return "";
-}
-}
-// Direct Partner Submission with Aadhaar, PAN & Payment Proof
-async function handlePartnerSubmitWithDocs() {
-const name = document.getElementById('pName').value.trim();
-const category = document.getElementById('pCategory').value;
-const area = document.getElementById('pArea').value.trim();
-const phone = document.getElementById('pPhone').value.trim();
-const price = document.getElementById('pPrice').value.trim();
-const desc = document.getElementById('pDesc').value.trim();
-const aFront = document.getElementById('pAadhaarFront').files[0];
-const aBack = document.getElementById('pAadhaarBack').files[0];
-const pFront = document.getElementById('pPanFront').files[0];
-const pBack = document.getElementById('pPanBack').files[0];
-const payProof = document.getElementById('pPaymentProof').files[0];
-if (!name || !area || phone.length < 10) {
-alert(currentLang === 'ta' ? 'தயவுசெ ய்து பெ யர், ஊர் மற்றும் 10 இலக்க
-ம ொபை ல் எண்ணை உள்ளிடவும்.' : 'Please enter Name, Area and 10-digit Phone
-number.');
-return;
-}
-if (!aFront || !aBack) {
-alert(currentLang === 'ta' ? 'ஆதார் அட்டை யின் முன் மற்றும் பின் பக்க
-புகை ப்படங்களை ப் பதிவே ற்றவும்.' : 'Please upload Aadhaar Front & Back images.');
-return; }
-const progressBox = document.getElementById('pUploadProgress');
-const submitBtn = document.getElementById('pSubmitBtn');
-const statusText = document.getElementById('pUploadStatusText');
-progressBox.style.display = 'block';
-submitBtn.disabled = true;
-try {
-const timestamp = Date.now();
-const folder = `partner_verifications/${phone}_${timestamp}`;
-statusText.innerText = currentLang === 'ta' ? '1/5 ஆதார் முன் பக்கம்
-பதிவே றுகிறது...' : '1/5 Uploading Aadhaar Front...';
-const aFrontUrl = await uploadDocFile(aFront, `${folder}/aadhaar_front_${aFront.name}`);
-statusText.innerText = currentLang === 'ta' ? '2/5 ஆதார் பின் பக்கம்
-பதிவே றுகிறது...' : '2/5 Uploading Aadhaar Back...';
-const aBackUrl = await uploadDocFile(aBack, `${folder}/aadhaar_back_${aBack.name}`);
-let pFrontUrl = "";
-if (pFront) {
-statusText.innerText = currentLang === 'ta' ? '3/5 பான் கார்டு முன் பக்கம்
-பதிவே றுகிறது...' : '3/5 Uploading PAN Front...';
-pFrontUrl = await uploadDocFile(pFront, `${folder}/pan_front_${pFront.name}`);
-}
-let pBackUrl = "";
-if (pBack) {
-statusText.innerText = currentLang === 'ta' ? '4/5 பான் கார்டு பின் பக்கம்
-பதிவே றுகிறது...' : '4/5 Uploading PAN Back...';
-pBackUrl = await uploadDocFile(pBack, `${folder}/pan_back_${pBack.name}`);
-}
-let payProofUrl = "";
-if (payProof) {
-statusText.innerText = currentLang === 'ta' ? '5/5 கட்டண ரசீது பதிவே றுகிறது...' :
-'5/5 Uploading Payment Proof...';
-payProofUrl = await uploadDocFile(payProof,
-`${folder}/payment_receipt_${payProof.name}`);
-} statusText.innerText = currentLang === 'ta' ? 'விவரங்களை ச் சே மிக்கிறது...' : 'Saving
-partner details in Cloud...';
-await db.collection('partner_requests').add({
-name: name,
-category: category,
-area: area,
-phone: phone,
-price: price || (currentLang === 'ta' ? 'த ொடர்பு க ொள்க' : 'Contact'),
-desc: desc || (currentLang === 'ta' ? 'அங்கீகரிக்கப்பட்ட Fixr சே வை ' : 'Verified Fixr
-Partner'),
-rating: '★ 5.0 (Verified)',
-aadhaarFrontUrl: aFrontUrl,
-aadhaarBackUrl: aBackUrl,
-panFrontUrl: pFrontUrl,
-panBackUrl: pBackUrl,
-paymentProofUrl: payProofUrl,
-status: 'pending',
-createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-createdDateStr: new Date().toLocaleDateString('ta-IN')
-});
-alert(currentLang === 'ta'
-? '🎉 உங்கள் விண்ணப்பம் மற்றும் ஆவணங்கள் வெ ற்றிகரமாக
-சமர்ப்பிக்கப்பட்டன! அட்மின் சரிபார்த்து ஒப்புதல் அளித்தவுடன் உங்கள் பெ யர்
-ஆப்பில் உடனடியாக த ோன்றும்.'
-: '🎉 Application submitted successfully! Your service will appear on Fixr once verified by
-admin.');
-// Clear Form
-document.getElementById('pName').value = '';
-document.getElementById('pArea').value = '';
-document.getElementById('pPhone').value = '';
-document.getElementById('pPrice').value = '';
-document.getElementById('pDesc').value = '';
-document.getElementById('pAadhaarFront').value = '';
-document.getElementById('pAadhaarBack').value = '';
-document.getElementById('pPanFront').value = '';
-document.getElementById('pPanBack').value = '';
-document.getElementById('pPaymentProof').value = '';
-closeModal('partnerModal'); } catch (err) {
-console.error("Submission failed:", err);
-alert((currentLang === 'ta' ? 'சமர்ப்பிப்பதில் பிழை : ' : 'Submission error: ') +
-err.message);
-} finally {
-progressBox.style.display = 'none';
-submitBtn.disabled = false;
-}
-}
-// Fallback WhatsApp submission
-function handlePartnerSubmitWhatsApp() {
-const name = document.getElementById('pName').value.trim();
-const category = document.getElementById('pCategory').value;
-const area = document.getElementById('pArea').value.trim();
-const phone = document.getElementById('pPhone').value.trim();
-const price = document.getElementById('pPrice').value.trim();
-const msg = `வணக்கம் Fixr அட்மின்! நான் செ யலியில் பார்ட்னராக இணை ய
-விரும்புகிறே ன்:
-• பெ யர்: ${name || 'விவரம் அளிக்கப்படவில்லை '}
-• சே வை : ${category}
-• ஊர்/நகரம்: ${area || 'விவரம் அளிக்கப்படவில்லை '}
-• ம ொபை ல்: ${phone || 'விவரம் அளிக்கப்படவில்லை '}
-• கட்டணம்/அனுபவம்: ${price || 'த ொடர்பு க ொள்க'}
-• பதிவுக் கட்டணம்: ₹49 (${ADMIN_UPI_ID}-க்கு செ லுத்தப்பட்டது. ஆதார் மற்றும்
-பான் புகை ப்படங்கள் இதனுடன் இணை க்கப்படும்.)`;
-window.open(`https://wa.me/${ADMIN_PHONE}?text=${encodeURIComponent(msg)}`,
-'_blank');
-closeModal('partnerModal');
-}
-// Switch between Approval and Services tab in Admin Panel
-function switchAdminTab(tab) {
-const tabApprovals = document.getElementById('adminTabApprovals');
-const tabServices = document.getElementById('adminTabServices');
-const btnApprovals = document.getElementById('tabBtnApprovals');
-const btnServices = document.getElementById('tabBtnServices');
-if (tab === 'approvals') {
-tabApprovals.style.display = 'block';
-tabServices.style.display = 'none'; btnApprovals.classList.add('active');
-btnServices.classList.remove('active');
-} else {
-tabApprovals.style.display = 'none';
-tabServices.style.display = 'block';
-btnApprovals.classList.remove('active');
-btnServices.classList.add('active');
-}
-}
-// Realtime Listener for Pending Approvals in Admin Panel
-function initAdminApprovals() {
-if (approvalsListenerAttached) return;
-approvalsListenerAttached = true;
-db.collection('partner_requests')
-.where('status', '==', 'pending')
-.onSnapshot((snapshot) => {
-pendingRequestsList = [];
-snapshot.forEach((doc) => {
-pendingRequestsList.push({ id: doc.id, ...doc.data() });
-});
-// Update badge count
-const badge = document.getElementById('pendingApprovalsBadge');
-if (badge) badge.innerText = pendingRequestsList.length;
-renderAdminApprovals();
-}, (err) => {
-console.error("Error listening to approvals:", err);
-});
-}
-// Render pending approvals list in Admin Panel
-function renderAdminApprovals() {
-const container = document.getElementById('adminApprovalList');
-if (!container) return;
-container.innerHTML = '';
-if (pendingRequestsList.length === 0) {
-container.innerHTML = `<p style="text-align:center; padding:30px; color:#94a3b8;
-font-size:12px;">${currentLang === 'ta' ? 'நிலுவை யில் உள்ள புதிய விண்ணப்பங்கள் எதுவும் இல்லை .' : 'No pending approval requests.'}</p>`;
-return;
-}
-pendingRequestsList.forEach((req) => {
-const card = document.createElement('div');
-card.className = 'approval-card';
-let docButtons = '';
-if (req.aadhaarFrontUrl) {
-docButtons += `<a href="${req.aadhaarFrontUrl}" target="_blank" class="doc-link-btn">📄
-ஆதார் Front</a>`;
-}
-if (req.aadhaarBackUrl) {
-docButtons += `<a href="${req.aadhaarBackUrl}" target="_blank" class="doc-link-btn">📄
-ஆதார் Back</a>`;
-}
-if (req.panFrontUrl) {
-docButtons += `<a href="${req.panFrontUrl}" target="_blank" class="doc-link-btn">📄
-பான் Front</a>`;
-}
-if (req.panBackUrl) {
-docButtons += `<a href="${req.panBackUrl}" target="_blank" class="doc-link-btn">📄
-பான் Back</a>`;
-}
-if (req.paymentProofUrl) {
-docButtons += `<a href="${req.paymentProofUrl}" target="_blank" class="doc-link-btn"
-style="background:#fef08a; color:#854d0e; border-color:#fde047;">💳 ₹49 ரசீது</a>`;
-}
-card.innerHTML = `
-<div class="approval-header">
-<div>
-<div class="approval-name">${req.name}</div>
-<div style="font-size:11px; color:#64748b; margin-top:2px;">
-📍 ${req.area} | 📞 <a href="tel:${req.phone}" style="color:#0284c7; font-weight:bold;
-text-decoration:none;">${req.phone}</a>
-</div>
-</div>
-<span class="badge">${req.category}</span>
-</div>
-<div style="font-size:11px; color:#475569; margin:4px 0;"> 💰 கட்டணம்: <b>${req.price}</b> ${req.desc ? `| 📝 ${req.desc}` : ''}
-</div>
-<div style="margin-top:6px;">
-<div style="font-size:10px; font-weight:bold; color:#64748b;
-margin-bottom:4px;">சரிபார்க்க ஆவணங்களை த் திறக்கவும்:</div>
-<div class="doc-badge-row">${docButtons || '<span style="color:#ef4444;
-font-size:10px;">ஆவணங்கள் இணை க்கப்படவில்லை </span>'}</div>
-</div>
-<div class="approval-actions">
-<button class="btn-approve" onclick="approvePartnerRequest('${req.id}')">✓ அனுமதி
-(Approve)</button>
-<button class="btn-reject" onclick="rejectPartnerRequest('${req.id}')">✕
-நிராகரி</button>
-</div>
-`;
-container.appendChild(card);
-});
-}
-// Admin Action: Approve partner -> Add to services & mark approved
-async function approvePartnerRequest(requestId) {
-const req = pendingRequestsList.find(r => r.id === requestId);
-if (!req) return;
-const confirmMsg = currentLang === 'ta'
-? `"${req.name}" என்பவரின் சே வை யை Fixr ஆப்பில் நே ரலை யாக இணை க்க
-விரும்புகிறர்ீகளா?`
-: `Approve and publish "${req.name}" on Fixr live app?`;
-if (!confirm(confirmMsg)) return;
-try {
-// 1. Add to main services collection (shows up immediately on all customer screens)
-await db.collection('services').add({
-name: req.name,
-category: req.category,
-area: req.area,
-phone: req.phone,
-price: req.price,
-rating: '★ 5.0 (Verified)', desc: req.desc || 'அங்கீகரிக்கப்பட்ட Fixr சே வை '
-});
-// 2. Update request status to approved
-await db.collection('partner_requests').doc(requestId).update({
-status: 'approved',
-approvedAt: firebase.firestore.FieldValue.serverTimestamp()
-});
-alert(currentLang === 'ta'
-? `✅ "${req.name}" வெ ற்றிகரமாக அங்கீகரிக்கப்பட்டார்! ஆப்பில் உடனடியாக
-நே ரலை யாகத் தெ ரியும்.`
-: `✅ "${req.name}" has been approved and is now live on the app.`);
-} catch (err) {
-console.error("Approval error:", err);
-alert((currentLang === 'ta' ? 'அனுமதிப்பதில் பிழை : ' : 'Error approving: ') +
-err.message);
-}
-}
-// Admin Action: Reject partner request
-async function rejectPartnerRequest(requestId) {
-const confirmMsg = currentLang === 'ta'
-? 'இந்த விண்ணப்பத்தை நிராகரிக்க விரும்புகிறர்ீகளா?'
-: 'Reject this partner application?';
-if (!confirm(confirmMsg)) return;
-try {
-await db.collection('partner_requests').doc(requestId).update({
-status: 'rejected',
-rejectedAt: firebase.firestore.FieldValue.serverTimestamp()
-});
-alert(currentLang === 'ta' ? 'விண்ணப்பம் நிராகரிக்கப்பட்டது.' : 'Application
-rejected.');
-} catch (err) {
-alert("Error: " + err.message);
-}
-}
-</script> </body>
+
+  <!-- Header -->
+  <header>
+    <div class="brand">Fix<span>r</span></div>
+    <div class="nav-btns">
+      <button class="admin-btn" onclick="openAdminLogin()">🔒 Admin</button>
+      <div id="authContainer">
+        <button class="auth-btn" onclick="openLoginModal()">Login</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Live Sync Bar -->
+  <div class="sync-bar">
+    <span id="cloudStatusText">☁️ Google Cloud Database: இணைக்கப்பட்டது (Online)</span>
+    <span style="background:#0284c7; color:white; padding:1px 7px; border-radius:10px; font-size:10px;">Live</span>
+  </div>
+
+  <!-- Search -->
+  <div class="search-box">
+    <input type="text" id="searchInput" class="search-input" placeholder="🔍 நகரம் (Chennai, Madurai...), சேவை அல்லது பெயர்...">
+  </div>
+
+  <!-- Categories & Service Cards -->
+  <div class="categories" id="categoryContainer"></div>
+  <div class="list" id="servicesList"></div>
+
+  <!-- Floating Help & Partner FAB -->
+  <a href="https://wa.me/919884334097?text=வணக்கம்%20Fixr%20அட்மின்!%20எனக்கு%20உதவி%20வேண்டும்." class="support-fab" target="_blank">
+    💬 உதவி
+  </a>
+  <button class="partner-fab" onclick="openModal('partnerModal')">
+    🛠️ தொழிலாளர் பதிவு (₹49)
+  </button>
+
+  <!-- Login Modal -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal-box">
+      <div class="modal-title">Fixr உள்நுழைவு 👋</div>
+      <div class="modal-sub">சேவைகளை புக் செய்ய உங்கள் விவரங்களை உள்ளிடவும்</div>
+      <div class="form-group">
+        <label>முழு பெயர்</label>
+        <input type="text" id="userName" class="form-input" placeholder="உங்கள் பெயர்">
+      </div>
+      <div class="form-group">
+        <label>10 இலக்க மொபைல் எண்</label>
+        <input type="tel" id="userPhone" class="form-input" placeholder="எ.கா: 9876543210" maxlength="10">
+      </div>
+      <button class="submit-btn" onclick="handleLogin()">உள்நுழைக</button>
+      <button class="close-btn" onclick="closeModal('loginModal')">ரத்து</button>
+    </div>
+  </div>
+
+  <!-- Booking Modal -->
+  <div class="modal-overlay" id="bookingModal">
+    <div class="modal-box">
+      <div class="modal-title">🗓️ சேவை முன்பதிவு</div>
+      <div class="modal-sub" id="bookTechSummary">டெக்னீசியன் விவரம்</div>
+      <div class="form-group">
+        <label>📅 வர வேண்டிய தேதி</label>
+        <input type="date" id="bookDate" class="form-input">
+      </div>
+      <div class="form-group">
+        <label>⏰ விருப்பமான நேரம்</label>
+        <select id="bookTimeSlot" class="form-input">
+          <option value="10:00 AM - 12:00 PM">காலை (10 AM - 12 PM)</option>
+          <option value="12:00 PM - 02:00 PM">மதியம் (12 PM - 02 PM)</option>
+          <option value="02:00 PM - 05:00 PM">பிற்பகல் (02 PM - 05 PM)</option>
+          <option value="05:00 PM - 08:00 PM">மாலை (05 PM - 08 PM)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>🏠 வீட்டு முகவரி & பகுதி</label>
+        <input type="text" id="bookAddress" class="form-input" placeholder="கதவு எண், தெரு & நகரம்">
+      </div>
+      <div class="form-group">
+        <label>🛠️ பழுது / தேவை விவரம்</label>
+        <input type="text" id="bookNotes" class="form-input" placeholder="எ.கா: AC கூலிங் வரவில்லை">
+      </div>
+      <button class="submit-btn" onclick="confirmBooking()">முன்பதிவை உறுதி செய் 🚀</button>
+      <button class="close-btn" onclick="closeModal('bookingModal')">ரத்து</button>
+    </div>
+  </div>
+
+  <!-- Partner Registration Modal (₹49 UPI + Aadhaar & PAN Upload) -->
+  <div class="modal-overlay" id="partnerModal">
+    <div class="modal-box">
+      <div class="modal-title">தொழிலாளராக இணைக 💼</div>
+      <div class="modal-sub">Fixr பார்ட்னராக பதிவு செய்து வாடிக்கையாளர்களைப் பெறுங்கள்</div>
+
+      <div class="payment-box">
+        <div class="payment-title">
+          <span>💳 ஒருமுறை பதிவுக் கட்டணம்</span>
+          <span class="payment-amount">₹49 Only</span>
+        </div>
+        <div style="font-size:11px; margin:4px 0; text-align:left;">
+          <b>GPay/UPI:</b> yugamugesh52-3@oksbi | <b>எண்:</b> 9884334097
+        </div>
+        <div class="upi-grid">
+          <button type="button" class="upi-btn btn-gpay" onclick="triggerMobileUpi('gpay')">⚡ Pay ₹49 with GPay</button>
+          <button type="button" class="upi-btn btn-phonepe" onclick="triggerMobileUpi('phonepe')">🟣 PhonePe</button>
+          <button type="button" class="upi-btn btn-paytm" onclick="triggerMobileUpi('paytm')">🔵 Paytm</button>
+          <button type="button" class="upi-btn btn-all-upi" onclick="triggerMobileUpi('all')">🟢 மற்ற அனைத்து UPI ஆப்ஸ்</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>பெயர் / நிறுவன பெயர்</label>
+        <input type="text" id="pName" class="form-input" placeholder="எ.கா: அன்பு / AC Solutions">
+      </div>
+      <div class="form-group">
+        <label>சேவை வகை</label>
+        <select id="pCategory" class="form-input">
+          <option value="கேர் டேக்கர்">கேர் டேக்கர் (Care Taker)</option>
+          <option value="AC சர்வீஸ்">AC சர்வீஸ் (AC Service)</option>
+          <option value="RO சர்வீஸ்">RO சர்வீஸ் (RO Service)</option>
+          <option value="இன்வெர்ட்டர் & பேட்டரி">இன்வெர்ட்டர் & பேட்டரி (Inverter & Battery)</option>
+          <option value="எலக்ட்ரீஷியன்">எலக்ட்ரீஷியன் (Electrician)</option>
+          <option value="பிளம்பர்">பிளம்பர் (Plumber)</option>
+          <option value="வாடகை வீடுகள்">வாடகை வீடுகள் (House Rentals)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>ஊர் & மாவட்டம் / நகரம்</label>
+        <input type="text" id="pArea" class="form-input" placeholder="எ.கா: வேளச்சேரி, சென்னை">
+      </div>
+      <div class="form-group">
+        <label>தொடர்பு எண் (WhatsApp Number)</label>
+        <input type="tel" id="pPhone" class="form-input" placeholder="10 இலக்க மொபைல் எண்">
+      </div>
+      <div class="form-group">
+        <label>கட்டணம் & சேவை விவரம்</label>
+        <input type="text" id="pPrice" class="form-input" placeholder="எ.கா: ₹600/நாள் அல்லது ₹499 முதல்">
+      </div>
+      <div class="form-group">
+        <label>அனுபவம் / குறிப்பு</label>
+        <input type="text" id="pDesc" class="form-input" placeholder="எ.கா: 5 ஆண்டுகள் அனுபவம்">
+      </div>
+
+      <!-- ஆவணங்கள் பதிவேற்றம் -->
+      <div class="doc-upload-section">
+        <div class="doc-title">📑 சரிபார்ப்பு ஆவணங்கள் & கட்டண ரசீது:</div>
+        <div class="doc-grid">
+          <div class="doc-box">
+            <label>1. ஆதார் (முன் பக்கம்)</label>
+            <input type="file" id="pAadhaarFront" accept="image/*,.pdf">
+          </div>
+          <div class="doc-box">
+            <label>2. ஆதார் (பின் பக்கம்)</label>
+            <input type="file" id="pAadhaarBack" accept="image/*,.pdf">
+          </div>
+          <div class="doc-box">
+            <label>3. பான் (முன் பக்கம்)</label>
+            <input type="file" id="pPanFront" accept="image/*,.pdf">
+          </div>
+          <div class="doc-box">
+            <label>4. பான் (பின் பக்கம்)</label>
+            <input type="file" id="pPanBack" accept="image/*,.pdf">
+          </div>
+          <div class="doc-box" style="grid-column: span 2; background:#f0fdf4;">
+            <label style="color:#166534;">5. GPay / UPI ₹49 கட்டண ரசீது (Screenshot)</label>
+            <input type="file" id="pPaymentProof" accept="image/*,.pdf">
+          </div>
+        </div>
+      </div>
+
+      <div class="upload-progress" id="pUploadProgress">
+        ⏳ <span id="pUploadStatusText">ஆவணங்கள் கிளவுடில் பதிவேற்றப்படுகின்றன...</span>
+      </div>
+
+      <button class="submit-btn" style="background:#0284c7;" id="pSubmitBtn" onclick="handlePartnerSubmitWithDocs()">
+        பதிவு செய்து ஒப்புதலுக்கு அனுப்பு 🚀
+      </button>
+      <button class="close-btn" onclick="closeModal('partnerModal')">மூடுக</button>
+    </div>
+  </div>
+
+  <!-- Admin Login Modal -->
+  <div class="modal-overlay" id="adminLoginModal">
+    <div class="modal-box">
+      <div class="modal-title">🔒 Fixr அட்மின் உள்நுழைவு</div>
+      <div class="modal-sub">நிர்வாகிகள் மட்டுமே அணுகலாம்</div>
+      <div class="form-group">
+        <label>அட்மின் ரகசிய பின் (Admin PIN)</label>
+        <input type="password" id="adminPinInput" class="form-input" placeholder="4 இலக்க PIN">
+      </div>
+      <button class="submit-btn" onclick="verifyAdminPin()">உள்நுழைக</button>
+      <button class="close-btn" onclick="closeModal('adminLoginModal')">ரத்து</button>
+    </div>
+  </div>
+
+  <!-- Admin Panel Modal -->
+  <div class="modal-overlay" id="adminPanelModal">
+    <div class="modal-box" style="max-width: 500px;">
+      <div class="modal-title">🛠️ Fixr அட்மின் நிர்வாக பேனல்</div>
+      <div class="modal-sub">பார்ட்னர் ஒப்புதல்கள் மற்றும் நேரடி சேவைகள்</div>
+
+      <div class="admin-tab-nav">
+        <button type="button" class="admin-tab-btn active" id="tabBtnApprovals" onclick="switchAdminTab('approvals')">
+          🔔 ஒப்புதல்கள் <span class="badge-count" id="pendingApprovalsBadge">0</span>
+        </button>
+        <button type="button" class="admin-tab-btn" id="tabBtnServices" onclick="switchAdminTab('services')">
+          📋 நேரடி சேவைகள்
+        </button>
+      </div>
+
+      <!-- Tab 1: Approvals -->
+      <div id="adminTabApprovals">
+        <div id="adminApprovalList" style="max-height: 360px; overflow-y: auto;">
+          <p style="text-align:center; padding:20px; color:#94a3b8; font-size:12px;">நிலுவையில் விண்ணப்பங்கள் எதுவும் இல்லை.</p>
+        </div>
+      </div>
+
+      <!-- Tab 2: Live Services -->
+      <div id="adminTabServices" style="display:none;">
+        <div style="background:#f8fafc; padding:12px; border-radius:12px; border:1px solid #e2e8f0; margin-bottom:14px;">
+          <h4 id="admFormTitle" style="font-size:13px; font-weight:bold; margin-bottom:8px;">+ புதிய சேவையைச் சேர்க்க (இலவசம்)</h4>
+          <input type="text" id="admName" class="form-input" placeholder="பெயர் / நிறுவனம்" style="margin-bottom:6px;">
+          <select id="admCategory" class="form-input" style="margin-bottom:6px;">
+            <option value="கேர் டேக்கர்">கேர் டேக்கர்</option>
+            <option value="AC சர்வீஸ்">AC சர்வீஸ்</option>
+            <option value="RO சர்வீஸ்">RO சர்வீஸ்</option>
+            <option value="இன்வெர்ட்டர் & பேட்டரி">இன்வெர்ட்டர் & பேட்டரி</option>
+            <option value="எலக்ட்ரீஷியன்">எலக்ட்ரீஷியன்</option>
+            <option value="பிளம்பர்">பிளம்பர்</option>
+            <option value="வாடகை வீடுகள்">வாடகை வீடுகள்</option>
+          </select>
+          <input type="text" id="admArea" class="form-input" placeholder="ஊர், நகரம்" style="margin-bottom:6px;">
+          <input type="tel" id="admPhone" class="form-input" placeholder="தொலைபேசி எண்" style="margin-bottom:6px;">
+          <input type="text" id="admPrice" class="form-input" placeholder="கட்டணம் (எ.கா: ₹499 முதல்)" style="margin-bottom:6px;">
+          <input type="text" id="admDesc" class="form-input" placeholder="விவரக் குறிப்பு" style="margin-bottom:8px;">
+          <button class="submit-btn" id="admSaveBtn" onclick="saveAdminService()">ஆப்பில் உடனே சேர் ➕</button>
+          <button class="close-btn" id="admCancelEditBtn" style="display:none;" onclick="cancelAdminEdit()">ரத்து</button>
+        </div>
+        <h4 style="font-size:13px; font-weight:bold; margin-bottom:8px;">கிளவுட் சேவைகள்:</h4>
+        <div id="adminServiceList" style="max-height:220px; overflow-y:auto;"></div>
+      </div>
+
+      <button class="close-btn" style="margin-top:12px; font-weight:bold;" onclick="closeModal('adminPanelModal')">வெளியேறு (Close)</button>
+    </div>
+  </div>
+
+  <script>
+    const ADMIN_PHONE = "919884334097";
+    const ADMIN_UPI_ID = "yugamugesh52-3@oksbi";
+    const ADMIN_SECRET_PIN = "8843";
+
+    // Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCYTbmYkdxitjh6yfd7vLu76m41I4kYyiY",
+      authDomain: "fixr-33ba6.firebaseapp.com",
+      projectId: "fixr-33ba6",
+      storageBucket: "fixr-33ba6.firebasestorage.app",
+      messagingSenderId: "46524357435",
+      appId: "1:46524357435:web:c6446ddd93d0ec912f751e",
+      measurementId: "G-YSYNM3EP61"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    const storage = firebase.storage();
+
+    const categoriesList = [
+      "அனைத்தும்", "கேர் டேக்கர்", "AC சர்வீஸ்", "RO சர்வீஸ்", "இன்வெர்ட்டர் & பேட்டரி", "எலக்ட்ரீஷியன்", "பிளம்பர்", "வாடகை வீடுகள்"
+    ];
+
+    let liveServicesList = [];
+    let currentCategory = 'அனைத்தும்';
+    let searchQuery = '';
+    let selectedBookingTech = null;
+    let editingTechId = null;
+    let pendingRequestsList = [];
+    let approvalsListenerAttached = false;
+
+    function openModal(id) { document.getElementById(id).classList.add('active'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+    function openAdminLogin() { openModal('adminLoginModal'); }
+    function verifyAdminPin() {
+      const pin = document.getElementById('adminPinInput').value;
+      if (pin === ADMIN_SECRET_PIN) {
+        closeModal('adminLoginModal');
+        document.getElementById('adminPinInput').value = '';
+        cancelAdminEdit();
+        renderAdminList();
+        initAdminApprovals();
+        openModal('adminPanelModal');
+      } else {
+        alert('தவறான PIN எண்!');
+      }
+    }
+
+    function switchAdminTab(tab) {
+      document.getElementById('adminTabApprovals').style.display = tab === 'approvals' ? 'block' : 'none';
+      document.getElementById('adminTabServices').style.display = tab === 'services' ? 'block' : 'none';
+      document.getElementById('tabBtnApprovals').classList.toggle('active', tab === 'approvals');
+      document.getElementById('tabBtnServices').classList.toggle('active', tab === 'services');
+    }
+
+    // Realtime Listener for Approved Services
+    function initFirebaseFirestore() {
+      db.collection('services').onSnapshot((snapshot) => {
+        liveServicesList = [];
+        snapshot.forEach((doc) => {
+          liveServicesList.push({ id: doc.id, ...doc.data() });
+        });
+        render();
+        renderAdminList();
+      }, (err) => console.error("Firestore error:", err));
+    }
+
+    // Realtime Listener for Pending Approvals
+    function initAdminApprovals() {
+      if (approvalsListenerAttached) return;
+      approvalsListenerAttached = true;
+
+      db.collection('partner_requests').where('status', '==', 'pending').onSnapshot((snapshot) => {
+        pendingRequestsList = [];
+        snapshot.forEach((doc) => {
+          pendingRequestsList.push({ id: doc.id, ...doc.data() });
+        });
+        document.getElementById('pendingApprovalsBadge').innerText = pendingRequestsList.length;
+        renderAdminApprovals();
+      });
+    }
+
+    function renderAdminApprovals() {
+      const container = document.getElementById('adminApprovalList');
+      if (!container) return;
+      container.innerHTML = '';
+
+      if (pendingRequestsList.length === 0) {
+        container.innerHTML = '<p style="text-align:center; padding:30px; color:#94a3b8; font-size:12px;">நிலுவையில் உள்ள புதிய விண்ணப்பங்கள் எதுவும் இல்லை.</p>';
+        return;
+      }
+
+      pendingRequestsList.forEach((req) => {
+        const card = document.createElement('div');
+        card.className = 'approval-card';
+        let docsHtml = '';
+        if (req.aadhaarFrontUrl) docsHtml += `<a href="${req.aadhaarFrontUrl}" target="_blank" class="doc-link-btn">📄 ஆதார் Front</a> `;
+        if (req.aadhaarBackUrl) docsHtml += `<a href="${req.aadhaarBackUrl}" target="_blank" class="doc-link-btn">📄 ஆதார் Back</a> `;
+        if (req.panFrontUrl) docsHtml += `<a href="${req.panFrontUrl}" target="_blank" class="doc-link-btn">📄 பான் Front</a> `;
+        if (req.panBackUrl) docsHtml += `<a href="${req.panBackUrl}" target="_blank" class="doc-link-btn">📄 பான் Back</a> `;
+        if (req.paymentProofUrl) docsHtml += `<a href="${req.paymentProofUrl}" target="_blank" class="doc-link-btn" style="background:#fef08a; color:#854d0e;">💳 ₹49 ரசீது</a>`;
+
+        card.innerHTML = `
+          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <div>
+              <b style="font-size:14px; color:#0f172a;">${req.name}</b>
+              <div style="font-size:11px; color:#64748b;">📍 ${req.area} | 📞 ${req.phone}</div>
+            </div>
+            <span class="badge">${req.category}</span>
+          </div>
+          <div style="font-size:11px; margin:4px 0;">💰 கட்டணம்: <b>${req.price}</b> ${req.desc ? `| ${req.desc}` : ''}</div>
+          <div class="doc-badge-row">${docsHtml || '<span style="color:#ef4444; font-size:10px;">ஆவணங்கள் இல்லை</span>'}</div>
+          <div class="approval-actions">
+            <button class="btn-approve" onclick="approvePartnerRequest('${req.id}')">✓ அனுமதி (Approve)</button>
+            <button class="btn-reject" onclick="rejectPartnerRequest('${req.id}')">✕ நிராகரி</button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    async function approvePartnerRequest(id) {
+      const req = pendingRequestsList.find(r => r.id === id);
+      if (!req) return;
+      if (!confirm(`"${req.name}" சேவையை ஆப்பில் வெளியிட விரும்புகிறீர்களா?`)) return;
+
+      try {
+        await db.collection('services').add({
+          name: req.name,
+          category: req.category,
+          area: req.area,
+          phone: req.phone,
+          price: req.price,
+          rating: '★ 5.0 (Verified)',
+          desc: req.desc || 'அங்கீகரிக்கப்பட்ட Fixr சேவை'
+        });
+        await db.collection('partner_requests').doc(id).update({
+          status: 'approved',
+          approvedAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        alert(`✅ "${req.name}" அங்கீகரிக்கப்பட்டார்! ஆப்பில் நேரலையாகத் தெரியும்.`);
+      } catch (e) { alert("Error: " + e.message); }
+    }
+
+    async function rejectPartnerRequest(id) {
+      if (!confirm('இந்த விண்ணப்பத்தை நிராகரிக்க விரும்புகிறீர்களா?')) return;
+      try {
+        await db.collection('partner_requests').doc(id).update({
+          status: 'rejected',
+          rejectedAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        alert('விண்ணப்பம் நிராகரிக்கப்பட்டது.');
+      } catch (e) { alert("Error: " + e.message); }
+    }
+
+    // Partner Registration with Document Uploads
+    async function uploadDocFile(file, path) {
+      if (!file) return "";
+      try {
+        const ref = storage.ref().child(path);
+        const snap = await ref.put(file);
+        return await snap.ref.getDownloadURL();
+      } catch (e) { return ""; }
+    }
+
+    async function handlePartnerSubmitWithDocs() {
+      const name = document.getElementById('pName').value.trim();
+      const category = document.getElementById('pCategory').value;
+      const area = document.getElementById('pArea').value.trim();
+      const phone = document.getElementById('pPhone').value.trim();
+      const price = document.getElementById('pPrice').value.trim();
+      const desc = document.getElementById('pDesc').value.trim();
+
+      const aFront = document.getElementById('pAadhaarFront').files[0];
+      const aBack = document.getElementById('pAadhaarBack').files[0];
+      const pFront = document.getElementById('pPanFront').files[0];
+      const pBack = document.getElementById('pPanBack').files[0];
+      const payProof = document.getElementById('pPaymentProof').files[0];
+
+      if (!name || !area || phone.length < 10) {
+        alert('பெயர், ஊர் மற்றும் 10 இலக்க மொபைல் எண்ணை உள்ளிடவும்.');
+        return;
+      }
+      if (!aFront || !aBack) {
+        alert('ஆதார் அட்டையின் முன் மற்றும் பின் பக்க புகைப்படங்களை அப்லோட் செய்யவும்.');
+        return;
+      }
+
+      const pBox = document.getElementById('pUploadProgress');
+      const sBtn = document.getElementById('pSubmitBtn');
+      pBox.style.display = 'block';
+      sBtn.disabled = true;
+
+      try {
+        const ts = Date.now();
+        const fld = `partner_verifications/${phone}_${ts}`;
+
+        document.getElementById('pUploadStatusText').innerText = "ஆவணங்கள் பதிவேற்றப்படுகின்றன...";
+        const aFrontUrl = await uploadDocFile(aFront, `${fld}/aadhaar_front_${aFront.name}`);
+        const aBackUrl = await uploadDocFile(aBack, `${fld}/aadhaar_back_${aBack.name}`);
+        const pFrontUrl = pFront ? await uploadDocFile(pFront, `${fld}/pan_front_${pFront.name}`) : "";
+        const pBackUrl = pBack ? await uploadDocFile(pBack, `${fld}/pan_back_${pBack.name}`) : "";
+        const payProofUrl = payProof ? await uploadDocFile(payProof, `${fld}/payment_${payProof.name}`) : "";
+
+        await db.collection('partner_requests').add({
+          name: name,
+          category: category,
+          area: area,
+          phone: phone,
+          price: price || 'தொடர்பு கொள்க',
+          desc: desc || 'அங்கீகரிக்கப்பட்ட Fixr சேவை',
+          rating: '★ 5.0 (Verified)',
+          aadhaarFrontUrl: aFrontUrl,
+          aadhaarBackUrl: aBackUrl,
+          panFrontUrl: pFrontUrl,
+          panBackUrl: pBackUrl,
+          paymentProofUrl: payProofUrl,
+          status: 'pending',
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+
+        alert('🎉 உங்கள் விண்ணப்பம் பெறப்பட்டது! அட்மின் சரிபார்த்து ஒப்புதல் அளித்ததும் உங்கள் பெயர் ஆப்பில் தோன்றும்.');
+        closeModal('partnerModal');
+      } catch (e) {
+        alert("Error: " + e.message);
+      } finally {
+        pBox.style.display = 'none';
+        sBtn.disabled = false;
+      }
+    }
+
+    function triggerMobileUpi(app) {
+      const upiUri = `upi://pay?pa=${ADMIN_UPI_ID}&pn=Fixr%20Services&am=49&cu=INR&tn=Fixr%20Partner%20Fee`;
+      if (navigator.clipboard) navigator.clipboard.writeText(ADMIN_UPI_ID).catch(()=>{});
+      window.location.href = upiUri;
+    }
+
+    function saveAdminService() {
+      const name = document.getElementById('admName').value.trim();
+      const category = document.getElementById('admCategory').value;
+      const area = document.getElementById('admArea').value.trim();
+      const phone = document.getElementById('admPhone').value.trim();
+      const price = document.getElementById('admPrice').value.trim();
+      const desc = document.getElementById('admDesc').value.trim();
+
+      if (!name || !area || phone.length < 10) {
+        alert('விவரங்களைச் சரியாக உள்ளிடவும்.');
+        return;
+      }
+
+      const techData = {
+        name, category, area, phone,
+        price: price || 'தொடர்பு கொள்க',
+        rating: '★ 5.0 (Verified)',
+        desc: desc || 'அங்கீகரிக்கப்பட்ட சேவை'
+      };
+
+      if (editingTechId) {
+        db.collection('services').doc(editingTechId).set(techData, { merge: true })
+          .then(() => { alert('சேவை புதுப்பிக்கப்பட்டது!'); cancelAdminEdit(); });
+      } else {
+        db.collection('services').add(techData)
+          .then(() => { alert('புதிய சேவை சேர்க்கப்பட்டது!'); cancelAdminEdit(); });
+      }
+    }
+
+    function cancelAdminEdit() {
+      editingTechId = null;
+      document.getElementById('admFormTitle').innerText = "+ புதிய சேவையைச் சேர்க்க (இலவசம்)";
+      document.getElementById('admSaveBtn').innerText = "ஆப்பில் உடனே சேர் ➕";
+      document.getElementById('admCancelEditBtn').style.display = 'none';
+      document.getElementById('admName').value = '';
+      document.getElementById('admArea').value = '';
+      document.getElementById('admPhone').value = '';
+      document.getElementById('admPrice').value = '';
+      document.getElementById('admDesc').value = '';
+    }
+
+    function renderAdminList() {
+      const c = document.getElementById('adminServiceList');
+      if (!c) return;
+      c.innerHTML = '';
+      liveServicesList.forEach(item => {
+        const row = document.createElement('div');
+        row.className = 'admin-tech-item';
+        row.innerHTML = `
+          <div><b>${item.name}</b> (${item.category})<br><span style="color:#64748b; font-size:11px;">📍 ${item.area} | 📞 ${item.phone}</span></div>
+          <div>
+            <button class="edit-btn" onclick="startAdminEdit('${item.id}')">✏️</button>
+            <button class="del-btn" onclick="deleteAdminService('${item.id}')">🗑️</button>
+          </div>
+        `;
+        c.appendChild(row);
+      });
+    }
+
+    function startAdminEdit(id) {
+      const item = liveServicesList.find(x => x.id === id);
+      if (!item) return;
+      editingTechId = id;
+      document.getElementById('admFormTitle').innerText = "✏️ சேவையைத் திருத்தவும்";
+      document.getElementById('admSaveBtn').innerText = "சேமி 💾";
+      document.getElementById('admCancelEditBtn').style.display = 'inline-block';
+      document.getElementById('admName').value = item.name;
+      document.getElementById('admCategory').value = item.category;
+      document.getElementById('admArea').value = item.area;
+      document.getElementById('admPhone').value = item.phone;
+      document.getElementById('admPrice').value = item.price;
+      document.getElementById('admDesc').value = item.desc || '';
+    }
+
+    function deleteAdminService(id) {
+      if (confirm('இந்த சேவையை நீக்க விரும்புகிறீர்களா?')) {
+        db.collection('services').doc(id).delete();
+      }
+    }
+
+    function renderCategories() {
+      const c = document.getElementById('categoryContainer');
+      c.innerHTML = '';
+      categoriesList.forEach(cat => {
+        const chip = document.createElement('div');
+        chip.className = 'chip' + (currentCategory === cat ? ' active' : '');
+        chip.innerText = cat;
+        chip.onclick = () => { currentCategory = cat; renderCategories(); render(); };
+        c.appendChild(chip);
+      });
+    }
+
+    function render() {
+      const container = document.getElementById('servicesList');
+      if (!container) return;
+      container.innerHTML = '';
+
+      const q = searchQuery.toLowerCase();
+      const filtered = liveServicesList.filter(item => {
+        const catMatch = currentCategory === 'அனைத்தும்' || item.category === currentCategory;
+        const sMatch = (item.name && item.name.toLowerCase().includes(q)) ||
+                       (item.area && item.area.toLowerCase().includes(q)) ||
+                       (item.category && item.category.toLowerCase().includes(q));
+        return catMatch && sMatch;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<p style="text-align:center; padding:40px; color:#94a3b8; font-size:13px;">சேவைகள் எதுவும் கிடைக்கவில்லை.<br>வேறு நகரத்தைத் தேடவும்.</p>';
+        return;
+      }
+
+      filtered.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="card-top">
+            <div>
+              <div class="name">${item.name}</div>
+              <div class="details">📍 ${item.area}</div>
+            </div>
+            <span class="badge">${item.category}</span>
+          </div>
+          <div style="font-size:12px; color:#475569; margin: 6px 0;">${item.desc || 'அங்கீகரிக்கப்பட்ட சேவை'}</div>
+          <div class="rating-row">
+            <span class="rating">${item.rating || '★ 5.0'}</span>
+            <span class="price">${item.price}</span>
+          </div>
+          <div class="actions">
+            <button class="btn btn-book" onclick="startBooking('${item.id}')">முன்பதிவு</button>
+            <a href="tel:${item.phone}" class="btn btn-call">📞</a>
+            <a href="https://wa.me/91${item.phone}?text=வணக்கம் ${item.name}, Fixr ஆப்பில் உங்கள் சேவையைப் பார்த்தேன்." class="btn btn-wa" target="_blank">💬</a>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function startBooking(id) {
+      selectedBookingTech = liveServicesList.find(x => x.id === id);
+      if (!selectedBookingTech) return;
+      document.getElementById('bookTechSummary').innerText = `${selectedBookingTech.name} (${selectedBookingTech.category})`;
+      openModal('bookingModal');
+    }
+
+    function confirmBooking() {
+      const date = document.getElementById('bookDate').value;
+      const time = document.getElementById('bookTimeSlot').value;
+      const addr = document.getElementById('bookAddress').value.trim();
+      const notes = document.getElementById('bookNotes').value.trim();
+
+      if (!date || !addr) {
+        alert('தேதி மற்றும் முகவரியை உள்ளிடவும்.');
+        return;
+      }
+
+      const msg = `வணக்கம் ${selectedBookingTech.name}! நான் Fixr ஆப் மூலம் சேவை முன்பதிவு செய்துள்ளேன்:
+• தேதி: ${date}
+• நேரம்: ${time}
+• முகவரி: ${addr}
+• விவரம்: ${notes || 'பொதுவான சேவை'}`;
+
+      window.open(`https://wa.me/91${selectedBookingTech.phone}?text=${encodeURIComponent(msg)}`, '_blank');
+      closeModal('bookingModal');
+    }
+
+    function openLoginModal() { openModal('loginModal'); }
+    function handleLogin() {
+      const name = document.getElementById('userName').value.trim();
+      const phone = document.getElementById('userPhone').value.trim();
+      if (!name || phone.length < 10) { alert('சரியான விவரங்களை உள்ளிடவும்.'); return; }
+      localStorage.setItem('fixr_user', JSON.stringify({ name, phone }));
+      closeModal('loginModal');
+      checkUserLoggedIn();
+    }
+
+    function checkUserLoggedIn() {
+      const saved = localStorage.getItem('fixr_user');
+      const c = document.getElementById('authContainer');
+      if (saved) {
+        const u = JSON.parse(saved);
+        c.innerHTML = `<div class="user-profile"><span>👤 ${u.name}</span> <button onclick="logout()" style="background:none; border:none; color:#f87171; cursor:pointer;">✕</button></div>`;
+      } else {
+        c.innerHTML = `<button class="auth-btn" onclick="openLoginModal()">Login</button>`;
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem('fixr_user');
+      checkUserLoggedIn();
+    }
+
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      searchQuery = e.target.value.trim();
+      render();
+    });
+
+    // Start App
+    renderCategories();
+    checkUserLoggedIn();
+    initFirebaseFirestore();
+  </script>
+</body>
 </html>
