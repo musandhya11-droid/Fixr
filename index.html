@@ -72,11 +72,11 @@
     .btn-call { background: #f1f5f9; color: #334155; flex: 1; border: 1px solid #cbd5e1; }
     .btn-wa { background: #22c55e; color: white; flex: 1; }
 
-    /* Customer Care WhatsApp Floating Widget */
-    .support-fab { position: fixed; bottom: 20px; left: 16px; background: #25d366; color: white; padding: 11px 16px; border-radius: 30px; font-weight: bold; font-size: 12px; text-decoration: none; box-shadow: 0 4px 14px rgba(37,211,102,0.4); display: flex; align-items: center; gap: 6px; z-index: 90; }
-
     /* Floating Join as Partner Button */
     .partner-fab { position: fixed; bottom: 20px; right: 16px; background: #0f172a; color: white; padding: 11px 16px; border-radius: 30px; font-weight: bold; font-size: 12px; border: 1px solid #38bdf8; box-shadow: 0 4px 14px rgba(15,23,42,0.35); cursor: pointer; display: flex; align-items: center; gap: 6px; z-index: 90; }
+
+    /* Customer Care WhatsApp Floating Widget */
+    .support-fab { position: fixed; bottom: 20px; left: 16px; background: #25d366; color: white; padding: 11px 16px; border-radius: 30px; font-weight: bold; font-size: 12px; text-decoration: none; box-shadow: 0 4px 14px rgba(37,211,102,0.4); display: flex; align-items: center; gap: 6px; z-index: 90; }
 
     /* Modals */
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 1000; justify-content: center; align-items: center; padding: 16px; }
@@ -591,6 +591,79 @@
       applyLanguage();
     }
 
+    // Category Translation Helper
+    const categoryNameMap = {
+      "அனைத்தும்": { ta: "அனைத்தும் (All India)", en: "All Services" },
+      "கேர் டேக்கர்": { ta: "கேர் டேக்கர்", en: "Care Taker" },
+      "AC சர்வீஸ்": { ta: "AC சர்வீஸ்", en: "AC Service" },
+      "RO சர்வீஸ்": { ta: "RO சர்வீஸ்", en: "RO Service" },
+      "இன்வெர்ட்டர் & பேட்டரி": { ta: "இன்வெர்ட்டர் & பேட்டரி", en: "Inverter & Battery" },
+      "எலக்ட்ரீஷியன்": { ta: "எலக்ட்ரீஷியன்", en: "Electrician" },
+      "பிளம்பர்": { ta: "பிளம்பர்", en: "Plumber" },
+      "வாடகை வீடுகள்": { ta: "வாடகை வீடுகள்", en: "House Rentals" }
+    };
+
+    function getDisplayCategory(cat) {
+      if (categoryNameMap[cat]) {
+        return (currentLang === 'ta') ? categoryNameMap[cat].ta : categoryNameMap[cat].en;
+      }
+      return cat;
+    }
+
+    // Categories
+    const categoriesList = [
+      { key: "அனைத்தும்", ta: "அனைத்தும் (All India)", en: "All Services" },
+      { key: "கேர் டேக்கர்", ta: "❤️ கேர் டேக்கர்", en: "❤️ Care Taker" },
+      { key: "AC சர்வீஸ்", ta: "❄️ AC சர்வீஸ்", en: "❄️ AC Service" },
+      { key: "RO சர்வீஸ்", ta: "💧 RO சர்வீஸ்", en: "💧 RO Service" },
+      { key: "இன்வெர்ட்டர் & பேட்டரி", ta: "🔋 இன்வெர்ட்டர் & பேட்டரி", en: "🔋 Battery & Inverter" },
+      { key: "எலக்ட்ரீஷியன்", ta: "⚡ எலக்ட்ரீஷியன்", en: "⚡ Electrician" },
+      { key: "பிளம்பர்", ta: "🔧 பிளம்பர்", en: "🔧 Plumber" },
+      { key: "வாடகை வீடுகள்", ta: "🏠 வாடகை வீடுகள்", en: "🏠 House Rentals" }
+    ];
+
+    function renderCategories() {
+      const container = document.getElementById('categoryContainer');
+      if (!container) return;
+      container.innerHTML = '';
+      categoriesList.forEach(cat => {
+        const chip = document.createElement('div');
+        chip.className = 'chip' + (currentCategory === cat.key ? ' active' : '');
+        chip.innerText = (currentLang === 'ta') ? cat.ta : cat.en;
+        chip.onclick = () => filterCategory(cat.key);
+        container.appendChild(chip);
+      });
+    }
+
+    // Default Seed Data
+    const defaultData = [
+      { id: "seed-1", name: "அன்பு முதியோர் கேர் டேக்கர் (Anbu Care)", nameEn: "Anbu Elderly Care (Anbu Care)", category: "கேர் டேக்கர்", area: "அடையாறு, சென்னை (Chennai)", phone: "9876543210", price: "₹650/நாள்", priceEn: "₹650/day", rating: "★ 4.9", desc: "24/7 முதியோர், நோயாளி & குழந்தை பராமரிப்பு", descEn: "24/7 Elderly, patient & child care services" },
+      { id: "seed-2", name: "CoolCare AC Solutions", nameEn: "CoolCare AC Solutions", category: "AC சர்வீஸ்", area: "தி. நகர், சென்னை (Chennai)", phone: "9876543211", price: "₹499 முதல்", priceEn: "₹499 onwards", rating: "★ 4.9", desc: "Gas filling, ஜெட் சர்வீஸ் & இன்ஸ்டாலேஷன்", descEn: "Gas filling, jet service & installation" },
+      { id: "seed-3", name: "AquaPure RO Care", nameEn: "AquaPure RO Care", category: "RO சர்வீஸ்", area: "வேளச்சேரி, சென்னை (Chennai)", phone: "9876543212", price: "₹350 முதல்", priceEn: "₹350 onwards", rating: "★ 4.8", desc: "Filter மாற்றம் & வாட்டர் பியூரிஃபையர் பழுது", descEn: "Filter replacement & water purifier repair" },
+      { id: "seed-4", name: "PowerMax Inverter & Battery", nameEn: "PowerMax Inverter & Battery", category: "இன்வெர்ட்டர் & பேட்டரி", area: "காந்திபுரம், கோயம்புத்தூர் (Coimbatore)", phone: "9876543213", price: "₹399 முதல்", priceEn: "₹399 onwards", rating: "★ 4.7", desc: "Water top-up & புதிய பேட்டரி சர்வீஸ்", descEn: "Water top-up & new battery service" },
+      { id: "seed-5", name: "மீனாட்சி எலக்ட்ரிக்கல்ஸ்", nameEn: "Meenakshi Electricals", category: "எலக்ட்ரீஷியன்", area: "அண்ணா நகர், மதுரை (Madurai)", phone: "9876543214", price: "₹250 முதல்", priceEn: "₹250 onwards", rating: "★ 4.8", desc: "வீட்டு வயரிங் & MCB பழுது நீக்குதல்", descEn: "Home wiring & MCB repair works" },
+      { id: "seed-6", name: "காவேரி பிளம்பிங் ஒர்க்ஸ்", nameEn: "Kaveri Plumbing Works", category: "பிளம்பர்", area: "தில்லை நகர், திருச்சி (Trichy)", phone: "9876543215", price: "₹300 முதல்", priceEn: "₹300 onwards", rating: "★ 4.6", desc: "மோட்டார் பழுது & பைப் லீக்கேஜ் சரிசெய்தல்", descEn: "Motor repair & pipe leakage fixing" },
+      { id: "seed-7", name: "TechFix Bangalore Care", nameEn: "TechFix Bangalore Care", category: "AC சர்வீஸ்", area: "Whitefield, பெங்களூரு (Bengaluru)", phone: "9876543216", price: "₹599 முதல்", priceEn: "₹599 onwards", rating: "★ 4.9", desc: "Deep cleaning & gas top-up", descEn: "Deep cleaning & gas top-up" }
+    ];
+
+    // Load cached or defaultData immediately so screen is NEVER blank
+    const cachedServices = localStorage.getItem('fixr_services_cached');
+    let liveServicesList = [];
+    try {
+      liveServicesList = cachedServices ? JSON.parse(cachedServices) : [...defaultData];
+    } catch(e) {
+      liveServicesList = [...defaultData];
+    }
+    if (!liveServicesList || liveServicesList.length === 0) {
+      liveServicesList = [...defaultData];
+    }
+
+    let currentCategory = 'அனைத்தும்';
+    let searchQuery = '';
+    let editingTechId = null;
+    let selectedServiceForBooking = null;
+    let generatedOtp = null;
+
     function applyLanguage() {
       const t = translations[currentLang];
       document.getElementById('langToggleBtn').innerText = t.langBtn;
@@ -624,64 +697,48 @@
       document.getElementById('admPanelTitle').innerText = t.admPanelTitle;
       document.getElementById('admListHeading').innerText = t.admListHead;
 
+      // Booking Modal Labels
+      const bookTitle = document.getElementById('bookModalTitle');
+      if (bookTitle) bookTitle.innerText = (currentLang === 'ta') ? "🗓️ சேவை முன்பதிவு (Book Service)" : "🗓️ Book a Service";
+      const bookSub = document.getElementById('bookModalSub');
+      if (bookSub) bookSub.innerText = (currentLang === 'ta') ? "விரும்பிய தேதி மற்றும் நேரத்தை தேர்வு செய்யவும்" : "Select your preferred date & time slot";
+      const lblDate = document.getElementById('lblBookDate');
+      if (lblDate) lblDate.innerText = (currentLang === 'ta') ? "📅 வர வேண்டிய தேதி" : "📅 Service Date";
+      const lblTime = document.getElementById('lblBookTime');
+      if (lblTime) lblTime.innerText = (currentLang === 'ta') ? "⏰ விருப்பமான நேரம்" : "⏰ Preferred Time Slot";
+      const lblAddr = document.getElementById('lblBookAddress');
+      if (lblAddr) lblAddr.innerText = (currentLang === 'ta') ? "🏠 உங்கள் வீட்டு முகவரி & லேண்ட்மார்க்" : "🏠 House Address & Landmark";
+      const lblNotes = document.getElementById('lblBookNotes');
+      if (lblNotes) lblNotes.innerText = (currentLang === 'ta') ? "🛠️ பழுது / தேவை விவரம் (Notes)" : "🛠️ Problem / Service Details";
+
+      // Support Button Label
+      const suppBtn = document.getElementById('supportFabBtn');
+      if (suppBtn) suppBtn.querySelector('span').innerText = (currentLang === 'ta') ? "உதவி (Help)" : "Help & Support";
+
+      // Time Slot Options
+      const slotSelect = document.getElementById('bookTimeSlot');
+      if (slotSelect) {
+        if (currentLang === 'en') {
+          slotSelect.innerHTML = `
+            <option value="10:00 AM - 12:00 PM">Morning (10:00 AM - 12:00 PM)</option>
+            <option value="12:00 PM - 02:00 PM">Noon (12:00 PM - 02:00 PM)</option>
+            <option value="02:00 PM - 05:00 PM">Afternoon (02:00 PM - 05:00 PM)</option>
+            <option value="05:00 PM - 08:00 PM">Evening (05:00 PM - 08:00 PM)</option>
+          `;
+        } else {
+          slotSelect.innerHTML = `
+            <option value="10:00 AM - 12:00 PM">காலை (10 AM - 12 PM)</option>
+            <option value="12:00 PM - 02:00 PM">மதியம் (12 PM - 02 PM)</option>
+            <option value="02:00 PM - 05:00 PM">பிற்பகல் (02 PM - 05 PM)</option>
+            <option value="05:00 PM - 08:00 PM">மாலை (05 PM - 08 PM)</option>
+          `;
+        }
+      }
+
       renderCategories();
       render();
       renderAdminList();
     }
-
-    // Categories
-    const categoriesList = [
-      { key: "அனைத்தும்", ta: "அனைத்தும் (All India)", en: "All Services" },
-      { key: "கேர் டேக்கர்", ta: "❤️ கேர் டேக்கர்", en: "❤️ Care Taker" },
-      { key: "AC சர்வீஸ்", ta: "❄️ AC சர்வீஸ்", en: "❄️ AC Service" },
-      { key: "RO சர்வீஸ்", ta: "💧 RO சர்வீஸ்", en: "💧 RO Service" },
-      { key: "இன்வெர்ட்டர் & பேட்டரி", ta: "🔋 இன்வெர்ட்டர் & பேட்டரி", en: "🔋 Battery & Inverter" },
-      { key: "எலக்ட்ரீஷியன்", ta: "⚡ எலக்ட்ரீஷியன்", en: "⚡ Electrician" },
-      { key: "பிளம்பர்", ta: "🔧 பிளம்பர்", en: "🔧 Plumber" },
-      { key: "வாடகை வீடுகள்", ta: "🏠 வாடகை வீடுகள்", en: "🏠 House Rentals" }
-    ];
-
-    function renderCategories() {
-      const container = document.getElementById('categoryContainer');
-      if (!container) return;
-      container.innerHTML = '';
-      categoriesList.forEach(cat => {
-        const chip = document.createElement('div');
-        chip.className = 'chip' + (currentCategory === cat.key ? ' active' : '');
-        chip.innerText = (currentLang === 'ta') ? cat.ta : cat.en;
-        chip.onclick = () => filterCategory(cat.key);
-        container.appendChild(chip);
-      });
-    }
-
-    // Default Seed Data
-    const defaultData = [
-      { id: "seed-1", name: "அன்பு முதியோர் கேர் டேக்கர் (Anbu Care)", category: "கேர் டேக்கர்", area: "அடையாறு, சென்னை (Chennai)", phone: "9876543210", price: "₹650/நாள்", rating: "★ 4.9", desc: "24/7 முதியோர், நோயாளி & குழந்தை பராமரிப்பு" },
-      { id: "seed-2", name: "CoolCare AC Solutions", category: "AC சர்வீஸ்", area: "தி. நகர், சென்னை (Chennai)", phone: "9876543211", price: "₹499 முதல்", rating: "★ 4.9", desc: "Gas filling, ஜெட் சர்வீஸ் & இன்ஸ்டாலேஷன்" },
-      { id: "seed-3", name: "AquaPure RO Care", category: "RO சர்வீஸ்", area: "வேளச்சேரி, சென்னை (Chennai)", phone: "9876543212", price: "₹350 முதல்", rating: "★ 4.8", desc: "Filter மாற்றம் & வாட்டர் பியூரிஃபையர் பழுது" },
-      { id: "seed-4", name: "PowerMax Inverter & Battery", category: "இன்வெர்ட்டர் & பேட்டரி", area: "காந்திபுரம், கோயம்புத்தூர் (Coimbatore)", phone: "9876543213", price: "₹399 முதல்", rating: "★ 4.7", desc: "Water top-up & புதிய பேட்டரி சர்வீஸ்" },
-      { id: "seed-5", name: "மீனாட்சி எலக்ட்ரிக்கல்ஸ்", category: "எலக்ட்ரீஷியன்", area: "அண்ணா நகர், மதுரை (Madurai)", phone: "9876543214", price: "₹250 முதல்", rating: "★ 4.8", desc: "வீட்டு வயரிங் & MCB பழுது நீக்குதல்" },
-      { id: "seed-6", name: "காவேரி பிளம்பிங் ஒர்க்ஸ்", category: "பிளம்பர்", area: "தில்லை நகர், திருச்சி (Trichy)", phone: "9876543215", price: "₹300 முதல்", rating: "★ 4.6", desc: "மோட்டார் பழுது & பைப் லீக்கேஜ் சரிசெய்தல்" },
-      { id: "seed-7", name: "TechFix Bangalore Care", category: "AC சர்வீஸ்", area: "Whitefield, பெங்களூரு (Bengaluru)", phone: "9876543216", price: "₹599 முதல்", rating: "★ 4.9", desc: "Deep cleaning & gas top-up" }
-    ];
-
-    // Load cached or defaultData immediately so screen is NEVER blank
-    const cachedServices = localStorage.getItem('fixr_services_cached');
-    let liveServicesList = [];
-    try {
-      liveServicesList = cachedServices ? JSON.parse(cachedServices) : [...defaultData];
-    } catch(e) {
-      liveServicesList = [...defaultData];
-    }
-    if (!liveServicesList || liveServicesList.length === 0) {
-      liveServicesList = [...defaultData];
-    }
-
-    let currentCategory = 'அனைத்தும்';
-    let searchQuery = '';
-    let editingTechId = null;
-    let selectedServiceForBooking = null;
-    let generatedOtp = null;
 
     // Realtime Firestore Listener
     function initFirebaseFirestore() {
@@ -826,7 +883,7 @@
         row.className = 'admin-tech-item';
         row.innerHTML = `
           <div>
-            <b>${item.name}</b> (${item.category})<br>
+            <b>${item.name}</b> (${getDisplayCategory(item.category)})<br>
             <span style="font-size:11px; color:#64748b;">📍 ${item.area} | 📞 ${item.phone}</span>
           </div>
           <div class="admin-actions">
@@ -928,8 +985,14 @@
     }
 
     function openBookingWindow(service) {
-      document.getElementById('bookTechName').innerText = service.name;
-      document.getElementById('bookTechCategory').innerText = `${service.category} | ${service.price}`;
+      const catBadge = getDisplayCategory(service.category);
+      const displayName = (currentLang === 'en' && service.nameEn) ? service.nameEn : service.name;
+      const displayPrice = (currentLang === 'en')
+        ? ((service.priceEn) ? service.priceEn : (service.price ? service.price.replace('/நாள்', '/day').replace('முதல்', 'onwards') : ''))
+        : (service.price ? service.price.replace('/day', '/நாள்').replace('onwards', 'முதல்') : '');
+
+      document.getElementById('bookTechName').innerText = displayName;
+      document.getElementById('bookTechCategory').innerText = `${catBadge} | ${displayPrice}`;
       document.getElementById('bookTechArea').innerText = service.area;
 
       const today = new Date().toISOString().split('T')[0];
@@ -981,7 +1044,7 @@
       document.getElementById('succDetailsText').innerHTML = `
         <b>👨‍🔧 டெக்னீசியன்:</b> ${selectedServiceForBooking.name}<br>
         <b>📞 தொடர்பு எண்:</b> ${selectedServiceForBooking.phone}<br>
-        <b>🛠️ சேவை:</b> ${selectedServiceForBooking.category} (${selectedServiceForBooking.price})<br>
+        <b>🛠️ சேவை:</b> ${getDisplayCategory(selectedServiceForBooking.category)} (${selectedServiceForBooking.price})<br>
         <b>📅 திட்டமிட்ட தேதி:</b> ${date}<br>
         <b>⏰ நேரம்:</b> ${timeSlot}<br>
         <b>📍 முகவரி:</b> ${address}
@@ -991,7 +1054,7 @@
       const waMsg = `*Fixr சேவை முன்பதிவு உறுதியானது!* 🎉
 -----------------------------------
 • முன்பதிவு எண்: #${bookingId}
-• சேவை: ${selectedServiceForBooking.category} (${selectedServiceForBooking.name})
+• சேவை: ${getDisplayCategory(selectedServiceForBooking.category)} (${selectedServiceForBooking.name})
 • டெக்னீசியன் எண்: ${selectedServiceForBooking.phone}
 • வாடிக்கையாளர்: ${user.name} (📞 ${user.phone})
 • தேதி: ${date}
@@ -1098,24 +1161,32 @@
       filtered.forEach(item => {
         const card = document.createElement('div');
         card.className = 'card';
+        
+        const catBadge = getDisplayCategory(item.category);
+        const displayName = (currentLang === 'en' && item.nameEn) ? item.nameEn : item.name;
+        const displayDesc = (currentLang === 'en' && item.descEn) ? item.descEn : (item.desc || '');
+        const displayPrice = (currentLang === 'en')
+          ? ((item.priceEn) ? item.priceEn : (item.price ? item.price.replace('/நாள்', '/day').replace('முதல்', 'onwards') : ''))
+          : (item.price ? item.price.replace('/day', '/நாள்').replace('onwards', 'முதல்') : '');
+
         card.innerHTML = `
           <div class="card-top">
             <div>
-              <div class="name">${item.name}</div>
+              <div class="name">${displayName}</div>
               <div class="details">📍 ${item.area}</div>
-              <div class="trust-tag">🛡️ Aadhaar Verified Partner</div>
+              <div class="trust-tag">🛡️ ${currentLang === 'ta' ? 'ஆதார் சரிபார்க்கப்பட்ட பார்ட்னர்' : 'Aadhaar Verified Partner'}</div>
             </div>
-            <span class="badge">${item.category}</span>
+            <span class="badge">${catBadge}</span>
           </div>
-          <div style="font-size:12px; color:#475569; margin: 6px 0;">${item.desc || ''}</div>
+          <div style="font-size:12px; color:#475569; margin: 6px 0;">${displayDesc}</div>
           <div class="rating-row">
             <span class="rating">${item.rating || '★ 5.0'}</span>
-            <span class="price">${item.price}</span>
+            <span class="price">${displayPrice}</span>
           </div>
           <div class="actions">
             <button class="btn btn-book" onclick="startBooking('${item.id}')">🗓️ ${t.bookNow}</button>
             <a href="tel:${item.phone}" class="btn btn-call">📞 ${t.call}</a>
-            <a href="https://wa.me/91${item.phone}?text=வணக்கம் ${encodeURIComponent(item.name)}, Fixr ஆப்பில் உங்கள் சேவையைப் பார்த்தேன்." class="btn btn-wa">💬</a>
+            <a href="https://wa.me/91${item.phone}?text=Hello ${encodeURIComponent(displayName)}, I saw your service on Fixr." class="btn btn-wa">💬</a>
           </div>
         `;
         container.appendChild(card);
