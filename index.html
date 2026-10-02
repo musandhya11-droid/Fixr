@@ -3,8 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fixr - All India Home Services</title>
+  <title>Fixr - All India Home Services | தமிழ்நாடு நம்பகமான ஹோம் சர்வீசஸ்</title>
   
+  <!-- Open Graph & WhatsApp Share Preview Tags -->
+  <meta property="og:title" content="Fixr - தமிழ்நாடு நம்பகமான ஹோம் சர்வீசஸ் | AC, எலக்ட்ரீஷியன், பிளம்பர்">
+  <meta property="og:description" content="AC சர்வீஸ், எலக்ட்ரீஷியன், பிளம்பர், கேர் டேக்கர் சேவைகளை உங்கள் பகுதியிலேயே உடனே புக் செய்யுங்கள்! நேரடி வாடிக்கையாளர் தொடர்புகள், 0% கமிஷன்.">
+  <meta property="og:image" content="https://musandhya11-droid.github.io/Fixr/fixr-logo-512.png">
+  <meta property="og:url" content="https://www.fixrservice.in">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#0f172a">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -17,7 +25,7 @@
 
   <style>
     * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Tamil", sans-serif; margin: 0; padding: 0; }
-    body { background: #f8fafc; padding-bottom: 90px; color: #1e293b; }
+    body { background: #f8fafc; padding-bottom: 100px; color: #1e293b; }
     
     /* Header */
     header { background: #0f172a; color: white; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
@@ -54,6 +62,9 @@
     .rating { background: #fef08a; color: #854d0e; padding: 2px 8px; border-radius: 6px; font-weight: bold; }
     .price { font-size: 14px; font-weight: 800; color: #0284c7; }
 
+    /* Trust Badge on Cards */
+    .trust-tag { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; color: #16a34a; background: #dcfce7; padding: 2px 6px; border-radius: 4px; font-weight: bold; margin-top: 4px; }
+
     /* Buttons */
     .actions { display: flex; align-items: center; gap: 8px; margin-top: 14px; padding-top: 12px; border-top: 1px solid #f1f5f9; }
     .btn { padding: 9px 14px; border-radius: 10px; text-decoration: none; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 4px; cursor: pointer; border: none; }
@@ -61,8 +72,11 @@
     .btn-call { background: #f1f5f9; color: #334155; flex: 1; border: 1px solid #cbd5e1; }
     .btn-wa { background: #22c55e; color: white; flex: 1; }
 
+    /* Customer Care WhatsApp Floating Widget */
+    .support-fab { position: fixed; bottom: 20px; left: 16px; background: #25d366; color: white; padding: 11px 16px; border-radius: 30px; font-weight: bold; font-size: 12px; text-decoration: none; box-shadow: 0 4px 14px rgba(37,211,102,0.4); display: flex; align-items: center; gap: 6px; z-index: 90; }
+
     /* Floating Join as Partner Button */
-    .partner-fab { position: fixed; bottom: 20px; right: 20px; background: #0f172a; color: white; padding: 12px 18px; border-radius: 30px; font-weight: bold; font-size: 13px; border: none; box-shadow: 0 4px 14px rgba(15,23,42,0.35); cursor: pointer; display: flex; align-items: center; gap: 8px; z-index: 90; }
+    .partner-fab { position: fixed; bottom: 20px; right: 16px; background: #0f172a; color: white; padding: 11px 16px; border-radius: 30px; font-weight: bold; font-size: 12px; border: 1px solid #38bdf8; box-shadow: 0 4px 14px rgba(15,23,42,0.35); cursor: pointer; display: flex; align-items: center; gap: 6px; z-index: 90; }
 
     /* Modals */
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 1000; justify-content: center; align-items: center; padding: 16px; }
@@ -115,6 +129,10 @@
 
     /* OTP Inputs */
     .otp-banner { background: #fefce8; border: 1px solid #fde047; padding: 8px 12px; border-radius: 8px; font-size: 12px; color: #854d0e; margin-bottom: 12px; text-align: center; }
+
+    /* Professional Footer */
+    footer { background: #0f172a; color: #94a3b8; padding: 24px 16px 80px; text-align: center; font-size: 12px; line-height: 1.8; margin-top: 30px; border-top: 1px solid #334155; }
+    footer a { color: #38bdf8; text-decoration: none; margin: 0 6px; }
   </style>
 </head>
 <body>
@@ -146,7 +164,12 @@
 
   <div class="list" id="servicesList"></div>
 
-  <!-- தொழிலாளர் சேர்க்கை பட்டன் -->
+  <!-- 1. உதவி மையம் (Customer Care WhatsApp Floating Widget) -->
+  <a href="https://wa.me/919884334097?text=வணக்கம்%20Fixr%20அட்மின்!%20எனக்கு%20சேவை%20முன்பதிவு%20தொடர்பாக%20உதவி%20வேண்டும்." class="support-fab" target="_blank" id="supportFabBtn">
+    💬 <span>உதவி (Help)</span>
+  </a>
+
+  <!-- 2. தொழிலாளர் சேர்க்கை பட்டன் -->
   <button class="partner-fab" id="partnerFabBtn" onclick="openModal('partnerModal')">
     🛠️ <span id="partnerFabText">தொழிலாளர் பதிவு (₹49)</span>
   </button>
@@ -238,9 +261,7 @@
 
       <div class="success-card">
         <div class="success-badge" id="succBookingId">#FXR-1001</div>
-        <div class="success-details" id="succDetailsText">
-          <!-- Populated dynamically -->
-        </div>
+        <div class="success-details" id="succDetailsText"></div>
 
         <p style="font-size:12px; color:#15803d; margin-top:8px; line-height:1.4;">
           📲 <b>டெக்னீசியன் உங்கள் வீட்டிற்கு வர:</b> கீழே உள்ள வாட்ஸ்அப் பட்டனைத் தொட்டு முன்பதிவு விவரங்களை உடனே அனுப்பவும்.
@@ -403,6 +424,32 @@
       <button class="close-btn" style="margin-top: 14px; font-weight: bold;" onclick="closeModal('adminPanelModal')">வெளியேறு (Close)</button>
     </div>
   </div>
+
+  <!-- 7. தனியுரிமைக் கொள்கை (Privacy Policy Modal for Facebook/Google Ads) -->
+  <div class="modal-overlay" id="privacyModal">
+    <div class="modal-box">
+      <div class="modal-title">🔒 தனியுரிமைக் கொள்கை (Privacy Policy)</div>
+      <div style="font-size: 13px; line-height: 1.7; color: #334155; margin: 12px 0;">
+        <p><b>1. தகவல் பாதுகாப்பு:</b> Fixr இணையதளத்தில் நீங்கள் அளிக்கும் பெயர் மற்றும் மொபைல் எண்கள் சேவை முன்பதிவு மற்றும் டெக்னீசியன் தொடர்புக்கு மட்டுமே பயன்படுத்தப்படும்.</p>
+        <p style="margin-top:8px;"><b>2. மூன்றாம் தரப்பு பகிர்வு இல்லை:</b> உங்கள் தொலைபேசி எண்கள் எந்தவொரு மூன்றாம் தரப்பு மார்க்கெட்டிங் ஏஜென்சிகளுக்கும் விற்கப்படாது.</p>
+        <p style="margin-top:8px;"><b>3. கட்டண பாதுகாப்பு:</b> தொழிலாளர் பதிவுக் கட்டணம் ₹49 அதிகாரப்பூர்வ UPI வழியாக மட்டுமே பெறப்படுகிறது.</p>
+        <p style="margin-top:8px;"><b>4. தொடர்பு:</b> ஏதேனும் சந்தேகம் இருந்தால் veeraadspromotions@gmail.com அல்லது +91 9884334097 என்ற எண்ணில் தொடர்பு கொள்ளலாம்.</p>
+      </div>
+      <button class="submit-btn" onclick="closeModal('privacyModal')">புரிந்தது (OK)</button>
+    </div>
+  </div>
+
+  <!-- Professional Footer -->
+  <footer>
+    <div style="font-weight: bold; color: white; margin-bottom: 6px; font-size: 14px;">Fixr - Home Services & Partner Network</div>
+    <div>🛡️ 100% பின்னணி சரிபார்க்கப்பட்ட தொழிலாளர்கள் | 0% கமிஷன் தளம்</div>
+    <div style="margin: 8px 0;">📞 தொடர்பு: +91 9884334097 | ✉️ veeraadspromotions@gmail.com</div>
+    <div>
+      <a href="javascript:void(0)" onclick="openModal('privacyModal')">Privacy Policy (தனியுரிமை கொள்கை)</a> •
+      <a href="https://www.fixrservice.in">www.fixrservice.in</a>
+    </div>
+    <div style="margin-top: 10px; font-size: 11px; color: #64748b;">© 2026 Fixr Services. All rights reserved.</div>
+  </footer>
 
   <script>
     // Configuration & Keys
@@ -824,7 +871,6 @@
         return;
       }
 
-      // Generate a 4-digit OTP
       generatedOtp = Math.floor(1000 + Math.random() * 9000).toString();
       document.getElementById('demoOtpCode').innerText = generatedOtp;
 
@@ -851,7 +897,6 @@
         checkUserLoggedIn();
         alert(currentLang === 'ta' ? `வணக்கம் ${name}! உள்நுழைவு வெற்றிகரமாக முடிந்தது.` : `Welcome ${name}! Login successful.`);
 
-        // If user was trying to book, open booking modal
         if (selectedServiceForBooking) {
           openBookingWindow(selectedServiceForBooking);
         }
@@ -872,7 +917,6 @@
 
       selectedServiceForBooking = service;
 
-      // Check if logged in with OTP
       const user = localStorage.getItem('fixr_user');
       if (!user) {
         alert(currentLang === 'ta' ? 'சேவையை புக் செய்ய முதலில் உங்கள் மொபைல் எண்ணை OTP மூலம் சரிபார்க்கவும்.' : 'Please verify mobile number with OTP to book service.');
@@ -888,7 +932,6 @@
       document.getElementById('bookTechCategory').innerText = `${service.category} | ${service.price}`;
       document.getElementById('bookTechArea').innerText = service.area;
 
-      // Set default date to today
       const today = new Date().toISOString().split('T')[0];
       const dateInput = document.getElementById('bookDate');
       dateInput.min = today;
@@ -927,7 +970,6 @@
         timestamp: new Date().toISOString()
       };
 
-      // Save to Firebase Cloud
       if (db) {
         db.collection('bookings').add(bookingRecord).catch(() => {});
       }
@@ -1061,6 +1103,7 @@
             <div>
               <div class="name">${item.name}</div>
               <div class="details">📍 ${item.area}</div>
+              <div class="trust-tag">🛡️ Aadhaar Verified Partner</div>
             </div>
             <span class="badge">${item.category}</span>
           </div>
