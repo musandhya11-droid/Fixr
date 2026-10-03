@@ -79,6 +79,20 @@
 
     .list { padding: 8px 16px; }
 
+    /* House Rental Images & Gallery */
+
+    .card-img-banner { position: relative; width: 100%; height: 180px; border-radius: 12px; overflow: hidden; margin-bottom: 12px; cursor: pointer; background: #e2e8f0; }
+
+    .card-cover-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.25s ease; }
+
+    .card-img-banner:hover .card-cover-img { transform: scale(1.04); }
+
+    .photo-badge { position: absolute; bottom: 8px; right: 8px; background: rgba(15, 23, 42, 0.85); color: white; padding: 4px 10px; border-radius: 14px; font-size: 11px; font-weight: 700; backdrop-filter: blur(4px); box-shadow: 0 2px 6px rgba(0,0,0,0.25); }
+
+    .house-preview-thumb { width: 64px; height: 64px; object-fit: cover; border-radius: 8px; border: 1px solid #cbd5e1; cursor: pointer; }
+
+   
+
     .card { background: white; border-radius: 16px; padding: 16px; margin-bottom: 12px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
 
     .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px; }
@@ -708,6 +722,29 @@
       </div>
 
 
+      <!-- வீட்டுப் புகைப்படங்கள் (House Photos Upload - for House Rentals) -->
+
+      <div id="housePhotoUploadSection" style="display:none; margin: 12px 0; background: #eff6ff; padding: 12px; border-radius: 12px; border: 1px dashed #3b82f6;">
+
+        <div style="font-size: 13px; font-weight: bold; color: #1d4ed8; margin-bottom: 4px;">
+
+          🏠 வீட்டுப் புகைப்படங்கள் (House Photos - Max 5):
+
+        </div>
+
+        <div style="font-size: 11px; color: #475569; margin-bottom: 8px;">
+
+          ஹால், படுக்கையறை, சமையலறை மற்றும் வெளித்தோற்றப் படங்களை பதிவேற்றவும் (Upload Hall, Bedroom, Kitchen photos):
+
+        </div>
+
+        <input type="file" id="pHousePhotos" accept="image/*" multiple class="form-input" style="background:white; padding:6px; font-size:12px;" onchange="previewHousePhotos(this, 'housePhotoPreviewGrid')">
+
+        <div id="housePhotoPreviewGrid" style="display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;"></div>
+
+      </div>
+
+
       <!-- ஆவணங்கள் பதிவேற்றம் (Aadhaar & PAN Upload) -->
 
       <div class="doc-upload-section">
@@ -874,6 +911,20 @@
 
           <input type="text" id="admDesc" class="form-input" placeholder="சேவை விவரக் குறிப்பு" style="margin-bottom:8px;">
 
+          <!-- Admin House Photos -->
+
+          <div id="admHousePhotoSection" style="display:none; margin-bottom:8px; background:#eff6ff; padding:10px; border-radius:10px; border:1px dashed #3b82f6;">
+
+            <div style="font-size:12px; font-weight:bold; color:#1d4ed8; margin-bottom:4px;">🏠 வீட்டுப் புகைப்படங்கள் (House Photos):</div>
+
+            <input type="file" id="admHousePhotos" accept="image/*" multiple class="form-input" style="background:white; padding:4px; margin-bottom:6px; font-size:11px;" onchange="previewHousePhotos(this, 'admHousePhotoPreviewGrid')">
+
+            <input type="text" id="admHousePhotoUrl" class="form-input" placeholder="அல்லது Image URLs (கமா பிரிக்கப்பட்டு - Comma separated)" style="margin-bottom:4px; font-size:12px;">
+
+            <div id="admHousePhotoPreviewGrid" style="display:flex; gap:6px; flex-wrap:wrap;"></div>
+
+          </div>
+
           <button class="submit-btn" id="admSaveBtn" onclick="saveAdminService()">ஆப்பில் உடனே சேர் ➕</button>
 
           <button class="close-btn" id="admCancelEditBtn" style="display:none;" onclick="cancelAdminEdit()">ரத்து</button>
@@ -928,6 +979,35 @@
       </div>
 
       <button class="submit-btn" onclick="closeModal('privacyModal')">புரிந்தது (OK)</button>
+
+    </div>
+
+  </div>
+
+
+  <!-- 7. புகைப்பட பார்வை பாப்-அப் (House Photos Gallery Modal) -->
+
+  <div class="modal-overlay" id="photoViewerModal">
+
+    <div class="modal-box" style="max-width: 500px; padding: 16px;">
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; border-bottom:1px solid #e2e8f0; padding-bottom:8px;">
+
+        <div>
+
+          <b id="photoViewerTitle" style="font-size:15px; color:#0f172a;">🏠 வீட்டுப் புகைப்படங்கள்</b>
+
+          <div id="photoViewerSub" style="font-size:11px; color:#64748b;"></div>
+
+        </div>
+
+        <button onclick="closeModal('photoViewerModal')" style="background:none; border:none; font-size:22px; color:#64748b; cursor:pointer;">✕</button>
+
+      </div>
+
+      <div id="photoViewerContent" style="display:flex; flex-direction:column; gap:12px; max-height:65vh; overflow-y:auto; padding-right:4px;"></div>
+
+      <button class="close-btn" style="margin-top:12px; font-weight:bold; background:#f1f5f9; padding:10px; border-radius:8px;" onclick="closeModal('photoViewerModal')">மூடுக (Close)</button>
 
     </div>
 
@@ -1181,7 +1261,67 @@
 
       { id: "seed-6", name: "மீனாட்சி எலக்ட்ரிக்கல்ஸ்", category: "எலக்ட்ரீஷியன்", area: "அண்ணா நகர், மதுரை (Madurai)", phone: "9876543214", price: "₹250 முதல்", rating: "★ 4.8", desc: "வீட்டு வயரிங் & MCB பழுது நீக்குதல்" },
 
-      { id: "seed-7", name: "TechFix Bangalore Care", category: "AC சர்வீஸ்", area: "Whitefield, பெங்களூரு (Bengaluru)", phone: "9876543216", price: "₹599 முதல்", rating: "★ 4.9", desc: "Deep cleaning & gas top-up" }
+      { id: "seed-7", name: "TechFix Bangalore Care", category: "AC சர்வீஸ்", area: "Whitefield, பெங்களூரு (Bengaluru)", phone: "9876543216", price: "₹599 முதல்", rating: "★ 4.9", desc: "Deep cleaning & gas top-up" },
+
+      {
+
+        id: "seed-8",
+
+        name: "விநாயகர் இல்லம் (2 BHK தனி வீடு வாடகைக்கு)",
+
+        category: "வாடகை வீடுகள்",
+
+        area: "வேளச்சேரி, சென்னை (Chennai)",
+
+        phone: "9884334097",
+
+        price: "₹14,000/மாதம் (அட்வான்ஸ் ₹50,000)",
+
+        rating: "★ 4.9 (Verified)",
+
+        desc: "2 BHK, முதல் தளம், 24 மணி நேர மெட்ரோ குடிநீர், கார் & பைக் பார்க்கிங் வசதியுடன்",
+
+        houseImages: [
+
+          "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=600&q=80",
+
+          "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80",
+
+          "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=600&q=80",
+
+          "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80"
+
+        ]
+
+      },
+
+      {
+
+        id: "seed-9",
+
+        name: "சாந்தி இல்லம் (1 BHK புது வீடு வாடகைக்கு)",
+
+        category: "வாடகை வீடுகள்",
+
+        area: "அண்ணா நகர், சென்னை (Chennai)",
+
+        phone: "9876543210",
+
+        price: "₹8,500/மாதம் (அட்வான்ஸ் ₹30,000)",
+
+        rating: "★ 4.8 (Verified)",
+
+        desc: "1 BHK, குடும்பம் அல்லது பேச்சிலர்களுக்கு ஏற்றது, மெயின் ரோட்டிற்கு அருகில்",
+
+        houseImages: [
+
+          "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=600&q=80",
+
+          "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80"
+
+        ]
+
+      }
 
     ];
 
@@ -1204,7 +1344,29 @@
     let approvalsListenerAttached = false;
 
 
-    function openModal(id) { document.getElementById(id).classList.add('active'); }
+    function openModal(id) {
+
+      document.getElementById(id).classList.add('active');
+
+      if (id === 'partnerModal') {
+
+        if (currentCategory && currentCategory !== 'அனைத்தும்') {
+
+          const pCat = document.getElementById('pCategory');
+
+          if (pCat && Array.from(pCat.options).some(o => o.value === currentCategory)) {
+
+            pCat.value = currentCategory;
+
+          }
+
+        }
+
+        if (typeof handleCategoryChange === 'function') handleCategoryChange();
+
+      }
+
+    }
 
     function closeModal(id) { document.getElementById(id).classList.remove('active'); }
 
@@ -1321,6 +1483,104 @@
 
     // Realtime Listener for Pending Approvals
 
+    // House Photos Preview & Viewer Functions
+
+    function previewHousePhotos(input, containerId) {
+
+      const container = document.getElementById(containerId);
+
+      if (!container) return;
+
+      container.innerHTML = '';
+
+      if (!input.files || input.files.length === 0) return;
+
+
+      Array.from(input.files).slice(0, 5).forEach((file) => {
+
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+
+          const img = document.createElement('img');
+
+          img.src = e.target.result;
+
+          img.className = 'house-preview-thumb';
+
+          img.title = file.name;
+
+          container.appendChild(img);
+
+        };
+
+        reader.readAsDataURL(file);
+
+      });
+
+    }
+
+
+    function openPhotoViewer(id) {
+
+      const item = liveServicesList.find(x => x.id === id);
+
+      if (!item || !item.houseImages || item.houseImages.length === 0) return;
+
+      openPhotoViewerFromData(item.houseImages, item.name, `📍 ${item.area} | 💰 ${item.price}`);
+
+    }
+
+
+    function openPhotoViewerFromData(images, title, subText) {
+
+      if (!images || images.length === 0) return;
+
+      document.getElementById('photoViewerTitle').innerText = title || (currentLang === 'ta' ? 'வீட்டுப் புகைப்படங்கள்' : 'House Photos');
+
+      document.getElementById('photoViewerSub').innerText = subText || '';
+
+      const content = document.getElementById('photoViewerContent');
+
+      content.innerHTML = '';
+
+
+      images.forEach((url, i) => {
+
+        const wrap = document.createElement('div');
+
+        wrap.style.borderRadius = '12px';
+
+        wrap.style.overflow = 'hidden';
+
+        wrap.style.boxShadow = '0 2px 6px rgba(0,0,0,0.08)';
+
+        wrap.style.border = '1px solid #e2e8f0';
+
+        wrap.innerHTML = `
+
+          <img src="${url}" alt="House Photo ${i+1}" style="width:100%; height:auto; display:block; max-height:300px; object-fit:cover;">
+
+          <div style="padding:6px 10px; background:#f8fafc; font-size:11px; color:#475569; display:flex; justify-content:space-between; align-items:center;">
+
+            <span>📷 ${currentLang === 'ta' ? 'புகைப்படம்' : 'Photo'} ${i + 1} / ${images.length}</span>
+
+            <a href="${url}" target="_blank" style="color:#0284c7; text-decoration:none; font-weight:600;">${currentLang === 'ta' ? 'முழு அளவில் பார்க்க ↗' : 'View Full Size ↗'}</a>
+
+          </div>
+
+        `;
+
+        content.appendChild(wrap);
+
+      });
+
+
+      openModal('photoViewerModal');
+
+    }
+
+
     function initAdminApprovals() {
 
       if (approvalsListenerAttached) return;
@@ -1385,6 +1645,16 @@
 
         if (req.paymentProofUrl) docsHtml += `<a href="${req.paymentProofUrl}" target="_blank" class="doc-link-btn" style="background:#fef08a; color:#854d0e;">💳 ₹49 ரசீது</a>`;
 
+        if (req.houseImages && req.houseImages.length > 0) {
+
+          const imgsJson = JSON.stringify(req.houseImages).replace(/"/g, '&quot;');
+
+          const safeName = (req.name || '').replace(/'/g, "\\'");
+
+          docsHtml += `<button type="button" class="doc-link-btn" style="background:#dbeafe; color:#1d4ed8; cursor:pointer;" onclick="openPhotoViewerFromData(${imgsJson}, '${safeName}', '📍 ${req.area} | 💰 ${req.price}')">🏠 ${req.houseImages.length} படங்கள்</button> `;
+
+        }
+
 
         card.innerHTML = `
 
@@ -1434,7 +1704,7 @@
 
       try {
 
-        await db.collection('services').add({
+        const approvedTechData = {
 
           name: req.name,
 
@@ -1450,7 +1720,15 @@
 
           desc: req.desc || 'அங்கீகரிக்கப்பட்ட Fixr சேவை'
 
-        });
+        };
+
+        if (req.houseImages && req.houseImages.length > 0) {
+
+          approvedTechData.houseImages = req.houseImages;
+
+        }
+
+        await db.collection('services').add(approvedTechData);
 
         await db.collection('partner_requests').doc(id).update({
 
@@ -1532,6 +1810,10 @@
 
       const payProof = document.getElementById('pPaymentProof').files[0];
 
+      const housePhotoInput = document.getElementById('pHousePhotos');
+
+      const houseFiles = housePhotoInput ? housePhotoInput.files : [];
+
 
       if (!name || !area || phone.length < 10) {
 
@@ -1579,6 +1861,25 @@
         const payProofUrl = payProof ? await uploadDocFile(payProof, `${fld}/payment_${payProof.name}`) : "";
 
 
+        let housePhotoUrls = [];
+
+        if (category === 'வாடகை வீடுகள்' && houseFiles && houseFiles.length > 0) {
+
+          document.getElementById('pUploadStatusText').innerText = currentLang === 'ta' ? "வீட்டுப் புகைப்படங்கள் பதிவேற்றப்படுகின்றன..." : "Uploading house photos...";
+
+          for (let i = 0; i < Math.min(houseFiles.length, 5); i++) {
+
+            const hf = houseFiles[i];
+
+            const hUrl = await uploadDocFile(hf, `${fld}/house_${i + 1}_${hf.name}`);
+
+            if (hUrl) housePhotoUrls.push(hUrl);
+
+          }
+
+        }
+
+
         await db.collection('partner_requests').add({
 
           name: name,
@@ -1604,6 +1905,8 @@
           panBackUrl: pBackUrl,
 
           paymentProofUrl: payProofUrl,
+
+          houseImages: housePhotoUrls,
 
           status: 'pending',
 
@@ -1670,6 +1973,29 @@
       }
 
 
+      let houseImages = [];
+
+      const urlInput = document.getElementById('admHousePhotoUrl');
+
+      if (urlInput && urlInput.value.trim()) {
+
+        houseImages = urlInput.value.split(',').map(s => s.trim()).filter(Boolean);
+
+      }
+
+      if (editingTechId) {
+
+        const existing = liveServicesList.find(x => x.id === editingTechId);
+
+        if (existing && existing.houseImages && houseImages.length === 0 && (!urlInput || !urlInput.value)) {
+
+          houseImages = existing.houseImages;
+
+        }
+
+      }
+
+
       const techData = {
 
         name, category, area, phone,
@@ -1681,6 +2007,12 @@
         desc: desc || (currentLang === 'ta' ? 'அங்கீகரிக்கப்பட்ட சேவை' : 'Verified Partner')
 
       };
+
+      if (category === 'வாடகை வீடுகள்' && houseImages.length > 0) {
+
+        techData.houseImages = houseImages;
+
+      }
 
 
       if (editingTechId) {
@@ -1788,6 +2120,26 @@
 
       document.getElementById('admDesc').value = item.desc || '';
 
+      if (item.category === 'வாடகை வீடுகள்') {
+
+        if (document.getElementById('admHousePhotoSection')) document.getElementById('admHousePhotoSection').style.display = 'block';
+
+        if (document.getElementById('admHousePhotoUrl')) document.getElementById('admHousePhotoUrl').value = (item.houseImages || []).join(', ');
+
+        const c = document.getElementById('admHousePhotoPreviewGrid');
+
+        if (c) c.innerHTML = (item.houseImages || []).map(u => `<img src="${u}" class="house-preview-thumb">`).join('');
+
+      } else {
+
+        if (document.getElementById('admHousePhotoSection')) document.getElementById('admHousePhotoSection').style.display = 'none';
+
+        if (document.getElementById('admHousePhotoUrl')) document.getElementById('admHousePhotoUrl').value = '';
+
+        if (document.getElementById('admHousePhotoPreviewGrid')) document.getElementById('admHousePhotoPreviewGrid').innerHTML = '';
+
+      }
+
     }
 
 
@@ -1872,7 +2224,49 @@
 
         card.className = 'card';
 
+
+        let imageBannerHtml = '';
+
+        if (item.houseImages && item.houseImages.length > 0) {
+
+          imageBannerHtml = `
+
+            <div class="card-img-banner" onclick="openPhotoViewer('${item.id}')">
+
+              <img src="${item.houseImages[0]}" alt="${item.name}" loading="lazy" class="card-cover-img">
+
+              <span class="photo-badge">📷 ${item.houseImages.length} ${currentLang === 'ta' ? 'படங்கள்' : 'Photos'}</span>
+
+            </div>
+
+          `;
+
+        }
+
+
+        const isHouseRental = (item.category || '').includes('வாடகை வீடுகள்') || (item.category || '').toLowerCase().includes('rental');
+
+        const actionBtnLabel = isHouseRental ?
+
+          (item.houseImages && item.houseImages.length > 0 ? (currentLang === 'ta' ? '📷 படங்கள் பார்க்க' : '📷 View Photos') : (currentLang === 'ta' ? 'விவரம் பார்க்க' : 'View Details'))
+
+          : translations[currentLang].book;
+
+        const actionBtnOnClick = isHouseRental && item.houseImages && item.houseImages.length > 0 ?
+
+          `openPhotoViewer('${item.id}')` : `startBooking('${item.id}')`;
+
+
+        const waText = isHouseRental ?
+
+          `வணக்கம் ${item.name}, Fixr ஆப்பில் உங்கள் வாடகை வீடு விவரத்தைப் பார்த்தேன் (${item.area}). வீடு இன்னும் வாடகைக்கு உள்ளதா?` :
+
+          `வணக்கம் ${item.name}, Fixr ஆப்பில் உங்கள் சேவையைப் பார்த்தேன்.`;
+
+
         card.innerHTML = `
+
+          ${imageBannerHtml}
 
           <div class="card-top">
 
@@ -1900,11 +2294,11 @@
 
           <div class="actions">
 
-            <button class="btn btn-book" onclick="startBooking('${item.id}')">${translations[currentLang].book}</button>
+            <button class="btn btn-book" onclick="${actionBtnOnClick}">${actionBtnLabel}</button>
 
-            <a href="tel:${item.phone}" class="btn btn-call">📞</a>
+            <a href="tel:${item.phone}" class="btn btn-call" title="Call">📞</a>
 
-            <a href="https://wa.me/91${item.phone}?text=வணக்கம் ${item.name}, Fixr ஆப்பில் உங்கள் சேவையைப் பார்த்தேன்." class="btn btn-wa" target="_blank">💬</a>
+            <a href="https://wa.me/91${item.phone}?text=${encodeURIComponent(waText)}" class="btn btn-wa" target="_blank" title="WhatsApp">💬</a>
 
           </div>
 
@@ -2073,6 +2467,79 @@
       render();
 
     });
+
+
+    // Dynamic House Rental Form Listeners
+
+    function handleCategoryChange() {
+
+      const pCat = document.getElementById('pCategory');
+
+      if (!pCat) return;
+
+      const isRental = pCat.value === 'வாடகை வீடுகள்';
+
+      const houseSec = document.getElementById('housePhotoUploadSection');
+
+      if (houseSec) houseSec.style.display = isRental ? 'block' : 'none';
+
+
+      const lblPrice = document.getElementById('lblPPrice');
+
+      const inputPrice = document.getElementById('pPrice');
+
+      const lblDesc = document.getElementById('lblPDesc');
+
+      const inputDesc = document.getElementById('pDesc');
+
+
+      if (isRental) {
+
+        if (lblPrice) lblPrice.innerText = currentLang === 'ta' ? 'மாத வாடகை & முன்பணம்' : 'Monthly Rent & Advance';
+
+        if (inputPrice) inputPrice.placeholder = currentLang === 'ta' ? 'எ.கா: ₹12,000/மாதம் (அட்வான்ஸ் ₹50,000)' : 'e.g. ₹12,000/month (Advance ₹50,000)';
+
+        if (lblDesc) lblDesc.innerText = currentLang === 'ta' ? 'வீட்டு வசதிகள் & விவரம்' : 'House Features & Details';
+
+        if (inputDesc) inputDesc.placeholder = currentLang === 'ta' ? 'எ.கா: 2 BHK, 1வது தளம், கார் பார்க்கிங், மெட்ரோ குடிநீர்' : 'e.g. 2 BHK, 1st Floor, Car Parking, 24/7 Water';
+
+      } else {
+
+        if (lblPrice) lblPrice.innerText = currentLang === 'ta' ? 'கட்டணம் & சேவை விவரம்' : 'Pricing & Service Details';
+
+        if (inputPrice) inputPrice.placeholder = currentLang === 'ta' ? 'எ.கா: ₹600/நாள் அல்லது ₹499 முதல்' : 'e.g. ₹600/day or ₹499 onwards';
+
+        if (lblDesc) lblDesc.innerText = currentLang === 'ta' ? 'அனுபவம் / சிறப்பு விவரம்' : 'Experience / Speciality';
+
+        if (inputDesc) inputDesc.placeholder = currentLang === 'ta' ? 'எ.கா: 5 ஆண்டுகள் அனுபவம் / 24/7 சேவை' : 'e.g. 5 years experience / 24/7 service';
+
+      }
+
+    }
+
+
+    function handleAdmCategoryChange() {
+
+      const admCat = document.getElementById('admCategory');
+
+      if (!admCat) return;
+
+      const isRental = admCat.value === 'வாடகை வீடுகள்';
+
+      const admHouseSec = document.getElementById('admHousePhotoSection');
+
+      if (admHouseSec) admHouseSec.style.display = isRental ? 'block' : 'none';
+
+    }
+
+
+    const pCatSelect = document.getElementById('pCategory');
+
+    if (pCatSelect) pCatSelect.addEventListener('change', handleCategoryChange);
+
+    const admCatSelect = document.getElementById('admCategory');
+
+    if (admCatSelect) admCatSelect.addEventListener('change', handleAdmCategoryChange);
 
 
     // Start App & Sync
