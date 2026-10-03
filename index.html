@@ -207,11 +207,203 @@
 
     footer a { color: #38bdf8; text-decoration: none; margin: 0 4px; }
 
+
+    /* App Launch Splash Screen (Fixr Logo Animation) */
+
+    #splashScreen {
+
+      position: fixed;
+
+      inset: 0;
+
+      background: #0f172a;
+
+      z-index: 99999;
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: center;
+
+      align-items: center;
+
+      transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+
+    }
+
+    #splashScreen.fade-out {
+
+      opacity: 0;
+
+      visibility: hidden;
+
+      pointer-events: none;
+
+    }
+
+    .splash-box {
+
+      text-align: center;
+
+      padding: 20px;
+
+      animation: splashZoomIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+    }
+
+    @keyframes splashZoomIn {
+
+      0% { transform: scale(0.8); opacity: 0; }
+
+      100% { transform: scale(1); opacity: 1; }
+
+    }
+
+    .splash-logo-wrap {
+
+      width: 100px;
+
+      height: 100px;
+
+      margin: 0 auto 16px;
+
+      border-radius: 26px;
+
+      background: #1e293b;
+
+      border: 2px solid #38bdf8;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      box-shadow: 0 10px 30px rgba(56, 189, 248, 0.35);
+
+      position: relative;
+
+      overflow: hidden;
+
+    }
+
+    .splash-logo-img {
+
+      width: 100%;
+
+      height: 100%;
+
+      object-fit: cover;
+
+    }
+
+    .splash-brand {
+
+      font-size: 38px;
+
+      font-weight: 800;
+
+      letter-spacing: -1px;
+
+      color: white;
+
+      margin-bottom: 4px;
+
+    }
+
+    .splash-brand span {
+
+      color: #38bdf8;
+
+    }
+
+    .splash-sub {
+
+      font-size: 13px;
+
+      color: #94a3b8;
+
+      font-weight: 600;
+
+      margin-bottom: 24px;
+
+    }
+
+    .splash-bar-outer {
+
+      width: 140px;
+
+      height: 4px;
+
+      background: #334155;
+
+      border-radius: 4px;
+
+      margin: 0 auto;
+
+      overflow: hidden;
+
+    }
+
+    .splash-bar-inner {
+
+      width: 100%;
+
+      height: 100%;
+
+      background: #38bdf8;
+
+      border-radius: 4px;
+
+      animation: splashProgress 1.4s ease-in-out forwards;
+
+    }
+
+    @keyframes splashProgress {
+
+      0% { transform: translateX(-100%); }
+
+      60% { transform: translateX(-20%); }
+
+      100% { transform: translateX(0); }
+
+    }
+
+
   </style>
 
 </head>
 
 <body>
+
+
+  <!-- App Launch Splash Screen with Fixr Logo Animation -->
+
+  <div id="splashScreen">
+
+    <div class="splash-box">
+
+      <div class="splash-logo-wrap">
+
+        <img src="fixr-logo-192.png" onerror="this.onerror=null; this.src='https://musandhya11-droid.github.io/Fixr/fixr-logo-192.png';" class="splash-logo-img" alt="Fixr Logo">
+
+      </div>
+
+      <div class="splash-brand">Fix<span>r</span></div>
+
+      <div class="splash-sub">All India Home Services | தமிழ்நாடு</div>
+
+      <div class="splash-bar-outer">
+
+        <div class="splash-bar-inner"></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
 
 
   <!-- Header with Language Toggle (English/Tamil), Admin & Login -->
@@ -973,7 +1165,31 @@
     ];
 
 
-    let liveServicesList = [];
+        // Initial Verified Seed Services
+
+    const defaultData = [
+
+      { id: "seed-1", name: "அன்பு முதியோர் கேர் டேக்கர் (Anbu Care)", category: "கேர் டேக்கர்", area: "அடையாறு, சென்னை (Chennai)", phone: "9876543210", price: "₹650/நாள்", rating: "★ 4.9", desc: "24/7 முதியோர், நோயாளி & குழந்தை பராமரிப்பு" },
+
+      { id: "seed-2", name: "Ravi", category: "பிளம்பர்", area: "Chennai KK Nagar", phone: "9884334097", price: "499", rating: "★ 5.0 (Verified)", desc: "Vinayaka plumbing services" },
+
+      { id: "seed-3", name: "CoolCare AC Solutions", category: "AC சர்வீஸ்", area: "தி. நகர், சென்னை (Chennai)", phone: "9876543211", price: "₹499 முதல்", rating: "★ 4.9", desc: "Gas filling, ஜெட் சர்வீஸ் & இன்ஸ்டாலேஷன்" },
+
+      { id: "seed-4", name: "AquaPure RO Care", category: "RO சர்வீஸ்", area: "வேளச்சேரி, சென்னை (Chennai)", phone: "9876543212", price: "₹350 முதல்", rating: "★ 4.8", desc: "Filter மாற்றம் & வாட்டர் பியூரிஃபையர் பழுது" },
+
+      { id: "seed-5", name: "PowerMax Inverter & Battery", category: "இன்வெர்ட்டர் & பேட்டரி", area: "காந்திபுரம், கோயம்புத்தூர் (Coimbatore)", phone: "9876543213", price: "₹399 முதல்", rating: "★ 4.7", desc: "Water top-up & புதிய பேட்டரி சர்வீஸ்" },
+
+      { id: "seed-6", name: "மீனாட்சி எலக்ட்ரிக்கல்ஸ்", category: "எலக்ட்ரீஷியன்", area: "அண்ணா நகர், மதுரை (Madurai)", phone: "9876543214", price: "₹250 முதல்", rating: "★ 4.8", desc: "வீட்டு வயரிங் & MCB பழுது நீக்குதல்" },
+
+      { id: "seed-7", name: "TechFix Bangalore Care", category: "AC சர்வீஸ்", area: "Whitefield, பெங்களூரு (Bengaluru)", phone: "9876543216", price: "₹599 முதல்", rating: "★ 4.9", desc: "Deep cleaning & gas top-up" }
+
+    ];
+
+
+    const cachedServices = localStorage.getItem('fixr_services_cached');
+
+    let liveServicesList = cachedServices ? JSON.parse(cachedServices) : [...defaultData];
+
 
     let currentCategory = 'அனைத்தும்';
 
@@ -1035,25 +1251,70 @@
     }
 
 
-    // Realtime Listener for Approved Services
+    // Realtime Listener for Approved Services (Auto-seed if collection empty)
 
     function initFirebaseFirestore() {
 
+      render(); // Render defaultData immediately so page is never empty
+
+
       db.collection('services').onSnapshot((snapshot) => {
 
-        liveServicesList = [];
+        if (!snapshot || snapshot.empty) {
 
-        snapshot.forEach((doc) => {
+          console.log("Firebase services collection empty. Using and seeding default services...");
 
-          liveServicesList.push({ id: doc.id, ...doc.data() });
+          if (!liveServicesList || liveServicesList.length === 0) {
 
-        });
+            liveServicesList = [...defaultData];
+
+          }
+
+          render();
+
+          renderAdminList();
+
+          // Seed to Firebase so cloud has initial services
+
+          defaultData.forEach(item => {
+
+            db.collection('services').add(item).catch(() => {});
+
+          });
+
+        } else {
+
+          liveServicesList = [];
+
+          snapshot.forEach((doc) => {
+
+            liveServicesList.push({ id: doc.id, ...doc.data() });
+
+          });
+
+          localStorage.setItem('fixr_services_cached', JSON.stringify(liveServicesList));
+
+          render();
+
+          renderAdminList();
+
+        }
+
+      }, (err) => {
+
+        console.warn("Firestore error, continuing with local services:", err);
+
+        if (!liveServicesList || liveServicesList.length === 0) {
+
+          liveServicesList = [...defaultData];
+
+        }
 
         render();
 
         renderAdminList();
 
-      }, (err) => console.error("Firestore error:", err));
+      });
 
     }
 
@@ -1821,6 +2082,28 @@
     checkUserLoggedIn();
 
     initFirebaseFirestore();
+
+
+    // Splash Screen Handler (Dismiss after logo animation)
+
+    window.addEventListener('load', () => {
+
+      setTimeout(() => {
+
+        const splash = document.getElementById('splashScreen');
+
+        if (splash) {
+
+          splash.classList.add('fade-out');
+
+          setTimeout(() => splash.remove(), 600);
+
+        }
+
+      }, 1300);
+
+    });
+
 
   </script>
 
