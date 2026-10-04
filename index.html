@@ -6601,23 +6601,47 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
         const clean = (phone || '').replace(/[^0-9]/g, '').slice(-10);
 
-        const url = `https://www.fast2sms.com/dev/bulkV2?authorization=${FAST2SMS_API_KEY}&variables_values=${otpCode}&route=otp&numbers=${clean}`;
+        const url = 'https://www.fast2sms.com/dev/bulkV2?authorization=' + FAST2SMS_API_KEY + '&route=otp&variables_values=' + otpCode + '&numbers=' + clean;
 
-        fetch(url, { method: 'GET' }).catch(() => {
+       
 
-          fetch(url, { method: 'GET', mode: 'no-cors' }).catch(() => {});
+        // Method 1: Script tag injection (completely immune to CORS; fires in all browsers)
 
-        });
+        try {
 
-      } catch(e) {
+          const s = document.createElement('script');
+
+          s.src = url;
+
+          document.head.appendChild(s);
+
+          setTimeout(function() { try { s.remove(); } catch(err){} }, 5000);
+
+        } catch(e) {}
+
+
+        // Method 2: Image beacon fallback
 
         try {
 
           const img = new Image();
 
-          img.src = `https://www.fast2sms.com/dev/bulkV2?authorization=${FAST2SMS_API_KEY}&variables_values=${otpCode}&route=otp&numbers=${phone}`;
+          img.src = url;
 
-        } catch(err) {}
+        } catch(e) {}
+
+
+        // Method 3: fetch with no-cors
+
+        try {
+
+          fetch(url, { method: 'GET', mode: 'no-cors' }).catch(function(){});
+
+        } catch(e) {}
+
+      } catch(err) {
+
+        console.error('Fast2SMS dispatch error:', err);
 
       }
 
@@ -6630,17 +6654,32 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
         const cleanCust = (userPhone || '').replace(/[^0-9]/g, '').slice(-10);
 
-        const targetNumbers = cleanCust ? `${cleanCust},${ADMIN_PHONE}` : ADMIN_PHONE;
+        const targetNumbers = cleanCust ? (cleanCust + ',' + ADMIN_PHONE) : ADMIN_PHONE;
 
-        const smsMsg = `Fixr Service: Booking confirmed for ${techName} (${techCat}) on ${date} (${time}) at ${addr}. Helpline: 9884334097`;
+        const smsMsg = 'Fixr: Booking confirmed for ' + techName + ' (' + techCat + ') on ' + date + ' (' + time + ') at ' + addr + '. Helpline: 9884334097';
 
-        const url = `https://www.fast2sms.com/dev/bulkV2?authorization=${FAST2SMS_API_KEY}&route=q&message=${encodeURIComponent(smsMsg)}&numbers=${targetNumbers}`;
+        const url = 'https://www.fast2sms.com/dev/bulkV2?authorization=' + FAST2SMS_API_KEY + '&route=q&message=' + encodeURIComponent(smsMsg) + '&numbers=' + targetNumbers;
 
-        fetch(url, { method: 'GET' }).catch(() => {
+       
 
-          fetch(url, { method: 'GET', mode: 'no-cors' }).catch(() => {});
+        try {
 
-        });
+          const s = document.createElement('script');
+
+          s.src = url;
+
+          document.head.appendChild(s);
+
+          setTimeout(function() { try { s.remove(); } catch(err){} }, 5000);
+
+        } catch(e) {}
+
+
+        try {
+
+          fetch(url, { method: 'GET', mode: 'no-cors' }).catch(function(){});
+
+        } catch(e) {}
 
       } catch(e) {}
 
