@@ -272,6 +272,18 @@
 
       transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
 
+      animation: autoHideSplash 0.4s ease-out 1.4s forwards;
+
+    }
+
+    @keyframes autoHideSplash {
+
+      0% { opacity: 1; visibility: visible; }
+
+      99% { opacity: 0; visibility: visible; pointer-events: none; }
+
+      100% { opacity: 0; visibility: hidden; pointer-events: none; display: none; }
+
     }
 
     #splashScreen.fade-out {
@@ -2129,7 +2141,7 @@
 
   <!-- App Launch Splash Screen with Fixr Logo Animation -->
 
-  <div id="splashScreen">
+  <div id="splashScreen" onclick="dismissSplashScreen()">
 
     <div class="splash-box">
 
@@ -4585,6 +4597,57 @@
     }
 
 
+    // --- Fixr AI Assistant 24/7 Auto-Reply Engine ---
+
+    const aiSuggestions = {
+
+      ta: [
+
+        { label: "📅 முன்பதிவு செய்வது எப்படி?", query: "முன்பதிவு செய்வது எப்படி?" },
+
+        { label: "⚡ 30 நிமிடம் எக்ஸ்பிரஸ் சேவை", query: "30 நிமிடம் எக்ஸ்பிரஸ் சேவை விவரம்" },
+
+        { label: "💰 கட்டண விவரம் (Rate Card)", query: "கட்டண விவரம் என்ன?" },
+
+        { label: "🛡️ உதிரிபாக நியாய விலை", query: "உதிரிபாக விலை சரிபார்ப்பு" },
+
+        { label: "❤️ கேர் டேக்கர் சேவை", query: "கேர் டேக்கர் சேவை விவரம்" },
+
+        { label: "🏠 வாடகை வீடு & அக்ரீமென்ட்", query: "வாடகை வீடு மற்றும் அக்ரீமென்ட்" },
+
+        { label: "🎯 என் பட்ஜெட் என் வேலை", query: "என் பட்ஜெட் என் வேலை என்றால் என்ன?" },
+
+        { label: "🛠️ தொழிலாளர் பதிவு (₹49)", query: "தொழிலாளராக பதிவு செய்வது எப்படி?" },
+
+        { label: "📞 அட்மினுடன் பேச", query: "அட்மின் வாட்ஸ்அப் தொடர்பு எண்" }
+
+      ],
+
+      en: [
+
+        { label: "📅 How to book a service?", query: "How to book a service?" },
+
+        { label: "⚡ 30 Mins Express Service", query: "Tell me about 30 Mins Express service" },
+
+        { label: "💰 Pricing & Rate Card", query: "What are the service charges?" },
+
+        { label: "🛡️ Spare Parts Fair Price", query: "Spare parts fair price checker" },
+
+        { label: "❤️ Care Taker Services", query: "Tell me about Care Taker services" },
+
+        { label: "🏠 House Rental & Agreement", query: "House rentals and rental agreement" },
+
+        { label: "🎯 Budget Bidding", query: "How does Budget Bidding work?" },
+
+        { label: "🛠️ Join as Partner (₹49)", query: "How to register as a partner?" },
+
+        { label: "📞 Connect with Admin", query: "Talk to human admin on WhatsApp" }
+
+      ]
+
+    };
+
+
     const translations = {
 
       ta: {
@@ -4774,9 +4837,21 @@
 
       if (authBtn) {
 
-        if (currentUser) {
+        const savedUser = localStorage.getItem('fixr_user');
 
-          authBtn.innerText = isTa ? `வெளியேறு (${currentUser.name})` : `Logout (${currentUser.name})`;
+        if (savedUser) {
+
+          try {
+
+            const u = JSON.parse(savedUser);
+
+            authBtn.innerText = isTa ? `வெளியேறு (${u.name})` : `Logout (${u.name})`;
+
+          } catch(e) {
+
+            authBtn.innerText = isTa ? "உள்நுழைக" : "Login";
+
+          }
 
         } else {
 
@@ -9543,78 +9618,56 @@
     run15DayAutoCleanup();
 
 
-    // Splash Screen Handler (Dismiss after logo animation)
+    // Robust Multi-Layer Splash Screen Dismissal (Never gets stuck)
+
+    function dismissSplashScreen() {
+
+      const splash = document.getElementById('splashScreen');
+
+      if (splash && !splash.classList.contains('fade-out')) {
+
+        splash.classList.add('fade-out');
+
+        setTimeout(() => {
+
+          try {
+
+            if (splash.parentNode) splash.parentNode.removeChild(splash);
+
+          } catch(e) {
+
+            splash.style.display = 'none';
+
+          }
+
+        }, 500);
+
+      }
+
+    }
+
+
+    // 1. Dismiss when window finishes loading
 
     window.addEventListener('load', () => {
 
-      setTimeout(() => {
-
-        const splash = document.getElementById('splashScreen');
-
-        if (splash) {
-
-          splash.classList.add('fade-out');
-
-          setTimeout(() => splash.remove(), 600);
-
-        }
-
-      }, 1300);
+      setTimeout(dismissSplashScreen, 800);
 
     });
 
 
- 
+    // 2. Dismiss when DOM is ready
 
-    // --- Fixr AI Assistant 24/7 Auto-Reply Engine ---
+    document.addEventListener('DOMContentLoaded', () => {
 
-    const aiSuggestions = {
+      setTimeout(dismissSplashScreen, 1100);
 
-      ta: [
+    });
 
-        { label: "📅 முன்பதிவு செய்வது எப்படி?", query: "முன்பதிவு செய்வது எப்படி?" },
 
-        { label: "⚡ 30 நிமிடம் எக்ஸ்பிரஸ் சேவை", query: "30 நிமிடம் எக்ஸ்பிரஸ் சேவை விவரம்" },
+    // 3. Fail-safe hard timeout: ALWAYS dismiss after 1.4 seconds regardless of network status!
 
-        { label: "💰 கட்டண விவரம் (Rate Card)", query: "கட்டண விவரம் என்ன?" },
-
-        { label: "🛡️ உதிரிபாக நியாய விலை", query: "உதிரிபாக விலை சரிபார்ப்பு" },
-
-        { label: "❤️ கேர் டேக்கர் சேவை", query: "கேர் டேக்கர் சேவை விவரம்" },
-
-        { label: "🏠 வாடகை வீடு & அக்ரீமென்ட்", query: "வாடகை வீடு மற்றும் அக்ரீமென்ட்" },
-
-        { label: "🎯 என் பட்ஜெட் என் வேலை", query: "என் பட்ஜெட் என் வேலை என்றால் என்ன?" },
-
-        { label: "🛠️ தொழிலாளர் பதிவு (₹49)", query: "தொழிலாளராக பதிவு செய்வது எப்படி?" },
-
-        { label: "📞 அட்மினுடன் பேச", query: "அட்மின் வாட்ஸ்அப் தொடர்பு எண்" }
-
-      ],
-
-      en: [
-
-        { label: "📅 How to book a service?", query: "How to book a service?" },
-
-        { label: "⚡ 30 Mins Express Service", query: "Tell me about 30 Mins Express service" },
-
-        { label: "💰 Pricing & Rate Card", query: "What are the service charges?" },
-
-        { label: "🛡️ Spare Parts Fair Price", query: "Spare parts fair price checker" },
-
-        { label: "❤️ Care Taker Services", query: "Tell me about Care Taker services" },
-
-        { label: "🏠 House Rental & Agreement", query: "House rentals and rental agreement" },
-
-        { label: "🎯 Budget Bidding", query: "How does Budget Bidding work?" },
-
-        { label: "🛠️ Join as Partner (₹49)", query: "How to register as a partner?" },
-
-        { label: "📞 Connect with Admin", query: "Talk to human admin on WhatsApp" }
-
-      ]
-
-    };
+    setTimeout(dismissSplashScreen, 1400);
 
 
     function openAiHelpModal() {
