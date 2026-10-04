@@ -1970,9 +1970,9 @@
 
     </button>
 
-    <button class="action-pill-btn video-pill" id="videoDiagPillBtn" onclick="openVideoDiagnosisModal()">
+    <button class="action-pill-btn video-pill" id="photoDiagPillBtn" onclick="openPhotoDiagnosisModal()">
 
-      📹 Video Diagnosis
+      📸 Photo Diagnosis
 
     </button>
 
@@ -2553,6 +2553,14 @@
         <h4 style="font-size:13px; font-weight:bold; margin-bottom:8px;">கிளவுட் சேவைகள் (திருத்த / நீக்க):</h4>
 
         <div id="adminServiceList" style="max-height:220px; overflow-y:auto;"></div>
+
+        <div style="margin-top:10px; padding:8px; background:#fef2f2; border:1px solid #fecaca; border-radius:8px; display:flex; justify-content:space-between; align-items:center;">
+
+          <span style="font-size:11px; color:#991b1b; font-weight:bold;">🗑️ 15-Day Auto Cleanup:</span>
+
+          <button type="button" class="del-btn" style="padding:4px 8px; font-size:11px;" onclick="run15DayAutoCleanup(true)">15 நாள் பழைய டேட்டா நீக்கு</button>
+
+        </div>
 
       </div>
 
@@ -3393,34 +3401,34 @@
 
  
 
-  <!-- 📹 1-Minute Video Diagnosis Modal (Urban Company-ல் இல்லாத Fixr-ன் பிரத்யேக வசதி) -->
+  <!-- 📸 Photo Diagnosis Modal (Urban Company-ல் இல்லாத Fixr-ன் 15-Day Auto Delete பிரத்யேக வசதி) -->
 
-  <div class="modal-overlay" id="videoDiagnosisModal">
+  <div class="modal-overlay" id="photoDiagnosisModal">
 
     <div class="modal-box" style="max-width: 480px;">
 
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
 
-        <div class="modal-title" style="margin-bottom:0;" id="videoModalTitle">📹 1-Minute Video Diagnosis</div>
+        <div class="modal-title" style="margin-bottom:0;" id="photoModalTitle">📸 Photo Diagnosis (பழுது படம் & கட்டணம்)</div>
 
-        <button onclick="closeModal('videoDiagnosisModal')" style="background:none; border:none; font-size:22px; color:#64748b; cursor:pointer;">✕</button>
+        <button onclick="closeModal('photoDiagnosisModal')" style="background:none; border:none; font-size:22px; color:#64748b; cursor:pointer;">✕</button>
 
       </div>
 
-      <div class="modal-sub" id="videoModalSub">வீணாக விசிட்டிங் கட்டணம் கட்டாமல், பழுதான இடத்தை வீடியோவில் காட்டி முன்பே துல்லிய கட்டணம் & ஆலோசனை பெறுக!</div>
+      <div class="modal-sub" id="photoModalSub">வீணாக விசிட்டிங் சார்ஜ் கட்டாமல், பழுதான இடத்தை 1 போட்டோ எடுத்து அனுப்பி முன்பே சரியான கட்டணம் & ஆலோசனை பெறுக!</div>
 
 
-      <div style="background:linear-gradient(135deg, #eef2ff, #e0e7ff); border:1px solid #c7d2fe; border-radius:12px; padding:12px; margin-bottom:12px;">
+      <div style="background:linear-gradient(135deg, #f0fdf4, #dcfce7); border:1px solid #86efac; border-radius:12px; padding:10px 12px; margin-bottom:12px;">
 
-        <div style="font-weight:bold; color:#3730a3; font-size:12.5px; margin-bottom:6px;">✨ Fixr வீடியோ ஆலோசனையின் 3 நன்மைகள்:</div>
+        <div style="font-weight:bold; color:#166534; font-size:12px; margin-bottom:4px;">✨ Fixr போட்டோ ஆய்வின் நன்மைகள்:</div>
 
-        <div style="font-size:11.5px; color:#4338ca; line-height:1.5;">
+        <div style="font-size:11px; color:#15803d; line-height:1.5;">
 
-          <div>1. <b>இலவச முதற்கட்ட ஆய்வு:</b> சுவிட்ச், வால்வு போன்ற சின்ன பிரச்சனைகளை வாடிக்கையாளரே சரிசெய்ய இலவச வழிகாட்டல்.</div>
+          <div>• <b>நேரடி ஆய்வு:</b> பழுதான சுவிட்ச், பைப் லீக், AC எரர் கோடு படத்தை பார்த்து டெக்னீசியன் துல்லிய கட்டணம் கூறுவார்.</div>
 
-          <div>2. <b>மறைமுக கட்டணம் இல்லை:</b> நேரில் வருவதற்கு முன்பே வாட்ஸ்அப் வீடியோவில் காட்டி சரியான கட்டணத்தை பேசி முடிக்கலாம்.</div>
+          <div>• <b>மறைமுக கட்டணம் இல்லை:</b> தேவையற்ற பாகங்கள் மாற்றி ஏமாற்றப்பட மாட்டீர்கள்.</div>
 
-          <div>3. <b>100% நேர்மை:</b> தேவையற்ற உதிரிபாகங்கள் வாங்க சொல்லி ஏமாற்றப்பட மாட்டீர்கள்.</div>
+          <div>• <b>🛡️ 15 நாட்கள் தானியங்கி நீக்கம்:</b> Firebase-ல் 15 நாட்களுக்குப் பிறகு பழைய படங்கள் தானாகவே அழிக்கப்படும் (Auto-Deleted).</div>
 
         </div>
 
@@ -3429,28 +3437,47 @@
 
       <div class="form-group">
 
-        <label id="lblVideoTech">தேர்ந்தெடுக்கப்பட்ட டெக்னீசியன் (Technician)</label>
+        <label id="lblPhotoTech">தேர்ந்தெடுக்கப்பட்ட டெக்னீசியன் (Technician)</label>
 
-        <input type="text" id="videoDiagTechName" class="form-input" readonly style="background:#f8fafc; font-weight:bold; color:#0f172a;">
+        <input type="text" id="photoDiagTechName" class="form-input" readonly style="background:#f8fafc; font-weight:bold; color:#0f172a;">
 
       </div>
 
       <div class="form-group">
 
-        <label id="lblVideoDesc">🛠️ பழுதான உபகரணம் / பிரச்சனை விவரம்</label>
+        <label id="lblPhotoDesc">🛠️ பழுது விவரம் (Problem Description)</label>
 
-        <input type="text" id="videoDiagDesc" class="form-input" placeholder="எ.கா: AC கூலிங் வரவில்லை / பைப் லீக் ஆகிறது">
+        <input type="text" id="photoDiagDesc" class="form-input" placeholder="எ.கா: AC E1 Error / பைப் ஜாயிண்ட் லீக் ஆகிறது">
 
       </div>
 
 
-      <button class="submit-btn" style="background:#4f46e5;" onclick="confirmVideoDiagnosis()">
+      <!-- பழுதான இடத்தின் போட்டோ அப்லோட் -->
 
-        🚀 WhatsApp Video ஆலோசனை தொடங்க (Connect on Video)
+      <div style="margin: 10px 0; background: #eff6ff; padding: 10px; border-radius: 10px; border: 1.5px dashed #3b82f6;">
+
+        <div style="font-size: 12px; font-weight: bold; color: #1d4ed8; margin-bottom: 4px; display:flex; justify-content:space-between;">
+
+          <span>📸 பழுதான உபகரண படம் (1-2 Photos):</span>
+
+          <span id="photoDiagCountBadge" style="font-size:10px; color:#2563eb; font-weight:normal;">0 படங்கள்</span>
+
+        </div>
+
+        <input type="file" id="photoDiagFileInput" accept="image/*" multiple class="form-input" style="background:white; padding:5px; font-size:11px;" onchange="previewDiagPhotos(this)">
+
+        <div id="photoDiagPreviewGrid" style="display:flex; gap:6px; flex-wrap:wrap; margin-top:6px;"></div>
+
+      </div>
+
+
+      <button class="submit-btn" style="background:#059669;" onclick="confirmPhotoDiagnosis()">
+
+        🚀 WhatsApp வழியாக ஆலோசனை & கட்டணம் பெற (Get Quote)
 
       </button>
 
-      <button class="close-btn" onclick="closeModal('videoDiagnosisModal')">ரத்து</button>
+      <button class="close-btn" onclick="closeModal('photoDiagnosisModal')">ரத்து</button>
 
     </div>
 
@@ -5457,62 +5484,252 @@
 
    
 
-    let selectedVideoTech = null;
+    // --- PHOTO DIAGNOSIS & 15-DAY AUTO-CLEANUP ENGINE ---
+
+    let selectedPhotoTech = null;
+
+    let diagUploadedPhotos = [];
 
 
-    function openVideoDiagnosisModal(techId) {
+    function openPhotoDiagnosisModal(techId) {
 
       if (techId) {
 
-        selectedVideoTech = liveServicesList.find(x => x.id === techId);
+        selectedPhotoTech = liveServicesList.find(x => x.id === techId);
 
       } else {
 
-        selectedVideoTech = liveServicesList.find(x => x.category !== 'வாடகை வீடுகள்') || liveServicesList[0];
+        selectedPhotoTech = liveServicesList.find(x => x.category !== 'வாடகை வீடுகள்') || liveServicesList[0];
 
       }
 
-      const input = document.getElementById('videoDiagTechName');
+      const input = document.getElementById('photoDiagTechName');
 
-      if (input && selectedVideoTech) {
+      if (input && selectedPhotoTech) {
 
-        input.value = `${selectedVideoTech.name} (${getDisplayCategory(selectedVideoTech.category)})`;
+        input.value = `${selectedPhotoTech.name} (${getDisplayCategory(selectedPhotoTech.category)})`;
 
       }
 
-      openModal('videoDiagnosisModal');
+      openModal('photoDiagnosisModal');
 
     }
 
 
-    function startVideoDiagnosis(techId) {
+    function startPhotoDiagnosis(techId) {
 
-      openVideoDiagnosisModal(techId);
+      openPhotoDiagnosisModal(techId);
 
     }
 
 
-    function confirmVideoDiagnosis() {
+    function previewDiagPhotos(input) {
 
-      if (!selectedVideoTech) return;
+      const container = document.getElementById('photoDiagPreviewGrid');
 
-      const desc = document.getElementById('videoDiagDesc').value.trim();
+      const badge = document.getElementById('photoDiagCountBadge');
 
-      const msg = `வணக்கம் ${selectedVideoTech.name}! நான் Fixr ஆப்பில் உங்கள் சேவையைப் பார்த்தேன்.
+      if (!container) return;
 
-📹 *1-Minute Video Diagnosis / நேரடி வீடியோ ஆலோசனை:*
+      container.innerHTML = '';
 
-• பிரச்சனை விவரம்: ${desc || 'பழுதான இடத்தை வாட்ஸ்அப் வீடியோவில் காட்ட விரும்புகிறேன்'}
+      diagUploadedPhotos = [];
 
-• சேவை: ${getDisplayCategory(selectedVideoTech.category)}
+      if (!input.files || input.files.length === 0) {
+
+        if (badge) badge.innerText = '0 படங்கள்';
+
+        return;
+
+      }
+
+      const files = Array.from(input.files).slice(0, 2);
+
+      if (badge) badge.innerText = `${files.length} படங்கள் இணைக்கப்பட்டது`;
+
+      files.forEach(file => {
+
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+
+          diagUploadedPhotos.push(e.target.result);
+
+          const img = document.createElement('img');
+
+          img.src = e.target.result;
+
+          img.className = 'house-preview-thumb';
+
+          container.appendChild(img);
+
+        };
+
+        reader.readAsDataURL(file);
+
+      });
+
+    }
 
 
-தயவுசெய்து இந்த வாட்ஸ்அப் எண்ணில் தொடர்பு கொண்டு கட்டண விவரம் மற்றும் ஆலோசனை கூறவும். நான் பழுதான இடத்தை வீடியோ / போட்டோ எடுத்து அனுப்புகிறேன்.`;
+    async function confirmPhotoDiagnosis() {
+
+      if (!selectedPhotoTech) return;
+
+      const desc = document.getElementById('photoDiagDesc').value.trim();
+
+      const photoCount = diagUploadedPhotos.length;
 
 
-      window.open(`https://wa.me/91${selectedVideoTech.phone}?text=${encodeURIComponent(msg)}`, '_blank');
+      // Save record in Firestore with 15-day TTL expiry
 
-      closeModal('videoDiagnosisModal');
+      if (db) {
+
+        try {
+
+          const fifteenDaysLater = new Date(Date.now() + 15 * 24 * 60 * 60 * 1000);
+
+          await db.collection('photo_diagnosis_requests').add({
+
+            techName: selectedPhotoTech.name,
+
+            category: selectedPhotoTech.category,
+
+            phone: selectedPhotoTech.phone,
+
+            problemDesc: desc || 'பழுது ஆய்வு',
+
+            photoCount: photoCount,
+
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+
+            expireAt: fifteenDaysLater
+
+          });
+
+        } catch(e) {
+
+          console.warn("Diagnosis firestore record:", e);
+
+        }
+
+      }
+
+
+      const msg = `வணக்கம் ${selectedPhotoTech.name}! நான் Fixr ஆப்பில் உங்கள் சேவையைப் பார்த்தேன்.
+
+📸 *Photo Diagnosis / பழுது படம் & கட்டண ஆலோசனை:*
+
+• பழுது விவரம்: ${desc || 'பழுதான இடத்தை போட்டோ எடுத்து அனுப்பியுள்ளேன்'}
+
+• சேவை வகை: ${getDisplayCategory(selectedPhotoTech.category)}
+
+• இணைக்கப்பட்டுள்ள படங்கள்: ${photoCount} படங்கள்
+
+
+தயவுசெய்து இந்த வாட்ஸ்அப்பில் படத்தைப் பார்த்து உத்தேச கட்டண விவரம் மற்றும் ஆலோசனை கூறவும்.`;
+
+
+      window.open(`https://wa.me/91${selectedPhotoTech.phone}?text=${encodeURIComponent(msg)}`, '_blank');
+
+      closeModal('photoDiagnosisModal');
+
+      alert(currentLang === 'ta' ? 'கோரிக்கை அனுப்பப்பட்டது! வாட்ஸ்அப்பில் டெக்னீசியனுக்குப் படங்களை அனுப்பவும். (15 நாட்களில் இந்த தகவல் சர்வரிலிருந்து தானாக நீக்கப்படும்).' : 'Request sent! Send photos on WhatsApp. (Auto-deleted after 15 days).');
+
+    }
+
+
+    // --- 15-DAY AUTO CLEANUP LOGIC FOR FIREBASE & LOCAL CACHE ---
+
+    async function run15DayAutoCleanup(manualPrompt = false) {
+
+      const fifteenDaysAgoMs = Date.now() - (15 * 24 * 60 * 60 * 1000);
+
+      const fifteenDaysAgoDate = new Date(fifteenDaysAgoMs);
+
+      let deletedCount = 0;
+
+
+      // Clean local storage bids older than 15 days
+
+      try {
+
+        const bids = JSON.parse(localStorage.getItem('fixr_custom_bids') || '[]');
+
+        const freshBids = bids.filter(b => {
+
+          const bTime = parseInt((b.id || '').replace('bid-', ''), 10);
+
+          return !bTime || bTime > fifteenDaysAgoMs;
+
+        });
+
+        if (freshBids.length !== bids.length) {
+
+          deletedCount += (bids.length - freshBids.length);
+
+          localStorage.setItem('fixr_custom_bids', JSON.stringify(freshBids));
+
+        }
+
+      } catch(e) {}
+
+
+      // Clean Firebase Firestore records older than 15 days
+
+      if (db) {
+
+        try {
+
+          const diagSnap = await db.collection('photo_diagnosis_requests')
+
+            .where('createdAt', '<', fifteenDaysAgoDate)
+
+            .get();
+
+          diagSnap.forEach(doc => {
+
+            doc.ref.delete().catch(() => {});
+
+            deletedCount++;
+
+          });
+
+
+          // Clean old rejected/settled partner requests
+
+          const reqSnap = await db.collection('partner_requests')
+
+            .where('status', 'in', ['rejected', 'approved'])
+
+            .where('createdAt', '<', fifteenDaysAgoDate)
+
+            .get();
+
+          reqSnap.forEach(doc => {
+
+            doc.ref.delete().catch(() => {});
+
+            deletedCount++;
+
+          });
+
+        } catch(err) {
+
+          console.warn("15-day auto cleanup:", err);
+
+        }
+
+      }
+
+
+      console.log(`Fixr 15-Day Auto Cleanup: Cleaned ${deletedCount} expired items.`);
+
+      if (manualPrompt) {
+
+        alert(currentLang === 'ta' ? `15 நாட்களுக்கு முந்தைய ${deletedCount} பழைய கோப்புகள் வெற்றிகரமாக நீக்கப்பட்டன!` : `Cleaned ${deletedCount} files older than 15 days!`);
+
+      }
 
     }
 
@@ -6341,7 +6558,7 @@
 
             <button class="btn btn-id" onclick="openDigitalIdModal('${item.id}')" title="Digital ID Card">${t.digitalId}</button>
 
-            <button class="btn btn-video" onclick="startVideoDiagnosis('${item.id}')" title="WhatsApp Video Consultation">📹 Video</button>
+            <button class="btn btn-video" onclick="startPhotoDiagnosis('${item.id}')" title="Photo Diagnosis (15-Day Auto Clean)">📸 Photo</button>
 
             <a href="${mapUrl}" target="_blank" class="btn btn-map" title="Directions">${t.directions}</a>
 
@@ -7577,6 +7794,8 @@
     checkUserLoggedIn();
 
     initFirebaseFirestore();
+
+    run15DayAutoCleanup();
 
 
     // Splash Screen Handler (Dismiss after logo animation)
