@@ -95,32 +95,38 @@
 
    
 
-    .card { background: white; border-radius: 16px; padding: 16px; margin-bottom: 12px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+    .card { background: white; border-radius: 12px; padding: 10px 12px; margin-bottom: 8px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.02); }
 
-    .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px; }
+    .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2px; }
 
-    .name { font-size: 16px; font-weight: 700; color: #0f172a; }
+    .name { font-size: 14.5px; font-weight: 700; color: #0f172a; }
 
-    .badge { font-size: 11px; padding: 3px 8px; border-radius: 14px; font-weight: 700; background: #f0fdf4; color: #166534; }
+    .badge { font-size: 10px; padding: 2px 6px; border-radius: 10px; font-weight: 700; background: #f0fdf4; color: #166534; }
 
-    .details { font-size: 13px; color: #64748b; margin-top: 4px; }
+    .details { font-size: 11.5px; color: #64748b; margin-top: 2px; }
 
-    .rating-row { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: 13px; }
+    .rating-row { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; font-size: 12px; }
 
-    .rating { background: #fef08a; color: #854d0e; padding: 2px 8px; border-radius: 6px; font-weight: bold; }
+    .rating { background: #fef08a; color: #854d0e; padding: 2px 6px; border-radius: 5px; font-weight: bold; font-size: 11px; }
 
-    .price { font-size: 14px; font-weight: 800; color: #0284c7; }
+    .price { font-size: 13.5px; font-weight: 800; color: #0284c7; }
 
 
-    .actions { display: flex; gap: 8px; margin-top: 12px; padding-top: 10px; border-top: 1px solid #f1f5f9; }
+    .actions { display: flex; flex-direction: column; gap: 4px; margin-top: 8px; padding-top: 6px; border-top: 1px solid #f1f5f9; }
 
-    .btn { padding: 9px 12px; border-radius: 8px; text-decoration: none; font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: 4px; cursor: pointer; border: none; }
+    .actions-row-primary { display: flex; gap: 5px; width: 100%; }
 
-    .btn-book { background: #0284c7; color: white; flex: 2; font-weight: bold; }
+    .actions-row-secondary { display: flex; gap: 4px; width: 100%; }
 
-    .btn-call { background: #f1f5f9; color: #334155; flex: 1; border: 1px solid #cbd5e1; }
+    .btn { padding: 6px 8px; border-radius: 6px; text-decoration: none; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: 3px; cursor: pointer; border: none; min-height: 28px; }
 
-    .btn-wa { background: #22c55e; color: white; flex: 1; }
+    .actions-row-primary .btn-book { background: #0284c7; color: white; flex: 1.8; font-weight: 700; min-height: 30px; font-size: 11.5px; }
+
+    .actions-row-primary .btn-call { background: #f1f5f9; color: #334155; flex: 0.9; border: 1px solid #cbd5e1; min-height: 30px; }
+
+    .actions-row-primary .btn-wa { background: #22c55e; color: white; flex: 0.9; min-height: 30px; font-weight: bold; }
+
+    .actions-row-secondary .btn { flex: 1; font-size: 10px; padding: 4px 6px; min-height: 25px; }
 
 
     .partner-fab { position: fixed; bottom: 20px; right: 16px; background: #0f172a; color: white; padding: 11px 16px; border-radius: 30px; font-weight: bold; font-size: 12px; border: 1px solid #38bdf8; box-shadow: 0 4px 14px rgba(15,23,42,0.35); cursor: pointer; z-index: 90; display: flex; align-items: center; gap: 6px; }
@@ -750,23 +756,23 @@
 
       color: white;
 
-      font-size: 10.5px;
+      font-size: 9.5px;
 
       font-weight: 800;
 
-      padding: 4px 10px;
+      padding: 2px 7px;
 
-      border-radius: 8px;
+      border-radius: 6px;
 
       display: inline-flex;
 
       align-items: center;
 
-      gap: 4px;
+      gap: 3px;
 
-      margin-bottom: 8px;
+      margin-bottom: 4px;
 
-      box-shadow: 0 2px 4px rgba(217, 119, 6, 0.25);
+      box-shadow: 0 1px 2px rgba(217, 119, 6, 0.2);
 
     }
 
@@ -1402,50 +1408,6 @@
 
  
 
-    /* Responsive Actions Grid for Cards */
-
-    .actions {
-
-      display: flex;
-
-      flex-wrap: wrap;
-
-      gap: 6px;
-
-      margin-top: 12px;
-
-      padding-top: 10px;
-
-      border-top: 1px solid #f1f5f9;
-
-    }
-
-    .btn-book { flex: 1 1 100%; margin-bottom: 2px; }
-
-    .btn-id { flex: 1 1 calc(25% - 5px); }
-
-    .btn-map { flex: 1 1 calc(25% - 5px); }
-
-    .btn-call { flex: 1 1 calc(25% - 5px); }
-
-    .btn-wa { flex: 1 1 calc(25% - 5px); }
-
-
-    @media (min-width: 480px) {
-
-      .actions { flex-wrap: nowrap; }
-
-      .btn-book { flex: 2; margin-bottom: 0; }
-
-      .btn-id { flex: 1.1; }
-
-      .btn-map { flex: 1.1; }
-
-      .btn-call { flex: 1; }
-
-      .btn-wa { flex: 1; }
-
-    }
 
 
     /* Ultra-Slim Emergency 30 Mins Express Strip */
@@ -1793,6 +1755,351 @@
     .pool-tier-off { font-size: 10.5px; color: #15803d; font-weight: 800; margin-top: 2px; }
 
 
+ 
+
+    /* 5-Technician Visible Compact Layout */
+
+    .card {
+
+      background: white;
+
+      border-radius: 10px;
+
+      padding: 7px 10px;
+
+      margin-bottom: 6px;
+
+      border: 1px solid #e2e8f0;
+
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+
+      transition: all 0.15s ease;
+
+    }
+
+    .card.featured-card {
+
+      border: 1.5px solid #f59e0b;
+
+      background: linear-gradient(180deg, #fffdf8 0%, #ffffff 100%);
+
+      box-shadow: 0 2px 6px rgba(245, 158, 11, 0.12);
+
+    }
+
+    .compact-header-row {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      gap: 4px;
+
+      margin-bottom: 2px;
+
+    }
+
+    .compact-title-wrap {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 5px;
+
+      flex: 1;
+
+      overflow: hidden;
+
+      white-space: nowrap;
+
+    }
+
+    .name {
+
+      font-size: 13.5px;
+
+      font-weight: 800;
+
+      color: #0f172a;
+
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+
+      white-space: nowrap;
+
+    }
+
+    .compact-meta-row {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      font-size: 11px;
+
+      color: #64748b;
+
+      margin-bottom: 3px;
+
+      gap: 6px;
+
+    }
+
+    .compact-left-meta {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 5px;
+
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+
+      white-space: nowrap;
+
+    }
+
+    .compact-price-wrap {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 5px;
+
+      flex-shrink: 0;
+
+    }
+
+    .price {
+
+      font-size: 12.5px;
+
+      font-weight: 800;
+
+      color: #0284c7;
+
+    }
+
+    .rating-star-btn {
+
+      font-weight: 800;
+
+      font-size: 10px;
+
+      color: #854d0e;
+
+      background: #fef9c3;
+
+      padding: 1px 5px;
+
+      border-radius: 4px;
+
+      cursor: pointer;
+
+      border: 1px solid #fde047;
+
+      white-space: nowrap;
+
+    }
+
+    .compact-desc-text {
+
+      font-size: 10px;
+
+      color: #64748b;
+
+      margin-bottom: 3px;
+
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+
+      white-space: nowrap;
+
+      line-height: 1.2;
+
+    }
+
+    .compact-actions-bar {
+
+      display: flex;
+
+      gap: 3px;
+
+      width: 100%;
+
+      margin-top: 3px;
+
+      padding-top: 4px;
+
+      border-top: 1px solid #f1f5f9;
+
+    }
+
+    .btn {
+
+      padding: 4px 6px;
+
+      border-radius: 5px;
+
+      font-size: 10px;
+
+      font-weight: 700;
+
+      display: inline-flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 2px;
+
+      cursor: pointer;
+
+      border: none;
+
+      min-height: 25px;
+
+      white-space: nowrap;
+
+    }
+
+    .compact-actions-bar .btn-book {
+
+      flex: 2;
+
+      background: #0284c7;
+
+      color: white;
+
+      font-size: 10.5px;
+
+    }
+
+    .compact-actions-bar .btn-call {
+
+      flex: 0.9;
+
+      background: #f1f5f9;
+
+      color: #334155;
+
+      border: 1px solid #cbd5e1;
+
+    }
+
+    .compact-actions-bar .btn-wa {
+
+      flex: 0.9;
+
+      background: #22c55e;
+
+      color: white;
+
+    }
+
+    .compact-actions-bar .btn-id {
+
+      flex: 0.8;
+
+      background: #f8fafc;
+
+      color: #0284c7;
+
+      border: 1px solid #bae6fd;
+
+    }
+
+    .compact-actions-bar .btn-video {
+
+      flex: 0.7;
+
+      background: #eef2ff;
+
+      color: #4f46e5;
+
+      border: 1px solid #c7d2fe;
+
+    }
+
+    .compact-actions-bar .btn-map {
+
+      flex: 0.7;
+
+      background: #ecfdf5;
+
+      color: #059669;
+
+      border: 1px solid #a7f3d0;
+
+    }
+
+    .compact-actions-bar .btn-share {
+
+      flex: 0.7;
+
+      background: #f0fdf4;
+
+      color: #15803d;
+
+      border: 1px solid #bbf7d0;
+
+    }
+
+    .badge {
+
+      font-size: 9.5px;
+
+      padding: 1px 5px;
+
+      border-radius: 8px;
+
+    }
+
+    .badge-pro {
+
+      font-size: 9px;
+
+      padding: 1px 5px;
+
+    }
+
+    .badge-express {
+
+      font-size: 9px;
+
+      padding: 1px 5px;
+
+    }
+
+    .status-badge {
+
+      font-size: 9px;
+
+      padding: 1px 5px;
+
+      border-radius: 8px;
+
+    }
+
+    .card-img-banner {
+
+      height: 140px;
+
+      margin-bottom: 6px;
+
+    }
+
+
   </style>
 
 </head>
@@ -1912,7 +2219,7 @@
 
   <!-- Move-in Relocation Services Banner (Slim Single-Line) -->
 
-  <div class="movein-promo-banner" id="moveinPromoBanner" onclick="filterMoveInServices()">
+  <div class="movein-promo-banner" id="moveinPromoBanner" style="display:none;" onclick="filterMoveInServices()">
 
     <div style="display:flex; align-items:center; gap:6px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; flex:1;">
 
@@ -2005,7 +2312,7 @@
 
   <!-- Featured / Top Listing Promo Banner (Slim Single-Line) -->
 
-  <div class="featured-promo-banner" id="featuredPromoBanner" onclick="openFeaturedPromoModal()">
+  <div class="featured-promo-banner" id="featuredPromoBanner" style="display:none;" onclick="openFeaturedPromoModal()">
 
     <div class="featured-banner-left">
 
@@ -4214,15 +4521,15 @@
 
     const defaultData = [
 
-      { id: "seed-1", name: "அன்பு முதியோர் கேர் டேக்கர் (Anbu Care)", category: "கேர் டேக்கர்", area: "அடையாறு, சென்னை (Chennai)", phone: "9876543210", price: "₹650/நாள்", rating: "★ 4.9", desc: "24/7 முதியோர், நோயாளி & குழந்தை பராமரிப்பு", partnerId: "FIXR-TN-2026-0101", isVerifiedPro: true, isAvailable: true, isExpress: false },
+      { id: "seed-1", name: "Murthi (ஸ்ரீ சாய் எலக்ட்ரிக்கல்ஸ்)", category: "எலக்ட்ரீஷியன்", area: "சென்னை விருகம்பாக்கம் (Chennai Virugambakkam)", phone: "9884334097", price: "₹250 முதல்", rating: "★ 5.0 (Verified)", desc: "சீனியர் எலக்ட்ரீஷியன், MCB, சுவிட்ச் போர்டு, ஃபேன் & வீட்டு வயரிங் வேலைகள்", partnerId: "FIXR-TN-2026-0881", isVerifiedPro: true, isAvailable: true, isExpress: true },
 
-      { id: "seed-2", name: "Ravi (விநாயகர் பிளம்பிங்)", category: "பிளம்பர்", area: "Chennai KK Nagar", phone: "9884334097", price: "₹499 முதல்", rating: "★ 5.0 (Verified)", desc: "Vinayaka plumbing services, பைப் & மோட்டார் உடனடி பழுது", partnerId: "FIXR-TN-2026-0884", isVerifiedPro: true, isAvailable: true, isExpress: true },
+      { id: "seed-2", name: "Ravi (விநாயகர் பிளம்பிங் சர்வீசஸ்)", category: "பிளம்பர்", area: "கே.கே. நகர், சென்னை (Chennai KK Nagar)", phone: "9884334097", price: "₹350 முதல்", rating: "★ 5.0 (Verified)", desc: "பைப் லீக்கேஜ், டேப் மாற்றம், மோட்டார் பழுது & பாத்ரூம் பிளம்பிங்", partnerId: "FIXR-TN-2026-0884", isVerifiedPro: true, isAvailable: true, isExpress: true },
 
-      { id: "seed-3", name: "CoolCare AC Solutions", category: "AC சர்வீஸ்", area: "தி. நகர், சென்னை (Chennai)", phone: "9876543211", price: "₹499 முதல்", rating: "★ 4.9", desc: "Gas filling, ஜெட் சர்வீஸ் & இன்ஸ்டாலேஷன்", partnerId: "FIXR-TN-2026-0302", isVerifiedPro: true, isAvailable: true, isExpress: true },
+      { id: "seed-3", name: "CoolCare AC Solutions", category: "AC சர்வீஸ்", area: "தி. நகர், சென்னை (Chennai T. Nagar)", phone: "9876543211", price: "₹499 முதல்", rating: "★ 4.9 (Verified)", desc: "AC ஜெட் வாட்டர் சர்வீஸ், கேஸ் டாப்-அப் & இன்ஸ்டாலேஷன்", partnerId: "FIXR-TN-2026-0302", isVerifiedPro: true, isAvailable: true, isExpress: true },
 
-      { id: "seed-4", name: "AquaPure RO Care", category: "RO சர்வீஸ்", area: "வேளச்சேரி, சென்னை (Chennai)", phone: "9876543212", price: "₹350 முதல்", rating: "★ 4.8", desc: "Filter மாற்றம் & வாட்டர் பியூரிஃபையர் பழுது", partnerId: "FIXR-TN-2026-0403", isVerifiedPro: true, isAvailable: true, isExpress: true },
+      { id: "seed-4", name: "AquaPure RO Care", category: "RO சர்வீஸ்", area: "வேளச்சேரி, சென்னை (Chennai Velachery)", phone: "9876543212", price: "₹350 முதல்", rating: "★ 4.8 (Verified)", desc: "RO பில்டர் மாற்றம் & வாட்டர் பியூரிஃபையர் பழுது", partnerId: "FIXR-TN-2026-0403", isVerifiedPro: true, isAvailable: true, isExpress: true },
 
-      { id: "seed-5", name: "PowerMax Inverter & Battery", category: "இன்வெர்ட்டர் & பேட்டரி", area: "காந்திபுரம், கோயம்புத்தூர் (Coimbatore)", phone: "9876543213", price: "₹399 முதல்", rating: "★ 4.7", desc: "Water top-up & புதிய பேட்டரி சர்வீஸ்", partnerId: "FIXR-TN-2026-0504", isVerifiedPro: true, isAvailable: true, isExpress: true },
+      { id: "seed-5", name: "Yuga Home Care Services", category: "கேர் டேக்கர்", area: "அடையாறு, சென்னை (Chennai Adyar)", phone: "9884334097", price: "₹650/நாள்", rating: "★ 4.9 (Verified)", desc: "24/7 முதியோர், நோயாளி & குழந்தை பராமரிப்பு சேவைகள்", partnerId: "FIXR-TN-2026-0101", isVerifiedPro: true, isAvailable: true, isExpress: false },
 
       { id: "seed-6", name: "மீனாட்சி எலக்ட்ரிக்கல்ஸ்", category: "எலக்ட்ரீஷியன்", area: "அண்ணா நகர், மதுரை (Madurai)", phone: "9876543214", price: "₹250 முதல்", rating: "★ 4.8", desc: "வீட்டு வயரிங் & MCB பழுது நீக்குதல்", partnerId: "FIXR-TN-2026-0605", isVerifiedPro: true, isAvailable: true, isExpress: true },
 
@@ -4401,7 +4708,29 @@
 
     const cachedServices = localStorage.getItem('fixr_services_cached');
 
-    let liveServicesList = cachedServices ? JSON.parse(cachedServices) : [...defaultData];
+    let liveServicesList = [...defaultData];
+
+    if (cachedServices) {
+
+      try {
+
+        const parsed = JSON.parse(cachedServices);
+
+        // Merge user custom added items while keeping top 5 verified technicians first!
+
+        parsed.forEach(item => {
+
+          if (!liveServicesList.some(x => x.id === item.id)) {
+
+            liveServicesList.push(item);
+
+          }
+
+        });
+
+      } catch(e) {}
+
+    }
 
 
     let currentCategory = 'அனைத்தும்';
@@ -5357,7 +5686,7 @@
 
       if (promoBanner) {
 
-        // Show rental boost banner only when in House Rentals category to maximize space!
+        // Show rental boost banner ONLY when in House Rentals category to maximize vertical space for 5 technicians!
 
         promoBanner.style.display = (currentCategory === 'வாடகை வீடுகள்') ? 'flex' : 'none';
 
@@ -5367,9 +5696,19 @@
 
       if (moveinBanner) {
 
-        // Show move-in banner only in relevant categories or All
+        // Show move-in banner ONLY in relevant categories to maximize space!
 
-        moveinBanner.style.display = (currentCategory === 'வாடகை வீடுகள்' || currentCategory === 'பேக்கர்ஸ் & மூவர்ஸ்' || currentCategory === 'அனைத்தும்') ? 'flex' : 'none';
+        moveinBanner.style.display = (currentCategory === 'வாடகை வீடுகள்' || currentCategory === 'பேக்கர்ஸ் & மூவர்ஸ்') ? 'flex' : 'none';
+
+      }
+
+      const expressStrip = document.getElementById('expressEmergencyStrip');
+
+      if (expressStrip) {
+
+        // Hide emergency strip when viewing specific non-emergency categories
+
+        expressStrip.style.display = (currentCategory === 'வாடகை வீடுகள்' || currentCategory === 'வாடகை ஒப்பந்தம்') ? 'none' : 'flex';
 
       }
 
@@ -6502,31 +6841,26 @@
         const reviewCount = getReviewCount(item.id);
 
 
-        card.innerHTML = `
+        const topTag = isFeatured ? `<span style="background:linear-gradient(135deg,#d97706,#f59e0b); color:white; font-size:8.5px; font-weight:800; padding:1px 5px; border-radius:4px; flex-shrink:0;">👑 Top #${index+1}</span>` : '';
 
-          ${featuredStripHtml}
+
+        card.innerHTML = `
 
           ${imageBannerHtml}
 
-          <div class="card-top">
+          <div class="compact-header-row">
 
-            <div>
+            <div class="compact-title-wrap">
 
-              <div style="display:flex; align-items:center; gap:6px;">
+              ${topTag}
 
-                <div class="name">${item.name}</div>
+              <span class="name">${item.name}</span>
 
-                <button type="button" class="fav-btn" onclick="toggleFavorite('${item.id}')" title="Save Favorite">${isFav ? '❤️' : '🤍'}</button>
-
-              </div>
-
-              <div class="details">📍 ${item.area}</div>
-
-              <div style="margin-top:4px;">${statusBadgeHtml}</div>
+              <button type="button" class="fav-btn" onclick="toggleFavorite('${item.id}')" title="Favorite">${isFav ? '❤️' : '🤍'}</button>
 
             </div>
 
-            <div style="display:flex; flex-direction:column; align-items:flex-end; gap:4px;">
+            <div style="display:flex; gap:3px; align-items:center; flex-shrink:0;">
 
               ${badgesHtml}
 
@@ -6534,39 +6868,48 @@
 
           </div>
 
-          ${amenitiesHtml}
 
-          <div style="font-size:12px; color:#475569; margin: 6px 0;">${getDisplayDesc(item.desc)}</div>
+          <div class="compact-meta-row">
 
-          <div class="rating-row">
+            <div class="compact-left-meta">
 
-            <div class="rating-badge-btn" onclick="openReviewsModal('${item.id}')" title="Customer Reviews">
+              <span>📍 ${item.area}</span>
 
-              <span class="rating-star">${item.rating || '★ 5.0'}</span>
-
-              <span class="rating-reviews">💬 ${reviewCount} ${t.reviews}</span>
+              ${statusBadgeHtml}
 
             </div>
 
-            <span class="price">${getDisplayPrice(item.price)}</span>
+            <div class="compact-price-wrap">
+
+              <span class="rating-star-btn" onclick="openReviewsModal('${item.id}')" title="Reviews">${item.rating || '★ 5.0'} (${reviewCount})</span>
+
+              <span class="price">${getDisplayPrice(item.price)}</span>
+
+            </div>
 
           </div>
 
-          <div class="actions">
+
+          ${amenitiesHtml}
+
+          <div class="compact-desc-text">${getDisplayDesc(item.desc)}</div>
+
+
+          <div class="compact-actions-bar">
 
             <button class="btn btn-book" onclick="${actionBtnOnClick}" ${item.isRented ? 'style="opacity:0.6;"' : ''}>${item.isRented ? t.rentedOut : actionBtnLabel}</button>
-
-            <button class="btn btn-id" onclick="openDigitalIdModal('${item.id}')" title="Digital ID Card">${t.digitalId}</button>
-
-            <button class="btn btn-video" onclick="startPhotoDiagnosis('${item.id}')" title="Photo Diagnosis (15-Day Auto Clean)">📸 Photo</button>
-
-            <a href="${mapUrl}" target="_blank" class="btn btn-map" title="Directions">${t.directions}</a>
-
-            <button class="btn btn-share" onclick="shareListingToWhatsApp('${item.id}')" title="WhatsApp Share">${t.share}</button>
 
             <a href="tel:${item.phone}" class="btn btn-call" title="Call">📞</a>
 
             <a href="https://wa.me/91${item.phone}?text=${encodeURIComponent(waText)}" class="btn btn-wa" target="_blank" title="WhatsApp">💬</a>
+
+            <button class="btn btn-id" onclick="openDigitalIdModal('${item.id}')" title="Digital ID">🪪 ID</button>
+
+            <button class="btn btn-video" onclick="startPhotoDiagnosis('${item.id}')" title="Photo Diagnosis">📸</button>
+
+            <a href="${mapUrl}" target="_blank" class="btn btn-map" title="Directions">📍</a>
+
+            <button class="btn btn-share" onclick="shareListingToWhatsApp('${item.id}')" title="Share">📤</button>
 
           </div>
 
