@@ -385,6 +385,1103 @@
     }
 
 
+ 
+
+    /* PWA Install Banner */
+
+    .pwa-banner { background: #0284c7; color: white; padding: 8px 16px; font-size: 12px; font-weight: 600; display: none; justify-content: space-between; align-items: center; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+
+    .pwa-btn { background: white; color: #0284c7; border: none; padding: 4px 10px; border-radius: 12px; font-weight: bold; font-size: 11px; cursor: pointer; }
+
+
+    /* Rental Amenities & Badges */
+
+    .amenities-row { display: flex; flex-wrap: wrap; gap: 4px; margin: 8px 0; }
+
+    .amenity-tag { background: #f1f5f9; color: #475569; padding: 2px 7px; border-radius: 6px; font-size: 10px; font-weight: 600; border: 1px solid #e2e8f0; display: inline-flex; align-items: center; gap: 3px; }
+
+    .status-badge { font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: bold; }
+
+    .status-available { background: #dcfce7; color: #15803d; }
+
+    .status-rented { background: #fee2e2; color: #b91c1c; }
+
+    .fav-btn { background: none; border: none; font-size: 18px; cursor: pointer; padding: 0 4px; line-height: 1; transition: transform 0.15s; }
+
+    .fav-btn:active { transform: scale(1.3); }
+
+
+    /* Sub-categories / BHK Filters */
+
+    .sub-chips { display: none; overflow-x: auto; padding: 0 16px 8px; gap: 6px; scrollbar-width: none; }
+
+    .sub-chips::-webkit-scrollbar { display: none; }
+
+    .sub-chip { padding: 4px 10px; background: #e2e8f0; border-radius: 14px; font-size: 11px; font-weight: 600; color: #475569; cursor: pointer; border: 1px solid #cbd5e1; white-space: nowrap; }
+
+    .sub-chip.active { background: #0284c7; color: white; border-color: #0284c7; }
+
+
+ 
+
+    /* Header PWA Install Button */
+
+    .install-pwa-btn {
+
+      background: linear-gradient(135deg, #0284c7, #38bdf8);
+
+      color: #0f172a;
+
+      border: 1px solid #7dd3fc;
+
+      padding: 5px 10px;
+
+      border-radius: 12px;
+
+      font-size: 11px;
+
+      font-weight: 800;
+
+      cursor: pointer;
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 4px;
+
+      box-shadow: 0 2px 6px rgba(56, 189, 248, 0.35);
+
+      animation: pulseGlow 2.5s infinite;
+
+    }
+
+    @keyframes pulseGlow {
+
+      0%, 100% { box-shadow: 0 2px 6px rgba(56, 189, 248, 0.35); }
+
+      50% { box-shadow: 0 2px 14px rgba(56, 189, 248, 0.7); }
+
+    }
+
+
+    /* Quick Action & Filter Bar (Availability Toggle, Express, Pro) */
+
+    .quick-action-bar {
+
+      display: flex;
+
+      gap: 8px;
+
+      padding: 6px 16px 8px;
+
+      overflow-x: auto;
+
+      scrollbar-width: none;
+
+      align-items: center;
+
+    }
+
+    .quick-action-bar::-webkit-scrollbar { display: none; }
+
+    .toggle-pill {
+
+      background: white;
+
+      border: 1.5px solid #cbd5e1;
+
+      padding: 6px 12px;
+
+      border-radius: 20px;
+
+      font-size: 11px;
+
+      font-weight: 700;
+
+      color: #334155;
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 6px;
+
+      cursor: pointer;
+
+      white-space: nowrap;
+
+      user-select: none;
+
+      transition: all 0.2s ease;
+
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+
+    }
+
+    .toggle-pill.active {
+
+      background: #059669;
+
+      border-color: #059669;
+
+      color: white;
+
+    }
+
+    .toggle-pill .toggle-status {
+
+      font-size: 9px;
+
+      padding: 1px 5px;
+
+      border-radius: 8px;
+
+      background: #f1f5f9;
+
+      color: #64748b;
+
+      font-weight: 800;
+
+    }
+
+    .toggle-pill.active .toggle-status {
+
+      background: #34d399;
+
+      color: #064e3b;
+
+    }
+
+    .action-pill-btn {
+
+      padding: 6px 12px;
+
+      border-radius: 20px;
+
+      font-size: 11px;
+
+      font-weight: 700;
+
+      border: 1.5px solid #cbd5e1;
+
+      background: white;
+
+      color: #334155;
+
+      cursor: pointer;
+
+      white-space: nowrap;
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 4px;
+
+      transition: all 0.2s ease;
+
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+
+    }
+
+    .action-pill-btn.express-btn {
+
+      border-color: #fed7aa;
+
+      color: #c2410c;
+
+    }
+
+    .action-pill-btn.express-btn.active {
+
+      background: linear-gradient(135deg, #ea580c, #f97316);
+
+      color: white;
+
+      border-color: #ea580c;
+
+      box-shadow: 0 2px 8px rgba(234, 88, 12, 0.35);
+
+    }
+
+    .action-pill-btn.pro-btn {
+
+      border-color: #e9d5ff;
+
+      color: #7e22ce;
+
+    }
+
+    .action-pill-btn.pro-btn.active {
+
+      background: linear-gradient(135deg, #7e22ce, #a855f7);
+
+      color: white;
+
+      border-color: #7e22ce;
+
+      box-shadow: 0 2px 8px rgba(126, 34, 206, 0.35);
+
+    }
+
+
+    /* Featured / Top Listing Promo Banner */
+
+    .featured-promo-banner {
+
+      margin: 8px 16px 12px;
+
+      background: linear-gradient(135deg, #fffbeb, #fef3c7);
+
+      border: 1.5px solid #fcd34d;
+
+      border-radius: 14px;
+
+      padding: 10px 14px;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      gap: 10px;
+
+      cursor: pointer;
+
+      box-shadow: 0 2px 8px rgba(245, 158, 11, 0.12);
+
+      transition: transform 0.15s ease;
+
+    }
+
+    .featured-promo-banner:hover { transform: translateY(-1px); }
+
+    .featured-banner-left { display: flex; align-items: center; gap: 10px; }
+
+    .featured-banner-title { font-size: 12px; font-weight: 800; color: #92400e; }
+
+    .featured-banner-desc { font-size: 10.5px; color: #b45309; margin-top: 1px; }
+
+    .boost-btn {
+
+      background: linear-gradient(135deg, #d97706, #f59e0b);
+
+      color: white;
+
+      border: none;
+
+      padding: 6px 12px;
+
+      border-radius: 12px;
+
+      font-weight: 800;
+
+      font-size: 11px;
+
+      cursor: pointer;
+
+      white-space: nowrap;
+
+      box-shadow: 0 2px 6px rgba(217, 119, 6, 0.35);
+
+    }
+
+
+    /* Featured Card Styling */
+
+    .card.featured-card {
+
+      border: 2px solid #f59e0b;
+
+      background: linear-gradient(180deg, #fffdfa 0%, #ffffff 100%);
+
+      box-shadow: 0 4px 16px rgba(245, 158, 11, 0.16);
+
+      position: relative;
+
+    }
+
+    .featured-listing-strip {
+
+      background: linear-gradient(135deg, #d97706, #f59e0b);
+
+      color: white;
+
+      font-size: 10.5px;
+
+      font-weight: 800;
+
+      padding: 4px 10px;
+
+      border-radius: 8px;
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 4px;
+
+      margin-bottom: 8px;
+
+      box-shadow: 0 2px 4px rgba(217, 119, 6, 0.25);
+
+    }
+
+    .badge-pro {
+
+      background: linear-gradient(135deg, #7e22ce, #9333ea);
+
+      color: white !important;
+
+      font-weight: 800;
+
+      border: 1px solid #c084fc;
+
+      box-shadow: 0 2px 4px rgba(126, 34, 206, 0.2);
+
+    }
+
+    .badge-express {
+
+      background: linear-gradient(135deg, #ea580c, #f97316);
+
+      color: white !important;
+
+      font-weight: 800;
+
+      border: 1px solid #fdba74;
+
+      box-shadow: 0 2px 4px rgba(234, 88, 12, 0.2);
+
+    }
+
+    .dot-pulse {
+
+      display: inline-block;
+
+      width: 6px;
+
+      height: 6px;
+
+      background: #16a34a;
+
+      border-radius: 50%;
+
+      margin-right: 4px;
+
+      animation: pulseGreen 1.5s infinite;
+
+    }
+
+    @keyframes pulseGreen {
+
+      0%, 100% { opacity: 1; transform: scale(1); }
+
+      50% { opacity: 0.4; transform: scale(1.3); }
+
+    }
+
+    .status-busy {
+
+      background: #f1f5f9;
+
+      color: #64748b;
+
+    }
+
+    .rating-badge-btn {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 6px;
+
+      cursor: pointer;
+
+      background: #fef9c3;
+
+      padding: 3px 8px;
+
+      border-radius: 8px;
+
+      border: 1px solid #fde047;
+
+      transition: background 0.15s ease;
+
+    }
+
+    .rating-badge-btn:hover {
+
+      background: #fef08a;
+
+    }
+
+    .rating-star {
+
+      color: #854d0e;
+
+      font-weight: 800;
+
+      font-size: 12px;
+
+    }
+
+    .rating-reviews {
+
+      color: #713f12;
+
+      font-size: 11px;
+
+      font-weight: 600;
+
+      text-decoration: underline;
+
+    }
+
+    .btn-id {
+
+      background: #f8fafc;
+
+      color: #0284c7;
+
+      border: 1px solid #bae6fd;
+
+      flex: 1.1;
+
+      font-size: 11px;
+
+      font-weight: 700;
+
+    }
+
+    .btn-id:hover {
+
+      background: #f0f9ff;
+
+    }
+
+    .btn-map {
+
+      background: #ecfdf5;
+
+      color: #059669;
+
+      border: 1px solid #a7f3d0;
+
+      flex: 1.1;
+
+      font-size: 11px;
+
+      font-weight: 700;
+
+    }
+
+    .btn-map:hover {
+
+      background: #d1fae5;
+
+    }
+
+
+    /* Digital ID Card Modal & Styling */
+
+    .id-card-wrapper {
+
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+
+      border: 2px solid #38bdf8;
+
+      border-radius: 18px;
+
+      padding: 16px;
+
+      color: white;
+
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4), inset 0 0 20px rgba(56, 189, 248, 0.15);
+
+      position: relative;
+
+      overflow: hidden;
+
+    }
+
+    .id-card-wrapper::before {
+
+      content: "";
+
+      position: absolute;
+
+      top: -50%;
+
+      left: -50%;
+
+      width: 200%;
+
+      height: 200%;
+
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, transparent 60%);
+
+      pointer-events: none;
+
+    }
+
+    .id-card-header {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      border-bottom: 1px solid rgba(56, 189, 248, 0.3);
+
+      padding-bottom: 10px;
+
+      margin-bottom: 12px;
+
+    }
+
+    .id-card-brand {
+
+      font-size: 18px;
+
+      font-weight: 900;
+
+      letter-spacing: -0.5px;
+
+    }
+
+    .id-card-brand span { color: #38bdf8; }
+
+    .id-verified-seal {
+
+      background: linear-gradient(135deg, #10b981, #059669);
+
+      color: white;
+
+      font-size: 10px;
+
+      font-weight: 800;
+
+      padding: 3px 8px;
+
+      border-radius: 12px;
+
+      box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3);
+
+    }
+
+    .id-card-body {
+
+      display: flex;
+
+      gap: 14px;
+
+      align-items: center;
+
+    }
+
+    .id-photo-frame {
+
+      width: 78px;
+
+      height: 78px;
+
+      border-radius: 50%;
+
+      border: 3px solid #38bdf8;
+
+      padding: 2px;
+
+      background: #1e293b;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      font-size: 34px;
+
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+
+      flex-shrink: 0;
+
+      overflow: hidden;
+
+    }
+
+    .id-photo-frame img {
+
+      width: 100%;
+
+      height: 100%;
+
+      object-fit: cover;
+
+      border-radius: 50%;
+
+    }
+
+    .id-meta-name {
+
+      font-size: 16px;
+
+      font-weight: 800;
+
+      color: white;
+
+      line-height: 1.2;
+
+    }
+
+    .id-meta-trade {
+
+      font-size: 12px;
+
+      color: #38bdf8;
+
+      font-weight: 700;
+
+      margin-top: 3px;
+
+    }
+
+    .id-meta-id {
+
+      font-size: 11px;
+
+      color: #94a3b8;
+
+      font-family: monospace;
+
+      margin-top: 2px;
+
+    }
+
+    .id-details-grid {
+
+      background: rgba(15, 23, 42, 0.6);
+
+      border: 1px solid rgba(255, 255, 255, 0.08);
+
+      border-radius: 12px;
+
+      padding: 10px;
+
+      margin: 12px 0;
+
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 8px;
+
+      font-size: 11px;
+
+    }
+
+    .id-detail-item {
+
+      display: flex;
+
+      flex-direction: column;
+
+    }
+
+    .id-detail-lbl {
+
+      color: #94a3b8;
+
+      font-size: 9.5px;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.5px;
+
+    }
+
+    .id-detail-val {
+
+      color: #f1f5f9;
+
+      font-weight: 700;
+
+      margin-top: 2px;
+
+    }
+
+    .id-qr-row {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      border-top: 1px solid rgba(56, 189, 248, 0.2);
+
+      padding-top: 10px;
+
+      margin-top: 10px;
+
+    }
+
+    .id-qr-img {
+
+      width: 58px;
+
+      height: 58px;
+
+      background: white;
+
+      padding: 3px;
+
+      border-radius: 6px;
+
+    }
+
+    .id-security-txt {
+
+      font-size: 10px;
+
+      color: #94a3b8;
+
+      line-height: 1.4;
+
+      flex: 1;
+
+      padding-left: 10px;
+
+    }
+
+
+    /* Reviews Modal Styling */
+
+    .review-score-banner {
+
+      background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+
+      border: 1px solid #86efac;
+
+      border-radius: 14px;
+
+      padding: 12px;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      margin-bottom: 14px;
+
+    }
+
+    .review-score-big {
+
+      font-size: 26px;
+
+      font-weight: 900;
+
+      color: #15803d;
+
+    }
+
+    .review-item {
+
+      background: #f8fafc;
+
+      border: 1px solid #e2e8f0;
+
+      border-radius: 10px;
+
+      padding: 10px 12px;
+
+      margin-bottom: 8px;
+
+      font-size: 12px;
+
+    }
+
+    .review-header {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      margin-bottom: 4px;
+
+    }
+
+    .review-author {
+
+      font-weight: 700;
+
+      color: #0f172a;
+
+    }
+
+    .review-date {
+
+      font-size: 10px;
+
+      color: #94a3b8;
+
+    }
+
+    .review-stars {
+
+      color: #eab308;
+
+      font-size: 12px;
+
+      margin-bottom: 4px;
+
+    }
+
+    .review-comment {
+
+      color: #334155;
+
+      line-height: 1.4;
+
+    }
+
+    .review-add-box {
+
+      background: #f1f5f9;
+
+      border-radius: 12px;
+
+      padding: 12px;
+
+      margin-top: 14px;
+
+      border: 1px solid #cbd5e1;
+
+    }
+
+    .star-rating-select {
+
+      display: flex;
+
+      gap: 6px;
+
+      font-size: 22px;
+
+      cursor: pointer;
+
+    }
+
+    .star-btn {
+
+      color: #cbd5e1;
+
+      transition: color 0.15s;
+
+    }
+
+    .star-btn.active {
+
+      color: #eab308;
+
+    }
+
+
+    /* Featured Boost Modal Styling */
+
+    .boost-plan-card {
+
+      background: white;
+
+      border: 2px solid #cbd5e1;
+
+      border-radius: 12px;
+
+      padding: 10px 12px;
+
+      margin-bottom: 8px;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      cursor: pointer;
+
+      transition: all 0.2s;
+
+    }
+
+    .boost-plan-card.selected {
+
+      border-color: #f59e0b;
+
+      background: #fffbeb;
+
+      box-shadow: 0 2px 8px rgba(245, 158, 11, 0.15);
+
+    }
+
+    .boost-plan-title {
+
+      font-weight: 800;
+
+      font-size: 13px;
+
+      color: #0f172a;
+
+    }
+
+    .boost-plan-sub {
+
+      font-size: 11px;
+
+      color: #64748b;
+
+    }
+
+    .boost-plan-price {
+
+      font-size: 16px;
+
+      font-weight: 900;
+
+      color: #d97706;
+
+    }
+
+
+ 
+
+    /* Responsive Actions Grid for Cards */
+
+    .actions {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 6px;
+
+      margin-top: 12px;
+
+      padding-top: 10px;
+
+      border-top: 1px solid #f1f5f9;
+
+    }
+
+    .btn-book { flex: 1 1 100%; margin-bottom: 2px; }
+
+    .btn-id { flex: 1 1 calc(25% - 5px); }
+
+    .btn-map { flex: 1 1 calc(25% - 5px); }
+
+    .btn-call { flex: 1 1 calc(25% - 5px); }
+
+    .btn-wa { flex: 1 1 calc(25% - 5px); }
+
+
+    @media (min-width: 480px) {
+
+      .actions { flex-wrap: nowrap; }
+
+      .btn-book { flex: 2; margin-bottom: 0; }
+
+      .btn-id { flex: 1.1; }
+
+      .btn-map { flex: 1.1; }
+
+      .btn-call { flex: 1; }
+
+      .btn-wa { flex: 1; }
+
+    }
+
+
+    /* Emergency 30 Mins Express Banner */
+
+    .express-emergency-strip {
+
+      margin: 4px 16px 8px;
+
+      background: linear-gradient(135deg, #fff7ed, #ffedd5);
+
+      border: 1px solid #fdba74;
+
+      border-radius: 12px;
+
+      padding: 8px 12px;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      gap: 8px;
+
+      cursor: pointer;
+
+      box-shadow: 0 1px 4px rgba(234, 88, 12, 0.08);
+
+      transition: all 0.2s ease;
+
+    }
+
+    .express-emergency-strip:hover {
+
+      background: #fed7aa;
+
+    }
+
+    .express-strip-tag {
+
+      font-size: 10.5px;
+
+      font-weight: 800;
+
+      color: #c2410c;
+
+      background: white;
+
+      padding: 3px 8px;
+
+      border-radius: 8px;
+
+      border: 1px solid #fdba74;
+
+      white-space: nowrap;
+
+    }
+
+    .pulse-lightning {
+
+      font-size: 16px;
+
+      display: inline-block;
+
+      animation: lightningPulse 1.2s infinite;
+
+    }
+
+    @keyframes lightningPulse {
+
+      0%, 100% { transform: scale(1); opacity: 1; }
+
+      50% { transform: scale(1.3); opacity: 0.7; }
+
+    }
+
+
   </style>
 
 </head>
@@ -428,6 +1525,8 @@
 
     <div class="nav-btns">
 
+      <button class="install-pwa-btn" id="headerInstallBtn" onclick="installPwaApp()">📲 Install App</button>
+
       <button class="lang-btn" id="langToggleBtn" onclick="toggleLanguage()">🌐 English</button>
 
       <button class="admin-btn" onclick="openAdminLogin()">🔒 Admin</button>
@@ -441,6 +1540,22 @@
     </div>
 
   </header>
+
+  <!-- PWA Install Prompt Banner -->
+
+  <div class="pwa-banner" id="pwaBanner">
+
+    <span>📲 Fixr ஆப்பை உங்கள் மொபைலில் இன்ஸ்டால் செய்ய</span>
+
+    <div style="display:flex; gap:6px;">
+
+      <button class="pwa-btn" onclick="installPwaApp()">Install</button>
+
+      <button onclick="dismissPwaBanner()" style="background:none; border:none; color:white; font-size:14px; cursor:pointer;">✕</button>
+
+    </div>
+
+  </div>
 
 
   <!-- Live Cloud Sync Status -->
@@ -463,9 +1578,100 @@
   </div>
 
 
+  <!-- Emergency 30 Mins Express Strip -->
+
+  <div class="express-emergency-strip" id="expressEmergencyStrip" onclick="toggleExpressFilter()">
+
+    <div style="display:flex; align-items:center; gap:8px;">
+
+      <span class="pulse-lightning">⚡</span>
+
+      <span style="font-size:12px; font-weight:800; color:#c2410c;" id="expressStripText">
+
+        30 Mins Express சேவை: பிளம்பர், எலக்ட்ரீஷியன் & AC பழுது நீக்க உடனடியாக அழைக்க!
+
+      </span>
+
+    </div>
+
+    <span class="express-strip-tag" id="expressStripTag">அவசர சேவை ➔</span>
+
+  </div>
+
+
+  <!-- Quick Action & Filter Bar (Availability Toggle, Emergency 30 Mins Express, Verified Pro) -->
+
+  <div class="quick-action-bar">
+
+    <div class="toggle-pill" id="availToggleContainer" onclick="toggleAvailabilityFilter()">
+
+      <span class="toggle-icon">🟢</span>
+
+      <span class="toggle-text" id="availToggleText">Available Only (பணியில் உள்ளவர்கள்)</span>
+
+      <span class="toggle-status" id="availToggleStatus">OFF</span>
+
+    </div>
+
+    <button class="action-pill-btn express-btn" id="expressFilterBtn" onclick="toggleExpressFilter()">
+
+      ⚡ 30 Mins Express
+
+    </button>
+
+    <button class="action-pill-btn pro-btn" id="proFilterBtn" onclick="toggleProFilter()">
+
+      🌟 Verified Pro
+
+    </button>
+
+  </div>
+
+
+  <!-- Featured / Top Listing Promo Banner (முன்னுரிமை விளம்பரம் - ₹99 / 7 நாட்கள்) -->
+
+  <div class="featured-promo-banner" id="featuredPromoBanner" onclick="openFeaturedPromoModal()">
+
+    <div class="featured-banner-left">
+
+      <span style="font-size:24px;">👑</span>
+
+      <div>
+
+        <div class="featured-banner-title">வீட்டை சீக்கிரம் வாடகைக்கு விட வேண்டுமா? (Top Listing)</div>
+
+        <div class="featured-banner-desc">முதல் 3 இடங்களில் உங்கள் வீட்டை முன்னிறுத்த சிறிய கட்டணம் (₹99 / 7 நாட்கள்)</div>
+
+      </div>
+
+    </div>
+
+    <button class="boost-btn">🚀 விளம்பரம் செய்க</button>
+
+  </div>
+
+
   <!-- Categories & List -->
 
   <div class="categories" id="categoryContainer"></div>
+
+  <!-- வாடகை வீடுகள் BHK பில்டர் & Favorites (Sub-chips) -->
+
+  <div class="sub-chips" id="rentalSubChips">
+
+    <div class="sub-chip active" id="chipSubAll" onclick="setRentalFilter('all')">அனைத்தும்</div>
+
+    <div class="sub-chip" onclick="setRentalFilter('1 BHK')">1 BHK</div>
+
+    <div class="sub-chip" onclick="setRentalFilter('2 BHK')">2 BHK</div>
+
+    <div class="sub-chip" onclick="setRentalFilter('3 BHK')">3 BHK</div>
+
+    <div class="sub-chip" onclick="setRentalFilter('தனி வீடு')">தனி வீடு</div>
+
+    <div class="sub-chip" onclick="setRentalFilter('favs')" style="color:#ef4444; font-weight:bold;">❤️ சேமித்தவை</div>
+
+  </div>
 
   <div class="list" id="servicesList"></div>
 
@@ -606,6 +1812,24 @@
 
       </div>
 
+      <div class="form-group" style="background:#fff7ed; padding:10px; border-radius:10px; border:1px solid #fdba74;">
+
+        <label style="display:flex; align-items:center; gap:8px; cursor:pointer; color:#c2410c; font-weight:bold; margin-bottom:0;">
+
+          <input type="checkbox" id="bookExpressCheck" style="width:18px; height:18px; accent-color:#ea580c;">
+
+          <span>⚡ அவசர சேவை தேவை (30 நிமிடங்களில் வருகை / 30 Mins Express)</span>
+
+        </label>
+
+        <div style="font-size:10.5px; color:#9a3412; margin-top:4px; padding-left:26px;">
+
+          அவசர தேவைக்கு டெக்னீசியன் 30 நிமிடத்தில் நேரடியாக வந்து உதவுவார்.
+
+        </div>
+
+      </div>
+
       <button class="submit-btn" style="background:#0284c7;" id="btnConfirmBook" onclick="confirmBooking()">முன்பதிவை உறுதி செய் 🚀</button>
 
       <button class="close-btn" onclick="closeModal('bookingModal')">ரத்து</button>
@@ -741,6 +1965,24 @@
         <input type="file" id="pHousePhotos" accept="image/*" multiple class="form-input" style="background:white; padding:6px; font-size:12px;" onchange="previewHousePhotos(this, 'housePhotoPreviewGrid')">
 
         <div id="housePhotoPreviewGrid" style="display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;"></div>
+
+        <div style="margin-top: 10px; background: white; padding: 8px; border-radius: 8px; border: 1px solid #cbd5e1;">
+
+          <label style="font-size:11px; font-weight:bold; color:#1e293b; display:block; margin-bottom:4px;">வீட்டு வசதிகள் (Amenities):</label>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; font-size:11px; color:#334155;">
+
+            <label><input type="checkbox" id="amenityParking" value="🚗 Car Parking" checked> 🚗 Car Parking</label>
+
+            <label><input type="checkbox" id="amenityWater" value="💧 24/7 Water" checked> 💧 24/7 குடிநீர்</label>
+
+            <label><input type="checkbox" id="amenityLift" value="🏢 Lift"> 🏢 Lift வசதி</label>
+
+            <label><input type="checkbox" id="amenityFamily" value="👨‍👩‍👧 Family Only" checked> 👨‍👩‍👧 குடும்பம் மட்டும்</label>
+
+          </div>
+
+        </div>
 
       </div>
 
@@ -1014,6 +2256,451 @@
   </div>
 
 
+ 
+
+  <!-- Fixr Verified Partner டிஜிட்டல் ஐடி கார்டு (Digital ID Card Modal) -->
+
+  <div class="modal-overlay" id="digitalIdModal">
+
+    <div class="modal-box" style="max-width: 440px; background: transparent; padding: 0; box-shadow: none;">
+
+      <div class="id-card-wrapper">
+
+        <div class="id-card-header">
+
+          <div class="id-card-brand">Fix<span>r</span> <span style="font-size:11px; color:#94a3b8; font-weight:normal; letter-spacing:0;">| Digital ID</span></div>
+
+          <div class="id-verified-seal">VERIFIED PARTNER ✅</div>
+
+        </div>
+
+
+        <div class="id-card-body">
+
+          <div class="id-photo-frame" id="idCardPhotoWrap">
+
+            <span id="idCardEmoji">👷</span>
+
+          </div>
+
+          <div style="flex:1;">
+
+            <div class="id-meta-name" id="idCardName">பணியாளர் பெயர்</div>
+
+            <div class="id-meta-trade" id="idCardTrade">சேவை வகை</div>
+
+            <div class="id-meta-id" id="idCardNumber">FIXR-TN-2026-0000</div>
+
+            <div style="margin-top:4px; display:flex; gap:4px; flex-wrap:wrap;">
+
+              <span class="badge badge-pro" style="font-size:9.5px; padding:1px 6px;">🌟 Verified Pro</span>
+
+              <span id="idCardExpressBadge" class="badge badge-express" style="font-size:9.5px; padding:1px 6px;">⚡ 30 Mins Express</span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="id-details-grid">
+
+          <div class="id-detail-item">
+
+            <span class="id-detail-lbl">பகுதி (Area)</span>
+
+            <span class="id-detail-val" id="idCardArea">சென்னை</span>
+
+          </div>
+
+          <div class="id-detail-item">
+
+            <span class="id-detail-lbl">மதிப்பீடு (Rating)</span>
+
+            <span class="id-detail-val" id="idCardRating">★ 5.0 (500+ பணிகள்)</span>
+
+          </div>
+
+          <div class="id-detail-item">
+
+            <span class="id-detail-lbl">அரசு சான்றிதழ் (Govt ID)</span>
+
+            <span class="id-detail-val" style="color:#4ade80;">ஆதார் & பான் சரிபார்க்கப்பட்டது ✓</span>
+
+          </div>
+
+          <div class="id-detail-item">
+
+            <span class="id-detail-lbl">பின்னணி ஆய்வு (Police/BG)</span>
+
+            <span class="id-detail-val" style="color:#4ade80;">100% தூய்மையான பின்னணி ✓</span>
+
+          </div>
+
+          <div class="id-detail-item">
+
+            <span class="id-detail-lbl">செல்லுபடியாகும் காலம் (Validity)</span>
+
+            <span class="id-detail-val">2026 - 2027</span>
+
+          </div>
+
+          <div class="id-detail-item">
+
+            <span class="id-detail-lbl">Availability (நிலை)</span>
+
+            <span class="id-detail-val" style="color:#38bdf8; display:flex; justify-content:space-between; align-items:center;">
+
+              <span id="idCardAvail">🟢 பணியில் தயார்</span>
+
+              <button type="button" onclick="toggleDigitalIdStatus()" style="background:#0284c7; color:white; border:none; padding:2px 6px; border-radius:6px; font-size:9px; cursor:pointer;">மாற்று</button>
+
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="id-qr-row">
+
+          <img id="idCardQrImg" src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=FIXR-VERIFIED-PARTNER" alt="Verification QR" class="id-qr-img" onerror="this.src='https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=FIXR-PARTNER';">
+
+          <div class="id-security-txt">
+
+            <b>🛡️ வாடிக்கையாளர் பாதுகாப்பு உத்தரவாதம்:</b><br>
+
+            இந்த பார்ட்னர் Fixr நிர்வாகத்தால் முகவரி, தொலைபேசி மற்றும் அரசு ஆவணங்கள் கொண்டு முழுமையாக சரிபார்க்கப்பட்டவர்.
+
+          </div>
+
+        </div>
+
+
+        <div style="display:flex; gap:8px; margin-top:14px;">
+
+          <a id="idCardCallBtn" href="tel:" class="btn btn-call" style="background:#334155; color:white; border-color:#475569; flex:1;">📞 அழைப்பு</a>
+
+          <a id="idCardWaBtn" href="https://wa.me/" target="_blank" class="btn btn-wa" style="flex:1;">💬 WhatsApp</a>
+
+          <button type="button" class="btn" onclick="shareDigitalId()" style="background:#0284c7; color:white; flex:1;">📤 பகிர்க</button>
+
+        </div>
+
+      </div>
+
+      <button class="close-btn" style="color:white; background:rgba(0,0,0,0.5); padding:8px; border-radius:10px; margin-top:10px; font-weight:bold;" onclick="closeModal('digitalIdModal')">✕ மூடுக (Close)</button>
+
+    </div>
+
+  </div>
+
+
+  <!-- வாடிக்கையாளர் அனுபவம் (Customer Experience & Reviews Modal) -->
+
+  <div class="modal-overlay" id="reviewsModal">
+
+    <div class="modal-box" style="max-width: 480px;">
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+
+        <div class="modal-title" style="margin-bottom:0;">⭐ வாடிக்கையாளர் அனுபவம்</div>
+
+        <button onclick="closeModal('reviewsModal')" style="background:none; border:none; font-size:22px; color:#64748b; cursor:pointer;">✕</button>
+
+      </div>
+
+      <div class="modal-sub" id="reviewsModalSub">வாடிக்கையாளர்களின் உண்மையான அனுபவங்கள் & கருத்துகள்</div>
+
+
+      <div class="review-score-banner">
+
+        <div>
+
+          <div class="review-score-big" id="reviewAvgScore">4.9 ★</div>
+
+          <div style="font-size:11px; color:#166534; font-weight:bold;">99% வாடிக்கையாளர் திருப்தி</div>
+
+        </div>
+
+        <div style="text-align:right; font-size:11px; color:#15803d;">
+
+          <div>🛡️ சரிபார்க்கப்பட்ட பயனர்கள்</div>
+
+          <div id="reviewTotalCount" style="font-weight:bold; margin-top:2px;">50+ திருப்திகரமான வாடிக்கையாளர்கள்</div>
+
+        </div>
+
+      </div>
+
+
+      <div id="reviewsListContainer" style="max-height: 240px; overflow-y: auto; padding-right: 4px; margin-bottom: 12px;"></div>
+
+
+      <!-- Add Review Form -->
+
+      <div class="review-add-box">
+
+        <div style="font-size:13px; font-weight:bold; color:#0f172a; margin-bottom:8px;">
+
+          ✍️ உங்கள் அனுபவத்தைப் பகிரவும் (Share Experience)
+
+        </div>
+
+        <div class="form-group" style="margin-bottom:6px;">
+
+          <label style="font-size:11px;">மதிப்பீடு (Rating):</label>
+
+          <div class="star-rating-select" id="starRatingSelect">
+
+            <span class="star-btn" onclick="setSelectRating(1)">★</span>
+
+            <span class="star-btn" onclick="setSelectRating(2)">★</span>
+
+            <span class="star-btn" onclick="setSelectRating(3)">★</span>
+
+            <span class="star-btn" onclick="setSelectRating(4)">★</span>
+
+            <span class="star-btn active" onclick="setSelectRating(5)">★</span>
+
+          </div>
+
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:6px;">
+
+          <input type="text" id="revUserName" class="form-input" placeholder="உங்கள் பெயர்" style="padding:6px 10px; font-size:12px;">
+
+          <input type="text" id="revUserArea" class="form-input" placeholder="உங்கள் ஊர் / பகுதி" style="padding:6px 10px; font-size:12px;">
+
+        </div>
+
+        <textarea id="revUserComment" class="form-input" placeholder="சேவை அல்லது வீடு குறித்த உங்கள் அனுபவம்..." rows="2" style="font-size:12px; resize:none; margin-bottom:8px;"></textarea>
+
+        <button class="submit-btn" style="background:#0284c7; padding:9px; font-size:13px; margin-top:0;" onclick="submitCustomerReview()">
+
+          அனுபவத்தை சமர்ப்பிக்க 🚀
+
+        </button>
+
+      </div>
+
+
+      <button class="close-btn" onclick="closeModal('reviewsModal')">மூடுக (Close)</button>
+
+    </div>
+
+  </div>
+
+
+  <!-- Featured / Top Listing முன்னுரிமை விளம்பரம் (Boost Rental Modal) -->
+
+  <div class="modal-overlay" id="featuredPromoModal">
+
+    <div class="modal-box" style="max-width: 480px;">
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+
+        <div class="modal-title" style="margin-bottom:0;">👑 முன்னுரிமை விளம்பரம் (Top Listing)</div>
+
+        <button onclick="closeModal('featuredPromoModal')" style="background:none; border:none; font-size:22px; color:#64748b; cursor:pointer;">✕</button>
+
+      </div>
+
+      <div class="modal-sub">வீட்டை சீக்கிரம் வாடகைக்கு விட உங்கள் வீட்டை முதல் 3 இடங்களில் முன்னிறுத்துங்கள்!</div>
+
+
+      <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:12px; padding:10px 12px; font-size:12px; color:#1e40af; margin-bottom:12px;">
+
+        <b>✨ முன்னுரிமை விளம்பரத்தின் நன்மைகள்:</b>
+
+        <ul style="margin-left:18px; margin-top:4px; line-height:1.5;">
+
+          <li>Fixr ஆப்பில் வாடகை வீடுகள் பிரிவில் <b>முதல் 3 இடங்களில்</b> காண்பிக்கப்படும்</li>
+
+          <li><b>👑 FEATURED கோல்டன் பேட்ஜ்</b> & தனித்துவ அழகுத் தோற்றம்</li>
+
+          <li>வாடிக்கையாளர்களிடமிருந்து <b>5 மடங்கு அதிக அழைப்புகள் & நேரடி வாடகை</b></li>
+
+        </ul>
+
+      </div>
+
+
+      <div style="font-size:12px; font-weight:bold; color:#0f172a; margin-bottom:6px;">விளம்பரக் கட்டணத் திட்டம் (Select Plan):</div>
+
+      <div class="boost-plan-card selected" id="plan99" onclick="selectBoostPlan(99, '7 நாட்கள்')">
+
+        <div>
+
+          <div class="boost-plan-title">⭐ 7 நாட்கள் முன்னுரிமை விளம்பரம் (Most Popular)</div>
+
+          <div class="boost-plan-sub">முதல் 3 இடங்களில் 1 வாரம் முழுவதும் காண்பிக்கப்படும்</div>
+
+        </div>
+
+        <div class="boost-plan-price">₹99</div>
+
+      </div>
+
+      <div class="boost-plan-card" id="plan199" onclick="selectBoostPlan(199, '15 நாட்கள்')">
+
+        <div>
+
+          <div class="boost-plan-title">⭐ 15 நாட்கள் முன்னுரிமை விளம்பரம்</div>
+
+          <div class="boost-plan-sub">முதல் 3 இடங்களில் 15 நாட்கள் முன்னிறுத்தம்</div>
+
+        </div>
+
+        <div class="boost-plan-price">₹199</div>
+
+      </div>
+
+      <div class="boost-plan-card" id="plan299" onclick="selectBoostPlan(299, '30 நாட்கள்')">
+
+        <div>
+
+          <div class="boost-plan-title">⭐ 30 நாட்கள் மாதாந்திர திட்டம்</div>
+
+          <div class="boost-plan-sub">ஒரு மாதம் முழுவதும் டாப் லிஸ்டிங்</div>
+
+        </div>
+
+        <div class="boost-plan-price">₹299</div>
+
+      </div>
+
+
+      <!-- Payment Section -->
+
+      <div class="payment-box" style="margin:12px 0;">
+
+        <div class="payment-title">
+
+          <span>💳 UPI கட்டணம் செலுத்துதல்</span>
+
+          <span class="payment-amount" id="boostPlanAmount">₹99 Only</span>
+
+        </div>
+
+        <div style="font-size:11px; margin:4px 0; text-align:left;">
+
+          <b>GPay/UPI ID:</b> yugamugesh52-3@oksbi | <b>எண்:</b> 9884334097
+
+        </div>
+
+        <div class="upi-grid">
+
+          <button type="button" class="upi-btn btn-gpay" onclick="triggerBoostUpi('gpay')">⚡ Pay with GPay</button>
+
+          <button type="button" class="upi-btn btn-phonepe" onclick="triggerBoostUpi('phonepe')">🟣 PhonePe</button>
+
+          <button type="button" class="upi-btn btn-paytm" onclick="triggerBoostUpi('paytm')">🔵 Paytm</button>
+
+          <button type="button" class="upi-btn btn-all-upi" onclick="triggerBoostUpi('all')">🟢 மற்ற அனைத்து UPI ஆப்ஸ்</button>
+
+        </div>
+
+      </div>
+
+
+      <!-- Owner Details -->
+
+      <div class="form-group">
+
+        <label>வீட்டின் பெயர் / பகுதி (House Name & Area)</label>
+
+        <input type="text" id="boostHouseName" class="form-input" placeholder="எ.கா: விநாயகர் இல்லம், வேளச்சேரி">
+
+      </div>
+
+      <div class="form-group">
+
+        <label>உரிமையாளர் மொபைல் எண் (Owner Phone)</label>
+
+        <input type="tel" id="boostOwnerPhone" class="form-input" placeholder="10 இலக்க மொபைல் எண்">
+
+      </div>
+
+
+      <button class="submit-btn" style="background:#d97706;" onclick="submitBoostRequest()">
+
+        🚀 WhatsApp வழியாக விளம்பரம் உறுதி செய்ய (Confirm via WhatsApp)
+
+      </button>
+
+      <button class="close-btn" onclick="closeModal('featuredPromoModal')">ரத்து</button>
+
+    </div>
+
+  </div>
+
+
+  <!-- "Install Fixr App" Modal -->
+
+  <div class="modal-overlay" id="pwaInstallModal">
+
+    <div class="modal-box" style="max-width: 440px;">
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+
+        <div class="modal-title" style="margin-bottom:0;">📲 Fixr ஆப் இன்ஸ்டாலேஷன்</div>
+
+        <button onclick="closeModal('pwaInstallModal')" style="background:none; border:none; font-size:22px; color:#64748b; cursor:pointer;">✕</button>
+
+      </div>
+
+      <div class="modal-sub">Fixr-ஐ உங்கள் மொபைல் முகப்புத் திரையில் (Home Screen) எளிதாகச் சேர்க்கவும்</div>
+
+
+      <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:12px; font-size:12px; line-height:1.6; color:#334155; margin-bottom:12px;">
+
+        <div style="margin-bottom:8px;">
+
+          <b>🤖 Android (Chrome பிரவுசர்):</b><br>
+
+          1. பிரவுசரின் மேல் வலது மூலையில் உள்ள <b>(⋮) மூன்று புள்ளிகளைத்</b> தொடவும்.<br>
+
+          2. <b>"Install app"</b> அல்லது <b>"Add to Home screen"</b> என்பதைத் தேர்ந்தெடுக்கவும்.
+
+        </div>
+
+        <div style="margin-bottom:8px;">
+
+          <b>🍎 iPhone / iPad (Safari பிரவுசர்):</b><br>
+
+          1. திரையின் கீழே உள்ள <b>Share (பகிர் 📤)</b> பட்டனைத் தொடவும்.<br>
+
+          2. கீழே உருட்டி <b>"Add to Home Screen" (+)</b> என்பதைத் தேர்ந்தெடுக்கவும்.
+
+        </div>
+
+        <div>
+
+          <b>💻 Computer (Chrome / Edge):</b><br>
+
+          URL முகவரிப் பட்டியில் உள்ள <b>Install (📲)</b> ஐகானை கிளிக் செய்யவும்.
+
+        </div>
+
+      </div>
+
+
+      <button class="submit-btn" style="background:#0284c7;" onclick="triggerNativeInstall()">
+
+        📲 இப்போதே இன்ஸ்டால் செய் (Install Now)
+
+      </button>
+
+      <button class="close-btn" onclick="closeModal('pwaInstallModal')">மூடுக (Close)</button>
+
+    </div>
+
+  </div>
+
+
   <!-- முழுமையான Footer (Complete Professional Footer) -->
 
   <footer>
@@ -1067,11 +2754,27 @@
     };
 
 
-    firebase.initializeApp(firebaseConfig);
+    let db = null;
 
-    const db = firebase.firestore();
+    let storage = null;
 
-    const storage = firebase.storage();
+    try {
+
+      if (typeof firebase !== 'undefined' && firebase.initializeApp) {
+
+        firebase.initializeApp(firebaseConfig);
+
+        db = firebase.firestore();
+
+        storage = firebase.storage();
+
+      }
+
+    } catch(e) {
+
+      console.warn("Firebase offline mode:", e);
+
+    }
 
 
     // Language System
@@ -1249,19 +2952,19 @@
 
     const defaultData = [
 
-      { id: "seed-1", name: "அன்பு முதியோர் கேர் டேக்கர் (Anbu Care)", category: "கேர் டேக்கர்", area: "அடையாறு, சென்னை (Chennai)", phone: "9876543210", price: "₹650/நாள்", rating: "★ 4.9", desc: "24/7 முதியோர், நோயாளி & குழந்தை பராமரிப்பு" },
+      { id: "seed-1", name: "அன்பு முதியோர் கேர் டேக்கர் (Anbu Care)", category: "கேர் டேக்கர்", area: "அடையாறு, சென்னை (Chennai)", phone: "9876543210", price: "₹650/நாள்", rating: "★ 4.9", desc: "24/7 முதியோர், நோயாளி & குழந்தை பராமரிப்பு", partnerId: "FIXR-TN-2026-0101", isVerifiedPro: true, isAvailable: true, isExpress: false },
 
-      { id: "seed-2", name: "Ravi", category: "பிளம்பர்", area: "Chennai KK Nagar", phone: "9884334097", price: "499", rating: "★ 5.0 (Verified)", desc: "Vinayaka plumbing services" },
+      { id: "seed-2", name: "Ravi (விநாயகர் பிளம்பிங்)", category: "பிளம்பர்", area: "Chennai KK Nagar", phone: "9884334097", price: "₹499 முதல்", rating: "★ 5.0 (Verified)", desc: "Vinayaka plumbing services, பைப் & மோட்டார் உடனடி பழுது", partnerId: "FIXR-TN-2026-0884", isVerifiedPro: true, isAvailable: true, isExpress: true },
 
-      { id: "seed-3", name: "CoolCare AC Solutions", category: "AC சர்வீஸ்", area: "தி. நகர், சென்னை (Chennai)", phone: "9876543211", price: "₹499 முதல்", rating: "★ 4.9", desc: "Gas filling, ஜெட் சர்வீஸ் & இன்ஸ்டாலேஷன்" },
+      { id: "seed-3", name: "CoolCare AC Solutions", category: "AC சர்வீஸ்", area: "தி. நகர், சென்னை (Chennai)", phone: "9876543211", price: "₹499 முதல்", rating: "★ 4.9", desc: "Gas filling, ஜெட் சர்வீஸ் & இன்ஸ்டாலேஷன்", partnerId: "FIXR-TN-2026-0302", isVerifiedPro: true, isAvailable: true, isExpress: true },
 
-      { id: "seed-4", name: "AquaPure RO Care", category: "RO சர்வீஸ்", area: "வேளச்சேரி, சென்னை (Chennai)", phone: "9876543212", price: "₹350 முதல்", rating: "★ 4.8", desc: "Filter மாற்றம் & வாட்டர் பியூரிஃபையர் பழுது" },
+      { id: "seed-4", name: "AquaPure RO Care", category: "RO சர்வீஸ்", area: "வேளச்சேரி, சென்னை (Chennai)", phone: "9876543212", price: "₹350 முதல்", rating: "★ 4.8", desc: "Filter மாற்றம் & வாட்டர் பியூரிஃபையர் பழுது", partnerId: "FIXR-TN-2026-0403", isVerifiedPro: true, isAvailable: true, isExpress: true },
 
-      { id: "seed-5", name: "PowerMax Inverter & Battery", category: "இன்வெர்ட்டர் & பேட்டரி", area: "காந்திபுரம், கோயம்புத்தூர் (Coimbatore)", phone: "9876543213", price: "₹399 முதல்", rating: "★ 4.7", desc: "Water top-up & புதிய பேட்டரி சர்வீஸ்" },
+      { id: "seed-5", name: "PowerMax Inverter & Battery", category: "இன்வெர்ட்டர் & பேட்டரி", area: "காந்திபுரம், கோயம்புத்தூர் (Coimbatore)", phone: "9876543213", price: "₹399 முதல்", rating: "★ 4.7", desc: "Water top-up & புதிய பேட்டரி சர்வீஸ்", partnerId: "FIXR-TN-2026-0504", isVerifiedPro: true, isAvailable: true, isExpress: true },
 
-      { id: "seed-6", name: "மீனாட்சி எலக்ட்ரிக்கல்ஸ்", category: "எலக்ட்ரீஷியன்", area: "அண்ணா நகர், மதுரை (Madurai)", phone: "9876543214", price: "₹250 முதல்", rating: "★ 4.8", desc: "வீட்டு வயரிங் & MCB பழுது நீக்குதல்" },
+      { id: "seed-6", name: "மீனாட்சி எலக்ட்ரிக்கல்ஸ்", category: "எலக்ட்ரீஷியன்", area: "அண்ணா நகர், மதுரை (Madurai)", phone: "9876543214", price: "₹250 முதல்", rating: "★ 4.8", desc: "வீட்டு வயரிங் & MCB பழுது நீக்குதல்", partnerId: "FIXR-TN-2026-0605", isVerifiedPro: true, isAvailable: true, isExpress: true },
 
-      { id: "seed-7", name: "TechFix Bangalore Care", category: "AC சர்வீஸ்", area: "Whitefield, பெங்களூரு (Bengaluru)", phone: "9876543216", price: "₹599 முதல்", rating: "★ 4.9", desc: "Deep cleaning & gas top-up" },
+      { id: "seed-7", name: "TechFix Bangalore Care", category: "AC சர்வீஸ்", area: "Whitefield, பெங்களூரு (Bengaluru)", phone: "9876543216", price: "₹599 முதல்", rating: "★ 4.9", desc: "Deep cleaning & gas top-up", partnerId: "FIXR-KA-2026-0706", isVerifiedPro: true, isAvailable: true, isExpress: true },
 
       {
 
@@ -1280,6 +2983,20 @@
         rating: "★ 4.9 (Verified)",
 
         desc: "2 BHK, முதல் தளம், 24 மணி நேர மெட்ரோ குடிநீர், கார் & பைக் பார்க்கிங் வசதியுடன்",
+
+        partnerId: "FIXR-RENT-2026-0884",
+
+        amenities: ["0% Brokerage", "🚗 Car Parking", "💧 24/7 Water", "👨‍👩‍👧 Family Only"],
+
+        isRented: false,
+
+        isFeatured: true,
+
+        featuredUntil: "7 நாட்கள்",
+
+        isVerifiedPro: true,
+
+        isAvailable: true,
 
         houseImages: [
 
@@ -1312,6 +3029,16 @@
         rating: "★ 4.8 (Verified)",
 
         desc: "1 BHK, குடும்பம் அல்லது பேச்சிலர்களுக்கு ஏற்றது, மெயின் ரோட்டிற்கு அருகில்",
+
+        partnerId: "FIXR-RENT-2026-0909",
+
+        isRented: false,
+
+        isFeatured: false,
+
+        isVerifiedPro: true,
+
+        isAvailable: true,
 
         houseImages: [
 
@@ -1417,14 +3144,75 @@
 
     function initFirebaseFirestore() {
 
-      render(); // Render defaultData immediately so page is never empty
+      if (!liveServicesList || liveServicesList.length === 0) {
+
+        liveServicesList = [...defaultData];
+
+      }
+
+      render();
+
+      renderAdminList();
 
 
-      db.collection('services').onSnapshot((snapshot) => {
+      if (!db) {
 
-        if (!snapshot || snapshot.empty) {
+        console.log("Running in offline standalone mode with local cache.");
 
-          console.log("Firebase services collection empty. Using and seeding default services...");
+        const cloudStatus = document.getElementById('cloudStatusText');
+
+        if (cloudStatus) cloudStatus.innerText = "☁️ Fixr Standalone Database: தயார் (Ready)";
+
+        return;
+
+      }
+
+
+      try {
+
+        db.collection('services').onSnapshot((snapshot) => {
+
+          if (!snapshot || snapshot.empty) {
+
+            console.log("Firebase services collection empty. Using and seeding default services...");
+
+            if (!liveServicesList || liveServicesList.length === 0) {
+
+              liveServicesList = [...defaultData];
+
+            }
+
+            render();
+
+            renderAdminList();
+
+            defaultData.forEach(item => {
+
+              db.collection('services').add(item).catch(() => {});
+
+            });
+
+          } else {
+
+            liveServicesList = [];
+
+            snapshot.forEach((doc) => {
+
+              liveServicesList.push({ id: doc.id, ...doc.data() });
+
+            });
+
+            localStorage.setItem('fixr_services_cached', JSON.stringify(liveServicesList));
+
+            render();
+
+            renderAdminList();
+
+          }
+
+        }, (err) => {
+
+          console.warn("Firestore sync error, continuing with local services:", err);
 
           if (!liveServicesList || liveServicesList.length === 0) {
 
@@ -1436,47 +3224,13 @@
 
           renderAdminList();
 
-          // Seed to Firebase so cloud has initial services
+        });
 
-          defaultData.forEach(item => {
+      } catch(e) {
 
-            db.collection('services').add(item).catch(() => {});
+        console.warn("Firestore error:", e);
 
-          });
-
-        } else {
-
-          liveServicesList = [];
-
-          snapshot.forEach((doc) => {
-
-            liveServicesList.push({ id: doc.id, ...doc.data() });
-
-          });
-
-          localStorage.setItem('fixr_services_cached', JSON.stringify(liveServicesList));
-
-          render();
-
-          renderAdminList();
-
-        }
-
-      }, (err) => {
-
-        console.warn("Firestore error, continuing with local services:", err);
-
-        if (!liveServicesList || liveServicesList.length === 0) {
-
-          liveServicesList = [...defaultData];
-
-        }
-
-        render();
-
-        renderAdminList();
-
-      });
+      }
 
     }
 
@@ -1586,6 +3340,8 @@
       if (approvalsListenerAttached) return;
 
       approvalsListenerAttached = true;
+
+      if (!db) return;
 
 
       db.collection('partner_requests').where('status', '==', 'pending').onSnapshot((snapshot) => {
@@ -1718,7 +3474,11 @@
 
           rating: '★ 5.0 (Verified)',
 
-          desc: req.desc || 'அங்கீகரிக்கப்பட்ட Fixr சேவை'
+          desc: req.desc || 'அங்கீகரிக்கப்பட்ட Fixr சேவை',
+
+          amenities: req.amenities || ["0% Brokerage"],
+
+          isRented: false
 
         };
 
@@ -1880,6 +3640,21 @@
         }
 
 
+        let selectedAmenities = ["0% Brokerage"];
+
+        if (category === 'வாடகை வீடுகள்') {
+
+          if (document.getElementById('amenityParking')?.checked) selectedAmenities.push("🚗 Car Parking");
+
+          if (document.getElementById('amenityWater')?.checked) selectedAmenities.push("💧 24/7 Water");
+
+          if (document.getElementById('amenityLift')?.checked) selectedAmenities.push("🏢 Lift");
+
+          if (document.getElementById('amenityFamily')?.checked) selectedAmenities.push("👨‍👩‍👧 Family Only");
+
+        }
+
+
         await db.collection('partner_requests').add({
 
           name: name,
@@ -1907,6 +3682,10 @@
           paymentProofUrl: payProofUrl,
 
           houseImages: housePhotoUrls,
+
+          amenities: selectedAmenities,
+
+          isRented: false,
 
           status: 'pending',
 
@@ -2071,11 +3850,33 @@
 
         row.className = 'admin-tech-item';
 
+        const isRental = (item.category || '').includes('வாடகை வீடுகள்');
+
+        const statusBtn = isRental ? `<button class="edit-btn" style="background:${item.isRented ? '#fee2e2; color:#b91c1c;' : '#dcfce7; color:#15803d;'}" onclick="toggleRentalStatus('${item.id}')">${item.isRented ? '🔴 Rented' : '🟢 Open'}</button> ` : '';
+
+        const availBtn = `<button class="edit-btn" style="background:${item.isAvailable !== false ? '#dcfce7; color:#15803d;' : '#f1f5f9; color:#64748b;'}" onclick="toggleAdminAvailability('${item.id}')" title="Availability Toggle">${item.isAvailable !== false ? '🟢 Online' : '⚪ Offline'}</button> `;
+
+        const boostBtn = `<button class="edit-btn" style="background:${item.isFeatured ? '#fef3c7; color:#b45309; border:1px solid #fcd34d;' : '#f8fafc; color:#64748b;'}" onclick="toggleAdminBoost('${item.id}')" title="Featured / Top Listing Boost">${item.isFeatured ? '👑 Boosted' : '☆ Boost'}</button> `;
+
         row.innerHTML = `
 
-          <div><b>${item.name}</b> (${item.category})<br><span style="color:#64748b; font-size:11px;">📍 ${item.area} | 📞 ${item.phone}</span></div>
-
           <div>
+
+            <b>${item.name}</b> (${item.category})
+
+            ${item.isFeatured ? '<span style="color:#d97706; font-size:10px; font-weight:bold;"> [👑 Top Listing]</span>' : ''}<br>
+
+            <span style="color:#64748b; font-size:11px;">📍 ${item.area} | 📞 ${item.phone}</span>
+
+          </div>
+
+          <div style="display:flex; gap:4px; align-items:center;">
+
+            ${statusBtn}
+
+            ${availBtn}
+
+            ${boostBtn}
 
             <button class="edit-btn" onclick="startAdminEdit('${item.id}')">✏️</button>
 
@@ -2168,11 +3969,139 @@
 
         chip.innerText = (currentLang === 'ta') ? cat.ta : cat.en;
 
-        chip.onclick = () => { currentCategory = cat.key; renderCategories(); render(); };
+        chip.onclick = () => {
+
+          currentCategory = cat.key;
+
+          currentRentalSubFilter = 'all';
+
+          renderCategories();
+
+          render();
+
+        };
 
         c.appendChild(chip);
 
       });
+
+      const subChips = document.getElementById('rentalSubChips');
+
+      if (subChips) {
+
+        subChips.style.display = (currentCategory === 'வாடகை வீடுகள்') ? 'flex' : 'none';
+
+      }
+
+      const promoBanner = document.getElementById('featuredPromoBanner');
+
+      if (promoBanner) {
+
+        promoBanner.style.display = (currentCategory === 'வாடகை வீடுகள்' || currentCategory === 'அனைத்தும்') ? 'flex' : 'none';
+
+      }
+
+    }
+
+
+    // Global Filter States
+
+    let filterOnlyAvailable = false;
+
+    let filterOnlyExpress = false;
+
+    let filterOnlyPro = false;
+
+    let currentBoostPlan = { amount: 99, duration: '7 நாட்கள்' };
+
+    let currentReviewRating = 5;
+
+    let currentReviewServiceId = null;
+
+
+    // Default Customer Experiences & Reviews
+
+    const defaultReviews = {
+
+      "seed-1": [
+
+        { name: "கார்த்திகேயன்", area: "அடையாறு", rating: 5, date: "நேற்று", comment: "எங்கள் தாத்தாவை மிக அன்புடன் கவனித்துக் கொண்டார். மிகவும் நம்பகமான கேர் டேக்கர்." },
+
+        { name: "சரவணன்", area: "திருவான்மியூர்", rating: 5, date: "3 நாட்களுக்கு முன்", comment: "நேரத்திற்கு வந்தார். சிறந்த சேவை." }
+
+      ],
+
+      "seed-2": [
+
+        { name: "கார்த்திக்", area: "வேளச்சேரி", rating: 5, date: "இன்று", comment: "30 நிமிடத்தில் எக்ஸ்பிரஸ் சேவைக்கு வந்து உடனடியாக பைப் லீக்கேஜை சரிசெய்தார்! சூப்பர் சர்வீஸ்." },
+
+        { name: "சுரேஷ்", area: "கே.கே. நகர்", rating: 5, date: "நேற்று", comment: "நியாயமான கட்டணம், மிக நேர்மையான பிளம்பர். Fixr ஆப் மிகவும் பயனுள்ளது." }
+
+      ],
+
+      "seed-3": [
+
+        { name: "அனிதா", area: "தி. நகர்", rating: 5, date: "2 நாட்களுக்கு முன்", comment: "AC ஜெட் சர்வீஸ் மிகச் சிறப்பாக முடித்துக் கொடுத்தார். கூலிங் அருமையாக உள்ளது." }
+
+      ],
+
+      "seed-4": [
+
+        { name: "பாலாஜி", area: "வேளச்சேரி", rating: 5, date: "இன்று", comment: "RO மெம்பிரேன் மற்றும் பில்டர் உடனடியாக மாற்றித் தந்தார். தண்ணீர் சுவை நன்றாக உள்ளது." }
+
+      ],
+
+      "seed-5": [
+
+        { name: "முருகேசன்", area: "காந்திபுரம்", rating: 5, date: "நேற்று", comment: "இன்வெர்ட்டர் பேட்டரி வாட்டர் டாப்-அப் மற்றும் செக்கப் சிறப்பாக செய்தார்." }
+
+      ],
+
+      "seed-6": [
+
+        { name: "ராதாகிருஷ்ணன்", area: "அண்ணா நகர்", rating: 5, date: "நேற்று", comment: "MCB ட்ரிப்பிங் பிரச்சனையை அரை மணி நேரத்தில் தீர்த்து வைத்தார். எக்ஸ்பிரஸ் சேவை அருமை!" }
+
+      ],
+
+      "seed-7": [
+
+        { name: "வெங்கடேஷ்", area: "Whitefield", rating: 5, date: "3 நாட்களுக்கு முன்", comment: "Very polite technician and excellent AC deep cleaning service." }
+
+      ],
+
+      "seed-8": [
+
+        { name: "செந்தில்குமார்", area: "வேளச்சேரி", rating: 5, date: "இன்று", comment: "0% புரோக்கரேஜ்! நேரில் சென்று பார்த்தோம், வீடு மிக சுத்தமாக உள்ளது, 24/7 குடிநீர் வசதி அருமை." },
+
+        { name: "மீனாட்சி", area: "மடிப்பாக்கம்", rating: 5, date: "நேற்று", comment: "உரிமையாளர் மிக மரியாதையாகப் பேசினார். கார் பார்க்கிங் வசதியுடன் கூடிய நல்ல குடியிருப்பு." }
+
+      ],
+
+      "seed-9": [
+
+        { name: "விஜய்", area: "அண்ணா நகர்", rating: 5, date: "நேற்று", comment: "பேச்சிலர்களுக்கு ஏற்ற அருமையான 1 BHK வீடு. மெயின் ரோடு மிக அருகில்." }
+
+      ]
+
+    };
+
+
+    function getAllReviews(serviceId) {
+
+      const userReviews = JSON.parse(localStorage.getItem('fixr_customer_reviews') || '{}');
+
+      const defaults = defaultReviews[serviceId] || [];
+
+      const custom = userReviews[serviceId] || [];
+
+      return [...custom, ...defaults];
+
+    }
+
+
+    function getReviewCount(serviceId) {
+
+      return getAllReviews(serviceId).length;
 
     }
 
@@ -2186,9 +4115,12 @@
       container.innerHTML = '';
 
 
+      const favs = JSON.parse(localStorage.getItem('fixr_favs') || '[]');
+
       const q = searchQuery.toLowerCase();
 
-      const filtered = liveServicesList.filter(item => {
+
+      let filtered = liveServicesList.filter(item => {
 
         const catMatch = currentCategory === 'அனைத்தும்' || item.category === currentCategory;
 
@@ -2204,7 +4136,61 @@
 
                        (item.desc && item.desc.toLowerCase().includes(q));
 
-        return catMatch && sMatch;
+
+        // Sub-filter for House Rentals & Favorites
+
+        let subMatch = true;
+
+        if (currentRentalSubFilter === 'favs') {
+
+          subMatch = favs.includes(item.id);
+
+        } else if (currentRentalSubFilter !== 'all' && currentCategory === 'வாடகை வீடுகள்') {
+
+          const itemText = (item.name + ' ' + (item.desc || '')).toLowerCase();
+
+          subMatch = itemText.includes(currentRentalSubFilter.toLowerCase());
+
+        }
+
+
+        // Availability Filter
+
+        const isHouseRental = (item.category || '').includes('வாடகை வீடுகள்') || (item.category || '').toLowerCase().includes('rental');
+
+        if (filterOnlyAvailable) {
+
+          if (isHouseRental && item.isRented) return false;
+
+          if (!isHouseRental && item.isAvailable === false) return false;
+
+        }
+
+
+        // Express 30 Mins Filter
+
+        if (filterOnlyExpress && !item.isExpress) return false;
+
+
+        // Verified Pro Filter
+
+        if (filterOnlyPro && !item.isVerifiedPro) return false;
+
+
+        return catMatch && sMatch && subMatch;
+
+      });
+
+
+      // Sort: Featured items (Top 3 Priority Listings) come first
+
+      filtered.sort((a, b) => {
+
+        if (a.isFeatured && !b.isFeatured) return -1;
+
+        if (!a.isFeatured && b.isFeatured) return 1;
+
+        return 0;
 
       });
 
@@ -2218,11 +4204,27 @@
       }
 
 
-      filtered.forEach(item => {
+      filtered.forEach((item, index) => {
 
         const card = document.createElement('div');
 
-        card.className = 'card';
+        const isFeatured = item.isFeatured === true;
+
+        card.className = 'card' + (isFeatured ? ' featured-card' : '');
+
+
+        const isHouseRental = (item.category || '').includes('வாடகை வீடுகள்') || (item.category || '').toLowerCase().includes('rental');
+
+        const isFav = favs.includes(item.id);
+
+
+        let featuredStripHtml = '';
+
+        if (isFeatured) {
+
+          featuredStripHtml = `<div class="featured-listing-strip">👑 FEATURED • முன்னுரிமை விளம்பரம் (Top Listing #${index+1})</div>`;
+
+        }
 
 
         let imageBannerHtml = '';
@@ -2244,7 +4246,60 @@
         }
 
 
-        const isHouseRental = (item.category || '').includes('வாடகை வீடுகள்') || (item.category || '').toLowerCase().includes('rental');
+        // Amenities Badges HTML
+
+        let amenitiesHtml = '';
+
+        if (isHouseRental) {
+
+          const amList = item.amenities || ["0% Brokerage", "🚗 Car Parking", "💧 24/7 Water", "👨‍👩‍👧 Family Only"];
+
+          amenitiesHtml = `<div class="amenities-row">` + amList.map(a => `<span class="amenity-tag">${a}</span>`).join('') + `</div>`;
+
+        }
+
+
+        // Status & Availability Badge
+
+        let statusBadgeHtml = '';
+
+        if (isHouseRental) {
+
+          statusBadgeHtml = item.isRented ?
+
+            `<span class="status-badge status-rented">🔴 வாடகைக்கு போய்விட்டது (Rented Out)</span>` :
+
+            `<span class="status-badge status-available"><span class="dot-pulse"></span>🟢 காலியாக உள்ளது (Available)</span>`;
+
+        } else {
+
+          statusBadgeHtml = (item.isAvailable !== false) ?
+
+            `<span class="status-badge status-available"><span class="dot-pulse"></span>🟢 Available Now (பணியில் தயார்)</span>` :
+
+            `<span class="status-badge status-busy">⚪ தற்போது பிஸி (Busy)</span>`;
+
+        }
+
+
+        // Badges: Pro & Express
+
+        let badgesHtml = '';
+
+        if (item.isVerifiedPro !== false) {
+
+          badgesHtml += `<span class="badge badge-pro">🌟 Verified Pro</span> `;
+
+        }
+
+        if (item.isExpress) {
+
+          badgesHtml += `<span class="badge badge-express">⚡ 30 Mins Express</span> `;
+
+        }
+
+        badgesHtml += `<span class="badge">${getDisplayCategory(item.category)}</span>`;
+
 
         const actionBtnLabel = isHouseRental ?
 
@@ -2264,7 +4319,14 @@
           `வணக்கம் ${item.name}, Fixr ஆப்பில் உங்கள் சேவையைப் பார்த்தேன்.`;
 
 
+        const mapUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(item.name + ' ' + item.area + ', Tamil Nadu')}`;
+
+        const reviewCount = getReviewCount(item.id);
+
+
         card.innerHTML = `
+
+          ${featuredStripHtml}
 
           ${imageBannerHtml}
 
@@ -2272,21 +4334,41 @@
 
             <div>
 
-              <div class="name">${item.name}</div>
+              <div style="display:flex; align-items:center; gap:6px;">
+
+                <div class="name">${item.name}</div>
+
+                <button type="button" class="fav-btn" onclick="toggleFavorite('${item.id}')" title="Save Favorite">${isFav ? '❤️' : '🤍'}</button>
+
+              </div>
 
               <div class="details">📍 ${item.area}</div>
 
+              <div style="margin-top:4px;">${statusBadgeHtml}</div>
+
             </div>
 
-            <span class="badge">${getDisplayCategory(item.category)}</span>
+            <div style="display:flex; flex-direction:column; align-items:flex-end; gap:4px;">
+
+              ${badgesHtml}
+
+            </div>
 
           </div>
+
+          ${amenitiesHtml}
 
           <div style="font-size:12px; color:#475569; margin: 6px 0;">${getDisplayDesc(item.desc)}</div>
 
           <div class="rating-row">
 
-            <span class="rating">${item.rating || '★ 5.0'}</span>
+            <div class="rating-badge-btn" onclick="openReviewsModal('${item.id}')" title="வாடிக்கையாளர் அனுபவம் பார்க்க">
+
+              <span class="rating-star">${item.rating || '★ 5.0'}</span>
+
+              <span class="rating-reviews">💬 அனுபவங்கள் (${reviewCount} Reviews)</span>
+
+            </div>
 
             <span class="price">${getDisplayPrice(item.price)}</span>
 
@@ -2294,7 +4376,11 @@
 
           <div class="actions">
 
-            <button class="btn btn-book" onclick="${actionBtnOnClick}">${actionBtnLabel}</button>
+            <button class="btn btn-book" onclick="${actionBtnOnClick}" ${item.isRented ? 'style="opacity:0.6;"' : ''}>${item.isRented ? 'வாடகைக்கு போனது' : actionBtnLabel}</button>
+
+            <button class="btn btn-id" onclick="openDigitalIdModal('${item.id}')" title="Fixr Verified Partner Digital ID">🪪 ID கார்டு</button>
+
+            <a href="${mapUrl}" target="_blank" class="btn btn-map" title="Google Maps வழிகாட்டி (Directions)">📍 வழிகாட்டி</a>
 
             <a href="tel:${item.phone}" class="btn btn-call" title="Call">📞</a>
 
@@ -2319,6 +4405,10 @@
 
       document.getElementById('bookTechSummary').innerText = `${selectedBookingTech.name} (${getDisplayCategory(selectedBookingTech.category)})`;
 
+      const expressCheck = document.getElementById('bookExpressCheck');
+
+      if (expressCheck) expressCheck.checked = selectedBookingTech.isExpress ? true : false;
+
       openModal('bookingModal');
 
     }
@@ -2334,6 +4424,8 @@
 
       const notes = document.getElementById('bookNotes').value.trim();
 
+      const isExpress = document.getElementById('bookExpressCheck') && document.getElementById('bookExpressCheck').checked;
+
 
       if (!date || !addr) {
 
@@ -2344,7 +4436,17 @@
       }
 
 
-      const msg = `வணக்கம் ${selectedBookingTech.name}! நான் Fixr ஆப் மூலம் சேவை முன்பதிவு செய்துள்ளேன்:
+      let msg = '';
+
+      if (isExpress) {
+
+        msg += `🚨 *அவசர சேவை கோரிக்கை (EMERGENCY 30 MINS EXPRESS SERVICE)* 🚨\n\n`;
+
+      }
+
+      msg += `வணக்கம் ${selectedBookingTech.name}! நான் Fixr ஆப் மூலம் சேவை முன்பதிவு செய்துள்ளேன்:
+
+• சேவை வகை: ${isExpress ? '⚡ 30 நிமிட எக்ஸ்பிரஸ் அவசர சேவை' : 'சாதாரண முன்பதிவு'}
 
 • தேதி: ${date}
 
@@ -2358,6 +4460,649 @@
       window.open(`https://wa.me/91${selectedBookingTech.phone}?text=${encodeURIComponent(msg)}`, '_blank');
 
       closeModal('bookingModal');
+
+    }
+
+
+    // Availability Filter Toggle
+
+    function toggleAvailabilityFilter() {
+
+      filterOnlyAvailable = !filterOnlyAvailable;
+
+      const c = document.getElementById('availToggleContainer');
+
+      const s = document.getElementById('availToggleStatus');
+
+      if (c) c.classList.toggle('active', filterOnlyAvailable);
+
+      if (s) s.innerText = filterOnlyAvailable ? 'ON' : 'OFF';
+
+      render();
+
+    }
+
+
+    // Express Filter Toggle
+
+    function toggleExpressFilter() {
+
+      filterOnlyExpress = !filterOnlyExpress;
+
+      const b = document.getElementById('expressFilterBtn');
+
+      if (b) b.classList.toggle('active', filterOnlyExpress);
+
+      const stripText = document.getElementById('expressStripText');
+
+      const stripTag = document.getElementById('expressStripTag');
+
+      if (stripText) {
+
+        stripText.innerText = filterOnlyExpress ?
+
+          '⚡ 30 Mins Express சேவை வழங்கும் டெக்னீசியன்கள் மட்டுமே காட்டப்படுகிறார்கள்!' :
+
+          '30 Mins Express சேவை: பிளம்பர், எலக்ட்ரீஷியன் & AC பழுது நீக்க உடனடியாக அழைக்க!';
+
+      }
+
+      if (stripTag) {
+
+        stripTag.innerText = filterOnlyExpress ? 'அனைத்தும் பார்க்க ✕' : 'அவசர சேவை ➔';
+
+      }
+
+      render();
+
+    }
+
+
+    // Pro Filter Toggle
+
+    function toggleProFilter() {
+
+      filterOnlyPro = !filterOnlyPro;
+
+      const b = document.getElementById('proFilterBtn');
+
+      if (b) b.classList.toggle('active', filterOnlyPro);
+
+      render();
+
+    }
+
+
+    // Customer Reviews & Experience Modal Logic
+
+    function openReviewsModal(serviceId) {
+
+      currentReviewServiceId = serviceId;
+
+      const item = liveServicesList.find(x => x.id === serviceId);
+
+      if (!item) return;
+
+
+      const sub = document.getElementById('reviewsModalSub');
+
+      if (sub) sub.innerText = `${item.name} (${getDisplayCategory(item.category)}) - வாடிக்கையாளர் அனுபவங்கள்`;
+
+
+      renderReviewsList(serviceId);
+
+      openModal('reviewsModal');
+
+    }
+
+
+    function renderReviewsList(serviceId) {
+
+      const c = document.getElementById('reviewsListContainer');
+
+      if (!c) return;
+
+      const reviews = getAllReviews(serviceId);
+
+     
+
+      if (reviews.length === 0) {
+
+        c.innerHTML = `<div style="text-align:center; padding:20px; color:#94a3b8; font-size:12px;">இன்னும் விமர்சனங்கள் இல்லை. உங்கள் முதல் அனுபவத்தைப் பகிரவும்!</div>`;
+
+        return;
+
+      }
+
+
+      let html = '';
+
+      reviews.forEach(r => {
+
+        const starCount = r.rating || 5;
+
+        const stars = '★'.repeat(starCount) + '☆'.repeat(5 - starCount);
+
+        html += `
+
+          <div class="review-item">
+
+            <div class="review-header">
+
+              <span class="review-author">👤 ${r.name} <span style="font-size:10px; color:#64748b; font-weight:normal;">(${r.area})</span></span>
+
+              <span class="review-date">${r.date || 'சமீபத்தில்'}</span>
+
+            </div>
+
+            <div class="review-stars">${stars}</div>
+
+            <div class="review-comment">${r.comment}</div>
+
+          </div>
+
+        `;
+
+      });
+
+      c.innerHTML = html;
+
+    }
+
+
+    function setSelectRating(val) {
+
+      currentReviewRating = val;
+
+      const btns = document.querySelectorAll('#starRatingSelect .star-btn');
+
+      btns.forEach((b, i) => {
+
+        b.classList.toggle('active', i < val);
+
+      });
+
+    }
+
+
+    function submitCustomerReview() {
+
+      if (!currentReviewServiceId) return;
+
+      const name = document.getElementById('revUserName').value.trim();
+
+      const area = document.getElementById('revUserArea').value.trim();
+
+      const comment = document.getElementById('revUserComment').value.trim();
+
+
+      if (!name || !comment) {
+
+        alert(currentLang === 'ta' ? 'தயவுசெய்து உங்கள் பெயர் மற்றும் அனுபவக் கருத்தை உள்ளிடவும்.' : 'Please enter your name and comment.');
+
+        return;
+
+      }
+
+
+      const userReviews = JSON.parse(localStorage.getItem('fixr_customer_reviews') || '{}');
+
+      if (!userReviews[currentReviewServiceId]) {
+
+        userReviews[currentReviewServiceId] = [];
+
+      }
+
+      userReviews[currentReviewServiceId].unshift({
+
+        name,
+
+        area: area || 'தமிழ்நாடு',
+
+        rating: currentReviewRating,
+
+        date: 'இப்போது',
+
+        comment
+
+      });
+
+      localStorage.setItem('fixr_customer_reviews', JSON.stringify(userReviews));
+
+
+      document.getElementById('revUserName').value = '';
+
+      document.getElementById('revUserArea').value = '';
+
+      document.getElementById('revUserComment').value = '';
+
+
+      renderReviewsList(currentReviewServiceId);
+
+      render();
+
+      alert(currentLang === 'ta' ? 'நன்றி! உங்கள் அனுபவம் வெற்றிகரமாக பதிவு செய்யப்பட்டது.' : 'Thank you! Your review has been submitted.');
+
+    }
+
+
+    // Fixr Verified Partner Digital ID Card Modal
+
+   
+
+    let currentDigitalIdItem = null;
+
+
+    function toggleDigitalIdStatus() {
+
+      if (!currentDigitalIdItem) return;
+
+      currentDigitalIdItem.isAvailable = (currentDigitalIdItem.isAvailable === false) ? true : false;
+
+      try {
+
+        if (db) db.collection('services').doc(currentDigitalIdItem.id).update({ isAvailable: currentDigitalIdItem.isAvailable });
+
+      } catch(e) {}
+
+      localStorage.setItem('fixr_services_cached', JSON.stringify(liveServicesList));
+
+      openDigitalIdModal(currentDigitalIdItem.id);
+
+      render();
+
+      renderAdminList();
+
+    }
+
+
+    function openDigitalIdModal(serviceId) {
+
+      currentDigitalIdItem = liveServicesList.find(x => x.id === serviceId);
+
+      const item = liveServicesList.find(x => x.id === serviceId);
+
+      if (!item) return;
+
+
+      const partnerId = item.partnerId || ('FIXR-TN-2026-' + (item.id.replace(/\D/g, '') || '0884').padStart(4, '0'));
+
+      document.getElementById('idCardName').innerText = item.name;
+
+      document.getElementById('idCardTrade').innerText = getDisplayCategory(item.category);
+
+      document.getElementById('idCardNumber').innerText = partnerId;
+
+      document.getElementById('idCardArea').innerText = item.area;
+
+      document.getElementById('idCardRating').innerText = `${item.rating || '★ 5.0'} (${getReviewCount(item.id)}+ வாடிக்கையாளர் மதிப்புரைகள்)`;
+
+     
+
+      const availText = (item.isAvailable !== false && !item.isRented) ? '🟢 பணியில் தயார் (Available Now)' : '⚪ தற்போது பிஸி (Busy)';
+
+      document.getElementById('idCardAvail').innerText = availText;
+
+
+      const expressBadge = document.getElementById('idCardExpressBadge');
+
+      if (expressBadge) {
+
+        expressBadge.style.display = item.isExpress ? 'inline-block' : 'none';
+
+      }
+
+
+      const photoWrap = document.getElementById('idCardPhotoWrap');
+
+      if (photoWrap) {
+
+        if (item.houseImages && item.houseImages.length > 0) {
+
+          photoWrap.innerHTML = `<img src="${item.houseImages[0]}" alt="${item.name}">`;
+
+        } else {
+
+          const iconMap = {
+
+            'பிளம்பர்': '🔧', 'எலக்ட்ரீஷியன்': '⚡', 'AC சர்வீஸ்': '❄️', 'RO சர்வீஸ்': '💧',
+
+            'இன்வெர்ட்டர் & பேட்டரி': '🔋', 'கேர் டேக்கர்': '🤝', 'வாடகை வீடுகள்': '🏠'
+
+          };
+
+          photoWrap.innerHTML = `<span style="font-size:36px;">${iconMap[item.category] || '👷'}</span>`;
+
+        }
+
+      }
+
+
+      const qrImg = document.getElementById('idCardQrImg');
+
+      if (qrImg) {
+
+        qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${encodeURIComponent('https://www.fixrservice.in/partner/' + partnerId)}`;
+
+      }
+
+
+      const callBtn = document.getElementById('idCardCallBtn');
+
+      if (callBtn) callBtn.href = `tel:${item.phone}`;
+
+
+      const waBtn = document.getElementById('idCardWaBtn');
+
+      if (waBtn) {
+
+        const waMsg = `வணக்கம் ${item.name}! Fixr ஆப்பில் உங்கள் Verified Partner Digital ID கார்டைப் பார்த்தேன் (${partnerId}). எனக்கு சேவை தேவைப்படுகிறது.`;
+
+        waBtn.href = `https://wa.me/91${item.phone}?text=${encodeURIComponent(waMsg)}`;
+
+      }
+
+
+      openModal('digitalIdModal');
+
+    }
+
+
+    function shareDigitalId() {
+
+      const name = document.getElementById('idCardName').innerText;
+
+      const num = document.getElementById('idCardNumber').innerText;
+
+      const shareText = `Fixr சரிபார்க்கப்பட்ட பார்ட்னர்: ${name} (${num})\nஉடனடி சேவைக்கு Fixr ஆப் பார்க்கவும்: https://www.fixrservice.in`;
+
+      if (navigator.share) {
+
+        navigator.share({ title: 'Fixr Digital ID', text: shareText }).catch(() => {});
+
+      } else {
+
+        navigator.clipboard.writeText(shareText);
+
+        alert(currentLang === 'ta' ? 'Digital ID விவரங்கள் கிளிப்போர்டில் நகலெடுக்கப்பட்டது!' : 'Digital ID details copied to clipboard!');
+
+      }
+
+    }
+
+
+    // Featured / Top Listing Modal Logic
+
+    function openFeaturedPromoModal() {
+
+      openModal('featuredPromoModal');
+
+    }
+
+
+    function selectBoostPlan(amt, dur) {
+
+      currentBoostPlan = { amount: amt, duration: dur };
+
+      document.querySelectorAll('.boost-plan-card').forEach(c => c.classList.remove('selected'));
+
+      const card = document.getElementById('plan' + amt);
+
+      if (card) card.classList.add('selected');
+
+      const amtEl = document.getElementById('boostPlanAmount');
+
+      if (amtEl) amtEl.innerText = `₹${amt} Only`;
+
+    }
+
+
+    function triggerBoostUpi(app) {
+
+      const amt = currentBoostPlan.amount;
+
+      const upiId = ADMIN_UPI_ID;
+
+      const name = "Fixr Promotions";
+
+      const note = `Fixr_Featured_Listing_${currentBoostPlan.duration}`;
+
+      const upiUrl = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(name)}&am=${amt}&cu=INR&tn=${encodeURIComponent(note)}`;
+
+      window.location.href = upiUrl;
+
+    }
+
+
+    function submitBoostRequest() {
+
+      const house = document.getElementById('boostHouseName').value.trim();
+
+      const phone = document.getElementById('boostOwnerPhone').value.trim();
+
+      if (!house || !phone) {
+
+        alert(currentLang === 'ta' ? 'வீட்டின் பெயர் மற்றும் தொலைபேசி எண்ணை உள்ளிடவும்.' : 'Please enter House Name and Phone number.');
+
+        return;
+
+      }
+
+      const msg = `வணக்கம் Fixr அட்மின்! எனது வாடகை வீட்டை முதல் 3 இடங்களில் முன்னிறுத்த (Top Listing) விரும்புகிறேன்:
+
+• திட்டம்: ₹${currentBoostPlan.amount} (${currentBoostPlan.duration})
+
+• வீடு/பகுதி: ${house}
+
+• உரிமையாளர் எண்: ${phone}
+
+• UPI பணம் செலுத்தப்பட்டது. தயவுசெய்து எனது விளம்பரத்தை ஆக்டிவேட் செய்யவும்.`;
+
+
+      window.open(`https://wa.me/91${ADMIN_PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
+
+      closeModal('featuredPromoModal');
+
+      alert(currentLang === 'ta' ? 'உங்கள் கோரிக்கை அனுப்பப்பட்டது! அட்மின் சரிபார்த்து உடனே முன்னுரிமைப் பட்டியலில் சேர்ப்பார்.' : 'Your request has been sent! Admin will verify and activate top listing.');
+
+    }
+
+
+    function toggleAdminBoost(id) {
+
+      const item = liveServicesList.find(x => x.id === id);
+
+      if (!item) return;
+
+      item.isFeatured = !item.isFeatured;
+
+      try {
+
+        if (db) db.collection('services').doc(id).update({ isFeatured: item.isFeatured });
+
+      } catch(e) {}
+
+      localStorage.setItem('fixr_services_cached', JSON.stringify(liveServicesList));
+
+      render();
+
+      renderAdminList();
+
+      alert(item.isFeatured ? '👑 இந்த சேவை முதல் 3 முன்னுரிமை இடங்களில் சேர்க்கப்பட்டது!' : 'முன்னுரிமை விளம்பரம் நீக்கப்பட்டது.');
+
+    }
+
+
+    function toggleAdminAvailability(id) {
+
+      const item = liveServicesList.find(x => x.id === id);
+
+      if (!item) return;
+
+      item.isAvailable = item.isAvailable === false ? true : false;
+
+      try {
+
+        if (db) db.collection('services').doc(id).update({ isAvailable: item.isAvailable });
+
+      } catch(e) {}
+
+      localStorage.setItem('fixr_services_cached', JSON.stringify(liveServicesList));
+
+      render();
+
+      renderAdminList();
+
+    }
+
+
+    // PWA & Favorites Logic
+
+    let deferredPrompt = null;
+
+    let currentRentalSubFilter = 'all';
+
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+
+      e.preventDefault();
+
+      deferredPrompt = e;
+
+      const b = document.getElementById('pwaBanner');
+
+      if (b) b.style.display = 'flex';
+
+      const hb = document.getElementById('headerInstallBtn');
+
+      if (hb) hb.style.display = 'inline-flex';
+
+    });
+
+
+    function installPwaApp() {
+
+      if (deferredPrompt) {
+
+        deferredPrompt.prompt();
+
+        deferredPrompt.userChoice.then(() => {
+
+          deferredPrompt = null;
+
+          dismissPwaBanner();
+
+        });
+
+      } else {
+
+        openModal('pwaInstallModal');
+
+      }
+
+    }
+
+
+    function triggerNativeInstall() {
+
+      if (deferredPrompt) {
+
+        deferredPrompt.prompt();
+
+        deferredPrompt.userChoice.then(() => {
+
+          deferredPrompt = null;
+
+          dismissPwaBanner();
+
+          closeModal('pwaInstallModal');
+
+        });
+
+      } else {
+
+        alert(currentLang === 'ta' ? 'பிரவுசர் மெனுவில் (⋮) சென்று "Add to Home screen" என்பதைத் தேர்ந்தெடுக்கவும்.' : 'Go to browser menu (⋮) and tap "Add to Home screen".');
+
+      }
+
+    }
+
+
+    function dismissPwaBanner() {
+
+      const b = document.getElementById('pwaBanner');
+
+      if (b) b.style.display = 'none';
+
+    }
+
+
+    function toggleFavorite(id) {
+
+      let favs = JSON.parse(localStorage.getItem('fixr_favs') || '[]');
+
+      if (favs.includes(id)) {
+
+        favs = favs.filter(x => x !== id);
+
+      } else {
+
+        favs.push(id);
+
+      }
+
+      localStorage.setItem('fixr_favs', JSON.stringify(favs));
+
+      render();
+
+    }
+
+
+    function setRentalFilter(sub) {
+
+      currentRentalSubFilter = sub;
+
+      document.querySelectorAll('.sub-chip').forEach(c => c.classList.remove('active'));
+
+      if (event && event.target) event.target.classList.add('active');
+
+      render();
+
+    }
+
+
+    async function toggleRentalStatus(id) {
+
+      const item = liveServicesList.find(x => x.id === id);
+
+      if (!item) return;
+
+      const newStatus = !item.isRented;
+
+      const msg = newStatus ? 'இந்த வீட்டை "வாடகைக்கு போய்விட்டது (Rented Out)" என மாற்ற விரும்புகிறீர்களா?' : 'இந்த வீட்டை "காலியாக உள்ளது (Available)" என மாற்ற விரும்புகிறீர்களா?';
+
+      if (!confirm(msg)) return;
+
+
+      try {
+
+        if (db) await db.collection('services').doc(id).update({ isRented: newStatus });
+
+      } catch (e) {
+
+        console.warn("Offline fallback for rental toggle:", e);
+
+      }
+
+      item.isRented = newStatus;
+
+      localStorage.setItem('fixr_services_cached', JSON.stringify(liveServicesList));
+
+      render();
+
+      renderAdminList();
+
+      alert(newStatus ? '🔴 வீடு வாடகைக்கு போய்விட்டது என மாற்றப்பட்டது!' : '🟢 வீடு இப்போது காலியாக உள்ளது என மாற்றப்பட்டது!');
 
     }
 
@@ -2577,20 +5322,3 @@
 </body>
 
 </html>
-<div class="toggle-pill" id="availToggleContainer" onclick="toggleAvailabilityFilter()">
-  <span class="toggle-icon">🟢</span>
-  <span class="toggle-text" id="availToggleText">Available Only (பணியில் உள்ளவர்கள்)</span>
-  <span class="toggle-status" id="availToggleStatus">OFF</span>
-</div>
-<div class="express-emergency-strip" id="expressEmergencyStrip" onclick="toggleExpressFilter()">
-  <span>⚡ 30 Mins Express சேவை: பிளம்பர், எலக்ட்ரீஷியன் & AC பழுது நீக்க உடனடியாக அழைக்க!</span>
-  <span class="express-strip-tag">அவசர சேவை ➔</span>
-</div>
-<input type="checkbox" id="bookExpressCheck">
-<span>⚡ அவசர சேவை தேவை (30 நிமிடங்களில் வருகை / 30 Mins Express)</span>
-<input type="checkbox" id="bookExpressCheck">
-<span>⚡ அவசர சேவை தேவை (30 நிமிடங்களில் வருகை / 30 Mins Express)</span>
-<div class="rating-badge-btn" onclick="openReviewsModal('${item.id}')">
-  <span class="rating-star">★ 4.9</span>
-  <span class="rating-reviews">💬 அனுபவங்கள் (${reviewCount} Reviews)</span>
-</div>
