@@ -2624,6 +2624,77 @@
 
       </div>
 
+      <div class="form-group">
+
+        <label>மாத வாடகை & முன்பணம் (Rent & Advance)</label>
+
+        <input type="text" id="boostRentPrice" class="form-input" placeholder="எ.கா: ₹12,000/மாதம் (அட்வான்ஸ் ₹50,000)">
+
+      </div>
+
+
+      <!-- வீட்டுப் புகைப்படங்கள் பதிவேற்றம் (House Photos Upload - Max 5) -->
+
+      <div style="margin: 12px 0; background: #eff6ff; padding: 12px; border-radius: 12px; border: 1.5px dashed #3b82f6;">
+
+        <div style="font-size: 13px; font-weight: bold; color: #1d4ed8; margin-bottom: 4px; display:flex; justify-content:space-between; align-items:center;">
+
+          <span>🏠 வீட்டுப் புகைப்படங்கள் (House Photos - Max 5):</span>
+
+          <span id="boostPhotoCountBadge" style="font-size:10px; background:#3b82f6; color:white; padding:1px 6px; border-radius:10px;">0 படங்கள்</span>
+
+        </div>
+
+        <div style="font-size: 11px; color: #475569; margin-bottom: 8px;">
+
+          ஹால், படுக்கையறை, சமையலறை மற்றும் வெளித்தோற்றப் படங்களை தேர்ந்தெடுக்கவும் (Upload Hall, Bedroom, Kitchen photos):
+
+        </div>
+
+        <input type="file" id="boostHousePhotos" accept="image/*" multiple class="form-input" style="background:white; padding:6px; font-size:12px;" onchange="previewBoostHousePhotos(this)">
+
+        <div id="boostHousePreviewGrid" style="display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;"></div>
+
+      </div>
+
+
+      <!-- வீட்டு வசதிகள் (Amenities) -->
+
+      <div style="margin-bottom: 12px; background: white; padding: 10px; border-radius: 10px; border: 1px solid #cbd5e1;">
+
+        <label style="font-size:11.5px; font-weight:bold; color:#1e293b; display:block; margin-bottom:6px;">வீட்டு வசதிகள் (Amenities):</label>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; font-size:11px; color:#334155;">
+
+          <label><input type="checkbox" id="boostAmenityParking" value="🚗 Car Parking" checked> 🚗 Car Parking</label>
+
+          <label><input type="checkbox" id="boostAmenityWater" value="💧 24/7 Water" checked> 💧 24/7 குடிநீர்</label>
+
+          <label><input type="checkbox" id="boostAmenityLift" value="🏢 Lift"> 🏢 Lift வசதி</label>
+
+          <label><input type="checkbox" id="boostAmenityFamily" value="👨‍👩‍👧 Family Only" checked> 👨‍👩‍👧 குடும்பம் மட்டும்</label>
+
+        </div>
+
+      </div>
+
+
+      <!-- கட்டண ரசீது அப்லோட் (Payment Proof Screenshot) -->
+
+      <div style="margin-bottom: 12px; background: #f0fdf4; padding: 10px; border-radius: 10px; border: 1px dashed #22c55e;">
+
+        <label style="font-size:12px; font-weight:bold; color:#15803d; display:block; margin-bottom:4px;">
+
+          💳 UPI கட்டண ரசீது ஸ்கிரீன்ஷாட் (Payment Screenshot):
+
+        </label>
+
+        <input type="file" id="boostPaymentProof" accept="image/*" class="form-input" style="background:white; padding:5px; font-size:11px;" onchange="handleBoostPaymentProof(this)">
+
+        <div id="boostProofStatus" style="font-size:11px; color:#16a34a; margin-top:4px; display:none; font-weight:bold;">✅ ரசீது இணைக்கப்பட்டது</div>
+
+      </div>
+
 
       <button class="submit-btn" style="background:#d97706;" onclick="submitBoostRequest()">
 
@@ -4874,11 +4945,78 @@
     }
 
 
+    let boostUploadedHouseImages = [];
+
+
+    function previewBoostHousePhotos(input) {
+
+      const container = document.getElementById('boostHousePreviewGrid');
+
+      const badge = document.getElementById('boostPhotoCountBadge');
+
+      if (!container) return;
+
+      container.innerHTML = '';
+
+      boostUploadedHouseImages = [];
+
+      if (!input.files || input.files.length === 0) {
+
+        if (badge) badge.innerText = '0 படங்கள்';
+
+        return;
+
+      }
+
+      const files = Array.from(input.files).slice(0, 5);
+
+      if (badge) badge.innerText = `${files.length} படங்கள்`;
+
+      files.forEach(file => {
+
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+
+          boostUploadedHouseImages.push(e.target.result);
+
+          const img = document.createElement('img');
+
+          img.src = e.target.result;
+
+          img.className = 'house-preview-thumb';
+
+          container.appendChild(img);
+
+        };
+
+        reader.readAsDataURL(file);
+
+      });
+
+    }
+
+
+    function handleBoostPaymentProof(input) {
+
+      const status = document.getElementById('boostProofStatus');
+
+      if (status) {
+
+        status.style.display = (input.files && input.files.length > 0) ? 'block' : 'none';
+
+      }
+
+    }
+
+
     function submitBoostRequest() {
 
       const house = document.getElementById('boostHouseName').value.trim();
 
       const phone = document.getElementById('boostOwnerPhone').value.trim();
+
+      const rent = document.getElementById('boostRentPrice') ? document.getElementById('boostRentPrice').value.trim() : '';
 
       if (!house || !phone) {
 
@@ -4888,13 +5026,103 @@
 
       }
 
-      const msg = `வணக்கம் Fixr அட்மின்! எனது வாடகை வீட்டை முதல் 3 இடங்களில் முன்னிறுத்த (Top Listing) விரும்புகிறேன்:
+
+      // Collect amenities
+
+      const am = [];
+
+      if (document.getElementById('boostAmenityParking') && document.getElementById('boostAmenityParking').checked) am.push("🚗 Car Parking");
+
+      if (document.getElementById('boostAmenityWater') && document.getElementById('boostAmenityWater').checked) am.push("💧 24/7 Water");
+
+      if (document.getElementById('boostAmenityLift') && document.getElementById('boostAmenityLift').checked) am.push("🏢 Lift");
+
+      if (document.getElementById('boostAmenityFamily') && document.getElementById('boostAmenityFamily').checked) am.push("👨‍👩‍👧 Family Only");
+
+
+      const photoCount = boostUploadedHouseImages.length;
+
+
+      // Add to liveServicesList immediately as #1 Top Featured Listing
+
+      const newBoostedId = 'boost-' + Date.now();
+
+      const defaultHouseImgs = [
+
+        "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=600&q=80",
+
+        "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80"
+
+      ];
+
+
+      const newListing = {
+
+        id: newBoostedId,
+
+        name: house,
+
+        category: "வாடகை வீடுகள்",
+
+        area: house.includes(',') ? house.split(',').slice(-1)[0].trim() : 'சென்னை (Chennai)',
+
+        phone: phone,
+
+        price: rent || '₹12,000/மாதம் (அட்வான்ஸ் ₹50,000)',
+
+        rating: '★ 5.0 (Top Featured)',
+
+        desc: `${house} - ${am.join(' • ')}`,
+
+        amenities: am.length > 0 ? am : ["0% Brokerage", "🚗 Car Parking", "💧 24/7 Water"],
+
+        isRented: false,
+
+        isFeatured: true,
+
+        featuredUntil: currentBoostPlan.duration,
+
+        isVerifiedPro: true,
+
+        isAvailable: true,
+
+        houseImages: boostUploadedHouseImages.length > 0 ? boostUploadedHouseImages : defaultHouseImgs
+
+      };
+
+
+      liveServicesList.unshift(newListing);
+
+      localStorage.setItem('fixr_services_cached', JSON.stringify(liveServicesList));
+
+
+      try {
+
+        if (db) db.collection('services').doc(newBoostedId).set(newListing);
+
+      } catch(e) {}
+
+
+      currentCategory = 'வாடகை வீடுகள்';
+
+      renderCategories();
+
+      render();
+
+
+      const msg = `வணக்கம் Fixr அட்மின்! எனது வாடகை வீட்டை முதல் 3 இடங்களில் முன்னிறுத்த (Top Listing) பணம் செலுத்தி விளம்பரம் செய்துள்ளேன்:
 
 • திட்டம்: ₹${currentBoostPlan.amount} (${currentBoostPlan.duration})
 
-• வீடு/பகுதி: ${house}
+• வீடு/முகவரி: ${house}
 
 • உரிமையாளர் எண்: ${phone}
+
+• வாடகை விவரம்: ${rent || 'தெரிவிக்கப்பட்டது'}
+
+• வசதிகள்: ${am.join(', ')}
+
+• பதிவேற்றப்பட்ட புகைப்படங்கள்: ${photoCount} படங்கள்
 
 • UPI பணம் செலுத்தப்பட்டது. தயவுசெய்து எனது விளம்பரத்தை ஆக்டிவேட் செய்யவும்.`;
 
@@ -4903,7 +5131,7 @@
 
       closeModal('featuredPromoModal');
 
-      alert(currentLang === 'ta' ? 'உங்கள் கோரிக்கை அனுப்பப்பட்டது! அட்மின் சரிபார்த்து உடனே முன்னுரிமைப் பட்டியலில் சேர்ப்பார்.' : 'Your request has been sent! Admin will verify and activate top listing.');
+      alert(currentLang === 'ta' ? '🎉 உங்கள் வீடு முதல் 3 முன்னுரிமை இடங்களில் சேர்க்கப்பட்டது! வாட்ஸ்அப்பில் அட்மினுக்குப் புகைப்படங்களை அனுப்பவும்.' : '🎉 Your house is now boosted in Top 3 listings! Send house photos to Admin via WhatsApp.');
 
     }
 
