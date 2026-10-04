@@ -63,7 +63,7 @@
     .user-profile { font-size: 11px; color: #38bdf8; font-weight: bold; display: flex; align-items: center; gap: 4px; background: #1e293b; padding: 4px 10px; border-radius: 16px; }
 
 
-    .sync-bar { background: #e0f2fe; color: #0369a1; padding: 4px 16px; font-size: 11px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #bae6fd; }
+    .sync-bar { display: none !important; }
 
     .search-box { padding: 12px 16px 4px; }
 
@@ -628,19 +628,19 @@
     }
 
 
-    /* Featured / Top Listing Promo Banner */
+    /* Compact Featured / Top Listing Promo Banner */
 
     .featured-promo-banner {
 
-      margin: 8px 16px 12px;
+      margin: 4px 16px 6px;
 
       background: linear-gradient(135deg, #fffbeb, #fef3c7);
 
-      border: 1.5px solid #fcd34d;
+      border: 1px solid #fcd34d;
 
-      border-radius: 14px;
+      border-radius: 10px;
 
-      padding: 10px 14px;
+      padding: 6px 10px;
 
       display: flex;
 
@@ -648,23 +648,23 @@
 
       align-items: center;
 
-      gap: 10px;
+      gap: 8px;
 
       cursor: pointer;
 
-      box-shadow: 0 2px 8px rgba(245, 158, 11, 0.12);
+      box-shadow: 0 1px 4px rgba(245, 158, 11, 0.1);
 
-      transition: transform 0.15s ease;
+      transition: all 0.15s ease;
 
     }
 
     .featured-promo-banner:hover { transform: translateY(-1px); }
 
-    .featured-banner-left { display: flex; align-items: center; gap: 10px; }
+    .featured-banner-left { display: flex; align-items: center; gap: 6px; flex: 1; }
 
-    .featured-banner-title { font-size: 12px; font-weight: 800; color: #92400e; }
+    .featured-banner-title { font-size: 11px; font-weight: 800; color: #92400e; line-height: 1.2; }
 
-    .featured-banner-desc { font-size: 10.5px; color: #b45309; margin-top: 1px; }
+    .featured-banner-desc { font-size: 9.5px; color: #b45309; margin-top: 1px; line-height: 1.2; }
 
     .boost-btn {
 
@@ -674,19 +674,19 @@
 
       border: none;
 
-      padding: 6px 12px;
+      padding: 4px 9px;
 
-      border-radius: 12px;
+      border-radius: 8px;
 
       font-weight: 800;
 
-      font-size: 11px;
+      font-size: 10px;
 
       cursor: pointer;
 
       white-space: nowrap;
 
-      box-shadow: 0 2px 6px rgba(217, 119, 6, 0.35);
+      box-shadow: 0 1px 3px rgba(217, 119, 6, 0.25);
 
     }
 
@@ -1774,7 +1774,7 @@
 
   <!-- Live Cloud Sync Status -->
 
-  <div class="sync-bar">
+  <div class="sync-bar" style="display: none !important;">
 
     <span id="cloudStatusText">☁️ Google Cloud Database: இணைக்கப்பட்டது (Online)</span>
 
@@ -1798,6 +1798,20 @@
 
     <div class="city-chip active" id="cityChipAll" onclick="setCityFilter('all')">📍 அனைத்து ஊர்கள்</div>
 
+    <div class="city-chip" id="cityChipChennai" onclick="setCityFilter('சென்னை')">சென்னை (Chennai)</div>
+
+    <div class="city-chip" id="cityChipCbe" onclick="setCityFilter('கோயம்புத்தூர்')">கோவை (Coimbatore)</div>
+
+    <div class="city-chip" id="cityChipMadurai" onclick="setCityFilter('மதுரை')">மதுரை (Madurai)</div>
+
+    <div class="city-chip" id="cityChipTrichy" onclick="setCityFilter('திருச்சி')">திருச்சி (Trichy)</div>
+
+    <div class="city-chip" id="cityChipSalem" onclick="setCityFilter('சேலம்')">சேலம் (Salem)</div>
+
+    <div class="city-chip" id="cityChipBlr" onclick="setCityFilter('பெங்களூரு')">பெங்களூரு (Bengaluru)</div>
+
+  </div>
+
 
   <!-- Move-in Relocation Services Banner (வீடு மாறுவோர் சேவைகள்) -->
 
@@ -1809,29 +1823,15 @@
 
       <div>
 
-        <div style="font-size:12px; font-weight:800; color:#1e3a8a;">வீடு மாறுகிறீர்களா? (Move-in Services)</div>
+        <div style="font-size:12px; font-weight:800; color:#1e3a8a;" id="moveinBannerTitle">வீடு மாறுகிறீர்களா? (Move-in Services)</div>
 
-        <div style="font-size:10.5px; color:#1d4ed8;">பேக்கர்ஸ் & மூவர்ஸ் • வாடகை ஒப்பந்தம் • டீப் கிளீனிங்</div>
+        <div style="font-size:10.5px; color:#1d4ed8;" id="moveinBannerDesc">பேக்கர்ஸ் & மூவர்ஸ் • வாடகை ஒப்பந்தம் • டீப் கிளீனிங்</div>
 
       </div>
 
     </div>
 
-    <span class="movein-tag">பார்க்க ➔</span>
-
-  </div>
-
-    <div class="city-chip" onclick="setCityFilter('சென்னை')">சென்னை (Chennai)</div>
-
-    <div class="city-chip" onclick="setCityFilter('கோயம்புத்தூர்')">கோவை (Coimbatore)</div>
-
-    <div class="city-chip" onclick="setCityFilter('மதுரை')">மதுரை (Madurai)</div>
-
-    <div class="city-chip" onclick="setCityFilter('திருச்சி')">திருச்சி (Trichy)</div>
-
-    <div class="city-chip" onclick="setCityFilter('சேலம்')">சேலம் (Salem)</div>
-
-    <div class="city-chip" onclick="setCityFilter('பெங்களூரு')">பெங்களூரு (Bengaluru)</div>
+    <span class="movein-tag" id="moveinBannerTag">பார்க்க ➔</span>
 
   </div>
 
@@ -1883,7 +1883,7 @@
 
     </button>
 
-    <button class="action-pill-btn" style="border-color:#bae6fd; color:#0369a1;" onclick="openModal('rateCardModal')">
+    <button class="action-pill-btn" style="border-color:#bae6fd; color:#0369a1;" id="rateCardPillBtn" onclick="openModal('rateCardModal')">
 
       📋 கட்டண விவரம் (Rate Card)
 
@@ -1898,19 +1898,19 @@
 
     <div class="featured-banner-left">
 
-      <span style="font-size:24px;">👑</span>
+      <span style="font-size:18px;">👑</span>
 
       <div>
 
-        <div class="featured-banner-title">வீட்டை சீக்கிரம் வாடகைக்கு விட வேண்டுமா? (Top Listing)</div>
+        <div class="featured-banner-title" id="featuredBannerTitle">வீட்டை சீக்கிரம் வாடகைக்கு விட வேண்டுமா? (Top Listing)</div>
 
-        <div class="featured-banner-desc">முதல் 3 இடங்களில் உங்கள் வீட்டை முன்னிறுத்த சிறிய கட்டணம் (₹99 / 7 நாட்கள்)</div>
+        <div class="featured-banner-desc" id="featuredBannerDesc">முதல் 3 இடங்களில் உங்கள் வீட்டை முன்னிறுத்த சிறிய கட்டணம் (₹99 / 7 நாட்கள்)</div>
 
       </div>
 
     </div>
 
-    <button class="boost-btn">🚀 விளம்பரம் செய்க</button>
+    <button class="boost-btn" id="featuredBannerBtn">🚀 விளம்பரம் செய்க</button>
 
   </div>
 
@@ -1925,21 +1925,21 @@
 
     <div class="sub-chip active" id="chipSubAll" onclick="setRentalFilter('all')">அனைத்தும்</div>
 
-    <div class="sub-chip" onclick="setRentalFilter('1 BHK')">1 BHK</div>
+    <div class="sub-chip" id="chipSub1Bhk" onclick="setRentalFilter('1 BHK')">1 BHK</div>
 
-    <div class="sub-chip" onclick="setRentalFilter('2 BHK')">2 BHK</div>
+    <div class="sub-chip" id="chipSub2Bhk" onclick="setRentalFilter('2 BHK')">2 BHK</div>
 
-    <div class="sub-chip" onclick="setRentalFilter('3 BHK')">3 BHK</div>
+    <div class="sub-chip" id="chipSub3Bhk" onclick="setRentalFilter('3 BHK')">3 BHK</div>
 
-    <div class="sub-chip" onclick="setRentalFilter('தனி வீடு')">தனி வீடு</div>
+    <div class="sub-chip" id="chipSubHouse" onclick="setRentalFilter('தனி வீடு')">தனி வீடு</div>
 
-    <div class="sub-chip" onclick="setRentalFilter('budget-low')" style="border-color:#86efac; color:#166534;">💰 ₹10k-க்குள்</div>
+    <div class="sub-chip" id="chipSubBudgetLow" onclick="setRentalFilter('budget-low')" style="border-color:#86efac; color:#166534;">💰 ₹10k-க்குள்</div>
 
-    <div class="sub-chip" onclick="setRentalFilter('budget-mid')" style="border-color:#93c5fd; color:#1d4ed8;">💰 ₹10k - ₹15k</div>
+    <div class="sub-chip" id="chipSubBudgetMid" onclick="setRentalFilter('budget-mid')" style="border-color:#93c5fd; color:#1d4ed8;">💰 ₹10k - ₹15k</div>
 
-    <div class="sub-chip" onclick="setRentalFilter('budget-high')" style="border-color:#fde047; color:#854d0e;">💰 ₹15k+</div>
+    <div class="sub-chip" id="chipSubBudgetHigh" onclick="setRentalFilter('budget-high')" style="border-color:#fde047; color:#854d0e;">💰 ₹15k+</div>
 
-    <div class="sub-chip" onclick="setRentalFilter('favs')" style="color:#ef4444; font-weight:bold;">❤️ சேமித்தவை</div>
+    <div class="sub-chip" id="chipSubFavs" onclick="setRentalFilter('favs')" style="color:#ef4444; font-weight:bold;">❤️ சேமித்தவை</div>
 
   </div>
 
@@ -1950,7 +1950,7 @@
 
   <a href="https://wa.me/919884334097?text=வணக்கம்%20Fixr%20அட்மின்!%20எனக்கு%20உதவி%20வேண்டும்." class="support-fab" target="_blank" id="supportFabBtn">
 
-    💬 <span>உதவி (Help)</span>
+    💬 <span id="supportFabText">உதவி (Help)</span>
 
   </a>
 
@@ -3465,11 +3465,69 @@
 
         partnerFab: "தொழிலாளர் பதிவு (₹49)",
 
+        supportFab: "உதவி (Help)",
+
         book: "முன்பதிவு",
+
+        viewPhotos: "📷 படங்கள் பார்க்க",
+
+        rentedOut: "வாடகைக்கு போனது",
+
+        statusAvailable: "🟢 Available Now (பணியில் தயார்)",
+
+        statusRentalAvail: "🟢 காலியாக உள்ளது (Available)",
+
+        statusRented: "🔴 வாடகைக்கு போய்விட்டது (Rented Out)",
+
+        statusBusy: "⚪ தற்போது பிஸி (Busy)",
+
+        digitalId: "🪪 ID கார்டு",
+
+        directions: "📍 வழிகாட்டி",
+
+        share: "📤 பகிர்க",
+
+        reviews: "அனுபவங்கள்",
+
+        featuredStrip: "👑 FEATURED • முன்னுரிமை விளம்பரம் (Top Listing #",
 
         cloudOnline: "☁️ Google Cloud Database: இணைக்கப்பட்டது (Online)",
 
-        empty: "இந்த நகரம் அல்லது தேடலுக்கு எந்த சேவையும் கிடைக்கவில்லை.<br>வேறு நகரத்தைத் தேடவும்."
+        empty: "இந்த நகரம் அல்லது தேடலுக்கு எந்த சேவையும் கிடைக்கவில்லை.<br>வேறு நகரத்தைத் தேடவும்.",
+
+        cityAll: "📍 அனைத்து ஊர்கள்",
+
+        moveinTitle: "வீடு மாறுகிறீர்களா? (Move-in Services)",
+
+        moveinDesc: "பேக்கர்ஸ் & மூவர்ஸ் • வாடகை ஒப்பந்தம் • டீப் கிளீனிங்",
+
+        moveinTag: "பார்க்க ➔",
+
+        expressText: "30 Mins Express சேவை: பிளம்பர், எலக்ட்ரீஷியன் & AC பழுது நீக்க உடனடியாக அழைக்க!",
+
+        expressTag: "அவசர சேவை ➔",
+
+        availToggleText: "Available Only (பணியில் உள்ளவர்கள்)",
+
+        featuredTitle: "வீட்டை சீக்கிரம் வாடகைக்கு விட வேண்டுமா? (Top Listing)",
+
+        featuredDesc: "முதல் 3 இடங்களில் உங்கள் வீட்டை முன்னிறுத்த சிறிய கட்டணம் (₹99 / 7 நாட்கள்)",
+
+        featuredBtn: "🚀 விளம்பரம் செய்க",
+
+        rateCardBtn: "📋 கட்டண விவரம் (Rate Card)",
+
+        subAll: "அனைத்தும்",
+
+        subHouse: "தனி வீடு",
+
+        subBudgetLow: "💰 ₹10k-க்குள்",
+
+        subBudgetMid: "💰 ₹10k - ₹15k",
+
+        subBudgetHigh: "💰 ₹15k+",
+
+        subFavs: "❤️ சேமித்தவை"
 
       },
 
@@ -3481,11 +3539,69 @@
 
         partnerFab: "Join as Partner (₹49)",
 
+        supportFab: "Support (Help)",
+
         book: "Book Now",
+
+        viewPhotos: "📷 View Photos",
+
+        rentedOut: "Rented Out",
+
+        statusAvailable: "🟢 Available Now",
+
+        statusRentalAvail: "🟢 Available (Vacant)",
+
+        statusRented: "🔴 Rented Out",
+
+        statusBusy: "⚪ Currently Busy",
+
+        digitalId: "🪪 Digital ID",
+
+        directions: "📍 Directions",
+
+        share: "📤 Share",
+
+        reviews: "Reviews",
+
+        featuredStrip: "👑 FEATURED • Top Listing #",
 
         cloudOnline: "☁️ Google Cloud Database: Connected (Online)",
 
-        empty: "No services found for this city or search.<br>Try searching another city."
+        empty: "No services found for this city or search.<br>Try searching another city.",
+
+        cityAll: "📍 All Cities",
+
+        moveinTitle: "Relocating / Moving In?",
+
+        moveinDesc: "Packers & Movers • Rental Agreement • Deep Cleaning",
+
+        moveinTag: "Explore ➔",
+
+        expressText: "30 Mins Express Service: Instant Electrician, Plumber & AC Emergency Repairs!",
+
+        expressTag: "Emergency ➔",
+
+        availToggleText: "Available Only (Online Providers)",
+
+        featuredTitle: "Want to rent out your house fast? (Top Listing)",
+
+        featuredDesc: "Feature your house in the Top 3 spots (₹99 / 7 days)",
+
+        featuredBtn: "🚀 Boost Now",
+
+        rateCardBtn: "📋 Rate Card / Tariffs",
+
+        subAll: "All BHK",
+
+        subHouse: "Independent House",
+
+        subBudgetLow: "💰 Under ₹10k",
+
+        subBudgetMid: "💰 ₹10k - ₹15k",
+
+        subBudgetHigh: "💰 ₹15k+",
+
+        subFavs: "❤️ Saved"
 
       }
 
@@ -3507,13 +3623,50 @@
 
       const t = translations[currentLang];
 
-      document.getElementById('langToggleBtn').innerText = t.langBtn;
+      if (document.getElementById('langToggleBtn')) document.getElementById('langToggleBtn').innerText = t.langBtn;
 
-      document.getElementById('searchInput').placeholder = t.searchPlaceholder;
+      if (document.getElementById('searchInput')) document.getElementById('searchInput').placeholder = t.searchPlaceholder;
 
-      document.getElementById('partnerFabText').innerText = t.partnerFab;
+      if (document.getElementById('partnerFabText')) document.getElementById('partnerFabText').innerText = t.partnerFab;
 
-      document.getElementById('cloudStatusText').innerText = t.cloudOnline;
+      if (document.getElementById('supportFabText')) document.getElementById('supportFabText').innerText = t.supportFab;
+
+      if (document.getElementById('cloudStatusText')) document.getElementById('cloudStatusText').innerText = t.cloudOnline;
+
+      if (document.getElementById('cityChipAll')) document.getElementById('cityChipAll').innerText = t.cityAll;
+
+      if (document.getElementById('moveinBannerTitle')) document.getElementById('moveinBannerTitle').innerText = t.moveinTitle;
+
+      if (document.getElementById('moveinBannerDesc')) document.getElementById('moveinBannerDesc').innerText = t.moveinDesc;
+
+      if (document.getElementById('moveinBannerTag')) document.getElementById('moveinBannerTag').innerText = t.moveinTag;
+
+      if (document.getElementById('expressStripText') && !filterOnlyExpress) document.getElementById('expressStripText').innerText = t.expressText;
+
+      if (document.getElementById('expressStripTag') && !filterOnlyExpress) document.getElementById('expressStripTag').innerText = t.expressTag;
+
+      if (document.getElementById('availToggleText')) document.getElementById('availToggleText').innerText = t.availToggleText;
+
+      if (document.getElementById('featuredBannerTitle')) document.getElementById('featuredBannerTitle').innerText = t.featuredTitle;
+
+      if (document.getElementById('featuredBannerDesc')) document.getElementById('featuredBannerDesc').innerText = t.featuredDesc;
+
+      if (document.getElementById('featuredBannerBtn')) document.getElementById('featuredBannerBtn').innerText = t.featuredBtn;
+
+      if (document.getElementById('rateCardPillBtn')) document.getElementById('rateCardPillBtn').innerText = t.rateCardBtn;
+
+      if (document.getElementById('chipSubAll')) document.getElementById('chipSubAll').innerText = t.subAll;
+
+      if (document.getElementById('chipSubHouse')) document.getElementById('chipSubHouse').innerText = t.subHouse;
+
+      if (document.getElementById('chipSubBudgetLow')) document.getElementById('chipSubBudgetLow').innerText = t.subBudgetLow;
+
+      if (document.getElementById('chipSubBudgetMid')) document.getElementById('chipSubBudgetMid').innerText = t.subBudgetMid;
+
+      if (document.getElementById('chipSubBudgetHigh')) document.getElementById('chipSubBudgetHigh').innerText = t.subBudgetHigh;
+
+      if (document.getElementById('chipSubFavs')) document.getElementById('chipSubFavs').innerText = t.subFavs;
+
 
       renderCategories();
 
@@ -5111,11 +5264,14 @@
         const isFav = favs.includes(item.id);
 
 
+        const t = translations[currentLang];
+
+
         let featuredStripHtml = '';
 
         if (isFeatured) {
 
-          featuredStripHtml = `<div class="featured-listing-strip">👑 FEATURED • முன்னுரிமை விளம்பரம் (Top Listing #${index+1})</div>`;
+          featuredStripHtml = `<div class="featured-listing-strip">${t.featuredStrip}${index+1})</div>`;
 
         }
 
@@ -5160,17 +5316,17 @@
 
           statusBadgeHtml = item.isRented ?
 
-            `<span class="status-badge status-rented">🔴 வாடகைக்கு போய்விட்டது (Rented Out)</span>` :
+            `<span class="status-badge status-rented">${t.statusRented}</span>` :
 
-            `<span class="status-badge status-available"><span class="dot-pulse"></span>🟢 காலியாக உள்ளது (Available)</span>`;
+            `<span class="status-badge status-available"><span class="dot-pulse"></span>${t.statusRentalAvail}</span>`;
 
         } else {
 
           statusBadgeHtml = (item.isAvailable !== false) ?
 
-            `<span class="status-badge status-available"><span class="dot-pulse"></span>🟢 Available Now (பணியில் தயார்)</span>` :
+            `<span class="status-badge status-available"><span class="dot-pulse"></span>${t.statusAvailable}</span>` :
 
-            `<span class="status-badge status-busy">⚪ தற்போது பிஸி (Busy)</span>`;
+            `<span class="status-badge status-busy">${t.statusBusy}</span>`;
 
         }
 
@@ -5196,9 +5352,9 @@
 
         const actionBtnLabel = isHouseRental ?
 
-          (item.houseImages && item.houseImages.length > 0 ? (currentLang === 'ta' ? '📷 படங்கள் பார்க்க' : '📷 View Photos') : (currentLang === 'ta' ? 'விவரம் பார்க்க' : 'View Details'))
+          (item.houseImages && item.houseImages.length > 0 ? t.viewPhotos : (currentLang === 'ta' ? 'விவரம் பார்க்க' : 'View Details'))
 
-          : translations[currentLang].book;
+          : t.book;
 
         const actionBtnOnClick = isHouseRental && item.houseImages && item.houseImages.length > 0 ?
 
@@ -5255,11 +5411,11 @@
 
           <div class="rating-row">
 
-            <div class="rating-badge-btn" onclick="openReviewsModal('${item.id}')" title="வாடிக்கையாளர் அனுபவம் பார்க்க">
+            <div class="rating-badge-btn" onclick="openReviewsModal('${item.id}')" title="Customer Reviews">
 
               <span class="rating-star">${item.rating || '★ 5.0'}</span>
 
-              <span class="rating-reviews">💬 அனுபவங்கள் (${reviewCount} Reviews)</span>
+              <span class="rating-reviews">💬 ${reviewCount} ${t.reviews}</span>
 
             </div>
 
@@ -5269,13 +5425,13 @@
 
           <div class="actions">
 
-            <button class="btn btn-book" onclick="${actionBtnOnClick}" ${item.isRented ? 'style="opacity:0.6;"' : ''}>${item.isRented ? 'வாடகைக்கு போனது' : actionBtnLabel}</button>
+            <button class="btn btn-book" onclick="${actionBtnOnClick}" ${item.isRented ? 'style="opacity:0.6;"' : ''}>${item.isRented ? t.rentedOut : actionBtnLabel}</button>
 
-            <button class="btn btn-id" onclick="openDigitalIdModal('${item.id}')" title="Fixr Verified Partner Digital ID">🪪 ID கார்டு</button>
+            <button class="btn btn-id" onclick="openDigitalIdModal('${item.id}')" title="Digital ID Card">${t.digitalId}</button>
 
-            <a href="${mapUrl}" target="_blank" class="btn btn-map" title="Google Maps வழிகாட்டி (Directions)">📍 வழிகாட்டி</a>
+            <a href="${mapUrl}" target="_blank" class="btn btn-map" title="Directions">${t.directions}</a>
 
-            <button class="btn btn-share" onclick="shareListingToWhatsApp('${item.id}')" title="WhatsApp-ல் பகிர்க">📤 பகிர்க</button>
+            <button class="btn btn-share" onclick="shareListingToWhatsApp('${item.id}')" title="WhatsApp Share">${t.share}</button>
 
             <a href="tel:${item.phone}" class="btn btn-call" title="Call">📞</a>
 
