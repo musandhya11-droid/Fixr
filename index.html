@@ -131,7 +131,27 @@
 
     .partner-fab { position: fixed; bottom: 20px; right: 16px; background: #0f172a; color: white; padding: 11px 16px; border-radius: 30px; font-weight: bold; font-size: 12px; border: 1px solid #38bdf8; box-shadow: 0 4px 14px rgba(15,23,42,0.35); cursor: pointer; z-index: 90; display: flex; align-items: center; gap: 6px; }
 
-    .support-fab { position: fixed; bottom: 20px; left: 16px; background: #25d366; color: white; padding: 11px 16px; border-radius: 30px; font-weight: bold; font-size: 12px; text-decoration: none; box-shadow: 0 4px 14px rgba(37,211,102,0.4); z-index: 90; display: flex; align-items: center; gap: 6px; }
+    /* AI Help Assistant FAB & Chatbot Styles */
+
+    .support-fab { position: fixed; bottom: 20px; left: 16px; background: linear-gradient(135deg, #1e3a8a, #2563eb); color: white; padding: 10px 15px; border-radius: 30px; font-weight: 700; font-size: 12px; border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 4px 14px rgba(37,99,235,0.4); z-index: 90; display: flex; align-items: center; gap: 6px; cursor: pointer; text-decoration: none; transition: transform 0.15s, box-shadow 0.15s; }
+
+    .support-fab:active { transform: scale(0.96); }
+
+    .ai-chat-bubble { max-width: 86%; padding: 10px 14px; border-radius: 14px; font-size: 12.5px; line-height: 1.5; word-wrap: break-word; animation: fadeInBubble 0.2s ease-out; }
+
+    @keyframes fadeInBubble { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+    .ai-bubble-bot { background: white; color: #1e293b; align-self: flex-start; border-bottom-left-radius: 3px; border: 1px solid #e2e8f0; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+
+    .ai-bubble-user { background: linear-gradient(135deg, #2563eb, #1d4ed8); color: white; align-self: flex-end; border-bottom-right-radius: 3px; box-shadow: 0 2px 6px rgba(37,99,235,0.25); }
+
+    .ai-chip-pill { background: white; border: 1px solid #cbd5e1; color: #334155; padding: 5px 11px; border-radius: 20px; font-size: 11.5px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: all 0.15s; box-shadow: 0 1px 2px rgba(0,0,0,0.03); display: inline-flex; align-items: center; gap: 4px; }
+
+    .ai-chip-pill:hover, .ai-chip-pill:active { background: #eff6ff; border-color: #3b82f6; color: #1d4ed8; }
+
+    .ai-action-btn { display: inline-block; margin-top: 8px; background: #2563eb; color: white; padding: 6px 12px; border-radius: 7px; font-size: 11.5px; font-weight: bold; text-decoration: none; cursor: pointer; border: none; box-shadow: 0 2px 5px rgba(37,99,235,0.3); }
+
+    .ai-action-btn:hover { background: #1d4ed8; }
 
 
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 1000; justify-content: center; align-items: center; padding: 16px; }
@@ -2147,7 +2167,7 @@
 
       <button class="lang-btn" id="langToggleBtn" onclick="toggleLanguage()">🌐 English</button>
 
-      <button class="admin-btn" onclick="openAdminLogin()">🔒 Admin</button>
+      <button class="admin-btn" id="headerAdminBtn" onclick="openAdminLogin()">🔒 Admin</button>
 
       <div id="authContainer">
 
@@ -2360,11 +2380,11 @@
 
   <!-- Floating Customer Care & Partner FAB -->
 
-  <a href="https://wa.me/919884334097?text=வணக்கம்%20Fixr%20அட்மின்!%20எனக்கு%20உதவி%20வேண்டும்." class="support-fab" target="_blank" id="supportFabBtn">
+  <button class="support-fab" id="supportFabBtn" onclick="openAiHelpModal()">
 
-    💬 <span id="supportFabText">உதவி (Help)</span>
+    🤖 <span id="supportFabText">Fixr AI உதவி (24/7)</span>
 
-  </a>
+  </button>
 
   <button class="partner-fab" id="partnerFabBtn" onclick="openModal('partnerModal')">
 
@@ -2444,15 +2464,15 @@
   </div>
 
 
-  <!-- 2. சேவை முன்பதிவு (Booking Modal with Date & Time Slot) -->
+  <!-- 2. சேவை முன்பதிவு (Dynamic Category & 100% Bilingual Booking Modal) -->
 
   <div class="modal-overlay" id="bookingModal">
 
     <div class="modal-box">
 
-      <div class="modal-title" id="bookModalTitle">🗓️ சேவை முன்பதிவு (Book Service)</div>
+      <div class="modal-title" id="bookModalTitle">🗓️ சேவை முன்பதிவு</div>
 
-      <div class="modal-sub" id="bookTechSummary">டெக்னீசியன் விவரம்</div>
+      <div class="modal-sub" id="bookTechSummary">தொழிலாளர் விவரம்</div>
 
       <div class="form-group">
 
@@ -2468,13 +2488,7 @@
 
         <select id="bookTimeSlot" class="form-input">
 
-          <option value="10:00 AM - 12:00 PM">காலை (10 AM - 12 PM)</option>
-
-          <option value="12:00 PM - 02:00 PM">மதியம் (12 PM - 02 PM)</option>
-
-          <option value="02:00 PM - 05:00 PM">பிற்பகல் (02 PM - 05 PM)</option>
-
-          <option value="05:00 PM - 08:00 PM">மாலை (05 PM - 08 PM)</option>
+          <!-- Populated dynamically based on category and language -->
 
         </select>
 
@@ -2484,29 +2498,29 @@
 
         <label id="lblBookAddress">🏠 வீட்டு முகவரி & பகுதி</label>
 
-        <input type="text" id="bookAddress" class="form-input" placeholder="கதவு எண், தெரு & நகரம்">
+        <input type="text" id="bookAddress" class="form-input" placeholder="கதவு எண், தெரு மற்றும் நகரம்">
 
       </div>
 
       <div class="form-group">
 
-        <label id="lblBookNotes">🛠️ பழுது / தேவை விவரம் (Notes)</label>
+        <label id="lblBookNotes">🛠️ பழுது / தேவை விவரம்</label>
 
         <input type="text" id="bookNotes" class="form-input" placeholder="எ.கா: AC கூலிங் வரவில்லை">
 
       </div>
 
-      <div class="form-group" style="background:#fff7ed; padding:10px; border-radius:10px; border:1px solid #fdba74;">
+      <div class="form-group" id="bookExpressBox" style="background:#fff7ed; padding:10px; border-radius:10px; border:1px solid #fdba74;">
 
         <label style="display:flex; align-items:center; gap:8px; cursor:pointer; color:#c2410c; font-weight:bold; margin-bottom:0;">
 
           <input type="checkbox" id="bookExpressCheck" style="width:18px; height:18px; accent-color:#ea580c;">
 
-          <span>⚡ அவசர சேவை தேவை (30 நிமிடங்களில் வருகை / 30 Mins Express)</span>
+          <span id="lblBookExpress">⚡ அவசர சேவை தேவை (30 நிமிடங்களில் வருகை)</span>
 
         </label>
 
-        <div style="font-size:10.5px; color:#9a3412; margin-top:4px; padding-left:26px;">
+        <div id="bookExpressDesc" style="font-size:10.5px; color:#9a3412; margin-top:4px; padding-left:26px;">
 
           அவசர தேவைக்கு டெக்னீசியன் 30 நிமிடத்தில் நேரடியாக வந்து உதவுவார்.
 
@@ -2516,7 +2530,7 @@
 
       <button class="submit-btn" style="background:#0284c7;" id="btnConfirmBook" onclick="confirmBooking()">முன்பதிவை உறுதி செய் 🚀</button>
 
-      <button class="close-btn" onclick="closeModal('bookingModal')">ரத்து</button>
+      <button class="close-btn" id="btnCancelBook" onclick="closeModal('bookingModal')">ரத்து</button>
 
     </div>
 
@@ -3097,7 +3111,7 @@
 
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
 
-        <div class="modal-title" style="margin-bottom:0;">⭐ வாடிக்கையாளர் அனுபவம்</div>
+        <div class="modal-title" style="margin-bottom:0;" id="revModalTitle">⭐ வாடிக்கையாளர் அனுபவம்</div>
 
         <button onclick="closeModal('reviewsModal')" style="background:none; border:none; font-size:22px; color:#64748b; cursor:pointer;">✕</button>
 
@@ -3474,7 +3488,7 @@
 
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
 
-        <div class="modal-title" style="margin-bottom:0;">📋 Fixr சேவைக் கட்டண விவரம்</div>
+        <div class="modal-title" style="margin-bottom:0;" id="rateModalTitle">📋 Fixr சேவைக் கட்டண விவரம்</div>
 
         <button onclick="closeModal('rateCardModal')" style="background:none; border:none; font-size:22px; color:#64748b; cursor:pointer;">✕</button>
 
@@ -4105,7 +4119,7 @@
 
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
 
-        <div class="modal-title" style="margin-bottom:0;">🤝 கேர் டேக்கர் தேவை விவரம்</div>
+        <div class="modal-title" style="margin-bottom:0;" id="careModalTitle">🤝 கேர் டேக்கர் தேவை விவரம்</div>
 
         <button onclick="closeModal('careTakerModal')" style="background:none; border:none; font-size:22px; color:#64748b; cursor:pointer;">✕</button>
 
@@ -4188,7 +4202,7 @@
 
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
 
-        <div class="modal-title" style="margin-bottom:0;">🚚 பேக்கர்ஸ் & மூவர்ஸ் வண்டி தேர்வு</div>
+        <div class="modal-title" style="margin-bottom:0;" id="packersModalTitle">🚚 பேக்கர்ஸ் & மூவர்ஸ் வண்டி தேர்வு</div>
 
         <button onclick="closeModal('packersModal')" style="background:none; border:none; font-size:22px; color:#64748b; cursor:pointer;">✕</button>
 
@@ -4273,7 +4287,7 @@
 
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
 
-        <div class="modal-title" style="margin-bottom:0;">✨ டீப் கிளீனிங் & பெயிண்டிங் அளவு தேர்வு</div>
+        <div class="modal-title" style="margin-bottom:0;" id="cleaningModalTitle">✨ டீப் கிளீனிங் & பெயிண்டிங் அளவு தேர்வு</div>
 
         <button onclick="closeModal('cleaningEstimatorModal')" style="background:none; border:none; font-size:22px; color:#64748b; cursor:pointer;">✕</button>
 
@@ -4351,6 +4365,76 @@
     </div>
 
     <div style="margin-top: 10px; font-size: 11px; color: #64748b;">© 2026 Fixr Services. All rights reserved.</div>
+
+ 
+
+  <!-- 21. Fixr AI உதவி மையம் (24/7 Instant Auto-Reply Chatbot) -->
+
+  <div class="modal-overlay" id="aiHelpModal">
+
+    <div class="modal-box ai-chat-box" style="max-width: 480px; height: 85vh; max-height: 600px; display: flex; flex-direction: column; padding: 0; overflow: hidden; border-radius: 18px;">
+
+      <!-- Chat Header -->
+
+      <div style="background: linear-gradient(135deg, #1e293b, #0f172a); color: white; padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #3b82f6;">
+
+        <div style="display:flex; align-items:center; gap:10px;">
+
+          <div style="width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg,#3b82f6,#8b5cf6); display:flex; align-items:center; justify-content:center; font-size:18px; box-shadow:0 2px 8px rgba(59,130,246,0.5);">
+
+            🤖
+
+          </div>
+
+          <div>
+
+            <div style="font-weight: 800; font-size: 14px;" id="aiChatHeaderTitle">Fixr AI உதவி மையம் (24/7)</div>
+
+            <div style="font-size: 11px; color: #4ade80; display:flex; align-items:center; gap:4px;">
+
+              <span style="width:7px; height:7px; border-radius:50%; background:#4ade80; display:inline-block; box-shadow:0 0 6px #4ade80;"></span>
+
+              <span id="aiChatOnlineStatus">Online Instant Auto-Reply</span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <button onclick="closeModal('aiHelpModal')" style="background:rgba(255,255,255,0.1); border:none; color:white; width:30px; height:30px; border-radius:50%; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center;">✕</button>
+
+      </div>
+
+
+      <!-- Quick Help Suggestion Chips Carousel -->
+
+      <div style="background:#f1f5f9; padding:8px 12px; border-bottom:1px solid #e2e8f0; overflow-x:auto; white-space:nowrap; -webkit-overflow-scrolling:touch; display:flex; gap:6px;" id="aiQuickChipsContainer"></div>
+
+
+      <!-- Chat Messages Scroll Container -->
+
+      <div id="aiChatMessages" style="flex:1; overflow-y:auto; padding:14px; background:#f8fafc; display:flex; flex-direction:column; gap:10px;"></div>
+
+
+      <!-- Chat Input Box -->
+
+      <div style="padding:10px 12px; background:white; border-top:1px solid #e2e8f0; display:flex; gap:8px; align-items:center;">
+
+        <input type="text" id="aiChatInput" class="form-input" style="margin:0; border-radius:24px; padding:10px 16px; font-size:13px;" placeholder="உங்கள் கேள்வியை இங்கு தட்டச்சு செய்யவும்..." onkeydown="if(event.key==='Enter') sendAiMessage()">
+
+        <button onclick="sendAiMessage()" style="background:linear-gradient(135deg,#2563eb,#7c3aed); color:white; border:none; width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0; box-shadow:0 2px 8px rgba(37,99,235,0.4); font-size:15px;">
+
+          ➤
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
 
   </footer>
 
@@ -4507,25 +4591,25 @@
 
         langBtn: "🌐 English",
 
-        searchPlaceholder: "🔍 நகரம் (Chennai, Madurai...), சேவை அல்லது பெயர்...",
+        searchPlaceholder: "🔍 நகரம் (Chennai, Madurai...), சேவை அல்லது பெயர் தேடுக...",
 
         partnerFab: "தொழிலாளர் பதிவு (₹49)",
 
-        supportFab: "உதவி (Help)",
+        supportFab: "Fixr AI உதவி (24/7)",
 
         book: "முன்பதிவு",
 
         viewPhotos: "📷 படங்கள் பார்க்க",
 
-        rentedOut: "வாடகைக்கு போனது",
+        rentedOut: "வாடகைக்கு விடப்பட்டது",
 
-        statusAvailable: "🟢 Available Now (பணியில் தயார்)",
+        statusAvailable: "🟢 பணியில் தயார்",
 
-        statusRentalAvail: "🟢 காலியாக உள்ளது (Available)",
+        statusRentalAvail: "🟢 காலியாக உள்ளது",
 
-        statusRented: "🔴 வாடகைக்கு போய்விட்டது (Rented Out)",
+        statusRented: "🔴 வாடகைக்கு விடப்பட்டது",
 
-        statusBusy: "⚪ தற்போது பிஸி (Busy)",
+        statusBusy: "⚪ தற்போது பணியில் உள்ளார்",
 
         digitalId: "🪪 ID கார்டு",
 
@@ -4535,33 +4619,33 @@
 
         reviews: "அனுபவங்கள்",
 
-        featuredStrip: "👑 FEATURED • முன்னுரிமை விளம்பரம் (Top Listing #",
+        featuredStrip: "👑 முன்னுரிமை விளம்பரம் #",
 
-        cloudOnline: "☁️ Google Cloud Database: இணைக்கப்பட்டது (Online)",
+        cloudOnline: "☁️ கூகுள் கிளவுட்: இணைக்கப்பட்டது",
 
         empty: "இந்த நகரம் அல்லது தேடலுக்கு எந்த சேவையும் கிடைக்கவில்லை.<br>வேறு நகரத்தைத் தேடவும்.",
 
         cityAll: "📍 அனைத்து ஊர்கள்",
 
-        moveinTitle: "வீடு மாறுகிறீர்களா? (Move-in Services)",
+        moveinTitle: "வீடு மாறுகிறீர்களா? (வீடு மாற்றும் சேவைகள்)",
 
         moveinDesc: "பேக்கர்ஸ் & மூவர்ஸ் • வாடகை ஒப்பந்தம் • டீப் கிளீனிங்",
 
         moveinTag: "பார்க்க ➔",
 
-        expressText: "30 Mins Express சேவை: பிளம்பர், எலக்ட்ரீஷியன் & AC பழுது நீக்க உடனடியாக அழைக்க!",
+        expressText: "30 நிமிட எக்ஸ்பிரஸ் சேவை: பிளம்பர், எலக்ட்ரீஷியன் & AC பழுது நீக்க உடனடியாக அழைக்க!",
 
         expressTag: "அவசர சேவை ➔",
 
-        availToggleText: "Available Only (பணியில் உள்ளவர்கள்)",
+        availToggleText: "பணியில் உள்ளவர்கள் மட்டும்",
 
-        featuredTitle: "வீட்டை சீக்கிரம் வாடகைக்கு விட வேண்டுமா? (Top Listing)",
+        featuredTitle: "வீட்டை சீக்கிரம் வாடகைக்கு விட வேண்டுமா?",
 
         featuredDesc: "முதல் 3 இடங்களில் உங்கள் வீட்டை முன்னிறுத்த சிறிய கட்டணம் (₹99 / 7 நாட்கள்)",
 
         featuredBtn: "🚀 விளம்பரம் செய்க",
 
-        rateCardBtn: "📋 கட்டண விவரம் (Rate Card)",
+        rateCardBtn: "📋 சேவைக் கட்டண விவரம்",
 
         subAll: "அனைத்தும்",
 
@@ -4585,7 +4669,7 @@
 
         partnerFab: "Join as Partner (₹49)",
 
-        supportFab: "Support (Help)",
+        supportFab: "Fixr AI Support (24/7)",
 
         book: "Book Now",
 
@@ -4611,35 +4695,35 @@
 
         featuredStrip: "👑 FEATURED • Top Listing #",
 
-        cloudOnline: "☁️ Google Cloud Database: Connected (Online)",
+        cloudOnline: "☁️ Google Cloud: Connected",
 
-        empty: "No services found for this city or search.<br>Try searching another city.",
+        empty: "No services found matching this search or city.<br>Please try a different city or category.",
 
         cityAll: "📍 All Cities",
 
-        moveinTitle: "Relocating / Moving In?",
+        moveinTitle: "Moving Homes? (Move-in Services)",
 
         moveinDesc: "Packers & Movers • Rental Agreement • Deep Cleaning",
 
         moveinTag: "Explore ➔",
 
-        expressText: "30 Mins Express Service: Instant Electrician, Plumber & AC Emergency Repairs!",
+        expressText: "30 Mins Express Service: Emergency service for Plumber, Electrician & AC repair!",
 
-        expressTag: "Emergency ➔",
+        expressTag: "Emergency Service ➔",
 
-        availToggleText: "Available Only (Online Providers)",
+        availToggleText: "Available Only",
 
-        featuredTitle: "Want to rent out your house fast? (Top Listing)",
+        featuredTitle: "Want to rent out your house quickly?",
 
-        featuredDesc: "Feature your house in the Top 3 spots (₹99 / 7 days)",
+        featuredDesc: "Promote your house in top 3 spots (₹99 / 7 Days)",
 
-        featuredBtn: "🚀 Boost Now",
+        featuredBtn: "🚀 Promote Now",
 
-        rateCardBtn: "📋 Rate Card / Tariffs",
+        rateCardBtn: "📋 Service Rate Card",
 
-        subAll: "All BHK",
+        subAll: "All",
 
-        subHouse: "Independent House",
+        subHouse: "Individual House",
 
         subBudgetLow: "💰 Under ₹10k",
 
@@ -4661,6 +4745,339 @@
       localStorage.setItem('fixr_lang', currentLang);
 
       applyLanguage();
+
+    }
+
+
+    // Comprehensive Bilingual UI & Modal Translation Engine
+
+    function updateI18n() {
+
+      const isTa = (currentLang === 'ta');
+
+
+      // 1. Header & Global Nav
+
+      const langBtn = document.getElementById('langToggleBtn');
+
+      if (langBtn) langBtn.innerText = isTa ? "🌐 English" : "🌐 தமிழ்";
+
+      const instBtn = document.getElementById('headerInstallBtn');
+
+      if (instBtn) instBtn.innerText = isTa ? "📲 ஆப் நிறுவுக" : "📲 Install App";
+
+      const admBtn = document.getElementById('headerAdminBtn');
+
+      if (admBtn) admBtn.innerText = isTa ? "🔒 நிர்வாகி" : "🔒 Admin";
+
+      const authBtn = document.getElementById('authBtn');
+
+      if (authBtn) {
+
+        if (currentUser) {
+
+          authBtn.innerText = isTa ? `வெளியேறு (${currentUser.name})` : `Logout (${currentUser.name})`;
+
+        } else {
+
+          authBtn.innerText = isTa ? "உள்நுழைக" : "Login";
+
+        }
+
+      }
+
+
+      // 2. City Chips
+
+      const cAll = document.getElementById('cityChipAll');
+
+      if (cAll) cAll.innerText = isTa ? "📍 அனைத்து ஊர்கள்" : "📍 All Cities";
+
+      const cChn = document.getElementById('cityChipChennai');
+
+      if (cChn) cChn.innerText = isTa ? "சென்னை" : "Chennai";
+
+      const cCbe = document.getElementById('cityChipCbe');
+
+      if (cCbe) cCbe.innerText = isTa ? "கோவை" : "Coimbatore";
+
+      const cMad = document.getElementById('cityChipMadurai');
+
+      if (cMad) cMad.innerText = isTa ? "மதுரை" : "Madurai";
+
+      const cTri = document.getElementById('cityChipTrichy');
+
+      if (cTri) cTri.innerText = isTa ? "திருச்சி" : "Trichy";
+
+      const cSal = document.getElementById('cityChipSalem');
+
+      if (cSal) cSal.innerText = isTa ? "சேலம்" : "Salem";
+
+      const cBlr = document.getElementById('cityChipBlr');
+
+      if (cBlr) cBlr.innerText = isTa ? "பெங்களூரு" : "Bengaluru";
+
+
+      // 3. Quick Action Filter Pills
+
+      const expPill = document.getElementById('expressFilterBtn');
+
+      if (expPill) expPill.innerText = isTa ? "⚡ 30 நிமிட அவசர சேவை" : "⚡ 30 Mins Express";
+
+      const verPill = document.getElementById('verifiedFilterBtn');
+
+      if (verPill) verPill.innerText = isTa ? "🌟 சரிபார்க்கப்பட்ட தொழிலாளர்கள்" : "🌟 Verified Pros Only";
+
+      const phoPill = document.getElementById('photoDiagPillBtn');
+
+      if (phoPill) phoPill.innerText = isTa ? "📸 பழுது புகைப்படம்" : "📸 Photo Diagnosis";
+
+      const ratePill = document.getElementById('rateCardPillBtn');
+
+      if (ratePill) ratePill.innerText = isTa ? "📋 சேவைக் கட்டண விவரம்" : "📋 Service Rate Card";
+
+      const sparePill = document.getElementById('sparePricePillBtn');
+
+      if (sparePill) sparePill.innerText = isTa ? "🛡️ உதிரிபாக நியாய விலை" : "🛡️ Spare Parts Fair Price";
+
+      const bidPill = document.getElementById('biddingPillBtn');
+
+      if (bidPill) bidPill.innerText = isTa ? "🎯 என் பட்ஜெட் என் வேலை" : "🎯 Customer Budget Bidding";
+
+      const poolPill = document.getElementById('poolPillBtn');
+
+      if (poolPill) poolPill.innerText = isTa ? "🏢 தெரு & அடுக்குமாடி குழு தள்ளுபடி" : "🏢 Community Street Pooling";
+
+
+      // 4. Modals - 100% Complete Bilingual Localizations
+
+      // Login Modal
+
+      const lTitle = document.getElementById('loginTitle');
+
+      if (lTitle) lTitle.innerText = isTa ? "Fixr OTP உள்நுழைவு 👋" : "Fixr OTP Login 👋";
+
+      const lSub = document.getElementById('loginSub');
+
+      if (lSub) lSub.innerText = isTa ? "சேவையை புக் செய்ய உங்கள் மொபைல் எண்ணை உள்ளிடவும்" : "Enter your mobile number to book services";
+
+      const lNameLbl = document.getElementById('lblLoginName');
+
+      if (lNameLbl) lNameLbl.innerText = isTa ? "முழு பெயர்" : "Full Name";
+
+      const lNameInp = document.getElementById('userName');
+
+      if (lNameInp) lNameInp.placeholder = isTa ? "உங்கள் பெயர்" : "Your Name";
+
+      const lPhoneLbl = document.getElementById('lblLoginPhone');
+
+      if (lPhoneLbl) lPhoneLbl.innerText = isTa ? "10 இலக்க மொபைல் எண்" : "10-digit Mobile Number";
+
+      const lPhoneInp = document.getElementById('userPhone');
+
+      if (lPhoneInp) lPhoneInp.placeholder = isTa ? "எ.கா: 9876543210" : "e.g. 9876543210";
+
+      const lSendBtn = document.getElementById('btnSendOtp');
+
+      if (lSendBtn) lSendBtn.innerText = isTa ? "OTP பெறுக (SMS OTP) 📲" : "Send SMS OTP 📲";
+
+      const lOtpLbl = document.getElementById('lblLoginOtp');
+
+      if (lOtpLbl) lOtpLbl.innerText = isTa ? "4 இலக்க OTP குறியீடு" : "4-digit OTP Code";
+
+      const lVerifyBtn = document.getElementById('btnVerifyOtp');
+
+      if (lVerifyBtn) lVerifyBtn.innerText = isTa ? "உள்நுழைவை உறுதி செய் 🚀" : "Verify OTP & Login 🚀";
+
+      const lResendBtn = document.getElementById('btnResendOtp');
+
+      if (lResendBtn) lResendBtn.innerText = isTa ? "மீண்டும் OTP அனுப்புக" : "Resend OTP";
+
+      const lCancelBtn = document.getElementById('loginCancelBtn');
+
+      if (lCancelBtn) lCancelBtn.innerText = isTa ? "ரத்து" : "Cancel";
+
+
+      // Partner Registration Modal
+
+      const pTitle = document.getElementById('pModalTitle');
+
+      if (pTitle) pTitle.innerText = isTa ? "தொழிலாளராக இணைக 💼" : "Join as Partner 💼";
+
+      const pSub = document.getElementById('pModalSub');
+
+      if (pSub) pSub.innerText = isTa ? "Fixr பார்ட்னராக பதிவு செய்து வாடிக்கையாளர்களைப் பெறுங்கள்" : "Register as Fixr Partner & get direct customer leads";
+
+      const pPay = document.getElementById('pPayTitle');
+
+      if (pPay) pPay.innerText = isTa ? "💳 ஒருமுறை பதிவுக் கட்டணம்" : "💳 One-time Verification Fee";
+
+      const pNameLbl = document.getElementById('lblPName');
+
+      if (pNameLbl) pNameLbl.innerText = isTa ? "பெயர் / நிறுவன பெயர்" : "Name / Business Name";
+
+      const pNameInp = document.getElementById('pName');
+
+      if (pNameInp) pNameInp.placeholder = isTa ? "எ.கா: அன்பு / AC Solutions" : "e.g. Anbu / AC Solutions";
+
+      const pCatLbl = document.getElementById('lblPCat');
+
+      if (pCatLbl) pCatLbl.innerText = isTa ? "சேவை வகை" : "Service Category";
+
+      const pAreaLbl = document.getElementById('lblPArea');
+
+      if (pAreaLbl) pAreaLbl.innerText = isTa ? "ஊர் & மாவட்டம் / நகரம்" : "City / District / Area";
+
+      const pAreaInp = document.getElementById('pArea');
+
+      if (pAreaInp) pAreaInp.placeholder = isTa ? "எ.கா: வேளச்சேரி, சென்னை" : "e.g. Velachery, Chennai";
+
+      const pPhoneLbl = document.getElementById('lblPPhone');
+
+      if (pPhoneLbl) pPhoneLbl.innerText = isTa ? "தொடர்பு எண் (WhatsApp Number)" : "Contact Number (WhatsApp)";
+
+      const pPhoneInp = document.getElementById('pPhone');
+
+      if (pPhoneInp) pPhoneInp.placeholder = isTa ? "10 இலக்க மொபைல் எண்" : "10-digit mobile number";
+
+      const pPriceLbl = document.getElementById('lblPPrice');
+
+      if (pPriceLbl) pPriceLbl.innerText = isTa ? "கட்டணம் & சேவை விவரம்" : "Pricing & Service Details";
+
+      const pPriceInp = document.getElementById('pPrice');
+
+      if (pPriceInp) pPriceInp.placeholder = isTa ? "எ.கா: ₹600/நாள் அல்லது ₹499 முதல்" : "e.g. ₹600/day or ₹499 onwards";
+
+      const pDescLbl = document.getElementById('lblPDesc');
+
+      if (pDescLbl) pDescLbl.innerText = isTa ? "அனுபவம் / சிறப்பு விவரம்" : "Experience / Specialization";
+
+      const pDescInp = document.getElementById('pDesc');
+
+      if (pDescInp) pDescInp.placeholder = isTa ? "எ.கா: 5 ஆண்டுகள் அனுபவம் / 24/7 சேவை" : "e.g. 5 years experience / 24/7 service";
+
+      const pSubmit = document.getElementById('pSubmitBtn');
+
+      if (pSubmit) pSubmit.innerText = isTa ? "பதிவு செய்து ஒப்புதலுக்கு அனுப்பு 🚀" : "Submit Registration for Approval 🚀";
+
+
+      // Care Taker Modal
+
+      const careTitle = document.getElementById('careModalTitle');
+
+      if (careTitle) careTitle.innerText = isTa ? "🤝 கேர் டேக்கர் தேவை விவரம்" : "🤝 Caregiver Service Requirements";
+
+      const careSub = document.getElementById('careModalSub');
+
+      if (careSub) careSub.innerText = isTa ? "முதியோர், நோயாளி மற்றும் குழந்தை பராமரிப்புத் தேவைகளைக் குறிப்பிட்டு உடனடி உதவி பெறுக" : "Submit your care requirements for instant customized caregiver assistance";
+
+      const careNotesInp = document.getElementById('careNotes');
+
+      if (careNotesInp) careNotesInp.placeholder = isTa ? "எ.கா: சுகர் மருந்து தர வேண்டும், நடக்க உதவி, 24/7 கவனிப்பு..." : "e.g. Medication timing, elderly mobility support, 24/7 care...";
+
+
+      // Spare Parts Modal
+
+      const spTitle = document.getElementById('spareModalTitle');
+
+      if (spTitle) spTitle.innerText = isTa ? "🛡️ உதிரிபாக நியாய விலை சரிபார்ப்பு" : "🛡️ Spare Parts Fair Price Checker";
+
+      const spSub = document.getElementById('spareModalSub');
+
+      if (spSub) spSub.innerText = isTa ? "அதிக கட்டணம் வசூலிப்பதை தடுக்கும் அதிகாரப்பூர்வ பட்டியல்" : "Official market prices to prevent overcharging";
+
+      const spSearch = document.getElementById('spareSearchInput');
+
+      if (spSearch) spSearch.placeholder = isTa ? "🔍 உதிரிபாகத்தைத் தேடுக (எ.கா: Capacitor, MCB, Membrane...)" : "🔍 Search spare part (e.g. Capacitor, MCB, Membrane...)";
+
+
+      // Budget Bidding Modal
+
+      const bidTitle = document.getElementById('bidModalTitle');
+
+      if (bidTitle) bidTitle.innerText = isTa ? "🎯 'என் பட்ஜெட் என் வேலை'" : "🎯 Customer Budget Bidding";
+
+      const bidSub = document.getElementById('bidModalSub');
+
+      if (bidSub) bidSub.innerText = isTa ? "உங்கள் பட்ஜெட்டை நீங்களே நிர்ணயியுங்கள்; தொழிலாளர்கள் ஏற்று பணிக்கு வருவார்கள்!" : "Set your own budget; nearby technicians will accept your job!";
+
+
+      // Community Pooling Modal
+
+      const poolTitle = document.getElementById('poolModalTitle');
+
+      if (poolTitle) poolTitle.innerText = isTa ? "🏢 தெரு / அடுக்குமாடி குழு தள்ளுபடி" : "🏢 Community & Street Group Pooling";
+
+      const poolSub = document.getElementById('poolModalSub');
+
+      if (poolSub) poolSub.innerText = isTa ? "அக்கம்பக்கத்தினருடன் இணைந்து ஒரே நாளில் சேவை பெற்று 25% வரை சேமியுங்கள்!" : "Pool bookings with your neighbors & save up to 25% on services!";
+
+
+      // Rental Agreement Modal
+
+      const agrTitle = document.getElementById('agrModalTitle');
+
+      if (agrTitle) agrTitle.innerText = isTa ? "📑 சட்டப்பூர்வ வாடகை ஒப்பந்தம்" : "📑 Online Rental Agreement Service";
+
+      const agrSub = document.getElementById('agrModalSub');
+
+      if (agrSub) agrSub.innerText = isTa ? "அரசு முத்திரை தாளுடன் சட்டப்பூர்வ ஒப்பந்தம் உங்கள் இருப்பிடத்திற்கே!" : "Legally valid E-Stamp rental agreement delivered to your doorstep & WhatsApp";
+
+
+      // Reviews Modal
+
+      const revTitle = document.getElementById('revModalTitle');
+
+      if (revTitle) revTitle.innerText = isTa ? "⭐ வாடிக்கையாளர் அனுபவம்" : "⭐ Customer Reviews & Ratings";
+
+
+      // Rate Card Modal
+
+      const rateTitle = document.getElementById('rateModalTitle');
+
+      if (rateTitle) rateTitle.innerText = isTa ? "📋 Fixr சேவைக் கட்டண விவரம்" : "📋 Fixr Service Rate Card";
+
+
+      // Packers Modal
+
+      const packTitle = document.getElementById('packersModalTitle');
+
+      if (packTitle) packTitle.innerText = isTa ? "🚚 பேக்கர்ஸ் & மூவர்ஸ் வண்டி தேர்வு" : "🚚 Packers & Movers Vehicle & Relocation";
+
+
+      // Cleaning Estimator Modal
+
+      const cleanTitle = document.getElementById('cleaningModalTitle');
+
+      if (cleanTitle) cleanTitle.innerText = isTa ? "✨ டீப் கிளீனிங் & பெயிண்டிங் அளவு தேர்வு" : "✨ Deep Cleaning & Painting Estimator";
+
+
+      // Photo Diagnosis Modal
+
+      const photoTitle = document.getElementById('photoModalTitle');
+
+      if (photoTitle) photoTitle.innerText = isTa ? "📸 பழுது புகைப்படம் & கட்டண கணிப்பு" : "📸 Photo Diagnosis & Estimate";
+
+      const photoSub = document.getElementById('photoModalSub');
+
+      if (photoSub) photoSub.innerText = isTa ? "பழுதான பகுதியை 1 போட்டோ எடுத்து அனுப்பி முன்பே சரியான கட்டணம் & ஆலோசனை பெறுக!" : "Upload a photo of the damaged part to get an upfront estimate and expert advice!";
+
+
+      // AI Chatbot Header
+
+      // AI Chatbot Header
+
+      const aiTitle = document.getElementById('aiChatHeaderTitle');
+
+      if (aiTitle) aiTitle.innerText = isTa ? "Fixr AI உதவி மையம் (24/7)" : "Fixr AI Support Assistant (24/7)";
+
+      const aiStatus = document.getElementById('aiChatOnlineStatus');
+
+      if (aiStatus) aiStatus.innerText = isTa ? "Online Instant Auto-Reply" : "Online Instant Auto-Reply";
+
+      const aiInput = document.getElementById('aiChatInput');
+
+      if (aiInput) aiInput.placeholder = isTa ? "உங்கள் கேள்வியை இங்கு தட்டச்சு செய்யவும்..." : "Type your question here...";
 
     }
 
@@ -4701,12 +5118,6 @@
 
       if (document.getElementById('rateCardPillBtn')) document.getElementById('rateCardPillBtn').innerText = t.rateCardBtn;
 
-      if (document.getElementById('sparePricePillBtn')) document.getElementById('sparePricePillBtn').innerText = (currentLang === 'ta') ? "🛡️ உதிரிபாக விலை (Spare Price)" : "🛡️ Spare Parts Fair Price";
-
-      if (document.getElementById('biddingPillBtn')) document.getElementById('biddingPillBtn').innerText = (currentLang === 'ta') ? "🎯 என் பட்ஜெட் என் வேலை" : "🎯 Customer Budget Bidding";
-
-      if (document.getElementById('poolPillBtn')) document.getElementById('poolPillBtn').innerText = (currentLang === 'ta') ? "🏢 குழு தள்ளுபடி (Group Pool)" : "🏢 Community Group Discount";
-
       if (document.getElementById('chipSubAll')) document.getElementById('chipSubAll').innerText = t.subAll;
 
       if (document.getElementById('chipSubHouse')) document.getElementById('chipSubHouse').innerText = t.subHouse;
@@ -4720,9 +5131,23 @@
       if (document.getElementById('chipSubFavs')) document.getElementById('chipSubFavs').innerText = t.subFavs;
 
 
+      updateI18n();
+
       renderCategories();
 
       render();
+
+      if (selectedBookingTech) {
+
+        updateBookingModalContent();
+
+      }
+
+      if (document.getElementById('aiQuickChipsContainer')) {
+
+        renderAiQuickChips();
+
+      }
 
     }
 
@@ -7366,6 +7791,396 @@
     }
 
 
+    // Dynamic Category & 100% Bilingual Booking Modal Handler
+
+    function updateBookingModalContent() {
+
+      if (!selectedBookingTech) return;
+
+      const isTa = (currentLang === 'ta');
+
+      const cat = selectedBookingTech.category || '';
+
+      const isCare = (cat === 'கேர் டேக்கர்' || cat.toLowerCase().includes('care'));
+
+      const isRental = (cat.includes('வாடகை வீடுகள்') || cat.toLowerCase().includes('rental'));
+
+      const isPacker = (cat.includes('பேக்கர்ஸ்') || cat.toLowerCase().includes('packer'));
+
+      const isCleaning = (cat.includes('கிளீனிங்') || cat.toLowerCase().includes('clean'));
+
+
+      const titleElem = document.getElementById('bookModalTitle');
+
+      const summaryElem = document.getElementById('bookTechSummary');
+
+      const dateLbl = document.getElementById('lblBookDate');
+
+      const timeLbl = document.getElementById('lblBookTime');
+
+      const timeSlot = document.getElementById('bookTimeSlot');
+
+      const addrLbl = document.getElementById('lblBookAddress');
+
+      const addrInp = document.getElementById('bookAddress');
+
+      const notesLbl = document.getElementById('lblBookNotes');
+
+      const notesInp = document.getElementById('bookNotes');
+
+      const expBox = document.getElementById('bookExpressBox');
+
+      const expCheck = document.getElementById('bookExpressCheck');
+
+      const expLbl = document.getElementById('lblBookExpress');
+
+      const expDesc = document.getElementById('bookExpressDesc');
+
+      const confirmBtn = document.getElementById('btnConfirmBook');
+
+      const cancelBtn = document.getElementById('btnCancelBook');
+
+
+      if (isCare) {
+
+        // Care Taker / Caregiver Terminology
+
+        if (titleElem) titleElem.innerText = isTa ? "🗓️ பராமரிப்பாளர் முன்பதிவு" : "🗓️ Book Caregiver / Attendant";
+
+        if (summaryElem) summaryElem.innerText = isTa ?
+
+          `பராமரிப்பாளர்: ${selectedBookingTech.name} (${selectedBookingTech.area})` :
+
+          `Caregiver: ${selectedBookingTech.name} (${selectedBookingTech.area})`;
+
+        if (dateLbl) dateLbl.innerText = isTa ? "📅 வர வேண்டிய தொடக்கத் தேதி" : "📅 Service Starting Date";
+
+        if (timeLbl) timeLbl.innerText = isTa ? "⏰ பணி நேரம் / ஷிப்ட் விவரம்" : "⏰ Preferred Shift / Timing";
+
+       
+
+        if (timeSlot) {
+
+          if (isTa) {
+
+            timeSlot.innerHTML = `
+
+              <option value="பகல் ஷிப்ட் (12 மணி நேரம் - 8 AM to 8 PM)">☀️ பகல் ஷிப்ட் (12 மணி நேரம் - 8 AM to 8 PM)</option>
+
+              <option value="இரவு ஷிப்ட் (12 மணி நேரம் - 8 PM to 8 AM)">🌙 இரவு ஷிப்ட் (12 மணி நேரம் - 8 PM to 8 AM)</option>
+
+              <option value="24 மணி நேர முழு நாள் தங்குதல் (Full Stay)">🏠 24 மணி நேர முழு நாள் தங்குதல் (Full Stay)</option>
+
+              <option value="பகுதி நேரம் (காலை 9 AM to 1 PM)">⏰ பகுதி நேரம் (காலை 9 AM to 1 PM)</option>
+
+              <option value="பகுதி நேரம் (மாலை 4 PM to 8 PM)">⏰ பகுதி நேரம் (மாலை 4 PM to 8 PM)</option>
+
+            `;
+
+          } else {
+
+            timeSlot.innerHTML = `
+
+              <option value="Day Shift (12 Hours - 8 AM to 8 PM)">☀️ Day Shift (12 Hours - 8 AM to 8 PM)</option>
+
+              <option value="Night Shift (12 Hours - 8 PM to 8 AM)">🌙 Night Shift (12 Hours - 8 PM to 8 AM)</option>
+
+              <option value="24 Hours Full-Time Live-in Care">🏠 24 Hours Full-Time Live-in Care</option>
+
+              <option value="Part-time (Morning 9 AM to 1 PM)">⏰ Part-time (Morning 9 AM to 1 PM)</option>
+
+              <option value="Part-time (Evening 4 PM to 8 PM)">⏰ Part-time (Evening 4 PM to 8 PM)</option>
+
+            `;
+
+          }
+
+        }
+
+
+        if (addrLbl) addrLbl.innerText = isTa ? "🏠 கவனிப்பு தேவைப்படும் வீட்டு முகவரி" : "🏠 Home Address for Care Service";
+
+        if (addrInp) addrInp.placeholder = isTa ? "கதவு எண், தெரு மற்றும் பகுதி (எ.கா: வேளச்சேரி, சென்னை)" : "Door No, Street & Area (e.g. Velachery, Chennai)";
+
+        if (notesLbl) notesLbl.innerText = isTa ? "🩺 நோயாளி / முதியோர் தேவைகள் & மருத்துவக் குறிப்புகள்" : "🩺 Patient / Care Requirements & Medical Notes";
+
+        if (notesInp) notesInp.placeholder = isTa ? "எ.கா: முதியோர் உதவி, மாத்திரை கொடுப்பது, நடைபயிற்சி, 24/7 கவனிப்பு" : "e.g. Elderly mobility assistance, regular medication, sugar/BP monitoring";
+
+        if (expBox) expBox.style.display = 'block';
+
+        if (expLbl) expLbl.innerText = isTa ? "⚡ அவசர பராமரிப்பாளர் தேவை (30 நிமிடங்களில் வருகை)" : "⚡ Emergency Caregiver Needed (Arrival in 30 Mins)";
+
+        if (expDesc) expDesc.innerText = isTa ? "அவசர மருத்துவ உதவிக்கு பராமரிப்பாளர் 30 நிமிடத்தில் நேரடியாக வந்து உதவுவார்." : "Caregiver will arrive directly within 30 minutes for urgent care assistance.";
+
+        if (confirmBtn) confirmBtn.innerText = isTa ? "முன்பதிவை உறுதி செய் 🚀" : "Confirm Caregiver Booking 🚀";
+
+        if (cancelBtn) cancelBtn.innerText = isTa ? "ரத்து" : "Cancel";
+
+
+      } else if (isRental) {
+
+        // House Rental Visit Terminology
+
+        if (titleElem) titleElem.innerText = isTa ? "🏠 வாடகை வீடு பார்வை முன்பதிவு" : "🏠 Schedule House Visit";
+
+        if (summaryElem) summaryElem.innerText = isTa ?
+
+          `வீட்டு உரிமையாளர்: ${selectedBookingTech.name} (${selectedBookingTech.area})` :
+
+          `Property Owner: ${selectedBookingTech.name} (${selectedBookingTech.area})`;
+
+        if (dateLbl) dateLbl.innerText = isTa ? "📅 நேரில் பார்வையிட விரும்பும் தேதி" : "📅 Preferred Visit Date";
+
+        if (timeLbl) timeLbl.innerText = isTa ? "⏰ விருப்பமான நேரம்" : "⏰ Preferred Time Slot";
+
+        if (timeSlot) {
+
+          if (isTa) {
+
+            timeSlot.innerHTML = `
+
+              <option value="காலை (10:00 AM - 12:00 PM)">காலை (10:00 AM - 12:00 PM)</option>
+
+              <option value="மதியம் (12:00 PM - 02:00 PM)">மதியம் (12:00 PM - 02:00 PM)</option>
+
+              <option value="மாலை (04:00 PM - 07:00 PM)">மாலை (04:00 PM - 07:00 PM)</option>
+
+            `;
+
+          } else {
+
+            timeSlot.innerHTML = `
+
+              <option value="Morning (10:00 AM - 12:00 PM)">Morning (10:00 AM - 12:00 PM)</option>
+
+              <option value="Noon (12:00 PM - 02:00 PM)">Noon (12:00 PM - 02:00 PM)</option>
+
+              <option value="Evening (04:00 PM - 07:00 PM)">Evening (04:00 PM - 07:00 PM)</option>
+
+            `;
+
+          }
+
+        }
+
+        if (addrLbl) addrLbl.innerText = isTa ? "🏠 உங்கள் தற்போதைய முகவரி" : "🏠 Your Current Address";
+
+        if (addrInp) addrInp.placeholder = isTa ? "கதவு எண், தெரு மற்றும் பகுதி" : "Door No, Street & Area";
+
+        if (notesLbl) notesLbl.innerText = isTa ? "📝 குடும்ப விவரம் & வாடகைத் தேவைகள்" : "📝 Family Details & Requirements";
+
+        if (notesInp) notesInp.placeholder = isTa ? "எ.கா: குடும்பத்துடன் நேரில் வந்து வீடு பார்க்க விரும்புகிறேன்" : "e.g. Want to visit the house with my family";
+
+        if (expBox) expBox.style.display = 'block';
+
+        if (expLbl) expLbl.innerText = isTa ? "⚡ உடனடி வீடு பார்வை (இன்றே வருகை)" : "⚡ Priority Visit (Same Day Visit)";
+
+        if (expDesc) expDesc.innerText = isTa ? "இன்றே நேரில் சென்று வீட்டைப் பார்வையிட உரிமையாளருக்கு உடனடி தகவல் அனுப்பப்படும்." : "Priority alert sent to owner for same-day property visit.";
+
+        if (confirmBtn) confirmBtn.innerText = isTa ? "பார்வை முன்பதிவை உறுதி செய் 🚀" : "Confirm House Visit 🚀";
+
+        if (cancelBtn) cancelBtn.innerText = isTa ? "ரத்து" : "Cancel";
+
+
+      } else if (isPacker) {
+
+        // Packers & Movers Terminology
+
+        if (titleElem) titleElem.innerText = isTa ? "🚚 பேக்கர்ஸ் & மூவர்ஸ் முன்பதிவு" : "🚚 Book Packers & Movers";
+
+        if (summaryElem) summaryElem.innerText = isTa ?
+
+          `டிரான்ஸ்போர்ட்: ${selectedBookingTech.name} (${selectedBookingTech.area})` :
+
+          `Movers: ${selectedBookingTech.name} (${selectedBookingTech.area})`;
+
+        if (dateLbl) dateLbl.innerText = isTa ? "📅 இடமாற்ற தேதி" : "📅 Shifting Date";
+
+        if (timeLbl) timeLbl.innerText = isTa ? "⏰ விருப்பமான நேரம்" : "⏰ Preferred Time Slot";
+
+        if (timeSlot) {
+
+          if (isTa) {
+
+            timeSlot.innerHTML = `
+
+              <option value="காலை (07:00 AM - 10:00 AM)">காலை (07:00 AM - 10:00 AM)</option>
+
+              <option value="பிற்பகல் (11:00 AM - 03:00 PM)">பிற்பகல் (11:00 AM - 03:00 PM)</option>
+
+              <option value="மாலை (04:00 PM - 08:00 PM)">மாலை (04:00 PM - 08:00 PM)</option>
+
+            `;
+
+          } else {
+
+            timeSlot.innerHTML = `
+
+              <option value="Early Morning (07:00 AM - 10:00 AM)">Early Morning (07:00 AM - 10:00 AM)</option>
+
+              <option value="Afternoon (11:00 AM - 03:00 PM)">Afternoon (11:00 AM - 03:00 PM)</option>
+
+              <option value="Evening (04:00 PM - 08:00 PM)">Evening (04:00 PM - 08:00 PM)</option>
+
+            `;
+
+          }
+
+        }
+
+        if (addrLbl) addrLbl.innerText = isTa ? "🏠 கிளம்பும் இடம் & முகவரி (From Address)" : "🏠 Pickup Address (From Location)";
+
+        if (addrInp) addrInp.placeholder = isTa ? "எங்கிருந்து பொருட்கள் ஏற்ற வேண்டும்?" : "From where to load household items?";
+
+        if (notesLbl) notesLbl.innerText = isTa ? "📦 இடமாற்ற பொருட்கள் & இலக்கு விவரம் (To Location)" : "📦 Shifting Goods & Destination Details";
+
+        if (notesInp) notesInp.placeholder = isTa ? "எ.கா: 2BHK வீடு, வேளச்சேரி முதல் தாம்பரம் வரை" : "e.g. 2BHK household goods, from Velachery to Tambaram";
+
+        if (expBox) expBox.style.display = 'block';
+
+        if (expLbl) expLbl.innerText = isTa ? "⚡ அவசர இடமாற்றம் தேவை" : "⚡ Urgent Shifting Needed";
+
+        if (expDesc) expDesc.innerText = isTa ? "அவசர இடமாற்றத்திற்கு உடனடியாக லாரி & ஆட்கள் ஒதுக்கீடு செய்யப்படும்." : "Immediate vehicle and helpers allocated for urgent shifting.";
+
+        if (confirmBtn) confirmBtn.innerText = isTa ? "முன்பதிவை உறுதி செய் 🚀" : "Confirm Booking 🚀";
+
+        if (cancelBtn) cancelBtn.innerText = isTa ? "ரத்து" : "Cancel";
+
+
+      } else if (isCleaning) {
+
+        // Deep Cleaning Terminology
+
+        if (titleElem) titleElem.innerText = isTa ? "✨ டீப் கிளீனிங் முன்பதிவு" : "✨ Book Deep Cleaning";
+
+        if (summaryElem) summaryElem.innerText = isTa ?
+
+          `கிளீனிங் குழு: ${selectedBookingTech.name} (${selectedBookingTech.area})` :
+
+          `Cleaning Team: ${selectedBookingTech.name} (${selectedBookingTech.area})`;
+
+        if (dateLbl) dateLbl.innerText = isTa ? "📅 வர வேண்டிய தேதி" : "📅 Service Date";
+
+        if (timeLbl) timeLbl.innerText = isTa ? "⏰ விருப்பமான நேரம்" : "⏰ Preferred Time Slot";
+
+        if (timeSlot) {
+
+          if (isTa) {
+
+            timeSlot.innerHTML = `
+
+              <option value="காலை (08:00 AM - 12:00 PM)">காலை (08:00 AM - 12:00 PM)</option>
+
+              <option value="பிற்பகல் (01:00 PM - 05:00 PM)">பிற்பகல் (01:00 PM - 05:00 PM)</option>
+
+            `;
+
+          } else {
+
+            timeSlot.innerHTML = `
+
+              <option value="Morning (08:00 AM - 12:00 PM)">Morning (08:00 AM - 12:00 PM)</option>
+
+              <option value="Afternoon (01:00 PM - 05:00 PM)">Afternoon (01:00 PM - 05:00 PM)</option>
+
+            `;
+
+          }
+
+        }
+
+        if (addrLbl) addrLbl.innerText = isTa ? "🏠 சுத்தம் செய்ய வேண்டிய இடத்தின் முகவரி" : "🏠 Cleaning Location Address";
+
+        if (addrInp) addrInp.placeholder = isTa ? "கதவு எண், தெரு மற்றும் நகரம்" : "Door No, Street & City";
+
+        if (notesLbl) notesLbl.innerText = isTa ? "🧹 சுத்தம் செய்ய வேண்டிய பகுதி விவரம்" : "🧹 Cleaning Scope & Area Details";
+
+        if (notesInp) notesInp.placeholder = isTa ? "எ.கா: 2BHK முழு வீடு மற்றும் பாத்ரூம் டீப் கிளீனிங்" : "e.g. 2BHK full house and bathroom deep cleaning";
+
+        if (expBox) expBox.style.display = 'block';
+
+        if (expLbl) expLbl.innerText = isTa ? "⚡ அவசர சேவை தேவை (இன்றே வருகை)" : "⚡ Emergency Cleaning Needed (Same Day)";
+
+        if (expDesc) expDesc.innerText = isTa ? "இன்றே கிளீனிங் குழு உடனடியாக வந்து பணியைத் தொடங்குவர்." : "Cleaning crew will arrive today for immediate service.";
+
+        if (confirmBtn) confirmBtn.innerText = isTa ? "முன்பதிவை உறுதி செய் 🚀" : "Confirm Booking 🚀";
+
+        if (cancelBtn) cancelBtn.innerText = isTa ? "ரத்து" : "Cancel";
+
+
+      } else {
+
+        // Technician Repair Terminology (Electrician, Plumber, AC, RO, Battery)
+
+        if (titleElem) titleElem.innerText = isTa ? "🗓️ டெக்னீசியன் முன்பதிவு" : "🗓️ Book Technician";
+
+        if (summaryElem) summaryElem.innerText = isTa ?
+
+          `டெக்னீசியன்: ${selectedBookingTech.name} (${selectedBookingTech.area})` :
+
+          `Technician: ${selectedBookingTech.name} (${selectedBookingTech.area})`;
+
+        if (dateLbl) dateLbl.innerText = isTa ? "📅 வர வேண்டிய தேதி" : "📅 Preferred Date";
+
+        if (timeLbl) timeLbl.innerText = isTa ? "⏰ விருப்பமான நேரம்" : "⏰ Preferred Time Slot";
+
+        if (timeSlot) {
+
+          if (isTa) {
+
+            timeSlot.innerHTML = `
+
+              <option value="காலை (10:00 AM - 12:00 PM)">காலை (10:00 AM - 12:00 PM)</option>
+
+              <option value="மதியம் (12:00 PM - 02:00 PM)">மதியம் (12:00 PM - 02:00 PM)</option>
+
+              <option value="பிற்பகல் (02:00 PM - 05:00 PM)">பிற்பகல் (02:00 PM - 05:00 PM)</option>
+
+              <option value="மாலை (05:00 PM - 08:00 PM)">மாலை (05:00 PM - 08:00 PM)</option>
+
+            `;
+
+          } else {
+
+            timeSlot.innerHTML = `
+
+              <option value="Morning (10:00 AM - 12:00 PM)">Morning (10:00 AM - 12:00 PM)</option>
+
+              <option value="Noon (12:00 PM - 02:00 PM)">Noon (12:00 PM - 02:00 PM)</option>
+
+              <option value="Afternoon (02:00 PM - 05:00 PM)">Afternoon (02:00 PM - 05:00 PM)</option>
+
+              <option value="Evening (05:00 PM - 08:00 PM)">Evening (05:00 PM - 08:00 PM)</option>
+
+            `;
+
+          }
+
+        }
+
+        if (addrLbl) addrLbl.innerText = isTa ? "🏠 வீட்டு முகவரி & பகுதி" : "🏠 Home Address & Area";
+
+        if (addrInp) addrInp.placeholder = isTa ? "கதவு எண், தெரு மற்றும் நகரம்" : "Door No, Street & City";
+
+        if (notesLbl) notesLbl.innerText = isTa ? "🛠️ பழுது / சேவை தேவை விவரம்" : "🛠️ Fault / Service Details (Notes)";
+
+        if (notesInp) notesInp.placeholder = isTa ? "எ.கா: AC கூலிங் வரவில்லை / சுவிட்ச் போர்டு பழுது / பைப் லீக்கேஜ்" : "e.g. AC not cooling / switch board issue / tap leakage";
+
+        if (expBox) expBox.style.display = 'block';
+
+        if (expLbl) expLbl.innerText = isTa ? "⚡ அவசர சேவை தேவை (30 நிமிடங்களில் வருகை)" : "⚡ Emergency Service Needed (Arrival in 30 Mins)";
+
+        if (expDesc) expDesc.innerText = isTa ? "அவசர தேவைக்கு டெக்னீசியன் 30 நிமிடத்தில் நேரடியாக வந்து உதவுவார்." : "Technician will arrive directly within 30 minutes for urgent repair.";
+
+        if (confirmBtn) confirmBtn.innerText = isTa ? "முன்பதிவை உறுதி செய் 🚀" : "Confirm Booking 🚀";
+
+        if (cancelBtn) cancelBtn.innerText = isTa ? "ரத்து" : "Cancel";
+
+      }
+
+    }
+
+
     function startBooking(id) {
 
       selectedBookingTech = liveServicesList.find(x => x.id === id);
@@ -7380,7 +8195,7 @@
 
       }
 
-      document.getElementById('bookTechSummary').innerText = `${selectedBookingTech.name} (${getDisplayCategory(selectedBookingTech.category)})`;
+      updateBookingModalContent();
 
       const expressCheck = document.getElementById('bookExpressCheck');
 
@@ -7392,6 +8207,8 @@
 
 
     function confirmBooking() {
+
+      if (!selectedBookingTech) return;
 
       const date = document.getElementById('bookDate').value;
 
@@ -7413,25 +8230,166 @@
       }
 
 
+      const isCare = (selectedBookingTech.category === 'கேர் டேக்கர்' || (selectedBookingTech.category || '').toLowerCase().includes('care'));
+
+      const isRental = ((selectedBookingTech.category || '').includes('வாடகை வீடுகள்') || (selectedBookingTech.category || '').toLowerCase().includes('rental'));
+
+      const isPacker = ((selectedBookingTech.category || '').includes('பேக்கர்ஸ்') || (selectedBookingTech.category || '').toLowerCase().includes('packer'));
+
+      const isCleaning = ((selectedBookingTech.category || '').includes('கிளீனிங்') || (selectedBookingTech.category || '').toLowerCase().includes('clean'));
+
+
       let msg = '';
 
-      if (isExpress) {
+      if (currentLang === 'ta') {
 
-        msg += `🚨 *அவசர சேவை கோரிக்கை (EMERGENCY 30 MINS EXPRESS SERVICE)* 🚨\n\n`;
+        if (isExpress) {
+
+          msg += `🚨 *அவசர 30 நிமிட சேவை கோரிக்கை (EMERGENCY 30 MINS EXPRESS)* 🚨\n\n`;
+
+        }
+
+        if (isCare) {
+
+          msg += `வணக்கம் ${selectedBookingTech.name}! நான் Fixr ஆப் மூலம் பராமரிப்பாளர் முன்பதிவு செய்துள்ளேன்:\n` +
+
+                 `• சேவை வகை: ${isExpress ? '⚡ 30 நிமிட அவசர பராமரிப்பாளர் வருகை' : 'பராமரிப்பாளர் சேவை'}\n` +
+
+                 `• தொடங்கும் தேதி: ${date}\n` +
+
+                 `• பணி நேரம் / ஷிப்ட்: ${time}\n` +
+
+                 `• வீட்டு முகவரி: ${addr}\n` +
+
+                 `• நோயாளி / முதியோர் கவனிப்பு விவரம்: ${notes || 'முதியோர் பராமரிப்பு'}`;
+
+        } else if (isRental) {
+
+          msg += `வணக்கம் ${selectedBookingTech.name}! நான் Fixr ஆப் மூலம் உங்கள் வாடகை வீட்டைப் பார்வையிட முன்பதிவு செய்துள்ளேன்:\n` +
+
+                 `• பார்வை தேதி: ${date}\n` +
+
+                 `• விருப்பமான நேரம்: ${time}\n` +
+
+                 `• தொடர்பாளர் முகவரி: ${addr}\n` +
+
+                 `• விவரம்: ${notes || 'நேரில் வந்து வீடு பார்க்க விரும்புகிறேன்'}`;
+
+        } else if (isPacker) {
+
+          msg += `வணக்கம் ${selectedBookingTech.name}! நான் Fixr ஆப் மூலம் பேக்கர்ஸ் & மூவர்ஸ் முன்பதிவு செய்துள்ளேன்:\n` +
+
+                 `• இடமாற்ற தேதி: ${date}\n` +
+
+                 `• நேரம்: ${time}\n` +
+
+                 `• முகவரி: ${addr}\n` +
+
+                 `• பொருட்கள் விவரம்: ${notes || 'வீட்டுப் பொருட்கள் இடமாற்றம்'}`;
+
+        } else if (isCleaning) {
+
+          msg += `வணக்கம் ${selectedBookingTech.name}! நான் Fixr ஆப் மூலம் டீப் கிளீனிங் முன்பதிவு செய்துள்ளேன்:\n` +
+
+                 `• சேவை தேதி: ${date}\n` +
+
+                 `• நேரம்: ${time}\n` +
+
+                 `• முகவரி: ${addr}\n` +
+
+                 `• சுத்தம் செய்ய வேண்டிய பகுதி: ${notes || 'முழு வீடு கிளீனிங்'}`;
+
+        } else {
+
+          msg += `வணக்கம் ${selectedBookingTech.name}! நான் Fixr ஆப் மூலம் டெக்னீசியன் சேவை முன்பதிவு செய்துள்ளேன்:\n` +
+
+                 `• சேவை வகை: ${isExpress ? '⚡ 30 நிமிட எக்ஸ்பிரஸ் அவசர சேவை' : 'சாதாரண முன்பதிவு'}\n` +
+
+                 `• தேதி: ${date}\n` +
+
+                 `• நேரம்: ${time}\n` +
+
+                 `• முகவரி: ${addr}\n` +
+
+                 `• பழுது / தேவை விவரம்: ${notes || 'பொதுவான சேவை'}`;
+
+        }
+
+      } else {
+
+        if (isExpress) {
+
+          msg += `🚨 *EMERGENCY 30 MINS EXPRESS SERVICE REQUEST* 🚨\n\n`;
+
+        }
+
+        if (isCare) {
+
+          msg += `Hello ${selectedBookingTech.name}! I have booked a Caregiver via Fixr App:\n` +
+
+                 `• Service: ${isExpress ? '⚡ 30 Mins Emergency Caregiver Arrival' : 'Standard Caregiver Booking'}\n` +
+
+                 `• Start Date: ${date}\n` +
+
+                 `• Shift / Timing: ${time}\n` +
+
+                 `• Address: ${addr}\n` +
+
+                 `• Care Requirements: ${notes || 'Elderly / Patient Care'}`;
+
+        } else if (isRental) {
+
+          msg += `Hello ${selectedBookingTech.name}! I have scheduled a house visit via Fixr App:\n` +
+
+                 `• Visit Date: ${date}\n` +
+
+                 `• Preferred Time: ${time}\n` +
+
+                 `• Contact Address: ${addr}\n` +
+
+                 `• Queries / Notes: ${notes || 'Would like to visit property'}`;
+
+        } else if (isPacker) {
+
+          msg += `Hello ${selectedBookingTech.name}! I have booked Packers & Movers via Fixr App:\n` +
+
+                 `• Shifting Date: ${date}\n` +
+
+                 `• Time: ${time}\n` +
+
+                 `• Address: ${addr}\n` +
+
+                 `• Shifting Items / Route: ${notes || 'Household shifting'}`;
+
+        } else if (isCleaning) {
+
+          msg += `Hello ${selectedBookingTech.name}! I have booked Deep Cleaning via Fixr App:\n` +
+
+                 `• Service Date: ${date}\n` +
+
+                 `• Time: ${time}\n` +
+
+                 `• Address: ${addr}\n` +
+
+                 `• Cleaning Scope: ${notes || 'Full house deep cleaning'}`;
+
+        } else {
+
+          msg += `Hello ${selectedBookingTech.name}! I have booked a service via Fixr App:\n` +
+
+                 `• Service: ${isExpress ? '⚡ 30 Mins Express Emergency' : 'Standard Booking'}\n` +
+
+                 `• Date: ${date}\n` +
+
+                 `• Time: ${time}\n` +
+
+                 `• Address: ${addr}\n` +
+
+                 `• Fault / Details: ${notes || 'General service'}`;
+
+        }
 
       }
-
-      msg += `வணக்கம் ${selectedBookingTech.name}! நான் Fixr ஆப் மூலம் சேவை முன்பதிவு செய்துள்ளேன்:
-
-• சேவை வகை: ${isExpress ? '⚡ 30 நிமிட எக்ஸ்பிரஸ் அவசர சேவை' : 'சாதாரண முன்பதிவு'}
-
-• தேதி: ${date}
-
-• நேரம்: ${time}
-
-• முகவரி: ${addr}
-
-• விவரம்: ${notes || 'பொதுவான சேவை'}`;
 
 
       window.open(`https://wa.me/91${selectedBookingTech.phone}?text=${encodeURIComponent(msg)}`, '_blank');
@@ -8604,6 +9562,708 @@
       }, 1300);
 
     });
+
+
+ 
+
+    // --- Fixr AI Assistant 24/7 Auto-Reply Engine ---
+
+    const aiSuggestions = {
+
+      ta: [
+
+        { label: "📅 முன்பதிவு செய்வது எப்படி?", query: "முன்பதிவு செய்வது எப்படி?" },
+
+        { label: "⚡ 30 நிமிடம் எக்ஸ்பிரஸ் சேவை", query: "30 நிமிடம் எக்ஸ்பிரஸ் சேவை விவரம்" },
+
+        { label: "💰 கட்டண விவரம் (Rate Card)", query: "கட்டண விவரம் என்ன?" },
+
+        { label: "🛡️ உதிரிபாக நியாய விலை", query: "உதிரிபாக விலை சரிபார்ப்பு" },
+
+        { label: "❤️ கேர் டேக்கர் சேவை", query: "கேர் டேக்கர் சேவை விவரம்" },
+
+        { label: "🏠 வாடகை வீடு & அக்ரீமென்ட்", query: "வாடகை வீடு மற்றும் அக்ரீமென்ட்" },
+
+        { label: "🎯 என் பட்ஜெட் என் வேலை", query: "என் பட்ஜெட் என் வேலை என்றால் என்ன?" },
+
+        { label: "🛠️ தொழிலாளர் பதிவு (₹49)", query: "தொழிலாளராக பதிவு செய்வது எப்படி?" },
+
+        { label: "📞 அட்மினுடன் பேச", query: "அட்மின் வாட்ஸ்அப் தொடர்பு எண்" }
+
+      ],
+
+      en: [
+
+        { label: "📅 How to book a service?", query: "How to book a service?" },
+
+        { label: "⚡ 30 Mins Express Service", query: "Tell me about 30 Mins Express service" },
+
+        { label: "💰 Pricing & Rate Card", query: "What are the service charges?" },
+
+        { label: "🛡️ Spare Parts Fair Price", query: "Spare parts fair price checker" },
+
+        { label: "❤️ Care Taker Services", query: "Tell me about Care Taker services" },
+
+        { label: "🏠 House Rental & Agreement", query: "House rentals and rental agreement" },
+
+        { label: "🎯 Budget Bidding", query: "How does Budget Bidding work?" },
+
+        { label: "🛠️ Join as Partner (₹49)", query: "How to register as a partner?" },
+
+        { label: "📞 Connect with Admin", query: "Talk to human admin on WhatsApp" }
+
+      ]
+
+    };
+
+
+    function openAiHelpModal() {
+
+      const container = document.getElementById('aiChatMessages');
+
+      if (container && container.children.length === 0) {
+
+        resetAiChat();
+
+      }
+
+      renderAiQuickChips();
+
+      openModal('aiHelpModal');
+
+      setTimeout(() => {
+
+        const input = document.getElementById('aiChatInput');
+
+        if (input) input.focus();
+
+      }, 200);
+
+    }
+
+
+    function resetAiChat() {
+
+      const container = document.getElementById('aiChatMessages');
+
+      if (!container) return;
+
+      container.innerHTML = '';
+
+     
+
+      const isTa = (currentLang === 'ta');
+
+      const welcomeText = isTa ?
+
+        `வணக்கம்! நான் உங்கள் <b>Fixr AI உதவியாளர்</b> 🤖.<br><br>` +
+
+        `Fixr தளத்தில் முன்பதிவு, கட்டண விவரம், தொழிலாளர் பதிவு, கேர் டேக்கர் அல்லது அவசர சேவை குறித்து உங்களுக்கு என்ன உதவி தேவை?<br><br>` +
+
+        `மேலே உள்ள விரைவு பொத்தான்களில் ஒன்றை அழுத்தலாம் அல்லது உங்கள் கேள்வியை கீழே தட்டச்சு செய்யவும்!` :
+
+        `Hello! I am your <b>Fixr AI Assistant</b> 🤖.<br><br>` +
+
+        `How can I assist you today? I can help with service booking, rate card pricing, caregiver support, partner registration, or 30-min express services.<br><br>` +
+
+        `Tap any suggestion chip above or type your question below!`;
+
+
+      addAiChatMessage('bot', welcomeText);
+
+    }
+
+
+    function renderAiQuickChips() {
+
+      const container = document.getElementById('aiQuickChipsContainer');
+
+      if (!container) return;
+
+      container.innerHTML = '';
+
+      const list = aiSuggestions[currentLang] || aiSuggestions.ta;
+
+      list.forEach(item => {
+
+        const btn = document.createElement('button');
+
+        btn.type = 'button';
+
+        btn.className = 'ai-chip-pill';
+
+        btn.innerText = item.label;
+
+        btn.onclick = () => {
+
+          sendAiMessage(item.query);
+
+        };
+
+        container.appendChild(btn);
+
+      });
+
+    }
+
+
+    function sendAiMessage(customText) {
+
+      const input = document.getElementById('aiChatInput');
+
+      const query = (customText || (input ? input.value : '')).trim();
+
+      if (!query) return;
+
+      if (input) input.value = '';
+
+
+      addAiChatMessage('user', query);
+
+
+      // Show typing indicator
+
+      const typingId = 'typingIndicator_' + Date.now();
+
+      const typingText = (currentLang === 'ta') ? '🤖 Fixr AI யோசிக்கிறது...' : '🤖 Fixr AI is typing...';
+
+      addAiChatMessage('bot', typingText, typingId);
+
+
+      setTimeout(() => {
+
+        const typingElem = document.getElementById(typingId);
+
+        if (typingElem) typingElem.remove();
+
+
+        const reply = getAiAutoReply(query, currentLang);
+
+        addAiChatMessage('bot', reply.text, null, reply.actionBtn);
+
+      }, 350);
+
+    }
+
+
+    function addAiChatMessage(sender, htmlContent, customId, actionBtn) {
+
+      const container = document.getElementById('aiChatMessages');
+
+      if (!container) return;
+
+      const bubble = document.createElement('div');
+
+      bubble.className = `ai-chat-bubble ${sender === 'user' ? 'ai-bubble-user' : 'ai-bubble-bot'}`;
+
+      if (customId) bubble.id = customId;
+
+
+      let content = htmlContent;
+
+      if (actionBtn) {
+
+        content += `<br><button class="ai-action-btn" onclick="${actionBtn.action}">${actionBtn.label}</button>`;
+
+      }
+
+
+      bubble.innerHTML = content;
+
+      container.appendChild(bubble);
+
+      container.scrollTop = container.scrollHeight;
+
+    }
+
+
+    function filterCategory(catKey) {
+
+      currentCategory = catKey;
+
+      currentRentalSubFilter = 'all';
+
+      renderCategories();
+
+      render();
+
+      closeModal('aiHelpModal');
+
+      const container = document.getElementById('servicesList');
+
+      if (container) container.scrollIntoView({ behavior: 'smooth' });
+
+    }
+
+
+    function getAiAutoReply(query, lang) {
+
+      const q = query.toLowerCase();
+
+      const isTa = (lang === 'ta');
+
+
+      // 1. Care Taker / Caregiver / Elderly / Patient / Nurse
+
+      if (q.includes('care') || q.includes('taker') || q.includes('கேர்') || q.includes('டேக்கர்') ||
+
+          q.includes('முதியோர்') || q.includes('நோயாளி') || q.includes('nurse') || q.includes('patient') ||
+
+          q.includes('பராமரிப்பாளர்') || q.includes('elderly')) {
+
+        if (isTa) {
+
+          return {
+
+            text: `❤️ <b>Fixr கேர் டேக்கர் & பராமரிப்பாளர் சேவைகள்:</b><br><br>` +
+
+                  `முதியோர் கவனிப்பு, படுத்த படுக்கையான நோயாளி உதவி, குழந்தை பராமரிப்பு மற்றும் 24 மணி நேர தங்கிப் பணிபுரியும் சேவைக்கு அனுபவமிக்க ஆண்/பெண் பராமரிப்பாளர்கள் உள்ளனர்.<br><br>` +
+
+                  `• <b>பகல் ஷிப்ட்</b> (12 மணி நேரம் - 8 AM முதல் 8 PM வரை)<br>` +
+
+                  `• <b>இரவு ஷிப்ட்</b> (12 மணி நேரம் - 8 PM முதல் 8 AM வரை)<br>` +
+
+                  `• <b>24 மணி நேர தங்கும் சேவை</b> (Full-time Live-in Stay)<br>` +
+
+                  `• <b>பகுதி நேர உதவி</b> (Part-time 4-6 Hours)<br><br>` +
+
+                  `அவசரத் தேவைக்கு 30 நிமிடங்களிலும் பராமரிப்பாளர் வருகை பெறலாம்.`,
+
+            actionBtn: { label: "❤️ கேர் டேக்கர் சேவைகளைப் பார்க்க", action: "filterCategory('கேர் டேக்கர்')" }
+
+          };
+
+        } else {
+
+          return {
+
+            text: `❤️ <b>Fixr Caretaker & Caregiver Services:</b><br><br>` +
+
+                  `We provide verified male & female caregivers for elderly care, bedridden patient support, baby care, and 24-hour live-in stay.<br><br>` +
+
+                  `• <b>Day Shift</b> (12 Hours - 8 AM to 8 PM)<br>` +
+
+                  `• <b>Night Shift</b> (12 Hours - 8 PM to 8 AM)<br>` +
+
+                  `• <b>24 Hours Full-Time Live-in Care</b><br>` +
+
+                  `• <b>Part-time Care</b> (4-6 Hours)<br><br>` +
+
+                  `Emergency 30-minute caregiver arrival is also supported.`,
+
+            actionBtn: { label: "❤️ View Care Taker Services", action: "filterCategory('கேர் டேக்கர்')" }
+
+          };
+
+        }
+
+      }
+
+
+      // 2. Booking / How to book
+
+      if (q.includes('book') || q.includes('முன்பதிவு') || q.includes('order') || q.includes('புக்') || q.includes('எப்படி') || q.includes('how to')) {
+
+        if (isTa) {
+
+          return {
+
+            text: `📅 <b>Fixr-ல் முன்பதிவு செய்வது எப்படி?</b><br><br>` +
+
+                  `1. முகப்புப் பக்கத்தில் உங்கள் ஊரைத் தேர்ந்தெடுக்கவும் (சென்னை, கோவை, மதுரை...).<br>` +
+
+                  `2. தேவையான சேவைப் பிரிவை அழுத்தவும் (எ.கா: எலக்ட்ரீஷியன், பிளம்பர், கேர் டேக்கர்).<br>` +
+
+                  `3. தொழிலாளர் அட்டையில் உள்ள <b>"முன்பதிவு"</b> பொத்தானை அழுத்தவும்.<br>` +
+
+                  `4. தேதி, விருப்பமான நேரம் மற்றும் முகவரியை உள்ளிட்டு உறுதி செய்யவும்.<br><br>` +
+
+                  `உடனடியாக வாட்ஸ்அப் மூலம் தொழிலாளருக்கு உங்கள் முன்பதிவு தகவல் செல்லும்!`,
+
+            actionBtn: { label: "🔍 சேவைகளைத் தேடுக", action: "closeModal('aiHelpModal')" }
+
+          };
+
+        } else {
+
+          return {
+
+            text: `📅 <b>How to book a service on Fixr:</b><br><br>` +
+
+                  `1. Select your city (Chennai, Coimbatore, Madurai...) on the top bar.<br>` +
+
+                  `2. Tap your desired category (e.g. Electrician, Plumber, Care Taker).<br>` +
+
+                  `3. Click the <b>"Book Now"</b> button on the professional's card.<br>` +
+
+                  `4. Pick your preferred date, time slot, and home address, then confirm!<br><br>` +
+
+                  `Your booking details will be sent directly to the pro via WhatsApp.`,
+
+            actionBtn: { label: "🔍 Browse Services", action: "closeModal('aiHelpModal')" }
+
+          };
+
+        }
+
+      }
+
+
+      // 3. Express 30 Mins Service
+
+      if (q.includes('express') || q.includes('30 min') || q.includes('urgent') || q.includes('அவசரம்') || q.includes('எக்ஸ்பிரஸ்') || q.includes('emergency')) {
+
+        if (isTa) {
+
+          return {
+
+            text: `⚡ <b>Fixr 30 Mins Express அவசர சேவை:</b><br><br>` +
+
+                  `திடீர் கரண்ட் கட், பைப் உடைந்து தண்ணீர் ஒழுகுதல், AC வேலை செய்யாமல் போவது அல்லது அவசர பராமரிப்பாளர் தேவைக்கு — எங்கள் தொழிலாளர்கள் <b>30 நிமிடங்களில்</b> உங்கள் இருப்பிடத்திற்கு நேரடியாக வந்து உதவுவார்கள்.<br><br>` +
+
+                  `முன்பதிவு செய்யும் போது <b>"30 Mins Express"</b> என்பதை டிக் செய்யவும்.`,
+
+            actionBtn: { label: "⚡ அவசர சேவைகள் மட்டும் பார்க்க", action: "toggleExpressFilter(); closeModal('aiHelpModal');" }
+
+          };
+
+        } else {
+
+          return {
+
+            text: `⚡ <b>Fixr 30 Mins Express Emergency Service:</b><br><br>` +
+
+                  `For power failures, burst pipes, AC breakdowns, or urgent caregiver assistance — our certified professionals arrive at your doorstep within <b>30 minutes</b>!<br><br>` +
+
+                  `Simply tick <b>"30 Mins Express"</b> in the booking form for priority dispatch.`,
+
+            actionBtn: { label: "⚡ Filter Express Services", action: "toggleExpressFilter(); closeModal('aiHelpModal');" }
+
+          };
+
+        }
+
+      }
+
+
+      // 4. Pricing / Rate Card / Cost
+
+      if (q.includes('price') || q.includes('rate') || q.includes('cost') || q.includes('கட்டணம்') || q.includes('விலை') || q.includes('charge')) {
+
+        if (isTa) {
+
+          return {
+
+            text: `💰 <b>Fixr வெளிப்படையான சேவைக் கட்டண பட்டியல் (Rate Card):</b><br><br>` +
+
+                  `• <b>விசிட்டிங் / சிறிய பழுது:</b> ₹150 - ₹250<br>` +
+
+                  `• <b>பிளம்பிங் / எலக்ட்ரிக்கல் பொது பணி:</b> ₹250 - ₹400<br>` +
+
+                  `• <b>AC ஜெனரல் சர்வீஸ்:</b> ₹450 முதல்<br>` +
+
+                  `• <b>RO வாட்டர் பியூரிஃபையர் சர்வீஸ்:</b> ₹299 முதல்<br>` +
+
+                  `• <b>கேர் டேக்கர் பகல்/இரவு ஷிப்ட்:</b> ₹600 - ₹900/ஷிப்ட்<br><br>` +
+
+                  `முழுமையான அங்கீகரிக்கப்பட்ட கட்டண விவரங்களை Rate Card-ல் காணலாம்.`,
+
+            actionBtn: { label: "📋 சேவைக் கட்டண விவரம் பார்க்க", action: "openModal('rateCardModal'); closeModal('aiHelpModal');" }
+
+          };
+
+        } else {
+
+          return {
+
+            text: `💰 <b>Fixr Transparent Service Rate Card:</b><br><br>` +
+
+                  `• <b>Visiting / Minor Fix:</b> ₹150 - ₹250<br>` +
+
+                  `• <b>General Plumbing / Electrical:</b> ₹250 - ₹400<br>` +
+
+                  `• <b>AC General Service:</b> ₹450 onwards<br>` +
+
+                  `• <b>RO Purifier Service:</b> ₹299 onwards<br>` +
+
+                  `• <b>Caregiver Day/Night Shift:</b> ₹600 - ₹900/shift<br><br>` +
+
+                  `All labor charges follow standard transparent rates with no hidden fees.`,
+
+            actionBtn: { label: "📋 View Full Rate Card", action: "openModal('rateCardModal'); closeModal('aiHelpModal');" }
+
+          };
+
+        }
+
+      }
+
+
+      // 5. Spare Parts Fair Price
+
+      if (q.includes('spare') || q.includes('part') || q.includes('உதிரிபாகம்') || q.includes('பொருட்கள்')) {
+
+        if (isTa) {
+
+          return {
+
+            text: `🛡️ <b>உதிரிபாக நியாய விலை சரிபார்ப்பு (Spare Parts Fair Price):</b><br><br>` +
+
+                  `டெக்னீசியன்கள் உதிரிபாகங்களுக்கு அதிக விலை வைப்பதைத் தடுக்க, சந்தை நியாய விலை சரிபார்ப்பு வசதியை Fixr உருவாக்கியுள்ளது.<br><br>` +
+
+                  `சுவிட்ச், MCB, பைப் வால்வு, RO மெம்பிரேன், AC கேபாசிட்டர் போன்ற 30+ பொருட்களின் அசல் விலையை உடனடியாக சரிபார்க்கலாம்!`,
+
+            actionBtn: { label: "🛡️ உதிரிபாக விலை சரிபார்க்க", action: "openModal('sparePartsModal'); closeModal('aiHelpModal');" }
+
+          };
+
+        } else {
+
+          return {
+
+            text: `🛡️ <b>Spare Parts Fair Price Checker:</b><br><br>` +
+
+                  `To protect you from overcharging, Fixr provides an official fair price index for 30+ common spare parts including switches, MCBs, ball valves, RO membranes, and AC capacitors.`,
+
+            actionBtn: { label: "🛡️ Check Spare Prices", action: "openModal('sparePartsModal'); closeModal('aiHelpModal');" }
+
+          };
+
+        }
+
+      }
+
+
+      // 6. Partner Registration
+
+      if (q.includes('partner') || q.includes('join') || q.includes('வேலை') || q.includes('தொழிலாளி') || q.includes('பதிவு') || q.includes('49')) {
+
+        if (isTa) {
+
+          return {
+
+            text: `🛠️ <b>Fixr தொழிலாளர் & பார்ட்னர் பதிவு:</b><br><br>` +
+
+                  `எலக்ட்ரீஷியன், பிளம்பர், AC மெக்கானிக், கேர் டேக்கர், டிரைவர் என அனைத்து கைவினைஞர்களும் உங்கள் பகுதியில் வாடிக்கையாளர்களை நேரடியாகப் பெறலாம்.<br><br>` +
+
+                  `• <b>0% கமிஷன்!</b> உங்கள் உழைப்பின் முழு வருமானமும் உங்களுக்கே.<br>` +
+
+                  `• ஒருமுறை சரிபார்ப்புக் கட்டணம் வெறும் <b>₹49 மட்டுமே</b>.<br>` +
+
+                  `• Fixr வெரிஃபைட் டிஜிட்டல் ID கார்டு வழங்கப்படும்!`,
+
+            actionBtn: { label: "💼 தொழிலாளராகப் பதிவு செய்க", action: "openModal('partnerModal'); closeModal('aiHelpModal');" }
+
+          };
+
+        } else {
+
+          return {
+
+            text: `🛠️ <b>Join as a Fixr Partner:</b><br><br>` +
+
+              `Electricians, plumbers, AC technicians, caregivers, drivers & movers can get direct customer orders in their locality.<br><br>` +
+
+              `• <b>0% Commission!</b> Keep 100% of your earnings.<br>` +
+
+              `• One-time verification fee of only <b>₹49</b>.<br>` +
+
+              `• Get a Fixr Verified Digital ID Card with QR code.`,
+
+            actionBtn: { label: "💼 Register as Partner", action: "openModal('partnerModal'); closeModal('aiHelpModal');" }
+
+          };
+
+        }
+
+      }
+
+
+      // 7. House Rentals & Agreement
+
+      if (q.includes('rent') || q.includes('house') || q.includes('வீடு') || q.includes('வாடகை') || q.includes('agreement') || q.includes('அக்ரீமென்ட்')) {
+
+        if (isTa) {
+
+          return {
+
+            text: `🏠 <b>வாடகை வீடுகள் & சட்டப்பூர்வ வாடகை ஒப்பந்தம்:</b><br><br>` +
+
+                  `• <b>0% புரோக்கரேஜ்:</b> இடைத்தரகர் இன்றி உரிமையாளரிடமிருந்து நேரடியாக வாடகை வீடுகள்.<br>` +
+
+                  `• <b>உண்மையான புகைப்படங்கள்:</b> ஹால், பெட்ரூம், கிச்சன் படங்கள் சரிபார்க்கப்பட்டது.<br>` +
+
+                  `• <b>ஆன்லைன் வாடகை ஒப்பந்தம்:</b> அரசு முத்திரை தாளுடன் வழக்கறிஞர் சரிபார்த்த அக்ரீமென்ட் உங்கள் வீட்டிற்கே டெலிவரி செய்யப்படும்.`,
+
+            actionBtn: { label: "📑 வாடகை ஒப்பந்தம் பெற", action: "openRentalAgreementModal(); closeModal('aiHelpModal');" }
+
+          };
+
+        } else {
+
+          return {
+
+            text: `🏠 <b>House Rentals & Legal Rental Agreements:</b><br><br>` +
+
+                  `• <b>0% Brokerage:</b> Rent homes directly from verified owners without broker fees.<br>` +
+
+                  `• <b>Verified House Photos:</b> Hall, bedroom, kitchen, exterior photos available.<br>` +
+
+                  `• <b>Online Rental Agreement:</b> Legally valid E-Stamp rental agreement delivered to your doorstep & WhatsApp.`,
+
+            actionBtn: { label: "📑 Order Rental Agreement", action: "openRentalAgreementModal(); closeModal('aiHelpModal');" }
+
+          };
+
+        }
+
+      }
+
+
+      // 8. Budget Bidding
+
+      if (q.includes('bidding') || q.includes('budget') || q.includes('பட்ஜெட்')) {
+
+        if (isTa) {
+
+          return {
+
+            text: `🎯 <b>'என் பட்ஜெட் என் வேலை' (Customer Budget Bidding):</b><br><br>` +
+
+                  `உங்கள் வேலைக்கு நீங்களே பட்ஜெட் நிர்ணயிக்கலாம் (எ.கா: ₹150-ல் ஃபேன் மாட்ட வேண்டும்).<br>` +
+
+                  `உங்கள் பட்ஜெட்டை ஏற்று பணிபுரிய தயார் உள்ள உள்ளூர் தொழிலாளர்கள் உடனடியாக உங்களை தொடர்பு கொள்வார்கள்!`,
+
+            actionBtn: { label: "🎯 பட்ஜெட் வேலை பதிக்க", action: "openModal('budgetBiddingModal'); closeModal('aiHelpModal');" }
+
+          };
+
+        } else {
+
+          return {
+
+            text: `🎯 <b>'My Budget, My Job' (Customer Budget Bidding):</b><br><br>` +
+
+                  `Post your custom job with the budget you want to pay (e.g. ₹200 for tap replacement). Nearby technicians can accept your offer and complete the job!`,
+
+            actionBtn: { label: "🎯 Post Budget Job", action: "openModal('budgetBiddingModal'); closeModal('aiHelpModal');" }
+
+          };
+
+        }
+
+      }
+
+
+      // 9. Admin WhatsApp & Human Support
+
+      if (q.includes('admin') || q.includes('whatsapp') || q.includes('contact') || q.includes('phone') ||
+
+          q.includes('complaint') || q.includes('தொடர்பு') || q.includes('அட்மின்') || q.includes('வாட்ஸ்அப்')) {
+
+        if (isTa) {
+
+          return {
+
+            text: `📞 <b>Fixr நேரடி அட்மின் தொடர்பு:</b><br><br>` +
+
+                  `எங்கள் மனித நிர்வாகி குழு உங்கள் உதவிக்கு எப்போதும் தயாராக உள்ளது.<br><br>` +
+
+                  `• <b>அலைபேசி:</b> +91 9884334097<br>` +
+
+                  `• <b>மின்னஞ்சல்:</b> veeraadspromotions@gmail.com<br>` +
+
+                  `• <b>வாட்ஸ்அப்:</b> கீழே உள்ள பொத்தானை அழுத்தி நேரடியாக வாட்ஸ்அப்பில் பேசலாம்.`,
+
+            actionBtn: { label: "💬 WhatsApp-ல் அட்மினுடன் பேச", action: "window.open('https://wa.me/919884334097?text=வணக்கம்%20Fixr%20அட்மின்!%20எனக்கு%20உதவி%20வேண்டும்.', '_blank')" }
+
+          };
+
+        } else {
+
+          return {
+
+            text: `📞 <b>Fixr Direct Admin Support:</b><br><br>` +
+
+                  `Our human support team is ready to help you with any issue or custom inquiry.<br><br>` +
+
+                  `• <b>Phone:</b> +91 9884334097<br>` +
+
+                  `• <b>Email:</b> veeraadspromotions@gmail.com<br>` +
+
+                  `• <b>WhatsApp:</b> Click below to chat directly with admin on WhatsApp.`,
+
+            actionBtn: { label: "💬 Chat with Admin on WhatsApp", action: "window.open('https://wa.me/919884334097?text=Hello%20Fixr%20Admin!%20I%20need%20assistance.', '_blank')" }
+
+          };
+
+        }
+
+      }
+
+
+      // 10. Greetings
+
+      if (q.includes('hi') || q.includes('hello') || q.includes('வணக்கம்') || q.includes('hey') || q.includes('vanakkam')) {
+
+        if (isTa) {
+
+          return {
+
+            text: `வணக்கம்! Fixr AI உதவி மையத்திற்கு வரவேற்கிறோம் 😊.<br><br>` +
+
+                  `உங்களுக்கு இன்று என்ன சேவை அல்லது தகவல் தேவை? முன்பதிவு, அவசர சேவை, அல்லது தொழிலாளர் பதிவு குறித்து என்னிடம் கேட்கலாம்.`,
+
+            actionBtn: { label: "📋 கட்டண விவரம் பார்க்க", action: "openModal('rateCardModal'); closeModal('aiHelpModal');" }
+
+          };
+
+        } else {
+
+          return {
+
+            text: `Hello! Welcome to Fixr AI Support Assistant 😊.<br><br>` +
+
+                  `How can I help you today? You can ask about service bookings, emergency 30-min services, rate cards, or partner registrations.`,
+
+            actionBtn: { label: "📋 View Rate Card", action: "openModal('rateCardModal'); closeModal('aiHelpModal');" }
+
+          };
+
+        }
+
+      }
+
+
+      // Default Fallback
+
+      if (isTa) {
+
+        return {
+
+          text: `நான் Fixr AI தானியங்கி உதவியாளர் 🤖.<br><br>` +
+
+                `உங்கள் கேள்விக்கு உதவ தயாராக உள்ளேன். முன்பதிவு, 30 நிமிட அவசர சேவை, கேர் டேக்கர், வாடகை வீடு, அல்லது கட்டண விவரங்கள் பற்றி தெரிந்துகொள்ள விரும்புகிறீர்களா? கீழே உள்ள விருப்பங்களைத் தேர்ந்தெடுக்கலாம் அல்லது அட்மினை நேரடியாக தொடர்பு கொள்ளலாம்.`,
+
+          actionBtn: { label: "💬 WhatsApp-ல் அட்மினுடன் பேச", action: "window.open('https://wa.me/919884334097?text=வணக்கம்%20Fixr%20அட்மின்!%20எனக்கு%20உதவி%20வேண்டும்.', '_blank')" }
+
+        };
+
+      } else {
+
+        return {
+
+          text: `I am your Fixr AI Assistant 🤖.<br><br>` +
+
+                `I am here to help you with bookings, emergency 30-min repairs, caregiver requests, rental agreements, or transparent pricing. You can tap the quick topic chips above or connect with our admin team directly.`,
+
+          actionBtn: { label: "💬 Chat with Admin on WhatsApp", action: "window.open('https://wa.me/919884334097?text=Hello%20Fixr%20Admin!%20I%20need%20assistance.', '_blank')" }
+
+        };
+
+      }
+
+    }
 
 
   </script>
