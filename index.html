@@ -628,19 +628,19 @@
     }
 
 
-    /* Compact Featured / Top Listing Promo Banner */
+    /* Ultra-Slim Featured / Top Listing Promo Banner */
 
     .featured-promo-banner {
 
-      margin: 4px 16px 6px;
+      margin: 2px 16px 3px;
 
       background: linear-gradient(135deg, #fffbeb, #fef3c7);
 
-      border: 1px solid #fcd34d;
+      border: 1px solid #fde68a;
 
-      border-radius: 10px;
+      border-radius: 8px;
 
-      padding: 6px 10px;
+      padding: 5px 10px;
 
       display: flex;
 
@@ -648,23 +648,23 @@
 
       align-items: center;
 
-      gap: 8px;
+      gap: 6px;
 
       cursor: pointer;
 
-      box-shadow: 0 1px 4px rgba(245, 158, 11, 0.1);
+      box-shadow: 0 1px 2px rgba(245, 158, 11, 0.04);
 
       transition: all 0.15s ease;
 
     }
 
-    .featured-promo-banner:hover { transform: translateY(-1px); }
+    .featured-promo-banner:hover { background: #fef08a; }
 
-    .featured-banner-left { display: flex; align-items: center; gap: 6px; flex: 1; }
+    .featured-banner-left { display: flex; align-items: center; gap: 6px; flex: 1; overflow: hidden; }
 
-    .featured-banner-title { font-size: 11px; font-weight: 800; color: #92400e; line-height: 1.2; }
+    .featured-banner-title { font-size: 11px; font-weight: 800; color: #92400e; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-    .featured-banner-desc { font-size: 9.5px; color: #b45309; margin-top: 1px; line-height: 1.2; }
+    .featured-banner-desc { display: none; }
 
     .boost-btn {
 
@@ -674,19 +674,58 @@
 
       border: none;
 
-      padding: 4px 9px;
+      padding: 3px 8px;
 
-      border-radius: 8px;
+      border-radius: 6px;
 
       font-weight: 800;
 
-      font-size: 10px;
+      font-size: 9.5px;
 
       cursor: pointer;
 
       white-space: nowrap;
 
-      box-shadow: 0 1px 3px rgba(217, 119, 6, 0.25);
+    }
+
+
+    /* Video Diagnosis Pill & Card Button */
+
+    .action-pill-btn.video-pill {
+
+      border-color: #c7d2fe;
+
+      color: #4338ca;
+
+      font-weight: 800;
+
+    }
+
+    .action-pill-btn.video-pill:hover {
+
+      background: #e0e7ff;
+
+    }
+
+    .btn-video {
+
+      background: #eef2ff;
+
+      color: #4f46e5;
+
+      border: 1px solid #c7d2fe;
+
+      flex: 1;
+
+      font-size: 11px;
+
+      font-weight: 700;
+
+    }
+
+    .btn-video:hover {
+
+      background: #e0e7ff;
 
     }
 
@@ -1409,19 +1448,19 @@
     }
 
 
-    /* Emergency 30 Mins Express Banner */
+    /* Ultra-Slim Emergency 30 Mins Express Strip */
 
     .express-emergency-strip {
 
-      margin: 4px 16px 8px;
+      margin: 2px 16px 3px;
 
       background: linear-gradient(135deg, #fff7ed, #ffedd5);
 
-      border: 1px solid #fdba74;
+      border: 1px solid #fed7aa;
 
-      border-radius: 12px;
+      border-radius: 8px;
 
-      padding: 8px 12px;
+      padding: 5px 10px;
 
       display: flex;
 
@@ -1429,25 +1468,21 @@
 
       align-items: center;
 
-      gap: 8px;
+      gap: 6px;
 
       cursor: pointer;
 
-      box-shadow: 0 1px 4px rgba(234, 88, 12, 0.08);
+      box-shadow: 0 1px 2px rgba(234, 88, 12, 0.04);
 
-      transition: all 0.2s ease;
-
-    }
-
-    .express-emergency-strip:hover {
-
-      background: #fed7aa;
+      transition: all 0.15s ease;
 
     }
+
+    .express-emergency-strip:hover { background: #fed7aa; }
 
     .express-strip-tag {
 
-      font-size: 10.5px;
+      font-size: 9.5px;
 
       font-weight: 800;
 
@@ -1455,11 +1490,11 @@
 
       background: white;
 
-      padding: 3px 8px;
+      padding: 2px 7px;
 
-      border-radius: 8px;
+      border-radius: 6px;
 
-      border: 1px solid #fdba74;
+      border: 1px solid #fed7aa;
 
       white-space: nowrap;
 
@@ -1696,6 +1731,68 @@
     }
 
 
+ 
+
+    /* Action Pills for Killer Features */
+
+    .action-pill-btn.spare-pill { border-color: #a7f3d0; color: #047857; font-weight: 800; }
+
+    .action-pill-btn.spare-pill:hover { background: #d1fae5; }
+
+    .action-pill-btn.bidding-pill { border-color: #fde68a; color: #b45309; font-weight: 800; }
+
+    .action-pill-btn.bidding-pill:hover { background: #fef3c7; }
+
+    .action-pill-btn.pool-pill { border-color: #fbcfe8; color: #be185d; font-weight: 800; }
+
+    .action-pill-btn.pool-pill:hover { background: #fce7f3; }
+
+
+    /* Spare Parts Fair Price Table & Filter */
+
+    .spare-cat-bar { display: flex; gap: 6px; overflow-x: auto; padding: 4px 0 8px; scrollbar-width: none; }
+
+    .spare-cat-bar::-webkit-scrollbar { display: none; }
+
+    .spare-cat-chip { padding: 4px 10px; background: #f1f5f9; border-radius: 12px; font-size: 11px; font-weight: 700; color: #475569; cursor: pointer; white-space: nowrap; border: 1px solid #cbd5e1; }
+
+    .spare-cat-chip.active { background: #059669; color: white; border-color: #059669; }
+
+    .spare-table { width: 100%; border-collapse: collapse; font-size: 11.5px; margin-top: 6px; }
+
+    .spare-table th { background: #f8fafc; padding: 7px 8px; text-align: left; border-bottom: 2px solid #cbd5e1; color: #1e293b; font-weight: 800; }
+
+    .spare-table td { padding: 7px 8px; border-bottom: 1px solid #e2e8f0; color: #334155; }
+
+    .spare-fair-price { color: #059669; font-weight: 800; text-align: right; white-space: nowrap; }
+
+
+    /* Budget Bidding Cards */
+
+    .bid-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 10px 12px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+
+    .bid-title { font-weight: 800; font-size: 13px; color: #0f172a; }
+
+    .bid-sub { font-size: 11px; color: #64748b; margin-top: 2px; }
+
+    .bid-budget-badge { background: #fef3c7; color: #b45309; padding: 3px 8px; border-radius: 8px; font-weight: 900; font-size: 12px; border: 1px solid #fde68a; white-space: nowrap; }
+
+    .btn-accept-bid { background: #16a34a; color: white; border: none; padding: 5px 10px; border-radius: 8px; font-size: 11px; font-weight: 800; cursor: pointer; white-space: nowrap; }
+
+
+    /* Community Pooling Discount Badges */
+
+    .pool-discount-box { background: linear-gradient(135deg, #fdf2f8, #fce7f3); border: 1px solid #fbcfe8; border-radius: 12px; padding: 12px; margin-bottom: 12px; }
+
+    .pool-tier-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-top: 8px; }
+
+    .pool-tier-card { background: white; border: 1px solid #f472b6; border-radius: 8px; padding: 8px; text-align: center; }
+
+    .pool-tier-num { font-weight: 900; font-size: 13px; color: #be185d; }
+
+    .pool-tier-off { font-size: 10.5px; color: #15803d; font-weight: 800; margin-top: 2px; }
+
+
   </style>
 
 </head>
@@ -1813,21 +1910,15 @@
   </div>
 
 
-  <!-- Move-in Relocation Services Banner (வீடு மாறுவோர் சேவைகள்) -->
+  <!-- Move-in Relocation Services Banner (Slim Single-Line) -->
 
   <div class="movein-promo-banner" id="moveinPromoBanner" onclick="filterMoveInServices()">
 
-    <div style="display:flex; align-items:center; gap:8px;">
+    <div style="display:flex; align-items:center; gap:6px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; flex:1;">
 
-      <span style="font-size:22px;">📦</span>
+      <span style="font-size:13px;">📦</span>
 
-      <div>
-
-        <div style="font-size:12px; font-weight:800; color:#1e3a8a;" id="moveinBannerTitle">வீடு மாறுகிறீர்களா? (Move-in Services)</div>
-
-        <div style="font-size:10.5px; color:#1d4ed8;" id="moveinBannerDesc">பேக்கர்ஸ் & மூவர்ஸ் • வாடகை ஒப்பந்தம் • டீப் கிளீனிங்</div>
-
-      </div>
+      <span style="font-size:11px; font-weight:800; color:#1e3a8a;" id="moveinBannerTitle">வீடு மாறுகிறீர்களா? பேக்கர்ஸ் & அக்ரீமென்ட்</span>
 
     </div>
 
@@ -1836,19 +1927,15 @@
   </div>
 
 
-  <!-- Emergency 30 Mins Express Strip -->
+  <!-- Emergency 30 Mins Express Strip (Slim Single-Line) -->
 
   <div class="express-emergency-strip" id="expressEmergencyStrip" onclick="toggleExpressFilter()">
 
-    <div style="display:flex; align-items:center; gap:8px;">
+    <div style="display:flex; align-items:center; gap:6px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; flex:1;">
 
-      <span class="pulse-lightning">⚡</span>
+      <span class="pulse-lightning" style="font-size:13px;">⚡</span>
 
-      <span style="font-size:12px; font-weight:800; color:#c2410c;" id="expressStripText">
-
-        30 Mins Express சேவை: பிளம்பர், எலக்ட்ரீஷியன் & AC பழுது நீக்க உடனடியாக அழைக்க!
-
-      </span>
+      <span style="font-size:11px; font-weight:800; color:#c2410c;" id="expressStripText">30 Mins Express: அவசர எலக்ட்ரீஷியன் & பிளம்பர் தேவைக்கு</span>
 
     </div>
 
@@ -1883,6 +1970,30 @@
 
     </button>
 
+    <button class="action-pill-btn video-pill" id="videoDiagPillBtn" onclick="openVideoDiagnosisModal()">
+
+      📹 Video Diagnosis
+
+    </button>
+
+    <button class="action-pill-btn spare-pill" id="sparePricePillBtn" onclick="openSparePartsModal()">
+
+      🛡️ உதிரிபாக விலை (Spare Price)
+
+    </button>
+
+    <button class="action-pill-btn bidding-pill" id="biddingPillBtn" onclick="openBudgetBiddingModal()">
+
+      🎯 என் பட்ஜெட் என் வேலை
+
+    </button>
+
+    <button class="action-pill-btn pool-pill" id="poolPillBtn" onclick="openCommunityPoolingModal()">
+
+      🏢 குழு தள்ளுபடி (Group Pool)
+
+    </button>
+
     <button class="action-pill-btn" style="border-color:#bae6fd; color:#0369a1;" id="rateCardPillBtn" onclick="openModal('rateCardModal')">
 
       📋 கட்டண விவரம் (Rate Card)
@@ -1892,25 +2003,19 @@
   </div>
 
 
-  <!-- Featured / Top Listing Promo Banner (முன்னுரிமை விளம்பரம் - ₹99 / 7 நாட்கள்) -->
+  <!-- Featured / Top Listing Promo Banner (Slim Single-Line) -->
 
   <div class="featured-promo-banner" id="featuredPromoBanner" onclick="openFeaturedPromoModal()">
 
     <div class="featured-banner-left">
 
-      <span style="font-size:18px;">👑</span>
+      <span style="font-size:14px;">👑</span>
 
-      <div>
-
-        <div class="featured-banner-title" id="featuredBannerTitle">வீட்டை சீக்கிரம் வாடகைக்கு விட வேண்டுமா? (Top Listing)</div>
-
-        <div class="featured-banner-desc" id="featuredBannerDesc">முதல் 3 இடங்களில் உங்கள் வீட்டை முன்னிறுத்த சிறிய கட்டணம் (₹99 / 7 நாட்கள்)</div>
-
-      </div>
+      <span class="featured-banner-title" id="featuredBannerTitle">வாடகை வீடு முன்னுரிமை விளம்பரம் (Top Listing ₹99)</span>
 
     </div>
 
-    <button class="boost-btn" id="featuredBannerBtn">🚀 விளம்பரம் செய்க</button>
+    <button class="boost-btn" id="featuredBannerBtn">விளம்பரம் ➔</button>
 
   </div>
 
@@ -3286,6 +3391,376 @@
   </div>
 
 
+ 
+
+  <!-- 📹 1-Minute Video Diagnosis Modal (Urban Company-ல் இல்லாத Fixr-ன் பிரத்யேக வசதி) -->
+
+  <div class="modal-overlay" id="videoDiagnosisModal">
+
+    <div class="modal-box" style="max-width: 480px;">
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+
+        <div class="modal-title" style="margin-bottom:0;" id="videoModalTitle">📹 1-Minute Video Diagnosis</div>
+
+        <button onclick="closeModal('videoDiagnosisModal')" style="background:none; border:none; font-size:22px; color:#64748b; cursor:pointer;">✕</button>
+
+      </div>
+
+      <div class="modal-sub" id="videoModalSub">வீணாக விசிட்டிங் கட்டணம் கட்டாமல், பழுதான இடத்தை வீடியோவில் காட்டி முன்பே துல்லிய கட்டணம் & ஆலோசனை பெறுக!</div>
+
+
+      <div style="background:linear-gradient(135deg, #eef2ff, #e0e7ff); border:1px solid #c7d2fe; border-radius:12px; padding:12px; margin-bottom:12px;">
+
+        <div style="font-weight:bold; color:#3730a3; font-size:12.5px; margin-bottom:6px;">✨ Fixr வீடியோ ஆலோசனையின் 3 நன்மைகள்:</div>
+
+        <div style="font-size:11.5px; color:#4338ca; line-height:1.5;">
+
+          <div>1. <b>இலவச முதற்கட்ட ஆய்வு:</b> சுவிட்ச், வால்வு போன்ற சின்ன பிரச்சனைகளை வாடிக்கையாளரே சரிசெய்ய இலவச வழிகாட்டல்.</div>
+
+          <div>2. <b>மறைமுக கட்டணம் இல்லை:</b> நேரில் வருவதற்கு முன்பே வாட்ஸ்அப் வீடியோவில் காட்டி சரியான கட்டணத்தை பேசி முடிக்கலாம்.</div>
+
+          <div>3. <b>100% நேர்மை:</b> தேவையற்ற உதிரிபாகங்கள் வாங்க சொல்லி ஏமாற்றப்பட மாட்டீர்கள்.</div>
+
+        </div>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label id="lblVideoTech">தேர்ந்தெடுக்கப்பட்ட டெக்னீசியன் (Technician)</label>
+
+        <input type="text" id="videoDiagTechName" class="form-input" readonly style="background:#f8fafc; font-weight:bold; color:#0f172a;">
+
+      </div>
+
+      <div class="form-group">
+
+        <label id="lblVideoDesc">🛠️ பழுதான உபகரணம் / பிரச்சனை விவரம்</label>
+
+        <input type="text" id="videoDiagDesc" class="form-input" placeholder="எ.கா: AC கூலிங் வரவில்லை / பைப் லீக் ஆகிறது">
+
+      </div>
+
+
+      <button class="submit-btn" style="background:#4f46e5;" onclick="confirmVideoDiagnosis()">
+
+        🚀 WhatsApp Video ஆலோசனை தொடங்க (Connect on Video)
+
+      </button>
+
+      <button class="close-btn" onclick="closeModal('videoDiagnosisModal')">ரத்து</button>
+
+    </div>
+
+  </div>
+
+
+ 
+
+  <!-- 🛡️ உதிரிபாக நியாய விலை சரிபார்ப்பு பாப்-அப் (Spare Parts Fair Price Checker) -->
+
+  <div class="modal-overlay" id="sparePartsModal">
+
+    <div class="modal-box" style="max-width: 520px;">
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+
+        <div class="modal-title" style="margin-bottom:0;" id="spareModalTitle">🛡️ உதிரிபாக நியாய விலை சரிபார்ப்பு</div>
+
+        <button onclick="closeModal('sparePartsModal')" style="background:none; border:none; font-size:22px; color:#64748b; cursor:pointer;">✕</button>
+
+      </div>
+
+      <div class="modal-sub" id="spareModalSub">Urban Company & உள்ளூர் மெக்கானிக்குகளால் ஏமாற்றப்படாமல் அசல் சந்தை விலையை சரிபார்க்கவும்!</div>
+
+
+      <input type="text" id="spareSearchInput" class="form-input" placeholder="🔍 உதிரிபாகத்தைத் தேடுக (எ.கா: Capacitor, MCB, Membrane...)" style="margin-bottom:8px; font-size:12.5px;" oninput="filterSpareParts()">
+
+
+      <div class="spare-cat-bar" id="spareCatBar">
+
+        <div class="spare-cat-chip active" onclick="setSpareCategory('all')">அனைத்தும்</div>
+
+        <div class="spare-cat-chip" onclick="setSpareCategory('AC')">❄️ AC</div>
+
+        <div class="spare-cat-chip" onclick="setSpareCategory('Electrical')">⚡ எலக்ட்ரிக்கல்</div>
+
+        <div class="spare-cat-chip" onclick="setSpareCategory('Plumbing')">🔧 பிளம்பிங்</div>
+
+        <div class="spare-cat-chip" onclick="setSpareCategory('RO')">💧 RO வாட்டர்</div>
+
+        <div class="spare-cat-chip" onclick="setSpareCategory('Battery')">🔋 பேட்டரி</div>
+
+      </div>
+
+
+      <div style="max-height: 48vh; overflow-y: auto; padding-right: 4px;">
+
+        <table class="spare-table">
+
+          <thead>
+
+            <tr>
+
+              <th>உதிரிபாகம் & பிராண்டு</th>
+
+              <th style="text-align:right;">நியாயமான விலை (Fair Price)</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody id="sparePartsTableBody">
+
+            <!-- Populated via JS -->
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+
+      <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:10px; padding:10px 12px; margin-top:12px; display:flex; justify-content:space-between; align-items:center; gap:8px;">
+
+        <div style="font-size:11px; color:#166534;">
+
+          <b>உங்களுக்கு கொடுக்கப்பட்ட கொட்டேஷன் அதிகமா?</b><br>பில்/பொருளின் படத்தை அட்மினிடம் காட்டி சரிபார்க்கவும்.
+
+        </div>
+
+        <a href="https://wa.me/919884334097?text=வணக்கம்%20Fixr%20அட்மின்!%20எனக்கு%20உதிரிபாக%20விலை%20சரிபார்க்க%20உதவி%20வேண்டும்." target="_blank" class="btn btn-wa" style="flex:none; padding:6px 12px; font-size:11px;">சரிபார்க்க 💬</a>
+
+      </div>
+
+      <button class="close-btn" onclick="closeModal('sparePartsModal')">மூடுக (Close)</button>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- 🎯 'என் பட்ஜெட் என் வேலை' பாப்-அப் (Customer Budget Bidding Modal) -->
+
+  <div class="modal-overlay" id="budgetBiddingModal">
+
+    <div class="modal-box" style="max-width: 500px;">
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+
+        <div class="modal-title" style="margin-bottom:0;" id="bidModalTitle">🎯 'என் பட்ஜெட் என் வேலை'</div>
+
+        <button onclick="closeModal('budgetBiddingModal')" style="background:none; border:none; font-size:22px; color:#64748b; cursor:pointer;">✕</button>
+
+      </div>
+
+      <div class="modal-sub" id="bidModalSub">உங்கள் வேலையையும், நீங்கள் கொடுக்க விரும்பும் பட்ஜெட் தொகையையும் நீங்களே தீர்மானியுங்கள்!</div>
+
+
+      <!-- Job Post Form -->
+
+      <div style="background:#fffbeb; border:1px solid #fde68a; border-radius:12px; padding:12px; margin-bottom:12px;">
+
+        <div style="font-size:12.5px; font-weight:bold; color:#92400e; margin-bottom:6px;">✍️ புதிய பட்ஜெட் வேலை பதிவிட:</div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:6px;">
+
+          <select id="bidCategory" class="form-input" style="font-size:11.5px; padding:6px 8px;">
+
+            <option value="எலக்ட்ரீஷியன்">⚡ எலக்ட்ரீஷியன்</option>
+
+            <option value="பிளம்பர்">🔧 பிளம்பர்</option>
+
+            <option value="AC சர்வீஸ்">❄️ AC சர்வீஸ்</option>
+
+            <option value="RO சர்வீஸ்">💧 RO சர்வீஸ்</option>
+
+            <option value="வீடு கிளீனிங்">✨ கிளீனிங் & பெயிண்டிங்</option>
+
+            <option value="இதர சேவைகள்">🛠️ இதர வேலைகள்</option>
+
+          </select>
+
+          <input type="text" id="bidArea" class="form-input" placeholder="பகுதி (எ.கா: வேளச்சேரி)" style="font-size:11.5px; padding:6px 8px;">
+
+        </div>
+
+        <input type="text" id="bidDesc" class="form-input" placeholder="வேலை விவரம் (எ.கா: 1 சீலிங் ஃபேன் மாட்ட வேண்டும்)" style="font-size:11.5px; padding:6px 8px; margin-bottom:6px;">
+
+        <div style="display:grid; grid-template-columns:1fr 1.2fr; gap:6px; margin-bottom:8px;">
+
+          <input type="number" id="bidBudget" class="form-input" placeholder="என் பட்ஜெட் ₹ (எ.கா: 150)" style="font-size:12px; padding:6px 8px; font-weight:bold; color:#b45309;">
+
+          <input type="tel" id="bidPhone" class="form-input" placeholder="மொபைல் எண்" style="font-size:11.5px; padding:6px 8px;" maxlength="10">
+
+        </div>
+
+        <button class="submit-btn" style="background:#d97706; padding:9px; font-size:12px; margin-top:0;" onclick="submitCustomerBudgetBid()">
+
+          🚀 என் பட்ஜெட் வேலையை ஆப்பில் பதிவிடு (Post Job)
+
+        </button>
+
+      </div>
+
+
+      <div style="font-size:12px; font-weight:bold; color:#0f172a; margin-bottom:6px; display:flex; justify-content:space-between; align-items:center;">
+
+        <span>🔥 நேரலை பட்ஜெட் வேலைகள் (Active Bids):</span>
+
+        <span style="font-size:10px; color:#64748b; font-weight:normal;">தொழிலாளர்கள் உடனே ஏற்கலாம்</span>
+
+      </div>
+
+      <div id="activeBidsContainer" style="max-height:36vh; overflow-y:auto; padding-right:4px;">
+
+        <!-- Populated via JS -->
+
+      </div>
+
+      <button class="close-btn" onclick="closeModal('budgetBiddingModal')">மூடுக (Close)</button>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- 🏢 Community / Street Pooling பாப்-அப் (Group Booking Modal) -->
+
+  <div class="modal-overlay" id="communityPoolingModal">
+
+    <div class="modal-box" style="max-width: 480px;">
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+
+        <div class="modal-title" style="margin-bottom:0;" id="poolModalTitle">🏢 தெரு / அபார்ட்மெண்ட் குழு தள்ளுபடி</div>
+
+        <button onclick="closeModal('communityPoolingModal')" style="background:none; border:none; font-size:22px; color:#64748b; cursor:pointer;">✕</button>
+
+      </div>
+
+      <div class="modal-sub" id="poolModalSub">ஒரே தெருவில் அல்லது குடியிருப்பில் 2 அல்லது அதற்கு மேற்பட்ட வீடுகள் ஒன்றாக புக் செய்தால் 25% நேரடித் தள்ளுபடி!</div>
+
+
+      <div class="pool-discount-box">
+
+        <div style="font-weight:bold; font-size:12px; color:#9d174d; text-align:center;">✨ குழு முன்பதிவு தள்ளுபடி அளவுகள்:</div>
+
+        <div class="pool-tier-grid">
+
+          <div class="pool-tier-card">
+
+            <div class="pool-tier-num">2 வீடுகள்</div>
+
+            <div class="pool-tier-off">15% OFF</div>
+
+          </div>
+
+          <div class="pool-tier-card" style="border-color:#ec4899; background:#fff1f2;">
+
+            <div class="pool-tier-num">3 வீடுகள்</div>
+
+            <div class="pool-tier-off">20% OFF</div>
+
+          </div>
+
+          <div class="pool-tier-card" style="border-color:#db2777; background:#fdf2f8;">
+
+            <div class="pool-tier-num">5+ வீடுகள்</div>
+
+            <div class="pool-tier-off">25% OFF</div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>குடியிருப்பு / தெருவின் பெயர் (Apartment or Street Name)</label>
+
+        <input type="text" id="poolAptName" class="form-input" placeholder="எ.கா: ராகவேந்திரா அபார்ட்மெண்ட், வேளச்சேரி">
+
+      </div>
+
+      <div style="display:grid; grid-template-columns:1.2fr 1fr; gap:6px;">
+
+        <div class="form-group">
+
+          <label>தேவைப்படும் சேவை</label>
+
+          <select id="poolServiceType" class="form-input">
+
+            <option value="AC சர்வீஸ்">❄️ AC சர்வீஸ்</option>
+
+            <option value="RO ஃபில்டர் மாற்றம்">💧 RO சர்வீஸ்</option>
+
+            <option value="முழு வீடு கிளீனிங்">✨ டீப் கிளீனிங்</option>
+
+            <option value="எலக்ட்ரிக்கல் & பிளம்பிங்">⚡ எலக்ட்ரிக்கல்/பிளம்பிங்</option>
+
+          </select>
+
+        </div>
+
+        <div class="form-group">
+
+          <label>வீடுகள் எண்ணிக்கை</label>
+
+          <select id="poolHouseCount" class="form-input">
+
+            <option value="2 வீடுகள் (15% தள்ளுபடி)">2 வீடுகள் (15% OFF)</option>
+
+            <option value="3 வீடுகள் (20% தள்ளுபடி)">3 வீடுகள் (20% OFF)</option>
+
+            <option value="5+ வீடுகள் (25% தள்ளுபடி)">5+ வீடுகள் (25% OFF)</option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <label>ஒருங்கிணைப்பாளர் மொபைல் எண் (WhatsApp Number)</label>
+
+        <input type="tel" id="poolPhone" class="form-input" placeholder="10 இலக்க மொபைல் எண்" maxlength="10">
+
+      </div>
+
+
+      <button class="submit-btn" style="background:#be185d;" onclick="submitCommunityPoolOrder()">
+
+        🚀 குழு தள்ளுபடி கோரிக்கை அனுப்ப (Book Group Pool)
+
+      </button>
+
+
+      <div style="text-align:center; margin-top:10px;">
+
+        <button type="button" onclick="shareCommunityPoolLink()" style="background:#fdf2f8; color:#be185d; border:1px solid #fbcfe8; padding:8px 14px; border-radius:10px; font-size:11.5px; font-weight:800; cursor:pointer; width:100%;">
+
+          📢 உங்கள் அபார்ட்மெண்ட் WhatsApp குரூப்பில் பகிர்க (Share to Neighbors)
+
+        </button>
+
+      </div>
+
+
+      <button class="close-btn" onclick="closeModal('communityPoolingModal')">மூடுக (Close)</button>
+
+    </div>
+
+  </div>
+
+
   <!-- முழுமையான Footer (Complete Professional Footer) -->
 
   <footer>
@@ -3654,6 +4129,12 @@
       if (document.getElementById('featuredBannerBtn')) document.getElementById('featuredBannerBtn').innerText = t.featuredBtn;
 
       if (document.getElementById('rateCardPillBtn')) document.getElementById('rateCardPillBtn').innerText = t.rateCardBtn;
+
+      if (document.getElementById('sparePricePillBtn')) document.getElementById('sparePricePillBtn').innerText = (currentLang === 'ta') ? "🛡️ உதிரிபாக விலை (Spare Price)" : "🛡️ Spare Parts Fair Price";
+
+      if (document.getElementById('biddingPillBtn')) document.getElementById('biddingPillBtn').innerText = (currentLang === 'ta') ? "🎯 என் பட்ஜெட் என் வேலை" : "🎯 Customer Budget Bidding";
+
+      if (document.getElementById('poolPillBtn')) document.getElementById('poolPillBtn').innerText = (currentLang === 'ta') ? "🏢 குழு தள்ளுபடி (Group Pool)" : "🏢 Community Group Discount";
 
       if (document.getElementById('chipSubAll')) document.getElementById('chipSubAll').innerText = t.subAll;
 
@@ -4849,7 +5330,19 @@
 
       if (promoBanner) {
 
-        promoBanner.style.display = (currentCategory === 'வாடகை வீடுகள்' || currentCategory === 'அனைத்தும்') ? 'flex' : 'none';
+        // Show rental boost banner only when in House Rentals category to maximize space!
+
+        promoBanner.style.display = (currentCategory === 'வாடகை வீடுகள்') ? 'flex' : 'none';
+
+      }
+
+      const moveinBanner = document.getElementById('moveinPromoBanner');
+
+      if (moveinBanner) {
+
+        // Show move-in banner only in relevant categories or All
+
+        moveinBanner.style.display = (currentCategory === 'வாடகை வீடுகள்' || currentCategory === 'பேக்கர்ஸ் & மூவர்ஸ்' || currentCategory === 'அனைத்தும்') ? 'flex' : 'none';
 
       }
 
@@ -4962,6 +5455,68 @@
 
    
 
+   
+
+    let selectedVideoTech = null;
+
+
+    function openVideoDiagnosisModal(techId) {
+
+      if (techId) {
+
+        selectedVideoTech = liveServicesList.find(x => x.id === techId);
+
+      } else {
+
+        selectedVideoTech = liveServicesList.find(x => x.category !== 'வாடகை வீடுகள்') || liveServicesList[0];
+
+      }
+
+      const input = document.getElementById('videoDiagTechName');
+
+      if (input && selectedVideoTech) {
+
+        input.value = `${selectedVideoTech.name} (${getDisplayCategory(selectedVideoTech.category)})`;
+
+      }
+
+      openModal('videoDiagnosisModal');
+
+    }
+
+
+    function startVideoDiagnosis(techId) {
+
+      openVideoDiagnosisModal(techId);
+
+    }
+
+
+    function confirmVideoDiagnosis() {
+
+      if (!selectedVideoTech) return;
+
+      const desc = document.getElementById('videoDiagDesc').value.trim();
+
+      const msg = `வணக்கம் ${selectedVideoTech.name}! நான் Fixr ஆப்பில் உங்கள் சேவையைப் பார்த்தேன்.
+
+📹 *1-Minute Video Diagnosis / நேரடி வீடியோ ஆலோசனை:*
+
+• பிரச்சனை விவரம்: ${desc || 'பழுதான இடத்தை வாட்ஸ்அப் வீடியோவில் காட்ட விரும்புகிறேன்'}
+
+• சேவை: ${getDisplayCategory(selectedVideoTech.category)}
+
+
+தயவுசெய்து இந்த வாட்ஸ்அப் எண்ணில் தொடர்பு கொண்டு கட்டண விவரம் மற்றும் ஆலோசனை கூறவும். நான் பழுதான இடத்தை வீடியோ / போட்டோ எடுத்து அனுப்புகிறேன்.`;
+
+
+      window.open(`https://wa.me/91${selectedVideoTech.phone}?text=${encodeURIComponent(msg)}`, '_blank');
+
+      closeModal('videoDiagnosisModal');
+
+    }
+
+
     function filterMoveInServices() {
 
       currentCategory = 'பேக்கர்ஸ் & மூவர்ஸ்';
@@ -4969,6 +5524,363 @@
       renderCategories();
 
       render();
+
+    }
+
+
+   
+
+    // --- 1. SPARE PARTS FAIR PRICE DATABASE & LOGIC ---
+
+    const sparePartsDatabase = [
+
+      { cat: "AC", name: "AC ரன்னிங் கெபாசிட்டர் (Running Capacitor 35-50 MFD)", brand: "EPCOS / Tibcon", price: "₹350 - ₹550" },
+
+      { cat: "AC", name: "AC அவுட்டோர் காண்டாக்டர் (2-Pole Contactor)", brand: "Schneider / L&T", price: "₹450 - ₹750" },
+
+      { cat: "AC", name: "ஏசி இன்டோர்/அவுட்டோர் ஃபேன் மோட்டார் (Blower Motor)", brand: "Original OEM", price: "₹1,800 - ₹2,800" },
+
+      { cat: "AC", name: "காப்பர் பைப் வித் இன்சுலேஷன் (Copper Pipe per ft)", brand: "Mandev / Totaline", price: "₹220 - ₹280/அடி" },
+
+      { cat: "AC", name: "R32 / R410A / R22 கேஸ் டாப்-அப் (100% தூய்மையான கேஸ்)", brand: "Floron / Mafron", price: "₹1,200 - ₹1,800" },
+
+      { cat: "Electrical", name: "சீலிங் ஃபேன் ரெகுலேட்டர் (Modular Regulator)", brand: "Anchor Roma / Legrand", price: "₹120 - ₹220" },
+
+      { cat: "Electrical", name: "6A / 16A மாடுலர் சுவிட்ச் (Modular Switch)", brand: "Anchor / GM / Havells", price: "₹35 - ₹85" },
+
+      { cat: "Electrical", name: "Single Pole 16A/32A MCB (மின்தடை தானியங்கி)", brand: "Schneider / L&T / Havells", price: "₹180 - ₹350" },
+
+      { cat: "Electrical", name: "40A / 63A RCCB / ELCB (மின்கசிவு உயிர் காப்பான்)", brand: "Legrand / L&T", price: "₹1,800 - ₹2,800" },
+
+      { cat: "Electrical", name: "1.5 / 2.5 sq mm FR காப்பர் ஒயர் (90m காயில்)", brand: "Finolex / Polycab", price: "₹1,400 - ₹2,400" },
+
+      { cat: "Plumbing", name: "பித்தளை ஆங்கிள் காக் / டேப் (Brass Angle Cock/Bib Tap)", brand: "Watertec / Parryware", price: "₹220 - ₹450" },
+
+      { cat: "Plumbing", name: "ஸ்டெயின்லெஸ் ஸ்டீல் சின்க் வேஸ்ட் கப்லிங்", brand: "Kingston / Supreme", price: "₹120 - ₹200" },
+
+      { cat: "Plumbing", name: "கனெக்ஷன் ஹோஸ் பைப் (Braided Hose Pipe 18 inch)", brand: "Prestige / Jaguar", price: "₹110 - ₹180" },
+
+      { cat: "Plumbing", name: "ஃப்ளஷ் டேங்க் சைஃபோன் செட் & பால் வால்வு", brand: "Parryware / Cera", price: "₹350 - ₹650" },
+
+      { cat: "Plumbing", name: "0.5 HP / 1 HP மோட்டார் ஸ்டார்ட்டர் கெபாசிட்டர்", brand: "Keltron / Havells", price: "₹150 - ₹250" },
+
+      { cat: "RO", name: "ஸ்பன் செடிமென்ட் ப்ரீ-ஃபில்டர் கேண்டில் (Pre-Filter)", brand: "AquaPure / Kemflo", price: "₹120 - ₹200" },
+
+      { cat: "RO", name: "செடிமென்ட் & கார்பன் இன்லைன் ஃபில்டர்கள் (Set)", brand: "CSM / Pentair", price: "₹450 - ₹750" },
+
+      { cat: "RO", name: "75/80 GPD அசல் RO மெம்பிரேன் (Original Membrane)", brand: "Filmtec / Vontron", price: "₹1,200 - ₹1,650" },
+
+      { cat: "RO", name: "24V / 36V RO பூஸ்டர் பம்ப் (Booster Pump)", brand: "BNQS / Grand Forest", price: "₹1,400 - ₹2,200" },
+
+      { cat: "RO", name: "RO SMPS பவர் அடாப்டர் (Power Supply)", brand: "Hi-Tech / ERD", price: "₹450 - ₹750" },
+
+      { cat: "Battery", name: "பேட்டரி லெட் டெர்மினல் கிளிப்புகள் (Lugs Set)", brand: "Pure Lead Heavy", price: "₹80 - ₹150" },
+
+      { cat: "Battery", name: "பேட்டரி கிரேடு டிஸ்டில்டு வாட்டர் (5 லிட்டர் கேன்)", brand: "DM Water ISO", price: "₹60 - ₹100" },
+
+      { cat: "Battery", name: "இன்வெர்ட்டர் கூலிங் ஃபேன் (DC Inverter Fan)", brand: "Luminous / Microtek OEM", price: "₹250 - ₹400" }
+
+    ];
+
+
+    let currentSpareCat = 'all';
+
+
+    function openSparePartsModal() {
+
+      renderSparePartsTable();
+
+      openModal('sparePartsModal');
+
+    }
+
+
+    function setSpareCategory(cat) {
+
+      currentSpareCat = cat;
+
+      document.querySelectorAll('.spare-cat-chip').forEach(c => c.classList.remove('active'));
+
+      if (event && event.target) event.target.classList.add('active');
+
+      renderSparePartsTable();
+
+    }
+
+
+    function filterSpareParts() {
+
+      renderSparePartsTable();
+
+    }
+
+
+    function renderSparePartsTable() {
+
+      const tbody = document.getElementById('sparePartsTableBody');
+
+      const q = (document.getElementById('spareSearchInput')?.value || '').toLowerCase();
+
+      if (!tbody) return;
+
+      tbody.innerHTML = '';
+
+
+      const filtered = sparePartsDatabase.filter(item => {
+
+        const catMatch = currentSpareCat === 'all' || item.cat === currentSpareCat;
+
+        const sMatch = item.name.toLowerCase().includes(q) || item.brand.toLowerCase().includes(q);
+
+        return catMatch && sMatch;
+
+      });
+
+
+      if (filtered.length === 0) {
+
+        tbody.innerHTML = '<tr><td colspan="2" style="text-align:center; padding:20px; color:#94a3b8;">உதிரிபாகம் கிடைக்கவில்லை. அட்மினிடம் வாட்ஸ்அப்பில் கேட்கலாம்.</td></tr>';
+
+        return;
+
+      }
+
+
+      filtered.forEach(p => {
+
+        const tr = document.createElement('tr');
+
+        tr.innerHTML = `
+
+          <td><b>${p.name}</b><br><span style="font-size:10px; color:#64748b;">பிராண்டு: ${p.brand}</span></td>
+
+          <td class="spare-fair-price">${p.price}</td>
+
+        `;
+
+        tbody.appendChild(tr);
+
+      });
+
+    }
+
+
+    // --- 2. CUSTOMER BUDGET BIDDING LOGIC ('என் பட்ஜெட் என் வேலை') ---
+
+    const defaultBids = [
+
+      { id: 'bid-1', cat: 'எலக்ட்ரீஷியன்', area: 'வேளச்சேரி, சென்னை', desc: '1 சீலிங் ஃபேன் மாட்ட வேண்டும்', budget: 150, phone: '9884334097', time: '10 நிமிடங்களுக்கு முன்' },
+
+      { id: 'bid-2', cat: 'பிளம்பர்', area: 'அண்ணா நகர், சென்னை', desc: 'வாஷ்பேசின் கீழ் பைப் லீக்கேஜ் பழுது', budget: 200, phone: '9884334097', time: 'அரை மணி நேரத்திற்கு முன்' },
+
+      { id: 'bid-3', cat: 'AC சர்வீஸ்', area: 'தி. நகர், சென்னை', desc: '1 Split AC ஜெட் கிளீனிங் சேவை', budget: 400, phone: '9884334097', time: '1 மணி நேரத்திற்கு முன்' }
+
+    ];
+
+
+    function openBudgetBiddingModal() {
+
+      renderBudgetBids();
+
+      openModal('budgetBiddingModal');
+
+    }
+
+
+    function renderBudgetBids() {
+
+      const container = document.getElementById('activeBidsContainer');
+
+      if (!container) return;
+
+      container.innerHTML = '';
+
+      const customBids = JSON.parse(localStorage.getItem('fixr_custom_bids') || '[]');
+
+      const allBids = [...customBids, ...defaultBids];
+
+
+      allBids.forEach(bid => {
+
+        const div = document.createElement('div');
+
+        div.className = 'bid-card';
+
+        div.innerHTML = `
+
+          <div>
+
+            <div class="bid-title">${bid.desc}</div>
+
+            <div class="bid-sub">📍 ${bid.area} | ${bid.cat} | 🕒 ${bid.time || 'இப்போது'}</div>
+
+          </div>
+
+          <div style="display:flex; flex-direction:column; align-items:flex-end; gap:4px;">
+
+            <span class="bid-budget-badge">₹${bid.budget}</span>
+
+            <button class="btn-accept-bid" onclick="acceptBudgetBid('${bid.id}', '${bid.desc}', '${bid.budget}', '${bid.phone}')">ஏற்றுக்கொள் ➔</button>
+
+          </div>
+
+        `;
+
+        container.appendChild(div);
+
+      });
+
+    }
+
+
+    function submitCustomerBudgetBid() {
+
+      const cat = document.getElementById('bidCategory').value;
+
+      const area = document.getElementById('bidArea').value.trim();
+
+      const desc = document.getElementById('bidDesc').value.trim();
+
+      const budget = document.getElementById('bidBudget').value.trim();
+
+      const phone = document.getElementById('bidPhone').value.trim();
+
+
+      if (!area || !desc || !budget || phone.length < 10) {
+
+        alert(currentLang === 'ta' ? 'பகுதி, வேலை விவரம், பட்ஜெட் தொகை மற்றும் 10 இலக்க மொபைல் எண்ணை உள்ளிடவும்.' : 'Please enter Area, Description, Budget, and 10-digit Phone.');
+
+        return;
+
+      }
+
+
+      const newBid = {
+
+        id: 'bid-' + Date.now(),
+
+        cat, area, desc,
+
+        budget: parseInt(budget, 10),
+
+        phone,
+
+        time: 'இப்போது'
+
+      };
+
+
+      const customBids = JSON.parse(localStorage.getItem('fixr_custom_bids') || '[]');
+
+      customBids.unshift(newBid);
+
+      localStorage.setItem('fixr_custom_bids', JSON.stringify(customBids));
+
+
+      document.getElementById('bidArea').value = '';
+
+      document.getElementById('bidDesc').value = '';
+
+      document.getElementById('bidBudget').value = '';
+
+
+      renderBudgetBids();
+
+      alert(currentLang === 'ta' ? 'வாழ்த்துகள்! உங்கள் பட்ஜெட் வேலை வெற்றிகரமாக ஆப்பில் பதிவிடப்பட்டது. தொழிலாளர்கள் உடனே உங்களை வாட்ஸ்அப்பில் தொடர்புகொள்வார்கள்.' : 'Job posted! Nearby technicians can accept your budget.');
+
+    }
+
+
+    function acceptBudgetBid(id, desc, budget, customerPhone) {
+
+      const msg = `வணக்கம்! நான் Fixr ஆப்பில் உங்கள் 'என் பட்ஜெட் என் வேலை' பதிவைப் பார்த்தேன்:
+
+• வேலை: ${desc}
+
+• நீங்கள் நிர்ணயித்த பட்ஜெட்: ₹${budget}
+
+இந்த வேலையை நான் செய்யத் தயாராக உள்ளேன். எப்போது வர வேண்டும் என்று கூறவும்!`;
+
+
+      window.open(`https://wa.me/91${customerPhone}?text=${encodeURIComponent(msg)}`, '_blank');
+
+    }
+
+
+    // --- 3. COMMUNITY / STREET GROUP POOLING LOGIC ---
+
+    function openCommunityPoolingModal() {
+
+      openModal('communityPoolingModal');
+
+    }
+
+
+    function submitCommunityPoolOrder() {
+
+      const apt = document.getElementById('poolAptName').value.trim();
+
+      const service = document.getElementById('poolServiceType').value;
+
+      const count = document.getElementById('poolHouseCount').value;
+
+      const phone = document.getElementById('poolPhone').value.trim();
+
+
+      if (!apt || phone.length < 10) {
+
+        alert(currentLang === 'ta' ? 'அபார்ட்மெண்ட் / தெரு பெயர் மற்றும் 10 இலக்க மொபைல் எண்ணை உள்ளிடவும்.' : 'Please enter Apartment/Street name and 10-digit Phone.');
+
+        return;
+
+      }
+
+
+      const msg = `வணக்கம் Fixr அட்மின்! நாங்கள் தெரு / அபார்ட்மெண்ட் குழு தள்ளுபடி (Community Group Booking) செய்ய விரும்புகிறோம்:
+
+• குடியிருப்பு / தெரு: ${apt}
+
+• தேவைப்படும் சேவை: ${service}
+
+• வீடுகள் எண்ணிக்கை: ${count}
+
+• ஒருங்கிணைப்பாளர் எண்: ${phone}
+
+
+தயவுசெய்து எங்கள் குடியிருப்பிற்கு குழு தள்ளுபடியுடன் டெக்னீசியனை அனுப்பி வைக்கவும்.`;
+
+
+      window.open(`https://wa.me/91${ADMIN_PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
+
+      closeModal('communityPoolingModal');
+
+      alert(currentLang === 'ta' ? 'குழு முன்பதிவு கோரிக்கை அனுப்பப்பட்டது! அட்மின் குழு தள்ளுபடியை உறுதிசெய்வார்.' : 'Group booking sent! Admin will confirm your group discount.');
+
+    }
+
+
+    function shareCommunityPoolLink() {
+
+      const apt = document.getElementById('poolAptName')?.value.trim() || 'எங்கள் பகுதியில்';
+
+      const shareMsg = `வணக்கம் பக்கத்து வீட்டாருக்கு! Fixr ஆப்பில் நமது குடியிருப்புக்கு பிரத்யேகமாக 'குழு தள்ளுபடி' (25% OFF Group Booking) வழங்கப்படுகிறது. 2 அல்லது 3 வீடுகள் சேர்ந்து AC/RO சர்வீஸ் புக் செய்தால் 25% தள்ளுபடி பெறலாம்!
+
+விவரங்களுக்கு: https://www.fixrservice.in`;
+
+
+      if (navigator.share) {
+
+        navigator.share({ title: 'Fixr Community Group Discount', text: shareMsg, url: 'https://www.fixrservice.in' }).catch(() => {
+
+          window.open(`https://wa.me/?text=${encodeURIComponent(shareMsg)}`, '_blank');
+
+        });
+
+      } else {
+
+        window.open(`https://wa.me/?text=${encodeURIComponent(shareMsg)}`, '_blank');
+
+      }
 
     }
 
@@ -5428,6 +6340,8 @@
             <button class="btn btn-book" onclick="${actionBtnOnClick}" ${item.isRented ? 'style="opacity:0.6;"' : ''}>${item.isRented ? t.rentedOut : actionBtnLabel}</button>
 
             <button class="btn btn-id" onclick="openDigitalIdModal('${item.id}')" title="Digital ID Card">${t.digitalId}</button>
+
+            <button class="btn btn-video" onclick="startVideoDiagnosis('${item.id}')" title="WhatsApp Video Consultation">📹 Video</button>
 
             <a href="${mapUrl}" target="_blank" class="btn btn-map" title="Directions">${t.directions}</a>
 
