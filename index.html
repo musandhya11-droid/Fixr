@@ -4095,6 +4095,243 @@
   </div>
 
 
+ 
+
+  <!-- 🤝 கேர் டேக்கர் பராமரிப்புத் தேவை பாப்-அப் (Care Taker Requirements Modal) -->
+
+  <div class="modal-overlay" id="careTakerModal">
+
+    <div class="modal-box" style="max-width: 480px;">
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+
+        <div class="modal-title" style="margin-bottom:0;">🤝 கேர் டேக்கர் தேவை விவரம்</div>
+
+        <button onclick="closeModal('careTakerModal')" style="background:none; border:none; font-size:22px; color:#64748b; cursor:pointer;">✕</button>
+
+      </div>
+
+      <div class="modal-sub">முதியோர், நோயாளி மற்றும் குழந்தை பராமரிப்புத் தேவைகளைக் குறிப்பிட்டு உடனடி உதவி பெறுக</div>
+
+
+      <div class="form-group">
+
+        <label>கேர் டேக்கர் / நிறுவனம்</label>
+
+        <input type="text" id="careTechName" class="form-input" readonly style="background:#f8fafc; font-weight:bold;">
+
+      </div>
+
+      <div class="form-group">
+
+        <label>பராமரிப்பு வகை (Care Type):</label>
+
+        <select id="careType" class="form-input">
+
+          <option value="முதியோர் பராமரிப்பு (Elderly Care)">👵 முதியோர் பராமரிப்பு (Elderly Care)</option>
+
+          <option value="நோயாளி உதவி (Bedridden / Patient Care)">🩺 நோயாளி உதவி (Bedridden / Patient Care)</option>
+
+          <option value="குழந்தை பராமரிப்பு (Baby / Child Care)">👶 குழந்தை பராமரிப்பு (Baby / Child Care)</option>
+
+          <option value="சமையல் & வீட்டு உதவி (Cook & Domestic Care)">🍲 சமையல் & வீட்டு உதவி (Cooking & Domestic)</option>
+
+        </select>
+
+      </div>
+
+      <div class="form-group">
+
+        <label>பணி நேரம் (Shift Required):</label>
+
+        <select id="careShift" class="form-input">
+
+          <option value="பகல் நேரம் (Day Shift 12 Hours)">☀️ பகல் நேரம் (Day Shift - 12 Hours)</option>
+
+          <option value="இரவு நேரம் (Night Shift 12 Hours)">🌙 இரவு நேரம் (Night Shift - 12 Hours)</option>
+
+          <option value="24 மணி நேர தங்கிப் பணிபுரியும் சேவை (24h Full Stay)">🏠 24 மணி நேர தங்கிப் பணிபுரியும் சேவை (24 Hours Stay)</option>
+
+          <option value="பகுதி நேரம் (Part-time 4-6 Hours)">⏰ பகுதி நேரம் (Part-time 4-6 Hours)</option>
+
+        </select>
+
+      </div>
+
+      <div class="form-group">
+
+        <label>மருத்துவத் தேவைகள் / குறிப்புகள்</label>
+
+        <input type="text" id="careNotes" class="form-input" placeholder="எ.கா: சுகர் மருந்து தர வேண்டும், நடக்க உதவி...">
+
+      </div>
+
+
+      <button class="submit-btn" style="background:#be185d;" onclick="confirmCareTakerConsultation()">
+
+        🚀 WhatsApp வழியாக கேர் டேக்கரிடம் பேச (Connect via WhatsApp)
+
+      </button>
+
+      <button class="close-btn" onclick="closeModal('careTakerModal')">ரத்து</button>
+
+    </div>
+
+  </div>
+
+
+  <!-- 🚚 பேக்கர்ஸ் & மூவர்ஸ் வண்டி மற்றும் இடமாற்ற பாப்-அப் (Packers & Movers Modal) -->
+
+  <div class="modal-overlay" id="packersModal">
+
+    <div class="modal-box" style="max-width: 480px;">
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+
+        <div class="modal-title" style="margin-bottom:0;">🚚 பேக்கர்ஸ் & மூவர்ஸ் வண்டி தேர்வு</div>
+
+        <button onclick="closeModal('packersModal')" style="background:none; border:none; font-size:22px; color:#64748b; cursor:pointer;">✕</button>
+
+      </div>
+
+      <div class="modal-sub">வீட்டுப் பொருட்கள் இடமாற்றத்திற்கு சரியான வண்டி மற்றும் லோடிங் ஆட்களைத் தேர்வு செய்க</div>
+
+
+      <div class="form-group">
+
+        <label>நிறுவனம் / டிரான்ஸ்போர்ட்</label>
+
+        <input type="text" id="packersTechName" class="form-input" readonly style="background:#f8fafc; font-weight:bold;">
+
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+
+        <div class="form-group">
+
+          <label>எங்கிருந்து (From Area)</label>
+
+          <input type="text" id="packersFrom" class="form-input" placeholder="எ.கா: வேளச்சேரி">
+
+        </div>
+
+        <div class="form-group">
+
+          <label>எங்கு வரை (To Area)</label>
+
+          <input type="text" id="packersTo" class="form-input" placeholder="எ.கா: தாம்பரம்">
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <label>வண்டி & தேவை வகை:</label>
+
+        <select id="packersVehicle" class="form-input">
+
+          <option value="டாடா ஏஸ் (Tata Ace - 1 BHK/Few Items)">🚚 டாடா ஏஸ் (Tata Ace - 1 BHK / சில பொருட்கள்)</option>
+
+          <option value="பிக்கப் / பொலிரோ (Pickup - 1.5 BHK)">🚛 பிக்கப் / பொலிரோ (Pickup - 1.5 BHK)</option>
+
+          <option value="14 அடி லாரி (14ft Truck - 2/3 BHK Full House)">🚛 14 அடி லாரி (14ft Truck - 2/3 BHK முழு வீடு)</option>
+
+          <option value="வண்டி + 2 லோடிங் ஆட்கள் (Vehicle + 2 Helpers)">💪 வண்டி + 2 லோடிங் ஆட்கள்</option>
+
+        </select>
+
+      </div>
+
+      <div class="form-group">
+
+        <label>இடமாற்றத் தேதி (Shifting Date)</label>
+
+        <input type="date" id="packersDate" class="form-input">
+
+      </div>
+
+
+      <button class="submit-btn" style="background:#d97706;" onclick="confirmPackersConsultation()">
+
+        🚀 WhatsApp வழியாக வண்டி புக் செய்ய & கட்டணம் பேச
+
+      </button>
+
+      <button class="close-btn" onclick="closeModal('packersModal')">ரத்து</button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ✨ டீப் கிளீனிங் & பெயிண்டிங் அளவு பாப்-அப் (Cleaning & Painting Estimator Modal) -->
+
+  <div class="modal-overlay" id="cleaningEstimatorModal">
+
+    <div class="modal-box" style="max-width: 480px;">
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+
+        <div class="modal-title" style="margin-bottom:0;">✨ டீப் கிளீனிங் & பெயிண்டிங் அளவு தேர்வு</div>
+
+        <button onclick="closeModal('cleaningEstimatorModal')" style="background:none; border:none; font-size:22px; color:#64748b; cursor:pointer;">✕</button>
+
+      </div>
+
+      <div class="modal-sub">உங்கள் வீட்டின் அளவிற்கு ஏற்ப துல்லிய கட்டணம் மற்றும் உத்தேச நேரம் அறிக</div>
+
+
+      <div class="form-group">
+
+        <label>சர்வீஸ் நிறுவனம்</label>
+
+        <input type="text" id="cleaningTechName" class="form-input" readonly style="background:#f8fafc; font-weight:bold;">
+
+      </div>
+
+      <div class="form-group">
+
+        <label>தேவைப்படும் சேவை வகை:</label>
+
+        <select id="cleaningServiceType" class="form-input">
+
+          <option value="1 BHK முழு வீடு டீப் கிளீனிங் (Move-in Cleaning ₹1,999)">🧹 1 BHK முழு வீடு டீப் கிளீனிங் (Move-in Cleaning)</option>
+
+          <option value="2 BHK முழு வீடு டீப் கிளீனிங் (Move-in Cleaning ₹2,499)">🧹 2 BHK முழு வீடு டீப் கிளீனிங் (Move-in Cleaning)</option>
+
+          <option value="3 BHK முழு வீடு டீப் கிளீனிங் (Move-in Cleaning ₹3,299)">🧹 3 BHK முழு வீடு டீப் கிளீனிங் (Move-in Cleaning)</option>
+
+          <option value="பாத்ரூம் & கிச்சன் ஆசிட் இல்லாத டீப் வாஷ் (₹899 முதல்)">🧼 பாத்ரூம் & கிச்சன் ஆசிட் இல்லாத டீப் வாஷ்</option>
+
+          <option value="வீட்டு பெயிண்டிங் & டச்-அப் (Painting & Touch-up)">🎨 வீட்டு பெயிண்டிங் & டச்-அப்</option>
+
+        </select>
+
+      </div>
+
+      <div class="form-group">
+
+        <label>வீட்டு முகவரி / பகுதி</label>
+
+        <input type="text" id="cleaningArea" class="form-input" placeholder="எ.கா: அண்ணா நகர், சென்னை">
+
+      </div>
+
+
+      <button class="submit-btn" style="background:#0284c7;" onclick="confirmCleaningConsultation()">
+
+        🚀 WhatsApp வழியாக துல்லிய மதிப்பீடு பெற (Get Quote)
+
+      </button>
+
+      <button class="close-btn" onclick="closeModal('cleaningEstimatorModal')">ரத்து</button>
+
+    </div>
+
+  </div>
+
+
   <!-- முழுமையான Footer (Complete Professional Footer) -->
 
   <footer>
@@ -5830,6 +6067,161 @@
     let diagUploadedPhotos = [];
 
 
+   
+
+    // --- SPECIALIZED SERVICE HANDLERS ---
+
+    let selectedCareTech = null;
+
+    let selectedPackersTech = null;
+
+    let selectedCleaningTech = null;
+
+
+    function openCareTakerModal(id) {
+
+      selectedCareTech = liveServicesList.find(x => x.id === id);
+
+      if (!selectedCareTech) return;
+
+      document.getElementById('careTechName').value = `${selectedCareTech.name} (${selectedCareTech.area})`;
+
+      openModal('careTakerModal');
+
+    }
+
+
+    function confirmCareTakerConsultation() {
+
+      if (!selectedCareTech) return;
+
+      const type = document.getElementById('careType').value;
+
+      const shift = document.getElementById('careShift').value;
+
+      const notes = document.getElementById('careNotes').value.trim();
+
+
+      const msg = `வணக்கம் ${selectedCareTech.name}! நான் Fixr ஆப்பில் உங்கள் கேர் டேக்கர் சேவையைப் பார்த்தேன்.
+
+🤝 *கேர் டேக்கர் தேவை விவரம்:*
+
+• வகை: ${type}
+
+• நேரம்: ${shift}
+
+• குறிப்பு: ${notes || 'நேரடி விவரங்கள் பேச வேண்டும்'}
+
+
+தயவுசெய்து கட்டணம் மற்றும் பணி விவரங்களை உறுதிசெய்யவும்.`;
+
+
+      window.open(`https://wa.me/91${selectedCareTech.phone}?text=${encodeURIComponent(msg)}`, '_blank');
+
+      closeModal('careTakerModal');
+
+    }
+
+
+    function openPackersQuoteModal(id) {
+
+      selectedPackersTech = liveServicesList.find(x => x.id === id);
+
+      if (!selectedPackersTech) return;
+
+      document.getElementById('packersTechName').value = `${selectedPackersTech.name} (${selectedPackersTech.area})`;
+
+      openModal('packersModal');
+
+    }
+
+
+    function confirmPackersConsultation() {
+
+      if (!selectedPackersTech) return;
+
+      const from = document.getElementById('packersFrom').value.trim();
+
+      const to = document.getElementById('packersTo').value.trim();
+
+      const veh = document.getElementById('packersVehicle').value;
+
+      const date = document.getElementById('packersDate').value;
+
+
+      if (!from || !to) {
+
+        alert(currentLang === 'ta' ? 'எங்கிருந்து மற்றும் எங்கு வரை என்ற பகுதிகளை உள்ளிடவும்.' : 'Please enter From and To locations.');
+
+        return;
+
+      }
+
+
+      const msg = `வணக்கம் ${selectedPackersTech.name}! நான் Fixr ஆப்பில் உங்கள் பேக்கர்ஸ் & மூவர்ஸ் சேவையைப் பார்த்தேன்.
+
+🚚 *வீட்டுப் பொருட்கள் இடமாற்றக் கோரிக்கை:*
+
+• எங்கிருந்து: ${from}
+
+• எங்கு வரை: ${to}
+
+• வண்டி வகை: ${veh}
+
+• திட்டமிடப்பட்ட தேதி: ${date || 'விரைவில்'}
+
+
+தயவுசெய்து கட்டண விவரம் மற்றும் வண்டி உறுதிசெய்து கூறவும்.`;
+
+
+      window.open(`https://wa.me/91${selectedPackersTech.phone}?text=${encodeURIComponent(msg)}`, '_blank');
+
+      closeModal('packersModal');
+
+    }
+
+
+    function openCleaningEstimatorModal(id) {
+
+      selectedCleaningTech = liveServicesList.find(x => x.id === id);
+
+      if (!selectedCleaningTech) return;
+
+      document.getElementById('cleaningTechName').value = `${selectedCleaningTech.name} (${selectedCleaningTech.area})`;
+
+      openModal('cleaningEstimatorModal');
+
+    }
+
+
+    function confirmCleaningConsultation() {
+
+      if (!selectedCleaningTech) return;
+
+      const type = document.getElementById('cleaningServiceType').value;
+
+      const area = document.getElementById('cleaningArea').value.trim();
+
+
+      const msg = `வணக்கம் ${selectedCleaningTech.name}! நான் Fixr ஆப்பில் உங்கள் கிளீனிங்/பெயிண்டிங் சேவையைப் பார்த்தேன்.
+
+✨ *டீப் கிளீனிங் / பெயிண்டிங் மதிப்பீடு:*
+
+• தேவை: ${type}
+
+• பகுதி / முகவரி: ${area || 'சென்னை'}
+
+
+தயவுசெய்து கட்டண விவரம் மற்றும் எப்போது பணி தொடங்க முடியும் என்று கூறவும்.`;
+
+
+      window.open(`https://wa.me/91${selectedCleaningTech.phone}?text=${encodeURIComponent(msg)}`, '_blank');
+
+      closeModal('cleaningEstimatorModal');
+
+    }
+
+
     function openPhotoDiagnosisModal(techId) {
 
       if (techId) {
@@ -6818,6 +7210,58 @@
         badgesHtml += `<span class="badge">${getDisplayCategory(item.category)}</span>`;
 
 
+        // Category-Specific Smart Feature Button
+
+        let categoryFeatureBtn = '';
+
+        const repairCats = ['எலக்ட்ரீஷியன்', 'பிளம்பர்', 'AC சர்வீஸ்', 'RO சர்வீஸ்', 'இன்வெர்ட்டர் & பேட்டரி'];
+
+        const cat = item.category || '';
+
+
+        if (repairCats.some(c => cat.includes(c))) {
+
+          // Photo Diagnosis for Electric, Plumbing, AC, RO, Battery
+
+          categoryFeatureBtn = `<button class="btn btn-video" onclick="startPhotoDiagnosis('${item.id}')" title="Photo Diagnosis">📸 ${currentLang === 'ta' ? 'படம்' : 'Photo'}</button>`;
+
+        } else if (cat.includes('கேர் டேக்கர்')) {
+
+          // Patient / Elderly Care Requirement Consultation
+
+          categoryFeatureBtn = `<button class="btn btn-video" style="background:#fdf2f8; color:#be185d; border-color:#fbcfe8;" onclick="openCareTakerModal('${item.id}')" title="Care Requirements">🤝 ${currentLang === 'ta' ? 'தேவை' : 'Care'}</button>`;
+
+        } else if (cat.includes('வாடகை வீடுகள்')) {
+
+          // House Photos Gallery
+
+          categoryFeatureBtn = `<button class="btn btn-video" style="background:#eff6ff; color:#1d4ed8; border-color:#bfdbfe;" onclick="openPhotoViewer('${item.id}')" title="House Photos">📷 ${currentLang === 'ta' ? 'படங்கள்' : 'Photos'}</button>`;
+
+        } else if (cat.includes('பேக்கர்ஸ் & மூவர்ஸ்')) {
+
+          // Truck & Shifting Quote
+
+          categoryFeatureBtn = `<button class="btn btn-video" style="background:#fffbeb; color:#b45309; border-color:#fde68a;" onclick="openPackersQuoteModal('${item.id}')" title="Shifting Vehicle Quote">🚚 ${currentLang === 'ta' ? 'வண்டி' : 'Truck'}</button>`;
+
+        } else if (cat.includes('வாடகை ஒப்பந்தம்')) {
+
+          // Legal Agreement Order
+
+          categoryFeatureBtn = `<button class="btn btn-video" style="background:#f0fdf4; color:#166534; border-color:#bbf7d0;" onclick="openRentalAgreementModal()" title="E-Stamp Agreement">📑 ${currentLang === 'ta' ? 'அக்ரீமென்ட்' : 'E-Stamp'}</button>`;
+
+        } else if (cat.includes('டீப் கிளீனிங்')) {
+
+          // Cleaning & Painting Room Estimator
+
+          categoryFeatureBtn = `<button class="btn btn-video" style="background:#e0f2fe; color:#0369a1; border-color:#bae6fd;" onclick="openCleaningEstimatorModal('${item.id}')" title="Cleaning & Painting Estimate">✨ ${currentLang === 'ta' ? 'அளவு' : 'Estimate'}</button>`;
+
+        } else {
+
+          categoryFeatureBtn = `<button class="btn btn-video" onclick="startPhotoDiagnosis('${item.id}')" title="Photo">📸 ${currentLang === 'ta' ? 'படம்' : 'Photo'}</button>`;
+
+        }
+
+
         const actionBtnLabel = isHouseRental ?
 
           (item.houseImages && item.houseImages.length > 0 ? t.viewPhotos : (currentLang === 'ta' ? 'விவரம் பார்க்க' : 'View Details'))
@@ -6905,7 +7349,7 @@
 
             <button class="btn btn-id" onclick="openDigitalIdModal('${item.id}')" title="Digital ID">🪪 ID</button>
 
-            <button class="btn btn-video" onclick="startPhotoDiagnosis('${item.id}')" title="Photo Diagnosis">📸</button>
+            ${categoryFeatureBtn}
 
             <a href="${mapUrl}" target="_blank" class="btn btn-map" title="Directions">📍</a>
 
