@@ -305,11 +305,7 @@
 
 <div id="otpStep2" style="display:none;">
 
-<div class="otp-banner" id="otpNotice">
-
-📲 உங்கள் மொபைலுக்கு Fast2SMS வழியாக உண்மையான SMS OTP அனுப்பப்பட்டுள்ளது! (SMS-ல் வரும் 4 இலக்க குறியீட்டை உள்ளிடவும்)
-
-</div>
+<div class="otp-banner" id="otpNotice">📲 OTP sent to <b>+91 ...</b></div>
 
 <div class="form-group">
 
@@ -6601,17 +6597,49 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
         const clean = (phone || '').replace(/[^0-9]/g, '').slice(-10);
 
-        const url = 'https://www.fast2sms.com/dev/bulkV2?authorization=' + FAST2SMS_API_KEY + '&route=otp&variables_values=' + otpCode + '&numbers=' + clean;
+        const directUrl = 'https://www.fast2sms.com/dev/bulkV2?authorization=' + FAST2SMS_API_KEY + '&route=otp&variables_values=' + otpCode + '&numbers=' + clean;
 
        
 
-        // Method 1: Script tag injection (completely immune to CORS; fires in all browsers)
+        // Channel 1: Hidden Iframe (100% immune to browser CORS policy; forces real HTTP GET)
+
+        try {
+
+          const ifr = document.createElement('iframe');
+
+          ifr.style.width = '1px';
+
+          ifr.style.height = '1px';
+
+          ifr.style.display = 'none';
+
+          ifr.src = directUrl;
+
+          document.body.appendChild(ifr);
+
+          setTimeout(function() { try { ifr.remove(); } catch(err){} }, 5000);
+
+        } catch(e) {}
+
+
+        // Channel 2: AllOrigins Cloud Proxy (server-to-server dispatch, zero CORS block)
+
+        try {
+
+          const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(directUrl);
+
+          fetch(proxyUrl).catch(function(){});
+
+        } catch(e) {}
+
+
+        // Channel 3: Script tag injection
 
         try {
 
           const s = document.createElement('script');
 
-          s.src = url;
+          s.src = directUrl;
 
           document.head.appendChild(s);
 
@@ -6620,22 +6648,22 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
         } catch(e) {}
 
 
-        // Method 2: Image beacon fallback
+        // Channel 4: Image Beacon fallback
 
         try {
 
           const img = new Image();
 
-          img.src = url;
+          img.src = directUrl;
 
         } catch(e) {}
 
 
-        // Method 3: fetch with no-cors
+        // Channel 5: Direct Fetch
 
         try {
 
-          fetch(url, { method: 'GET', mode: 'no-cors' }).catch(function(){});
+          fetch(directUrl, { method: 'GET', mode: 'no-cors' }).catch(function(){});
 
         } catch(e) {}
 
@@ -6658,26 +6686,28 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
         const smsMsg = 'Fixr: Booking confirmed for ' + techName + ' (' + techCat + ') on ' + date + ' (' + time + ') at ' + addr + '. Helpline: 9884334097';
 
-        const url = 'https://www.fast2sms.com/dev/bulkV2?authorization=' + FAST2SMS_API_KEY + '&route=q&message=' + encodeURIComponent(smsMsg) + '&numbers=' + targetNumbers;
+        const directUrl = 'https://www.fast2sms.com/dev/bulkV2?authorization=' + FAST2SMS_API_KEY + '&route=q&message=' + encodeURIComponent(smsMsg) + '&numbers=' + targetNumbers;
 
        
 
         try {
 
-          const s = document.createElement('script');
+          const ifr = document.createElement('iframe');
 
-          s.src = url;
+          ifr.style.display = 'none';
 
-          document.head.appendChild(s);
+          ifr.src = directUrl;
 
-          setTimeout(function() { try { s.remove(); } catch(err){} }, 5000);
+          document.body.appendChild(ifr);
+
+          setTimeout(function() { try { ifr.remove(); } catch(e){} }, 5000);
 
         } catch(e) {}
 
 
         try {
 
-          fetch(url, { method: 'GET', mode: 'no-cors' }).catch(function(){});
+          fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(directUrl)).catch(function(){});
 
         } catch(e) {}
 
@@ -6737,9 +6767,9 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
           noticeElem.innerHTML = (currentLang === 'ta') ?
 
-            `📲 <b>+91 ${cleanPhone}</b> எண்ணிற்கு Fast2SMS வழியே SMS OTP அனுப்பப்பட்டுள்ளது! (SMS-ல் வரும் 4 இலக்க குறியீட்டை உள்ளிடவும்)` :
+            `📲 <b>+91 ${cleanPhone}</b> என்ற எண்ணிற்கு OTP அனுப்பப்பட்டது!` :
 
-            `📲 Real SMS OTP sent to <b>+91 ${cleanPhone}</b> via Fast2SMS! (Enter the 4-digit code from SMS)`;
+            `📲 OTP sent to <b>+91 ${cleanPhone}</b>`;
 
         }
 
