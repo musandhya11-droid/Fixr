@@ -1637,6 +1637,65 @@
     }
 
 
+ 
+
+    /* Move-in Relocation Services Banner */
+
+    .movein-promo-banner {
+
+      margin: 4px 16px 8px;
+
+      background: linear-gradient(135deg, #eff6ff, #dbeafe);
+
+      border: 1px solid #93c5fd;
+
+      border-radius: 12px;
+
+      padding: 9px 12px;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      gap: 8px;
+
+      cursor: pointer;
+
+      box-shadow: 0 1px 4px rgba(30, 58, 138, 0.08);
+
+      transition: all 0.2s ease;
+
+    }
+
+    .movein-promo-banner:hover {
+
+      background: #bfdbfe;
+
+    }
+
+    .movein-tag {
+
+      font-size: 10.5px;
+
+      font-weight: 800;
+
+      color: #1e40af;
+
+      background: white;
+
+      padding: 3px 8px;
+
+      border-radius: 8px;
+
+      border: 1px solid #93c5fd;
+
+      white-space: nowrap;
+
+    }
+
+
   </style>
 
 </head>
@@ -1738,6 +1797,29 @@
   <div class="city-chips-bar" id="cityChipsContainer">
 
     <div class="city-chip active" id="cityChipAll" onclick="setCityFilter('all')">📍 அனைத்து ஊர்கள்</div>
+
+
+  <!-- Move-in Relocation Services Banner (வீடு மாறுவோர் சேவைகள்) -->
+
+  <div class="movein-promo-banner" id="moveinPromoBanner" onclick="filterMoveInServices()">
+
+    <div style="display:flex; align-items:center; gap:8px;">
+
+      <span style="font-size:22px;">📦</span>
+
+      <div>
+
+        <div style="font-size:12px; font-weight:800; color:#1e3a8a;">வீடு மாறுகிறீர்களா? (Move-in Services)</div>
+
+        <div style="font-size:10.5px; color:#1d4ed8;">பேக்கர்ஸ் & மூவர்ஸ் • வாடகை ஒப்பந்தம் • டீப் கிளீனிங்</div>
+
+      </div>
+
+    </div>
+
+    <span class="movein-tag">பார்க்க ➔</span>
+
+  </div>
 
     <div class="city-chip" onclick="setCityFilter('சென்னை')">சென்னை (Chennai)</div>
 
@@ -3061,6 +3143,31 @@
 
             <tr><td>உரிமையாளர் நேரடித் தொடர்பு</td><td class="rate-price" style="color:#16a34a;">0% கமிஷன்</td></tr>
 
+
+            <tr class="rate-cat-header"><td colspan="2">📦 பேக்கர்ஸ் & மூவர்ஸ் (Packers & Movers)</td></tr>
+
+            <tr><td>டாடா ஏஸ் மினி டிரக் (5 கி.மீ வரை)</td><td class="rate-price">₹1,499 முதல்</td></tr>
+
+            <tr><td>1 BHK வீடு பொருட்கள் இடமாற்றம் (ஆட்கள் உட்பட)</td><td class="rate-price">₹3,499 - ₹4,999</td></tr>
+
+            <tr><td>2 BHK / 3 BHK முழு வீடு இடமாற்றம்</td><td class="rate-price">₹5,999 - ₹8,999</td></tr>
+
+
+            <tr class="rate-cat-header"><td colspan="2">📑 வாடகை ஒப்பந்தம் (Rental Agreement & E-Stamp)</td></tr>
+
+            <tr><td>டிஜிட்டல் PDF வாடகை ஒப்பந்தம் (Digital Agreement)</td><td class="rate-price">₹299</td></tr>
+
+            <tr><td>₹100 அரசு முத்திரைத் தாள் (E-Stamp) + நோட்டரி + வீட்டு டெலிவரி</td><td class="rate-price">₹499</td></tr>
+
+
+            <tr class="rate-cat-header"><td colspan="2">✨ டீப் கிளீனிங் & பெயிண்டிங் (Deep Cleaning & Painting)</td></tr>
+
+            <tr><td>1 BHK / 2 BHK முழு வீடு டீப் கிளீனிங் (Move-in Cleaning)</td><td class="rate-price">₹1,999 - ₹2,999</td></tr>
+
+            <tr><td>பாத்ரூம் & கிச்சன் ஆசிட் இல்லாத டீப் வாஷ்</td><td class="rate-price">₹899 முதல்</td></tr>
+
+            <tr><td>முழு வீடு பெயிண்டிங் (ஒரு அறை / முழு வீடு)</td><td class="rate-price">₹1,499 முதல்</td></tr>
+
           </tbody>
 
         </table>
@@ -3075,6 +3182,104 @@
       </div>
 
       <button class="submit-btn" onclick="closeModal('rateCardModal')">புரிந்தது (OK)</button>
+
+    </div>
+
+  </div>
+
+
+ 
+
+  <!-- வாடகை ஒப்பந்தம் ஆர்டர் பாப்-அப் (Online Rental Agreement Modal) -->
+
+  <div class="modal-overlay" id="rentalAgreementModal">
+
+    <div class="modal-box" style="max-width: 480px;">
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+
+        <div class="modal-title" style="margin-bottom:0;">📑 சட்டப்பூர்வ வாடகை ஒப்பந்தம்</div>
+
+        <button onclick="closeModal('rentalAgreementModal')" style="background:none; border:none; font-size:22px; color:#64748b; cursor:pointer;">✕</button>
+
+      </div>
+
+      <div class="modal-sub">வீட்டிலிருந்தே 24 மணி நேரத்தில் ₹100 அரசு முத்திரைத் தாளுடன் (E-Stamp) அக்ரீமென்ட் பெறுக</div>
+
+
+      <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:10px; padding:8px 12px; font-size:11.5px; color:#166534; margin-bottom:12px;">
+
+        🛡️ <b>அரசு அங்கீகாரம்:</b> நோட்டரி வழக்கறிஞர் சரிபார்ப்புடன், நீதிமன்ற செல்லுபடியாகும் வாடகை ஒப்பந்தம்.
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>வீட்டு உரிமையாளர் பெயர் (Owner Name)</label>
+
+        <input type="text" id="agrOwnerName" class="form-input" placeholder="உரிமையாளர் பெயர்">
+
+      </div>
+
+      <div class="form-group">
+
+        <label>வாடகைதாரர் பெயர் (Tenant Name)</label>
+
+        <input type="text" id="agrTenantName" class="form-input" placeholder="குடிவருபவர் பெயர்">
+
+      </div>
+
+      <div class="form-group">
+
+        <label>வாடகை வீட்டின் முழு முகவரி (House Address)</label>
+
+        <input type="text" id="agrHouseAddr" class="form-input" placeholder="கதவு எண், தெரு, பகுதி & ஊர்">
+
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+
+        <div class="form-group">
+
+          <label>மாத வாடகை (Rent)</label>
+
+          <input type="text" id="agrRent" class="form-input" placeholder="எ.கா: ₹12,000">
+
+        </div>
+
+        <div class="form-group">
+
+          <label>முன்பணம் (Advance)</label>
+
+          <input type="text" id="agrAdvance" class="form-input" placeholder="எ.கா: ₹50,000">
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <label>ஒப்பந்தத் திட்டம் (Select Plan):</label>
+
+        <select id="agrPlan" class="form-input">
+
+          <option value="₹299 - Digital PDF Agreement (24 Hours)">₹299 - Digital PDF அக்ரீமென்ட் (வாட்ஸ்அப்/இமெயில்)</option>
+
+          <option value="₹499 - ₹100 Govt E-Stamp + Home Delivery">₹499 - ₹100 அரசு E-Stamp + நோட்டரி + டோர் டெலிவரி (பிரபலம்)</option>
+
+        </select>
+
+      </div>
+
+
+      <button class="submit-btn" style="background:#0284c7;" onclick="submitRentalAgreementOrder()">
+
+        🚀 WhatsApp வழியாக அக்ரீமென்ட் ஆர்டர் செய்ய
+
+      </button>
+
+      <button class="close-btn" onclick="closeModal('rentalAgreementModal')">ரத்து</button>
 
     </div>
 
@@ -3184,7 +3389,13 @@
 
       "பிளம்பர்": { ta: "பிளம்பர்", en: "Plumber" },
 
-      "வாடகை வீடுகள்": { ta: "வாடகை வீடுகள்", en: "House Rentals" }
+      "வாடகை வீடுகள்": { ta: "வாடகை வீடுகள்", en: "House Rentals" },
+
+      "பேக்கர்ஸ் & மூவர்ஸ்": { ta: "பேக்கர்ஸ் & மூவர்ஸ்", en: "Packers & Movers" },
+
+      "வாடகை ஒப்பந்தம்": { ta: "வாடகை ஒப்பந்தம்", en: "Rental Agreement" },
+
+      "டீப் கிளீனிங்": { ta: "டீப் கிளீனிங் & பெயிண்டிங்", en: "Deep Cleaning & Painting" }
 
     };
 
@@ -3315,19 +3526,25 @@
 
       { key: "அனைத்தும்", ta: "அனைத்தும் (All India)", en: "All Services" },
 
-      { key: "கேர் டேக்கர்", ta: "❤️ கேர் டேக்கர்", en: "❤️ Care Taker" },
+      { key: "வாடகை வீடுகள்", ta: "🏠 வாடகை வீடுகள்", en: "🏠 House Rentals" },
+
+      { key: "பேக்கர்ஸ் & மூவர்ஸ்", ta: "📦 பேக்கர்ஸ் & மூவர்ஸ்", en: "📦 Packers & Movers" },
+
+      { key: "வாடகை ஒப்பந்தம்", ta: "📑 வாடகை ஒப்பந்தம்", en: "📑 Rental Agreement" },
+
+      { key: "டீப் கிளீனிங்", ta: "✨ டீப் கிளீனிங்", en: "✨ Deep Cleaning" },
 
       { key: "AC சர்வீஸ்", ta: "❄️ AC சர்வீஸ்", en: "❄️ AC Service" },
-
-      { key: "RO சர்வீஸ்", ta: "💧 RO சர்வீஸ்", en: "💧 RO Service" },
-
-      { key: "இன்வெர்ட்டர் & பேட்டரி", ta: "🔋 இன்வெர்ட்டர் & பேட்டரி", en: "🔋 Battery & Inverter" },
 
       { key: "எலக்ட்ரீஷியன்", ta: "⚡ எலக்ட்ரீஷியன்", en: "⚡ Electrician" },
 
       { key: "பிளம்பர்", ta: "🔧 பிளம்பர்", en: "🔧 Plumber" },
 
-      { key: "வாடகை வீடுகள்", ta: "🏠 வாடகை வீடுகள்", en: "🏠 House Rentals" }
+      { key: "RO சர்வீஸ்", ta: "💧 RO சர்வீஸ்", en: "💧 RO Service" },
+
+      { key: "இன்வெர்ட்டர் & பேட்டரி", ta: "🔋 இன்வெர்ட்டர் & பேட்டரி", en: "🔋 Battery & Inverter" },
+
+      { key: "கேர் டேக்கர்", ta: "❤️ கேர் டேக்கர்", en: "❤️ Care Taker" }
 
     ];
 
@@ -3432,6 +3649,90 @@
 
         ]
 
+      },
+
+      {
+
+        id: "seed-10",
+
+        name: "ஸ்ரீ விநாயகா பேக்கர்ஸ் & மூவர்ஸ் (Sri Vinayaka Shifting)",
+
+        category: "பேக்கர்ஸ் & மூவர்ஸ்",
+
+        area: "வேளச்சேரி, சென்னை (Chennai)",
+
+        phone: "9884334097",
+
+        price: "₹1,499 முதல்",
+
+        rating: "★ 4.9 (Verified)",
+
+        desc: "வீடு & அலுவலக பொருட்கள் இடமாற்றம், டாடா ஏஸ் / பிக்கப் வண்டி, பாதுகாப்பான பேக்கிங் & லோடிங் ஆட்கள் வசதியுடன்",
+
+        partnerId: "FIXR-MOVE-2026-1010",
+
+        isVerifiedPro: true,
+
+        isAvailable: true,
+
+        isExpress: true
+
+      },
+
+      {
+
+        id: "seed-11",
+
+        name: "Fixr சட்டப்பூர்வ வாடகை ஒப்பந்த சேவை (E-Stamp & Agreement)",
+
+        category: "வாடகை ஒப்பந்தம்",
+
+        area: "தமிழ்நாடு முழுவதும் (All Tamil Nadu)",
+
+        phone: "9884334097",
+
+        price: "₹299 முதல்",
+
+        rating: "★ 5.0 (Govt Certified)",
+
+        desc: "வீட்டிலிருந்தே 24 மணி நேரத்தில் சட்டப்பூர்வ வாடகை ஒப்பந்தம் (Rental Agreement), ₹100 அரசு முத்திரைத் தாள் & நோட்டரி சரிபார்ப்புடன் PDF & டோர் டெலிவரி",
+
+        partnerId: "FIXR-LEGAL-2026-1111",
+
+        isVerifiedPro: true,
+
+        isAvailable: true,
+
+        isExpress: false
+
+      },
+
+      {
+
+        id: "seed-12",
+
+        name: "தூய்மை ஹோம் டீப் கிளீனிங் & பெயிண்டிங் (Move-in Care)",
+
+        category: "டீப் கிளீனிங்",
+
+        area: "தி. நகர், சென்னை (Chennai)",
+
+        phone: "9876543211",
+
+        price: "₹1,999 முதல்",
+
+        rating: "★ 4.8 (Verified)",
+
+        desc: "புதிய வீடு குடிபுகும் டீப் கிளீனிங், சமையலறை, பாத்ரூம் பிரத்யேக ஆசிட் இல்லாத வாஷ், ஃபேன், சுவிட்ச் போர்டு மற்றும் முழு வீடு பெயிண்டிங் வேலைகள்",
+
+        partnerId: "FIXR-CLEAN-2026-1212",
+
+        isVerifiedPro: true,
+
+        isAvailable: true,
+
+        isExpress: true
+
       }
 
     ];
@@ -3531,6 +3832,20 @@
       if (!liveServicesList || liveServicesList.length === 0) {
 
         liveServicesList = [...defaultData];
+
+      } else {
+
+        // Ensure new seed services (Packers & Movers, Rental Agreement, etc.) are always present
+
+        defaultData.forEach(seed => {
+
+          if (!liveServicesList.some(item => item.id === seed.id)) {
+
+            liveServicesList.push(seed);
+
+          }
+
+        });
 
       }
 
@@ -4467,12 +4782,101 @@
 
         { name: "விஜய்", area: "அண்ணா நகர்", rating: 5, date: "நேற்று", comment: "பேச்சிலர்களுக்கு ஏற்ற அருமையான 1 BHK வீடு. மெயின் ரோடு மிக அருகில்." }
 
+      ],
+
+      "seed-10": [
+
+        { name: "பிரவீன்", area: "வேளச்சேரி", rating: 5, date: "இன்று", comment: "டாடா ஏஸ் வண்டியில் பொருட்களை மிகக் கவனமாக ஏற்றி இறக்கினர். ஒரு பொருளும் உடையவில்லை. சூப்பர் பேக்கர்ஸ்!" }
+
+      ],
+
+      "seed-11": [
+
+        { name: "ராஜேந்திரன் (உரிமையாளர்)", area: "அடையாறு", rating: 5, date: "நேற்று", comment: "அலைச்சல் இல்லாமல் வீட்டிலிருந்தே ₹100 E-Stamp உடன் அக்ரீமென்ட் கிடைத்தது. மிகச் சிறந்த சேவை." }
+
+      ],
+
+      "seed-12": [
+
+        { name: "கவிதா", area: "தி. நகர்", rating: 5, date: "2 நாட்களுக்கு முன்", comment: "புதிய வீடு குடிபுகும் முன் டீப் கிளீனிங் செய்தோம். டைல்ஸ் மற்றும் பாத்ரூம் பளிச்சென்று ஆனது!" }
+
       ]
 
     };
 
 
    
+
+   
+
+    function filterMoveInServices() {
+
+      currentCategory = 'பேக்கர்ஸ் & மூவர்ஸ்';
+
+      renderCategories();
+
+      render();
+
+    }
+
+
+    function openRentalAgreementModal() {
+
+      openModal('rentalAgreementModal');
+
+    }
+
+
+    function submitRentalAgreementOrder() {
+
+      const owner = document.getElementById('agrOwnerName').value.trim();
+
+      const tenant = document.getElementById('agrTenantName').value.trim();
+
+      const addr = document.getElementById('agrHouseAddr').value.trim();
+
+      const rent = document.getElementById('agrRent').value.trim();
+
+      const adv = document.getElementById('agrAdvance').value.trim();
+
+      const plan = document.getElementById('agrPlan').value;
+
+
+      if (!owner || !tenant || !addr) {
+
+        alert(currentLang === 'ta' ? 'உரிமையாளர், வாடகைதாரர் பெயர் மற்றும் முகவரியை உள்ளிடவும்.' : 'Please enter Owner, Tenant name and House address.');
+
+        return;
+
+      }
+
+
+      const msg = `வணக்கம் Fixr லீகல் டீம்! நான் சட்டப்பூர்வ வாடகை ஒப்பந்தம் (Rental Agreement) ஆர்டர் செய்ய விரும்புகிறேன்:
+
+• திட்டம்: ${plan}
+
+• உரிமையாளர்: ${owner}
+
+• வாடகைதாரர்: ${tenant}
+
+• வீட்டு முகவரி: ${addr}
+
+• மாத வாடகை: ${rent || 'விவரம் தெரிவிக்கப்பட்டது'}
+
+• முன்பணம்: ${adv || 'விவரம் தெரிவிக்கப்பட்டது'}
+
+
+தயவுசெய்து அக்ரீமென்ட் செயல்முறையைத் தொடங்கவும்.`;
+
+
+      window.open(`https://wa.me/91${ADMIN_PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
+
+      closeModal('rentalAgreementModal');
+
+      alert(currentLang === 'ta' ? 'உங்கள் அக்ரீமென்ட் கோரிக்கை அனுப்பப்பட்டது! Fixr வழக்கறிஞர் குழு உங்களை வாட்ஸ்அப்பில் தொடர்புகொள்ளும்.' : 'Agreement order sent! Fixr legal team will contact you via WhatsApp.');
+
+    }
+
 
     function setCityFilter(city) {
 
@@ -4893,6 +5297,14 @@
       selectedBookingTech = liveServicesList.find(x => x.id === id);
 
       if (!selectedBookingTech) return;
+
+      if (selectedBookingTech.category === 'வாடகை ஒப்பந்தம்') {
+
+        openRentalAgreementModal();
+
+        return;
+
+      }
 
       document.getElementById('bookTechSummary').innerText = `${selectedBookingTech.name} (${getDisplayCategory(selectedBookingTech.category)})`;
 
