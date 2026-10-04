@@ -2577,3 +2577,20 @@
 </body>
 
 </html>
+<div class="toggle-pill" id="availToggleContainer" onclick="toggleAvailabilityFilter()">
+  <span class="toggle-icon">🟢</span>
+  <span class="toggle-text" id="availToggleText">Available Only (பணியில் உள்ளவர்கள்)</span>
+  <span class="toggle-status" id="availToggleStatus">OFF</span>
+</div>
+<div class="express-emergency-strip" id="expressEmergencyStrip" onclick="toggleExpressFilter()">
+  <span>⚡ 30 Mins Express சேவை: பிளம்பர், எலக்ட்ரீஷியன் & AC பழுது நீக்க உடனடியாக அழைக்க!</span>
+  <span class="express-strip-tag">அவசர சேவை ➔</span>
+</div>
+<input type="checkbox" id="bookExpressCheck">
+<span>⚡ அவசர சேவை தேவை (30 நிமிடங்களில் வருகை / 30 Mins Express)</span>
+<input type="checkbox" id="bookExpressCheck">
+<span>⚡ அவசர சேவை தேவை (30 நிமிடங்களில் வருகை / 30 Mins Express)</span>
+<div class="rating-badge-btn" onclick="openReviewsModal('${item.id}')">
+  <span class="rating-star">★ 4.9</span>
+  <span class="rating-reviews">💬 அனுபவங்கள் (${reviewCount} Reviews)</span>
+</div>
