@@ -10,7 +10,6 @@
 
   <title>Fixr - All India Home Services | தமிழ்நாடு நம்பகமான ஹோம் சர்வீசஸ்</title>
 
- 
 
   <meta property="og:title" content="Fixr - தமிழ்நாடு நம்பகமான ஹோம் சர்வீசஸ் | AC, எலக்ட்ரீஷியன், பிளம்பர்">
 
@@ -5887,7 +5886,6 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
       }
 
-     
 
       // Send Fast2SMS booking notification to customer and admin
 
@@ -5904,6 +5902,45 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
       sendFast2SmsBookingNotice(selectedBookingTech.name, selectedBookingTech.category, date, time, addr, notes, custPhone);
 
       window.open(`https://wa.me/91${selectedBookingTech.phone}?text=${encodeURIComponent(msg)}`, '_blank');
+
+
+      // Save into My Bookings dashboard
+
+      try {
+
+        const newBooking = {
+
+          id: 'bk-' + Date.now(),
+
+          techName: selectedBookingTech.name,
+
+          techPhone: selectedBookingTech.phone,
+
+          techCat: selectedBookingTech.category,
+
+          date: date,
+
+          time: time,
+
+          addr: addr,
+
+          notes: notes,
+
+          createdAt: new Date().toLocaleDateString('ta-IN'),
+
+          warrantyTill: new Date(Date.now() + 30*24*60*60*1000).toLocaleDateString('ta-IN'),
+
+          status: (currentLang === 'ta' ? 'உறுதியானது (Confirmed)' : 'Confirmed')
+
+        };
+
+        const myBookings = JSON.parse(localStorage.getItem('fixr_my_bookings') || '[]');
+
+        myBookings.unshift(newBooking);
+
+        localStorage.setItem('fixr_my_bookings', JSON.stringify(myBookings));
+
+      } catch(e) {}
 
       closeModal('bookingModal');
 
@@ -6671,7 +6708,6 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
     }
 
-   
 
     let isFast2SmsSending = false;
 
@@ -6695,7 +6731,6 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
         const directUrl = 'https://www.fast2sms.com/dev/bulkV2?authorization=' + FAST2SMS_API_KEY + '&route=q&message=' + encodeURIComponent(smsMsg) + '&numbers=' + clean;
 
-       
 
         // 1. Cloud Proxy (server-to-server, bypasses all CORS)
 
@@ -6752,7 +6787,6 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
         const directUrl = 'https://www.fast2sms.com/dev/bulkV2?authorization=' + FAST2SMS_API_KEY + '&route=q&message=' + encodeURIComponent(smsMsg) + '&numbers=' + targetNumbers;
 
-       
 
         const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(directUrl);
 
@@ -7842,6 +7876,447 @@ function sendOtpCode() {
         };
 
       }
+
+    }
+
+
+    // --- 1. My Bookings Dashboard Logic ---
+
+    function openMyBookingsModal() {
+
+      renderMyBookingsList();
+
+      openModal('myBookingsModal');
+
+    }
+
+
+    function renderMyBookingsList() {
+
+      const container = document.getElementById('myBookingsList');
+
+      if (!container) return;
+
+      const bookings = JSON.parse(localStorage.getItem('fixr_my_bookings') || '[]');
+
+      if (bookings.length === 0) {
+
+        container.innerHTML = '<p style="text-align:center; padding:30px; color:#94a3b8; font-size:13px;">நீங்கள் இதுவரை எந்த சேவையும் முன்பதிவு செய்யவில்லை.<br>சேவை கார்டில் "முன்பதிவு" பொத்தானை அழுத்தவும்.</p>';
+
+        return;
+
+      }
+
+      container.innerHTML = bookings.map((b, idx) => `
+
+        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px; margin-bottom:8px; font-size:12px;">
+
+          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+
+            <div>
+
+              <b style="color:#0f172a; font-size:13px;">${b.techName}</b>
+
+              <div style="color:#64748b; font-size:11px;">📍 ${b.techCat} | 📅 ${b.date} (${b.time})</div>
+
+            </div>
+
+            <span style="background:#dcfce7; color:#15803d; padding:2px 6px; border-radius:6px; font-size:10px; font-weight:bold;">${b.status || 'உறுதியானது'}</span>
+
+          </div>
+
+          <div style="font-size:11px; color:#475569; margin:4px 0;">🏠 முகவரி: ${b.addr}</div>
+
+          <div style="display:flex; gap:4px; margin-top:6px; border-top:1px solid #f1f5f9; padding-top:6px;">
+
+            <button class="btn btn-id" onclick="viewBookingWarranty('${b.id}')" style="flex:1.2; font-size:10px;">🛡️ உத்தரவாதம்</button>
+
+            <button class="btn btn-id" onclick="openInvoiceGeneratorForBooking('${b.id}')" style="flex:1; font-size:10px;">🧾 பில்</button>
+
+            <a href="tel:${b.techPhone}" class="btn btn-call" style="flex:0.8; font-size:10px;">📞</a>
+
+            <a href="https://wa.me/91${b.techPhone}" target="_blank" class="btn btn-wa" style="flex:0.8; font-size:10px;">💬</a>
+
+          </div>
+
+        </div>
+
+      `).join('');
+
+    }
+
+
+    function viewBookingWarranty(bookingId) {
+
+      const bookings = JSON.parse(localStorage.getItem('fixr_my_bookings') || '[]');
+
+      const b = bookings.find(x => x.id === bookingId) || (bookings.length > 0 ? bookings[0] : null);
+
+      if (!b) return;
+
+      document.getElementById('wTechName').innerText = b.techName;
+
+      document.getElementById('wTechCat').innerText = b.techCat;
+
+      document.getElementById('wDate').innerText = b.date;
+
+      document.getElementById('wValidTill').innerText = b.warrantyTill || '30 நாட்கள் (Free Rework)';
+
+      openModal('warrantyCardModal');
+
+    }
+
+
+    function shareWarrantyOnWhatsApp() {
+
+      const name = document.getElementById('wTechName').innerText;
+
+      const cat = document.getElementById('wTechCat').innerText;
+
+      const date = document.getElementById('wDate').innerText;
+
+      const msg = `🛡️ *FIXR 30-DAY SERVICE GUARANTEE CARD* 🛡️\n\n` +
+
+                  `• தொழிலாளர்: ${name}\n` +
+
+                  `• சேவை: ${cat}\n` +
+
+                  `• சேவை தேதி: ${date}\n` +
+
+                  `• உத்தரவாதம்: 30 நாட்கள் இலவச மறுபரிசீலனை உத்தரவாதம் (100% Free Rework)\n\n` +
+
+                  `Fixr Helpline: 9884334097 | https://www.fixrservice.in/`;
+
+      window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
+
+    }
+
+
+    // --- 2. Invoice Generator Logic ---
+
+    function openInvoiceGeneratorForBooking(bookingId) {
+
+      const bookings = JSON.parse(localStorage.getItem('fixr_my_bookings') || '[]');
+
+      const b = bookings.find(x => x.id === bookingId);
+
+      if (b) {
+
+        document.getElementById('invCustName').value = document.getElementById('userName') ? document.getElementById('userName').value : 'Customer';
+
+        document.getElementById('invCustPhone').value = b.techPhone || '';
+
+      }
+
+      calcInvoiceTotal();
+
+      openModal('invoiceGeneratorModal');
+
+    }
+
+
+    function calcInvoiceTotal() {
+
+      const labor = parseFloat(document.getElementById('invLabor').value) || 0;
+
+      const spares = parseFloat(document.getElementById('invSpares').value) || 0;
+
+      const total = labor + spares;
+
+      document.getElementById('invTotalDisp').innerText = '₹' + total;
+
+      return total;
+
+    }
+
+
+    function sendInvoiceWhatsApp() {
+
+      const name = document.getElementById('invCustName').value.trim() || 'Customer';
+
+      const phone = document.getElementById('invCustPhone').value.trim();
+
+      const labor = document.getElementById('invLabor').value || '0';
+
+      const spares = document.getElementById('invSpares').value || '0';
+
+      const total = calcInvoiceTotal();
+
+      const msg = `🧾 *FIXR DIGITAL SERVICE BILL* 🧾\n\n` +
+
+                  `வணக்கம் ${name}! உங்கள் Fixr சேவைக்கான கட்டண விவரம்:\n` +
+
+                  `• தொழிலாளர் கட்டணம் (Labor): ₹${labor}\n` +
+
+                  `• உதிரிபாகங்கள் (Spare Parts): ₹${spares}\n` +
+
+                  `• *மொத்த தொகை (Total Bill): ₹${total}*\n\n` +
+
+                  `🛡️ 30 நாட்கள் Fixr சர்வீஸ் உத்தரவாதம் உண்டு.\n` +
+
+                  `நன்றி! Fixr Helpline: 9884334097 | https://www.fixrservice.in/`;
+
+      const targetUrl = phone ? `https://wa.me/91${phone}?text=${encodeURIComponent(msg)}` : `https://wa.me/?text=${encodeURIComponent(msg)}`;
+
+      window.open(targetUrl, '_blank');
+
+      closeModal('invoiceGeneratorModal');
+
+    }
+
+
+    // --- 3. Cost Estimator Logic ---
+
+    function openCostEstimatorModal() {
+
+      updateEstimatorTotal();
+
+      openModal('costEstimatorModal');
+
+    }
+
+
+    function updateEstimatorTotal() {
+
+      const checkboxes = document.querySelectorAll('#costChecklist input[type="checkbox"]:checked');
+
+      let sum = 0;
+
+      checkboxes.forEach(cb => { sum += parseFloat(cb.value) || 0; });
+
+      document.getElementById('estimatorTotalDisp').innerText = '₹' + sum;
+
+      return sum;
+
+    }
+
+
+    function bookFromEstimator() {
+
+      closeModal('costEstimatorModal');
+
+      const total = updateEstimatorTotal();
+
+      if (document.getElementById('bookNotes')) {
+
+        document.getElementById('bookNotes').value = `கால்குலேட்டர் மூலம் உத்தேச கட்டணம்: ₹${total}`;
+
+      }
+
+      openModal('bookingModal');
+
+    }
+
+
+    // --- 4. SOS Safety Logic ---
+
+    function openSosModal() { openModal('sosSafetyModal'); }
+
+
+    function sendEmergencyWhatsAppAlert() {
+
+      const user = JSON.parse(localStorage.getItem('fixr_user') || '{}');
+
+      const uName = user.name || 'Fixr User';
+
+      const uPhone = user.phone || 'Unknown';
+
+      const msg = `🚨 *EMERGENCY SOS ALERT - FIXR* 🚨\n\n` +
+
+                  `நான் அவசர உதவி கோருகிறேன்!\n` +
+
+                  `• பயனர்: ${uName}\n` +
+
+                  `• எண்: ${uPhone}\n` +
+
+                  `தயவுசெய்து உடனடியாக என்னை தொடர்பு கொள்ளவும் அல்லது காவல்துறைக்கு உதவவும்!`;
+
+      window.open(`https://wa.me/91${ADMIN_PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
+
+    }
+
+
+    // --- 5. Patient Care Log Logic ---
+
+    function openPatientCareLogModal() { openModal('patientCareLogModal'); }
+
+
+    function sendPatientReportWhatsApp() {
+
+      const pName = document.getElementById('logPatientName').value.trim() || 'முதியோர்/நோயாளி';
+
+      const fPhone = document.getElementById('logFamilyPhone').value.trim();
+
+      const bp = document.getElementById('logBp').value.trim() || '120/80';
+
+      const sugar = document.getElementById('logSugar').value.trim() || 'இயல்பு';
+
+      const morning = document.getElementById('medMorning').checked ? 'வழங்கப்பட்டது ✓' : 'இல்லை ✕';
+
+      const noon = document.getElementById('medNoon').checked ? 'வழங்கப்பட்டது ✓' : 'இல்லை ✕';
+
+      const night = document.getElementById('medNight').checked ? 'வழங்கப்பட்டது ✓' : 'இல்லை ✕';
+
+      const diet = document.getElementById('logDietNotes').value.trim() || 'வழக்கமான உணவு & ஓய்வு';
+
+      const today = new Date().toLocaleDateString('ta-IN');
+
+
+      const msg = `❤️ *FIXR கேர் டேக்கர் தினசரி நோயாளி பராமரிப்பு அறிக்கை* ❤️\n\n` +
+
+                  `📅 தேதி: ${today}\n` +
+
+                  `👤 நோயாளி: ${pName}\n` +
+
+                  `• இரத்த அழுத்தம் (BP): ${bp}\n` +
+
+                  `• சுகர் அளவு (Sugar): ${sugar}\n\n` +
+
+                  `💊 *மருந்துகள்:*\n` +
+
+                  `• காலை: ${morning}\n` +
+
+                  `• மதியம்: ${noon}\n` +
+
+                  `• இரவு: ${night}\n\n` +
+
+                  `🍲 உணவு & தூக்கம்: ${diet}\n\n` +
+
+                  `பராமரிப்பு ஆதரவு: Fixr Care Services (Helpline: 9884334097)`;
+
+      const targetUrl = fPhone ? `https://wa.me/91${fPhone}?text=${encodeURIComponent(msg)}` : `https://wa.me/?text=${encodeURIComponent(msg)}`;
+
+      window.open(targetUrl, '_blank');
+
+      closeModal('patientCareLogModal');
+
+    }
+
+
+    // --- 6. Tamil Voice Booking (SpeechRecognition) ---
+
+    function startVoiceBooking() {
+
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      if (!SpeechRecognition) {
+
+        alert(currentLang === 'ta' ? 'உங்கள் பிரவுசரில் குரல் பதிவு வசதி ஆதரிக்கப்படவில்லை.' : 'Speech recognition not supported in your browser.');
+
+        return;
+
+      }
+
+      const recognition = new SpeechRecognition();
+
+      recognition.lang = (currentLang === 'ta') ? 'ta-IN' : 'en-IN';
+
+      recognition.interimResults = false;
+
+      const statusElem = document.getElementById('voiceStatusText');
+
+      if (statusElem) statusElem.innerText = (currentLang === 'ta') ? "கேட்கிறது... பேசுங்கள் 🎙️" : "Listening... Speak now 🎙️";
+
+
+      recognition.onresult = function(event) {
+
+        const transcript = event.results[0][0].transcript;
+
+        const notesInput = document.getElementById('bookNotes');
+
+        if (notesInput) {
+
+          notesInput.value = (notesInput.value ? notesInput.value + ' ' : '') + transcript;
+
+        }
+
+        if (statusElem) statusElem.innerText = "✅ குரல் பதிவு செய்யப்பட்டது!";
+
+        setTimeout(() => { if (statusElem) statusElem.innerText = ""; }, 3000);
+
+      };
+
+
+      recognition.onerror = function() {
+
+        if (statusElem) statusElem.innerText = "குரல் கேட்கவில்லை, மீண்டும் முயற்சிக்கவும்.";
+
+        setTimeout(() => { if (statusElem) statusElem.innerText = ""; }, 3000);
+
+      };
+
+      recognition.start();
+
+    }
+
+
+    // --- 7. Share Visiting Card & Share Fixr Modal ---
+
+    function openShareModal() { openModal('shareFixrModal'); }
+
+
+    function shareFixrAppOnWhatsApp() {
+
+      const msg = `வணக்கம்! உங்கள் வீட்டில் AC சர்வீஸ், எலக்ட்ரீஷியன், பிளம்பர், கேர் டேக்கர் மற்றும் புரோக்கரேஜ் இல்லாத வாடகை வீடுகளுக்கு தமிழ்நாட்டின் நம்பகமான Fixr ஆப்பை பயன்படுத்துங்கள் (0% கமிஷன்):\nhttps://www.fixrservice.in/`;
+
+      window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
+
+    }
+
+
+    function shareVisitingCardToWhatsApp() {
+
+      const name = document.getElementById('idCardName') ? document.getElementById('idCardName').innerText : 'Fixr Professional';
+
+      const trade = document.getElementById('idCardTrade') ? document.getElementById('idCardTrade').innerText : 'Home Services';
+
+      const phone = ADMIN_PHONE;
+
+      const msg = `🌟 *FIXR VERIFIED PROFESSIONAL VISITING CARD* 🌟\n\n` +
+
+                  `👷 *${name}*\n` +
+
+                  `🛠️ தொழில்: ${trade}\n` +
+
+                  `⭐ மதிப்பீடு: ★ 5.0 (Govt ID Verified ✓)\n` +
+
+                  `📞 தொடர்பு / WhatsApp: +91 ${phone}\n\n` +
+
+                  `Fixr ஆப்பில் எனது சேவையை புக் செய்யுங்கள் (0% கமிஷன்):\nhttps://www.fixrservice.in/`;
+
+      window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
+
+    }
+
+
+    // --- 8. Before & After Modal ---
+
+    function openBeforeAfterModal() { openModal('beforeAfterModal'); }
+
+
+    // --- 9. GPS Near Me Filter ---
+
+    function triggerNearMeLocation() {
+
+      if (!navigator.geolocation) {
+
+        alert(currentLang === 'ta' ? 'ஜிபிஎஸ் வசதி ஆதரிக்கப்படவில்லை.' : 'Geolocation not supported.');
+
+        return;
+
+      }
+
+      navigator.geolocation.getCurrentPosition(function(pos) {
+
+        alert(currentLang === 'ta' ? 'உங்கள் அருகிலுள்ள சிறந்த தொழிலாளர்கள் வரிசைப்படுத்தப்படுகிறார்கள்! 📍' : 'Sorting closest verified pros near your location! 📍');
+
+        setCityFilter('சென்னை (Chennai)');
+
+      }, function() {
+
+        setCityFilter('சென்னை (Chennai)');
+
+      });
 
     }
 
