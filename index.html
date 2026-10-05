@@ -36,7 +36,7 @@
 
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 
-<style>*{box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans Tamil",sans-serif;margin:0;padding:0}body{background:#f8fafc;padding-bottom:95px;color:#1e293b}header{background:#0f172a;color:white;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.1)}.brand{font-size:22px;font-weight:800;letter-spacing:-0.5px}.brand span{color:#38bdf8}.nav-btns{display:flex;gap:6px;align-items:center}.lang-btn{background:#0f172a;color:#38bdf8;border:1.5px solid #38bdf8;width:34px;height:34px;border-radius:50%;padding:0;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,0.3);transition:transform 0.15s}.lang-btn:active{transform:scale(0.9)}.admin-btn{background:#334155;color:#38bdf8;border:1px solid #475569;padding:5px 8px;border-radius:12px;font-size:11px;font-weight:bold;cursor:pointer}.auth-btn{background:#38bdf8;color:#0f172a;border:none;padding:6px 12px;border-radius:20px;font-weight:bold;font-size:11px;cursor:pointer}.user-profile{font-size:11px;color:#38bdf8;font-weight:bold;display:flex;align-items:center;gap:4px;background:#1e293b;padding:4px 10px;border-radius:16px}.sync-bar{display:none !important}.search-box{padding:12px 16px 4px}.search-input{width:100%;padding:12px 16px;border-radius:12px;border:1px solid #cbd5e1;font-size:14px;outline:none;background:white;box-shadow:0 1px 3px rgba(0,0,0,0.05)}.categories{display:flex;overflow-x:auto;padding:10px 16px;gap:8px;scrollbar-width:none}.categories::-webkit-scrollbar{display:none}.chip{padding:7px 14px;background:white;border-radius:20px;font-size:12px;font-weight:600;border:1px solid #e2e8f0;white-space:nowrap;cursor:pointer}.chip.active{background:#0f172a;color:white;border-color:#0f172a}.list{padding:8px 16px}.card-img-banner{position:relative;width:100%;height:180px;border-radius:12px;overflow:hidden;margin-bottom:12px;cursor:pointer;background:#e2e8f0}.card-cover-img{width:100%;height:100%;object-fit:cover;transition:transform 0.25s ease}.card-img-banner:hover .card-cover-img{transform:scale(1.04)}.photo-badge{position:absolute;bottom:8px;right:8px;background:rgba(15,23,42,0.85);color:white;padding:4px 10px;border-radius:14px;font-size:11px;font-weight:700;backdrop-filter:blur(4px);box-shadow:0 2px 6px rgba(0,0,0,0.25)}.house-preview-thumb{width:64px;height:64px;object-fit:cover;border-radius:8px;border:1px solid #cbd5e1;cursor:pointer}.card{background:white;border-radius:12px;padding:10px 12px;margin-bottom:8px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,0.02)}.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2px}.name{font-size:14.5px;font-weight:700;color:#0f172a}.badge{font-size:10px;padding:2px 6px;border-radius:10px;font-weight:700;background:#f0fdf4;color:#166534}.details{font-size:11.5px;color:#64748b;margin-top:2px}.rating-row{display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-size:12px}.rating{background:#fef08a;color:#854d0e;padding:2px 6px;border-radius:5px;font-weight:bold;font-size:11px}.price{font-size:13.5px;font-weight:800;color:#0284c7}.actions{display:flex;flex-direction:column;gap:4px;margin-top:8px;padding-top:6px;border-top:1px solid #f1f5f9}.actions-row-primary{display:flex;gap:5px;width:100%}.actions-row-secondary{display:flex;gap:4px;width:100%}.btn{padding:6px 8px;border-radius:6px;text-decoration:none;font-size:11px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:3px;cursor:pointer;border:none;min-height:28px}.actions-row-primary .btn-book{background:#0284c7;color:white;flex:1.8;font-weight:700;min-height:30px;font-size:11.5px}.actions-row-primary .btn-call{background:#f1f5f9;color:#334155;flex:0.9;border:1px solid #cbd5e1;min-height:30px}.actions-row-primary .btn-wa{background:#22c55e;color:white;flex:0.9;min-height:30px;font-weight:bold}.actions-row-secondary .btn{flex:1;font-size:10px;padding:4px 6px;min-height:25px}.partner-fab{position:fixed;bottom:20px;right:16px;background:#0f172a;color:white;padding:11px 16px;border-radius:30px;font-weight:bold;font-size:12px;border:1px solid #38bdf8;box-shadow:0 4px 14px rgba(15,23,42,0.35);cursor:pointer;z-index:90;display:flex;align-items:center;gap:6px}.support-fab{position:fixed;bottom:20px;left:16px;background:linear-gradient(135deg,#1e3a8a,#2563eb);color:white;padding:10px 15px;border-radius:30px;font-weight:700;font-size:12px;border:1px solid rgba(255,255,255,0.3);box-shadow:0 4px 14px rgba(37,99,235,0.4);z-index:90;display:flex;align-items:center;gap:6px;cursor:pointer;text-decoration:none;transition:transform 0.15s,box-shadow 0.15s}.support-fab:active{transform:scale(0.96)}.ai-chat-bubble{max-width:86%;padding:10px 14px;border-radius:14px;font-size:12.5px;line-height:1.5;word-wrap:break-word;animation:fadeInBubble 0.2s ease-out}@keyframes fadeInBubble{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}.ai-bubble-bot{background:white;color:#1e293b;align-self:flex-start;border-bottom-left-radius:3px;border:1px solid #e2e8f0;box-shadow:0 1px 4px rgba(0,0,0,0.04)}.ai-bubble-user{background:linear-gradient(135deg,#2563eb,#1d4ed8);color:white;align-self:flex-end;border-bottom-right-radius:3px;box-shadow:0 2px 6px rgba(37,99,235,0.25)}.ai-chip-pill{background:white;border:1px solid #cbd5e1;color:#334155;padding:5px 11px;border-radius:20px;font-size:11.5px;font-weight:600;cursor:pointer;white-space:nowrap;transition:all 0.15s;box-shadow:0 1px 2px rgba(0,0,0,0.03);display:inline-flex;align-items:center;gap:4px}.ai-chip-pill:hover,.ai-chip-pill:active{background:#eff6ff;border-color:#3b82f6;color:#1d4ed8}.ai-action-btn{display:inline-block;margin-top:8px;background:#2563eb;color:white;padding:6px 12px;border-radius:7px;font-size:11.5px;font-weight:bold;text-decoration:none;cursor:pointer;border:none;box-shadow:0 2px 5px rgba(37,99,235,0.3)}.ai-action-btn:hover{background:#1d4ed8}.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:1000;justify-content:center;align-items:center;padding:16px}.modal-overlay.active{display:flex}.modal-box{background:white;width:100%;max-width:450px;border-radius:20px;padding:20px;max-height:90vh;overflow-y:auto}.modal-title{font-size:18px;font-weight:bold;margin-bottom:4px;color:#0f172a}.modal-sub{font-size:12px;color:#64748b;margin-bottom:14px}.form-group{margin-bottom:10px}.form-group label{display:block;font-size:12px;font-weight:600;margin-bottom:4px;color:#475569}.form-input{width:100%;padding:10px 12px;border:1px solid #cbd5e1;border-radius:8px;font-size:14px;outline:none}.submit-btn{width:100%;background:#0284c7;color:white;border:none;padding:12px;border-radius:10px;font-weight:bold;cursor:pointer;margin-top:8px;font-size:14px}.close-btn{width:100%;background:none;border:none;color:#64748b;margin-top:10px;font-size:13px;cursor:pointer}.payment-box{background:#f0fdf4;border:1px solid #86efac;border-radius:14px;padding:12px;margin:10px 0;text-align:center}.payment-title{font-size:13px;font-weight:bold;color:#166534;display:flex;justify-content:space-between;margin-bottom:6px}.payment-amount{background:#22c55e;color:white;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:800}.upi-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:8px 0}.upi-btn{padding:9px 6px;border-radius:8px;font-weight:bold;font-size:12px;cursor:pointer;border:none;color:white}.btn-gpay{background:#0f172a;color:#38bdf8;border:1px solid #38bdf8;grid-column:span 2}.btn-phonepe{background:#5f259f}.btn-paytm{background:#002970}.btn-all-upi{background:#16a34a;grid-column:span 2}.doc-upload-section{background:#f8fafc;border:1px dashed #94a3b8;border-radius:12px;padding:12px;margin:12px 0}.doc-title{font-size:12px;font-weight:bold;color:#0f172a;margin-bottom:8px}.doc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.doc-box{background:white;border:1px solid #e2e8f0;border-radius:8px;padding:8px}.doc-box label{display:block;font-size:11px;font-weight:700;color:#334155;margin-bottom:3px}.doc-box input[type="file"]{width:100%;font-size:10px}.upload-progress{display:none;background:#e0f2fe;color:#0369a1;padding:10px;border-radius:8px;font-size:12px;font-weight:600;text-align:center;margin:8px 0}.admin-tab-nav{display:flex;gap:6px;margin-bottom:12px;border-bottom:2px solid #e2e8f0;padding-bottom:6px}.admin-tab-btn{flex:1;padding:8px;border:none;background:#f1f5f9;color:#64748b;font-weight:bold;font-size:12px;border-radius:8px;cursor:pointer}.admin-tab-btn.active{background:#0284c7;color:white}.badge-count{background:#ef4444;color:white;padding:1px 6px;border-radius:10px;font-size:10px;margin-left:4px}.approval-card{background:white;border:1px solid #cbd5e1;border-radius:10px;padding:12px;margin-bottom:10px;font-size:12px}.doc-badge-row{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.doc-link-btn{display:inline-flex;align-items:center;background:#f0fdf4;color:#166534;border:1px solid #bbf7d0;padding:3px 6px;border-radius:6px;font-size:11px;text-decoration:none;font-weight:600}.approval-actions{display:flex;gap:6px;margin-top:8px;border-top:1px solid #f1f5f9;padding-top:8px}.btn-approve{flex:1;background:#16a34a;color:white;border:none;padding:7px;border-radius:6px;font-weight:bold;font-size:11px;cursor:pointer}.btn-reject{background:#fee2e2;color:#dc2626;border:none;padding:7px 10px;border-radius:6px;font-weight:bold;font-size:11px;cursor:pointer}.admin-tech-item{display:flex;justify-content:space-between;align-items:center;padding:8px;border-bottom:1px solid #f1f5f9;font-size:12px}.edit-btn{background:#e0f2fe;color:#0284c7;border:none;padding:4px 8px;border-radius:6px;font-weight:bold;cursor:pointer;font-size:11px}.del-btn{background:#fee2e2;color:#dc2626;border:none;padding:4px 8px;border-radius:6px;font-weight:bold;cursor:pointer;font-size:11px}.otp-banner{background:#fefce8;border:1px solid #fde047;padding:8px 12px;border-radius:8px;font-size:12px;color:#854d0e;margin-bottom:12px;text-align:center}footer{background:#0f172a;color:#94a3b8;padding:24px 16px 85px;text-align:center;font-size:12px;line-height:1.8;margin-top:30px;border-top:1px solid #334155}footer a{color:#38bdf8;text-decoration:none;margin:0 4px}#splashScreen{position:fixed;inset:0;background:#0f172a;z-index:99999;display:flex;flex-direction:column;justify-content:center;align-items:center;transition:opacity 0.5s ease-out,visibility 0.5s ease-out;animation:autoHideSplash 0.4s ease-out 1.4s forwards}@keyframes autoHideSplash{0%{opacity:1;visibility:visible}99%{opacity:0;visibility:visible;pointer-events:none}100%{opacity:0;visibility:hidden;pointer-events:none;display:none}}#splashScreen.fade-out{opacity:0;visibility:hidden;pointer-events:none}.splash-box{text-align:center;padding:20px;animation:splashZoomIn 0.8s cubic-bezier(0.16,1,0.3,1) forwards}@keyframes splashZoomIn{0%{transform:scale(0.8);opacity:0}100%{transform:scale(1);opacity:1}}.splash-logo-wrap{width:100px;height:100px;margin:0 auto 16px;border-radius:26px;background:#1e293b;border:2px solid #38bdf8;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(56,189,248,0.35);position:relative;overflow:hidden}.splash-logo-img{width:100%;height:100%;object-fit:cover}.splash-brand{font-size:38px;font-weight:800;letter-spacing:-1px;color:white;margin-bottom:4px}.splash-brand span{color:#38bdf8}.splash-sub{font-size:13px;color:#94a3b8;font-weight:600;margin-bottom:24px}.splash-bar-outer{width:140px;height:4px;background:#334155;border-radius:4px;margin:0 auto;overflow:hidden}.splash-bar-inner{width:100%;height:100%;background:#38bdf8;border-radius:4px;animation:splashProgress 1.4s ease-in-out forwards}@keyframes splashProgress{0%{transform:translateX(-100%)}60%{transform:translateX(-20%)}100%{transform:translateX(0)}}.pwa-banner{background:#0284c7;color:white;padding:8px 16px;font-size:12px;font-weight:600;display:none;justify-content:space-between;align-items:center;box-shadow:0 2px 6px rgba(0,0,0,0.1)}.pwa-btn{background:white;color:#0284c7;border:none;padding:4px 10px;border-radius:12px;font-weight:bold;font-size:11px;cursor:pointer}.amenities-row{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0}.amenity-tag{background:#f1f5f9;color:#475569;padding:2px 7px;border-radius:6px;font-size:10px;font-weight:600;border:1px solid #e2e8f0;display:inline-flex;align-items:center;gap:3px}.status-badge{font-size:10px;padding:2px 8px;border-radius:10px;font-weight:bold}.status-available{background:#dcfce7;color:#15803d}.status-rented{background:#fee2e2;color:#b91c1c}.fav-btn{background:none;border:none;font-size:18px;cursor:pointer;padding:0 4px;line-height:1;transition:transform 0.15s}.fav-btn:active{transform:scale(1.3)}.sub-chips{display:none;overflow-x:auto;padding:0 16px 8px;gap:6px;scrollbar-width:none}.sub-chips::-webkit-scrollbar{display:none}.sub-chip{padding:4px 10px;background:#e2e8f0;border-radius:14px;font-size:11px;font-weight:600;color:#475569;cursor:pointer;border:1px solid #cbd5e1;white-space:nowrap}.sub-chip.active{background:#0284c7;color:white;border-color:#0284c7}.install-pwa-btn{background:linear-gradient(135deg,#0284c7,#38bdf8);color:#0f172a;border:1px solid #7dd3fc;padding:5px 10px;border-radius:12px;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:4px;box-shadow:0 2px 6px rgba(56,189,248,0.35);animation:pulseGlow 2.5s infinite}@keyframes pulseGlow{0%,100%{box-shadow:0 2px 6px rgba(56,189,248,0.35)}50%{box-shadow:0 2px 14px rgba(56,189,248,0.7)}}.quick-action-bar{display:flex;gap:8px;padding:6px 16px 8px;overflow-x:auto;scrollbar-width:none;align-items:center}.quick-action-bar::-webkit-scrollbar{display:none}.toggle-pill{background:white;border:1.5px solid #cbd5e1;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:700;color:#334155;display:inline-flex;align-items:center;gap:6px;cursor:pointer;white-space:nowrap;user-select:none;transition:all 0.2s ease;box-shadow:0 1px 3px rgba(0,0,0,0.04)}.toggle-pill.active{background:#059669;border-color:#059669;color:white}.toggle-pill .toggle-status{font-size:9px;padding:1px 5px;border-radius:8px;background:#f1f5f9;color:#64748b;font-weight:800}.toggle-pill.active .toggle-status{background:#34d399;color:#064e3b}.action-pill-btn{padding:6px 12px;border-radius:20px;font-size:11px;font-weight:700;border:1.5px solid #cbd5e1;background:white;color:#334155;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:4px;transition:all 0.2s ease;box-shadow:0 1px 3px rgba(0,0,0,0.04)}.action-pill-btn.express-btn{border-color:#fed7aa;color:#c2410c}.action-pill-btn.express-btn.active{background:linear-gradient(135deg,#ea580c,#f97316);color:white;border-color:#ea580c;box-shadow:0 2px 8px rgba(234,88,12,0.35)}.action-pill-btn.pro-btn{border-color:#e9d5ff;color:#7e22ce}.action-pill-btn.pro-btn.active{background:linear-gradient(135deg,#7e22ce,#a855f7);color:white;border-color:#7e22ce;box-shadow:0 2px 8px rgba(126,34,206,0.35)}.featured-promo-banner{margin:2px 16px 3px;background:linear-gradient(135deg,#fffbeb,#fef3c7);border:1px solid #fde68a;border-radius:8px;padding:5px 10px;display:flex;justify-content:space-between;align-items:center;gap:6px;cursor:pointer;box-shadow:0 1px 2px rgba(245,158,11,0.04);transition:all 0.15s ease}.featured-promo-banner:hover{background:#fef08a}.featured-banner-left{display:flex;align-items:center;gap:6px;flex:1;overflow:hidden}.featured-banner-title{font-size:11px;font-weight:800;color:#92400e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.featured-banner-desc{display:none}.boost-btn{background:linear-gradient(135deg,#d97706,#f59e0b);color:white;border:none;padding:3px 8px;border-radius:6px;font-weight:800;font-size:9.5px;cursor:pointer;white-space:nowrap}.action-pill-btn.video-pill{border-color:#c7d2fe;color:#4338ca;font-weight:800}.action-pill-btn.video-pill:hover{background:#e0e7ff}.btn-video{background:#eef2ff;color:#4f46e5;border:1px solid #c7d2fe;flex:1;font-size:11px;font-weight:700}.btn-video:hover{background:#e0e7ff}.card.featured-card{border:2px solid #f59e0b;background:linear-gradient(180deg,#fffdfa 0%,#ffffff 100%);box-shadow:0 4px 16px rgba(245,158,11,0.16);position:relative}.featured-listing-strip{background:linear-gradient(135deg,#d97706,#f59e0b);color:white;font-size:9.5px;font-weight:800;padding:2px 7px;border-radius:6px;display:inline-flex;align-items:center;gap:3px;margin-bottom:4px;box-shadow:0 1px 2px rgba(217,119,6,0.2)}.badge-pro{background:linear-gradient(135deg,#7e22ce,#9333ea);color:white !important;font-weight:800;border:1px solid #c084fc;box-shadow:0 2px 4px rgba(126,34,206,0.2)}.badge-express{background:linear-gradient(135deg,#ea580c,#f97316);color:white !important;font-weight:800;border:1px solid #fdba74;box-shadow:0 2px 4px rgba(234,88,12,0.2)}.dot-pulse{display:inline-block;width:6px;height:6px;background:#16a34a;border-radius:50%;margin-right:4px;animation:pulseGreen 1.5s infinite}@keyframes pulseGreen{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(1.3)}}.status-busy{background:#f1f5f9;color:#64748b}.rating-badge-btn{display:inline-flex;align-items:center;gap:6px;cursor:pointer;background:#fef9c3;padding:3px 8px;border-radius:8px;border:1px solid #fde047;transition:background 0.15s ease}.rating-badge-btn:hover{background:#fef08a}.rating-star{color:#854d0e;font-weight:800;font-size:12px}.rating-reviews{color:#713f12;font-size:11px;font-weight:600;text-decoration:underline}.btn-id{background:#f8fafc;color:#0284c7;border:1px solid #bae6fd;flex:1.1;font-size:11px;font-weight:700}.btn-id:hover{background:#f0f9ff}.btn-map{background:#ecfdf5;color:#059669;border:1px solid #a7f3d0;flex:1.1;font-size:11px;font-weight:700}.btn-map:hover{background:#d1fae5}.id-card-wrapper{background:linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#0f172a 100%);border:2px solid #38bdf8;border-radius:18px;padding:16px;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.4),inset 0 0 20px rgba(56,189,248,0.15);position:relative;overflow:hidden}.id-card-wrapper::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(56,189,248,0.08) 0%,transparent 60%);pointer-events:none}.id-card-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(56,189,248,0.3);padding-bottom:10px;margin-bottom:12px}.id-card-brand{font-size:18px;font-weight:900;letter-spacing:-0.5px}.id-card-brand span{color:#38bdf8}.id-verified-seal{background:linear-gradient(135deg,#10b981,#059669);color:white;font-size:10px;font-weight:800;padding:3px 8px;border-radius:12px;box-shadow:0 2px 6px rgba(16,185,129,0.3)}.id-card-body{display:flex;gap:14px;align-items:center}.id-photo-frame{width:78px;height:78px;border-radius:50%;border:3px solid #38bdf8;padding:2px;background:#1e293b;display:flex;align-items:center;justify-content:center;font-size:34px;box-shadow:0 4px 10px rgba(0,0,0,0.3);flex-shrink:0;overflow:hidden}.id-photo-frame img{width:100%;height:100%;object-fit:cover;border-radius:50%}.id-meta-name{font-size:16px;font-weight:800;color:white;line-height:1.2}.id-meta-trade{font-size:12px;color:#38bdf8;font-weight:700;margin-top:3px}.id-meta-id{font-size:11px;color:#94a3b8;font-family:monospace;margin-top:2px}.id-details-grid{background:rgba(15,23,42,0.6);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:10px;margin:12px 0;display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:11px}.id-detail-item{display:flex;flex-direction:column}.id-detail-lbl{color:#94a3b8;font-size:9.5px;text-transform:uppercase;letter-spacing:0.5px}.id-detail-val{color:#f1f5f9;font-weight:700;margin-top:2px}.id-qr-row{display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(56,189,248,0.2);padding-top:10px;margin-top:10px}.id-qr-img{width:58px;height:58px;background:white;padding:3px;border-radius:6px}.id-security-txt{font-size:10px;color:#94a3b8;line-height:1.4;flex:1;padding-left:10px}.review-score-banner{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac;border-radius:14px;padding:12px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.review-score-big{font-size:26px;font-weight:900;color:#15803d}.review-item{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px 12px;margin-bottom:8px;font-size:12px}.review-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}.review-author{font-weight:700;color:#0f172a}.review-date{font-size:10px;color:#94a3b8}.review-stars{color:#eab308;font-size:12px;margin-bottom:4px}.review-comment{color:#334155;line-height:1.4}.review-add-box{background:#f1f5f9;border-radius:12px;padding:12px;margin-top:14px;border:1px solid #cbd5e1}.star-rating-select{display:flex;gap:6px;font-size:22px;cursor:pointer}.star-btn{color:#cbd5e1;transition:color 0.15s}.star-btn.active{color:#eab308}.boost-plan-card{background:white;border:2px solid #cbd5e1;border-radius:12px;padding:10px 12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:all 0.2s}.boost-plan-card.selected{border-color:#f59e0b;background:#fffbeb;box-shadow:0 2px 8px rgba(245,158,11,0.15)}.boost-plan-title{font-weight:800;font-size:13px;color:#0f172a}.boost-plan-sub{font-size:11px;color:#64748b}.boost-plan-price{font-size:16px;font-weight:900;color:#d97706}.express-emergency-strip{margin:2px 16px 3px;background:linear-gradient(135deg,#fff7ed,#ffedd5);border:1px solid #fed7aa;border-radius:8px;padding:5px 10px;display:flex;justify-content:space-between;align-items:center;gap:6px;cursor:pointer;box-shadow:0 1px 2px rgba(234,88,12,0.04);transition:all 0.15s ease}.express-emergency-strip:hover{background:#fed7aa}.express-strip-tag{font-size:9.5px;font-weight:800;color:#c2410c;background:white;padding:2px 7px;border-radius:6px;border:1px solid #fed7aa;white-space:nowrap}.pulse-lightning{font-size:16px;display:inline-block;animation:lightningPulse 1.2s infinite}@keyframes lightningPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.3);opacity:0.7}}.city-chips-bar{display:flex;gap:6px;padding:0 16px 8px;overflow-x:auto;scrollbar-width:none;align-items:center}.city-chips-bar::-webkit-scrollbar{display:none}.city-chip{padding:5px 11px;background:white;border:1px solid #cbd5e1;border-radius:16px;font-size:11px;font-weight:700;color:#334155;cursor:pointer;white-space:nowrap;transition:all 0.15s ease;box-shadow:0 1px 2px rgba(0,0,0,0.03)}.city-chip.active{background:#0284c7;color:white;border-color:#0284c7;box-shadow:0 2px 6px rgba(2,132,199,0.3)}.rate-card-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:12px}.rate-card-table th{background:#f1f5f9;color:#1e293b;padding:8px 10px;text-align:left;font-weight:800;border-bottom:2px solid #cbd5e1}.rate-card-table td{padding:8px 10px;border-bottom:1px solid #e2e8f0;color:#334155}.rate-cat-header{background:#e0f2fe;color:#0369a1;font-weight:800;padding:6px 10px;font-size:11.5px}.rate-price{font-weight:800;color:#0284c7;text-align:right;white-space:nowrap}.btn-share{background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;flex:1;font-size:11px;font-weight:700}.btn-share:hover{background:#dcfce7}.movein-promo-banner{margin:4px 16px 8px;background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #93c5fd;border-radius:12px;padding:9px 12px;display:flex;justify-content:space-between;align-items:center;gap:8px;cursor:pointer;box-shadow:0 1px 4px rgba(30,58,138,0.08);transition:all 0.2s ease}.movein-promo-banner:hover{background:#bfdbfe}.movein-tag{font-size:10.5px;font-weight:800;color:#1e40af;background:white;padding:3px 8px;border-radius:8px;border:1px solid #93c5fd;white-space:nowrap}.action-pill-btn.spare-pill{border-color:#a7f3d0;color:#047857;font-weight:800}.action-pill-btn.spare-pill:hover{background:#d1fae5}.action-pill-btn.bidding-pill{border-color:#fde68a;color:#b45309;font-weight:800}.action-pill-btn.bidding-pill:hover{background:#fef3c7}.action-pill-btn.pool-pill{border-color:#fbcfe8;color:#be185d;font-weight:800}.action-pill-btn.pool-pill:hover{background:#fce7f3}.spare-cat-bar{display:flex;gap:6px;overflow-x:auto;padding:4px 0 8px;scrollbar-width:none}.spare-cat-bar::-webkit-scrollbar{display:none}.spare-cat-chip{padding:4px 10px;background:#f1f5f9;border-radius:12px;font-size:11px;font-weight:700;color:#475569;cursor:pointer;white-space:nowrap;border:1px solid #cbd5e1}.spare-cat-chip.active{background:#059669;color:white;border-color:#059669}.spare-table{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:6px}.spare-table th{background:#f8fafc;padding:7px 8px;text-align:left;border-bottom:2px solid #cbd5e1;color:#1e293b;font-weight:800}.spare-table td{padding:7px 8px;border-bottom:1px solid #e2e8f0;color:#334155}.spare-fair-price{color:#059669;font-weight:800;text-align:right;white-space:nowrap}.bid-card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:10px 12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;gap:10px}.bid-title{font-weight:800;font-size:13px;color:#0f172a}.bid-sub{font-size:11px;color:#64748b;margin-top:2px}.bid-budget-badge{background:#fef3c7;color:#b45309;padding:3px 8px;border-radius:8px;font-weight:900;font-size:12px;border:1px solid #fde68a;white-space:nowrap}.btn-accept-bid{background:#16a34a;color:white;border:none;padding:5px 10px;border-radius:8px;font-size:11px;font-weight:800;cursor:pointer;white-space:nowrap}.pool-discount-box{background:linear-gradient(135deg,#fdf2f8,#fce7f3);border:1px solid #fbcfe8;border-radius:12px;padding:12px;margin-bottom:12px}.pool-tier-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:8px}.pool-tier-card{background:white;border:1px solid #f472b6;border-radius:8px;padding:8px;text-align:center}.pool-tier-num{font-weight:900;font-size:13px;color:#be185d}.pool-tier-off{font-size:10.5px;color:#15803d;font-weight:800;margin-top:2px}.card{background:white;border-radius:10px;padding:7px 10px;margin-bottom:6px;border:1px solid #e2e8f0;box-shadow:0 1px 2px rgba(0,0,0,0.02);transition:all 0.15s ease}.card.featured-card{border:1.5px solid #f59e0b;background:linear-gradient(180deg,#fffdf8 0%,#ffffff 100%);box-shadow:0 2px 6px rgba(245,158,11,0.12)}.compact-header-row{display:flex;justify-content:space-between;align-items:center;gap:4px;margin-bottom:2px}.compact-title-wrap{display:flex;align-items:center;gap:5px;flex:1;overflow:hidden;white-space:nowrap}.name{font-size:13.5px;font-weight:800;color:#0f172a;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.compact-meta-row{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#64748b;margin-bottom:3px;gap:6px}.compact-left-meta{display:flex;align-items:center;gap:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.compact-price-wrap{display:flex;align-items:center;gap:5px;flex-shrink:0}.price{font-size:12.5px;font-weight:800;color:#0284c7}.rating-star-btn{font-weight:800;font-size:10px;color:#854d0e;background:#fef9c3;padding:1px 5px;border-radius:4px;cursor:pointer;border:1px solid #fde047;white-space:nowrap}.compact-desc-text{font-size:10px;color:#64748b;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.2}.compact-actions-bar{display:flex;gap:3px;width:100%;margin-top:3px;padding-top:4px;border-top:1px solid #f1f5f9}.btn{padding:4px 6px;border-radius:5px;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:2px;cursor:pointer;border:none;min-height:25px;white-space:nowrap}.compact-actions-bar .btn-book{flex:2;background:#0284c7;color:white;font-size:10.5px}.compact-actions-bar .btn-call{flex:0.9;background:#f1f5f9;color:#334155;border:1px solid #cbd5e1}.compact-actions-bar .btn-wa{flex:0.9;background:#22c55e;color:white}.compact-actions-bar .btn-id{flex:0.8;background:#f8fafc;color:#0284c7;border:1px solid #bae6fd}.compact-actions-bar .btn-video{flex:0.7;background:#eef2ff;color:#4f46e5;border:1px solid #c7d2fe}.compact-actions-bar .btn-map{flex:0.7;background:#ecfdf5;color:#059669;border:1px solid #a7f3d0}.compact-actions-bar .btn-share{flex:0.7;background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0}.badge{font-size:9.5px;padding:1px 5px;border-radius:8px}.badge-pro{font-size:9px;padding:1px 5px}.badge-express{font-size:9px;padding:1px 5px}.status-badge{font-size:9px;padding:1px 5px;border-radius:8px}.card-img-banner{height:140px;margin-bottom:6px}
+<style>*{box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans Tamil",sans-serif;margin:0;padding:0}body{background:#f8fafc;padding-bottom:95px;color:#1e293b}header{background:#0f172a;color:white;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.1)}.brand{font-size:22px;font-weight:800;letter-spacing:-0.5px}.brand span{color:#38bdf8}.nav-btns{display:flex;gap:6px;align-items:center}.lang-btn{background:rgba(255,255,255,0.15);color:#ffffff;border:1px solid rgba(255,255,255,0.4);min-width:44px;height:28px;border-radius:14px;padding:2px 8px;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:3px;box-shadow:0 2px 6px rgba(0,0,0,0.2);transition:all 0.15s}.lang-btn:active{transform:scale(0.9)}.admin-btn{background:#334155;color:#38bdf8;border:1px solid #475569;padding:5px 8px;border-radius:12px;font-size:11px;font-weight:bold;cursor:pointer}.auth-btn{background:#38bdf8;color:#0f172a;border:none;padding:6px 12px;border-radius:20px;font-weight:bold;font-size:11px;cursor:pointer}.user-profile{font-size:11px;color:#38bdf8;font-weight:bold;display:flex;align-items:center;gap:4px;background:#1e293b;padding:4px 10px;border-radius:16px}.sync-bar{display:none !important}.search-box{padding:12px 16px 4px}.search-input{width:100%;padding:12px 16px;border-radius:12px;border:1px solid #cbd5e1;font-size:14px;outline:none;background:white;box-shadow:0 1px 3px rgba(0,0,0,0.05)}.categories{display:flex;overflow-x:auto;padding:10px 16px;gap:8px;scrollbar-width:none}.categories::-webkit-scrollbar{display:none}.chip{padding:7px 14px;background:white;border-radius:20px;font-size:12px;font-weight:600;border:1px solid #e2e8f0;white-space:nowrap;cursor:pointer}.chip.active{background:#0f172a;color:white;border-color:#0f172a}.list{padding:8px 16px}.card-img-banner{position:relative;width:100%;height:180px;border-radius:12px;overflow:hidden;margin-bottom:12px;cursor:pointer;background:#e2e8f0}.card-cover-img{width:100%;height:100%;object-fit:cover;transition:transform 0.25s ease}.card-img-banner:hover .card-cover-img{transform:scale(1.04)}.photo-badge{position:absolute;bottom:8px;right:8px;background:rgba(15,23,42,0.85);color:white;padding:4px 10px;border-radius:14px;font-size:11px;font-weight:700;backdrop-filter:blur(4px);box-shadow:0 2px 6px rgba(0,0,0,0.25)}.house-preview-thumb{width:64px;height:64px;object-fit:cover;border-radius:8px;border:1px solid #cbd5e1;cursor:pointer}.card{background:white;border-radius:12px;padding:10px 12px;margin-bottom:8px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,0.02)}.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2px}.name{font-size:14.5px;font-weight:700;color:#0f172a}.badge{font-size:10px;padding:2px 6px;border-radius:10px;font-weight:700;background:#f0fdf4;color:#166534}.details{font-size:11.5px;color:#64748b;margin-top:2px}.rating-row{display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-size:12px}.rating{background:#fef08a;color:#854d0e;padding:2px 6px;border-radius:5px;font-weight:bold;font-size:11px}.price{font-size:13.5px;font-weight:800;color:#0284c7}.actions{display:flex;flex-direction:column;gap:4px;margin-top:8px;padding-top:6px;border-top:1px solid #f1f5f9}.actions-row-primary{display:flex;gap:5px;width:100%}.actions-row-secondary{display:flex;gap:4px;width:100%}.btn{padding:6px 8px;border-radius:6px;text-decoration:none;font-size:11px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:3px;cursor:pointer;border:none;min-height:28px}.actions-row-primary .btn-book{background:#0284c7;color:white;flex:1.8;font-weight:700;min-height:30px;font-size:11.5px}.actions-row-primary .btn-call{background:#f1f5f9;color:#334155;flex:0.9;border:1px solid #cbd5e1;min-height:30px}.actions-row-primary .btn-wa{background:#22c55e;color:white;flex:0.9;min-height:30px;font-weight:bold}.actions-row-secondary .btn{flex:1;font-size:10px;padding:4px 6px;min-height:25px}.partner-fab{position:fixed;bottom:20px;right:16px;background:#0f172a;color:white;padding:11px 16px;border-radius:30px;font-weight:bold;font-size:12px;border:1px solid #38bdf8;box-shadow:0 4px 14px rgba(15,23,42,0.35);cursor:pointer;z-index:90;display:flex;align-items:center;gap:6px}.support-fab{position:fixed;bottom:20px;left:16px;background:linear-gradient(135deg,#1e3a8a,#2563eb);color:white;padding:10px 15px;border-radius:30px;font-weight:700;font-size:12px;border:1px solid rgba(255,255,255,0.3);box-shadow:0 4px 14px rgba(37,99,235,0.4);z-index:90;display:flex;align-items:center;gap:6px;cursor:pointer;text-decoration:none;transition:transform 0.15s,box-shadow 0.15s}.support-fab:active{transform:scale(0.96)}.ai-chat-bubble{max-width:86%;padding:10px 14px;border-radius:14px;font-size:12.5px;line-height:1.5;word-wrap:break-word;animation:fadeInBubble 0.2s ease-out}@keyframes fadeInBubble{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}.ai-bubble-bot{background:white;color:#1e293b;align-self:flex-start;border-bottom-left-radius:3px;border:1px solid #e2e8f0;box-shadow:0 1px 4px rgba(0,0,0,0.04)}.ai-bubble-user{background:linear-gradient(135deg,#2563eb,#1d4ed8);color:white;align-self:flex-end;border-bottom-right-radius:3px;box-shadow:0 2px 6px rgba(37,99,235,0.25)}.ai-chip-pill{background:white;border:1px solid #cbd5e1;color:#334155;padding:5px 11px;border-radius:20px;font-size:11.5px;font-weight:600;cursor:pointer;white-space:nowrap;transition:all 0.15s;box-shadow:0 1px 2px rgba(0,0,0,0.03);display:inline-flex;align-items:center;gap:4px}.ai-chip-pill:hover,.ai-chip-pill:active{background:#eff6ff;border-color:#3b82f6;color:#1d4ed8}.ai-action-btn{display:inline-block;margin-top:8px;background:#2563eb;color:white;padding:6px 12px;border-radius:7px;font-size:11.5px;font-weight:bold;text-decoration:none;cursor:pointer;border:none;box-shadow:0 2px 5px rgba(37,99,235,0.3)}.ai-action-btn:hover{background:#1d4ed8}.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:1000;justify-content:center;align-items:center;padding:16px}.modal-overlay.active{display:flex}.modal-box{background:white;width:100%;max-width:450px;border-radius:20px;padding:20px;max-height:90vh;overflow-y:auto}.modal-title{font-size:18px;font-weight:bold;margin-bottom:4px;color:#0f172a}.modal-sub{font-size:12px;color:#64748b;margin-bottom:14px}.form-group{margin-bottom:10px}.form-group label{display:block;font-size:12px;font-weight:600;margin-bottom:4px;color:#475569}.form-input{width:100%;padding:10px 12px;border:1px solid #cbd5e1;border-radius:8px;font-size:14px;outline:none}.submit-btn{width:100%;background:#0284c7;color:white;border:none;padding:12px;border-radius:10px;font-weight:bold;cursor:pointer;margin-top:8px;font-size:14px}.close-btn{width:100%;background:none;border:none;color:#64748b;margin-top:10px;font-size:13px;cursor:pointer}.payment-box{background:#f0fdf4;border:1px solid #86efac;border-radius:14px;padding:12px;margin:10px 0;text-align:center}.payment-title{font-size:13px;font-weight:bold;color:#166534;display:flex;justify-content:space-between;margin-bottom:6px}.payment-amount{background:#22c55e;color:white;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:800}.upi-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:8px 0}.upi-btn{padding:9px 6px;border-radius:8px;font-weight:bold;font-size:12px;cursor:pointer;border:none;color:white}.btn-gpay{background:#0f172a;color:#38bdf8;border:1px solid #38bdf8;grid-column:span 2}.btn-phonepe{background:#5f259f}.btn-paytm{background:#002970}.btn-all-upi{background:#16a34a;grid-column:span 2}.doc-upload-section{background:#f8fafc;border:1px dashed #94a3b8;border-radius:12px;padding:12px;margin:12px 0}.doc-title{font-size:12px;font-weight:bold;color:#0f172a;margin-bottom:8px}.doc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.doc-box{background:white;border:1px solid #e2e8f0;border-radius:8px;padding:8px}.doc-box label{display:block;font-size:11px;font-weight:700;color:#334155;margin-bottom:3px}.doc-box input[type="file"]{width:100%;font-size:10px}.upload-progress{display:none;background:#e0f2fe;color:#0369a1;padding:10px;border-radius:8px;font-size:12px;font-weight:600;text-align:center;margin:8px 0}.admin-tab-nav{display:flex;gap:6px;margin-bottom:12px;border-bottom:2px solid #e2e8f0;padding-bottom:6px}.admin-tab-btn{flex:1;padding:8px;border:none;background:#f1f5f9;color:#64748b;font-weight:bold;font-size:12px;border-radius:8px;cursor:pointer}.admin-tab-btn.active{background:#0284c7;color:white}.badge-count{background:#ef4444;color:white;padding:1px 6px;border-radius:10px;font-size:10px;margin-left:4px}.approval-card{background:white;border:1px solid #cbd5e1;border-radius:10px;padding:12px;margin-bottom:10px;font-size:12px}.doc-badge-row{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.doc-link-btn{display:inline-flex;align-items:center;background:#f0fdf4;color:#166534;border:1px solid #bbf7d0;padding:3px 6px;border-radius:6px;font-size:11px;text-decoration:none;font-weight:600}.approval-actions{display:flex;gap:6px;margin-top:8px;border-top:1px solid #f1f5f9;padding-top:8px}.btn-approve{flex:1;background:#16a34a;color:white;border:none;padding:7px;border-radius:6px;font-weight:bold;font-size:11px;cursor:pointer}.btn-reject{background:#fee2e2;color:#dc2626;border:none;padding:7px 10px;border-radius:6px;font-weight:bold;font-size:11px;cursor:pointer}.admin-tech-item{display:flex;justify-content:space-between;align-items:center;padding:8px;border-bottom:1px solid #f1f5f9;font-size:12px}.edit-btn{background:#e0f2fe;color:#0284c7;border:none;padding:4px 8px;border-radius:6px;font-weight:bold;cursor:pointer;font-size:11px}.del-btn{background:#fee2e2;color:#dc2626;border:none;padding:4px 8px;border-radius:6px;font-weight:bold;cursor:pointer;font-size:11px}.otp-banner{background:#fefce8;border:1px solid #fde047;padding:8px 12px;border-radius:8px;font-size:12px;color:#854d0e;margin-bottom:12px;text-align:center}footer{background:#0f172a;color:#94a3b8;padding:24px 16px 85px;text-align:center;font-size:12px;line-height:1.8;margin-top:30px;border-top:1px solid #334155}footer a{color:#38bdf8;text-decoration:none;margin:0 4px}#splashScreen{position:fixed;inset:0;background:#0f172a;z-index:99999;display:flex;flex-direction:column;justify-content:center;align-items:center;transition:opacity 0.5s ease-out,visibility 0.5s ease-out;animation:autoHideSplash 0.4s ease-out 1.4s forwards}@keyframes autoHideSplash{0%{opacity:1;visibility:visible}99%{opacity:0;visibility:visible;pointer-events:none}100%{opacity:0;visibility:hidden;pointer-events:none;display:none}}#splashScreen.fade-out{opacity:0;visibility:hidden;pointer-events:none}.splash-box{text-align:center;padding:20px;animation:splashZoomIn 0.8s cubic-bezier(0.16,1,0.3,1) forwards}@keyframes splashZoomIn{0%{transform:scale(0.8);opacity:0}100%{transform:scale(1);opacity:1}}.splash-logo-wrap{width:100px;height:100px;margin:0 auto 16px;border-radius:26px;background:#1e293b;border:2px solid #38bdf8;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(56,189,248,0.35);position:relative;overflow:hidden}.splash-logo-img{width:100%;height:100%;object-fit:cover}.splash-brand{font-size:38px;font-weight:800;letter-spacing:-1px;color:white;margin-bottom:4px}.splash-brand span{color:#38bdf8}.splash-sub{font-size:13px;color:#94a3b8;font-weight:600;margin-bottom:24px}.splash-bar-outer{width:140px;height:4px;background:#334155;border-radius:4px;margin:0 auto;overflow:hidden}.splash-bar-inner{width:100%;height:100%;background:#38bdf8;border-radius:4px;animation:splashProgress 1.4s ease-in-out forwards}@keyframes splashProgress{0%{transform:translateX(-100%)}60%{transform:translateX(-20%)}100%{transform:translateX(0)}}.pwa-banner{background:#0284c7;color:white;padding:8px 16px;font-size:12px;font-weight:600;display:none;justify-content:space-between;align-items:center;box-shadow:0 2px 6px rgba(0,0,0,0.1)}.pwa-btn{background:white;color:#0284c7;border:none;padding:4px 10px;border-radius:12px;font-weight:bold;font-size:11px;cursor:pointer}.amenities-row{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0}.amenity-tag{background:#f1f5f9;color:#475569;padding:2px 7px;border-radius:6px;font-size:10px;font-weight:600;border:1px solid #e2e8f0;display:inline-flex;align-items:center;gap:3px}.status-badge{font-size:10px;padding:2px 8px;border-radius:10px;font-weight:bold}.status-available{background:#dcfce7;color:#15803d}.status-rented{background:#fee2e2;color:#b91c1c}.fav-btn{background:none;border:none;font-size:18px;cursor:pointer;padding:0 4px;line-height:1;transition:transform 0.15s}.fav-btn:active{transform:scale(1.3)}.sub-chips{display:none;overflow-x:auto;padding:0 16px 8px;gap:6px;scrollbar-width:none}.sub-chips::-webkit-scrollbar{display:none}.sub-chip{padding:4px 10px;background:#e2e8f0;border-radius:14px;font-size:11px;font-weight:600;color:#475569;cursor:pointer;border:1px solid #cbd5e1;white-space:nowrap}.sub-chip.active{background:#0284c7;color:white;border-color:#0284c7}.install-pwa-btn{background:linear-gradient(135deg,#0284c7,#38bdf8);color:#0f172a;border:1px solid #7dd3fc;padding:5px 10px;border-radius:12px;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:4px;box-shadow:0 2px 6px rgba(56,189,248,0.35);animation:pulseGlow 2.5s infinite}@keyframes pulseGlow{0%,100%{box-shadow:0 2px 6px rgba(56,189,248,0.35)}50%{box-shadow:0 2px 14px rgba(56,189,248,0.7)}}.quick-action-bar{display:flex;gap:8px;padding:6px 16px 8px;overflow-x:auto;scrollbar-width:none;align-items:center}.quick-action-bar::-webkit-scrollbar{display:none}.toggle-pill{background:white;border:1.5px solid #cbd5e1;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:700;color:#334155;display:inline-flex;align-items:center;gap:6px;cursor:pointer;white-space:nowrap;user-select:none;transition:all 0.2s ease;box-shadow:0 1px 3px rgba(0,0,0,0.04)}.toggle-pill.active{background:#059669;border-color:#059669;color:white}.toggle-pill .toggle-status{font-size:9px;padding:1px 5px;border-radius:8px;background:#f1f5f9;color:#64748b;font-weight:800}.toggle-pill.active .toggle-status{background:#34d399;color:#064e3b}.action-pill-btn{padding:6px 12px;border-radius:20px;font-size:11px;font-weight:700;border:1.5px solid #cbd5e1;background:white;color:#334155;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:4px;transition:all 0.2s ease;box-shadow:0 1px 3px rgba(0,0,0,0.04)}.action-pill-btn.express-btn{border-color:#fed7aa;color:#c2410c}.action-pill-btn.express-btn.active{background:linear-gradient(135deg,#ea580c,#f97316);color:white;border-color:#ea580c;box-shadow:0 2px 8px rgba(234,88,12,0.35)}.action-pill-btn.pro-btn{border-color:#e9d5ff;color:#7e22ce}.action-pill-btn.pro-btn.active{background:linear-gradient(135deg,#7e22ce,#a855f7);color:white;border-color:#7e22ce;box-shadow:0 2px 8px rgba(126,34,206,0.35)}.featured-promo-banner{margin:2px 16px 3px;background:linear-gradient(135deg,#fffbeb,#fef3c7);border:1px solid #fde68a;border-radius:8px;padding:5px 10px;display:flex;justify-content:space-between;align-items:center;gap:6px;cursor:pointer;box-shadow:0 1px 2px rgba(245,158,11,0.04);transition:all 0.15s ease}.featured-promo-banner:hover{background:#fef08a}.featured-banner-left{display:flex;align-items:center;gap:6px;flex:1;overflow:hidden}.featured-banner-title{font-size:11px;font-weight:800;color:#92400e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.featured-banner-desc{display:none}.boost-btn{background:linear-gradient(135deg,#d97706,#f59e0b);color:white;border:none;padding:3px 8px;border-radius:6px;font-weight:800;font-size:9.5px;cursor:pointer;white-space:nowrap}.action-pill-btn.video-pill{border-color:#c7d2fe;color:#4338ca;font-weight:800}.action-pill-btn.video-pill:hover{background:#e0e7ff}.btn-video{background:#eef2ff;color:#4f46e5;border:1px solid #c7d2fe;flex:1;font-size:11px;font-weight:700}.btn-video:hover{background:#e0e7ff}.card.featured-card{border:2px solid #f59e0b;background:linear-gradient(180deg,#fffdfa 0%,#ffffff 100%);box-shadow:0 4px 16px rgba(245,158,11,0.16);position:relative}.featured-listing-strip{background:linear-gradient(135deg,#d97706,#f59e0b);color:white;font-size:9.5px;font-weight:800;padding:2px 7px;border-radius:6px;display:inline-flex;align-items:center;gap:3px;margin-bottom:4px;box-shadow:0 1px 2px rgba(217,119,6,0.2)}.badge-pro{background:linear-gradient(135deg,#7e22ce,#9333ea);color:white !important;font-weight:800;border:1px solid #c084fc;box-shadow:0 2px 4px rgba(126,34,206,0.2)}.badge-express{background:linear-gradient(135deg,#ea580c,#f97316);color:white !important;font-weight:800;border:1px solid #fdba74;box-shadow:0 2px 4px rgba(234,88,12,0.2)}.dot-pulse{display:inline-block;width:6px;height:6px;background:#16a34a;border-radius:50%;margin-right:4px;animation:pulseGreen 1.5s infinite}@keyframes pulseGreen{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(1.3)}}.status-busy{background:#f1f5f9;color:#64748b}.rating-badge-btn{display:inline-flex;align-items:center;gap:6px;cursor:pointer;background:#fef9c3;padding:3px 8px;border-radius:8px;border:1px solid #fde047;transition:background 0.15s ease}.rating-badge-btn:hover{background:#fef08a}.rating-star{color:#854d0e;font-weight:800;font-size:12px}.rating-reviews{color:#713f12;font-size:11px;font-weight:600;text-decoration:underline}.btn-id{background:#f8fafc;color:#0284c7;border:1px solid #bae6fd;flex:1.1;font-size:11px;font-weight:700}.btn-id:hover{background:#f0f9ff}.btn-map{background:#ecfdf5;color:#059669;border:1px solid #a7f3d0;flex:1.1;font-size:11px;font-weight:700}.btn-map:hover{background:#d1fae5}.id-card-wrapper{background:linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#0f172a 100%);border:2px solid #38bdf8;border-radius:18px;padding:16px;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.4),inset 0 0 20px rgba(56,189,248,0.15);position:relative;overflow:hidden}.id-card-wrapper::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(56,189,248,0.08) 0%,transparent 60%);pointer-events:none}.id-card-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(56,189,248,0.3);padding-bottom:10px;margin-bottom:12px}.id-card-brand{font-size:18px;font-weight:900;letter-spacing:-0.5px}.id-card-brand span{color:#38bdf8}.id-verified-seal{background:linear-gradient(135deg,#10b981,#059669);color:white;font-size:10px;font-weight:800;padding:3px 8px;border-radius:12px;box-shadow:0 2px 6px rgba(16,185,129,0.3)}.id-card-body{display:flex;gap:14px;align-items:center}.id-photo-frame{width:78px;height:78px;border-radius:50%;border:3px solid #38bdf8;padding:2px;background:#1e293b;display:flex;align-items:center;justify-content:center;font-size:34px;box-shadow:0 4px 10px rgba(0,0,0,0.3);flex-shrink:0;overflow:hidden}.id-photo-frame img{width:100%;height:100%;object-fit:cover;border-radius:50%}.id-meta-name{font-size:16px;font-weight:800;color:white;line-height:1.2}.id-meta-trade{font-size:12px;color:#38bdf8;font-weight:700;margin-top:3px}.id-meta-id{font-size:11px;color:#94a3b8;font-family:monospace;margin-top:2px}.id-details-grid{background:rgba(15,23,42,0.6);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:10px;margin:12px 0;display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:11px}.id-detail-item{display:flex;flex-direction:column}.id-detail-lbl{color:#94a3b8;font-size:9.5px;text-transform:uppercase;letter-spacing:0.5px}.id-detail-val{color:#f1f5f9;font-weight:700;margin-top:2px}.id-qr-row{display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(56,189,248,0.2);padding-top:10px;margin-top:10px}.id-qr-img{width:58px;height:58px;background:white;padding:3px;border-radius:6px}.id-security-txt{font-size:10px;color:#94a3b8;line-height:1.4;flex:1;padding-left:10px}.review-score-banner{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac;border-radius:14px;padding:12px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.review-score-big{font-size:26px;font-weight:900;color:#15803d}.review-item{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px 12px;margin-bottom:8px;font-size:12px}.review-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}.review-author{font-weight:700;color:#0f172a}.review-date{font-size:10px;color:#94a3b8}.review-stars{color:#eab308;font-size:12px;margin-bottom:4px}.review-comment{color:#334155;line-height:1.4}.review-add-box{background:#f1f5f9;border-radius:12px;padding:12px;margin-top:14px;border:1px solid #cbd5e1}.star-rating-select{display:flex;gap:6px;font-size:22px;cursor:pointer}.star-btn{color:#cbd5e1;transition:color 0.15s}.star-btn.active{color:#eab308}.boost-plan-card{background:white;border:2px solid #cbd5e1;border-radius:12px;padding:10px 12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:all 0.2s}.boost-plan-card.selected{border-color:#f59e0b;background:#fffbeb;box-shadow:0 2px 8px rgba(245,158,11,0.15)}.boost-plan-title{font-weight:800;font-size:13px;color:#0f172a}.boost-plan-sub{font-size:11px;color:#64748b}.boost-plan-price{font-size:16px;font-weight:900;color:#d97706}.express-emergency-strip{margin:2px 16px 3px;background:linear-gradient(135deg,#fff7ed,#ffedd5);border:1px solid #fed7aa;border-radius:8px;padding:5px 10px;display:flex;justify-content:space-between;align-items:center;gap:6px;cursor:pointer;box-shadow:0 1px 2px rgba(234,88,12,0.04);transition:all 0.15s ease}.express-emergency-strip:hover{background:#fed7aa}.express-strip-tag{font-size:9.5px;font-weight:800;color:#c2410c;background:white;padding:2px 7px;border-radius:6px;border:1px solid #fed7aa;white-space:nowrap}.pulse-lightning{font-size:16px;display:inline-block;animation:lightningPulse 1.2s infinite}@keyframes lightningPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.3);opacity:0.7}}.city-chips-bar{display:flex;gap:6px;padding:0 16px 8px;overflow-x:auto;scrollbar-width:none;align-items:center}.city-chips-bar::-webkit-scrollbar{display:none}.city-chip{padding:5px 11px;background:white;border:1px solid #cbd5e1;border-radius:16px;font-size:11px;font-weight:700;color:#334155;cursor:pointer;white-space:nowrap;transition:all 0.15s ease;box-shadow:0 1px 2px rgba(0,0,0,0.03)}.city-chip.active{background:#0284c7;color:white;border-color:#0284c7;box-shadow:0 2px 6px rgba(2,132,199,0.3)}.rate-card-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:12px}.rate-card-table th{background:#f1f5f9;color:#1e293b;padding:8px 10px;text-align:left;font-weight:800;border-bottom:2px solid #cbd5e1}.rate-card-table td{padding:8px 10px;border-bottom:1px solid #e2e8f0;color:#334155}.rate-cat-header{background:#e0f2fe;color:#0369a1;font-weight:800;padding:6px 10px;font-size:11.5px}.rate-price{font-weight:800;color:#0284c7;text-align:right;white-space:nowrap}.btn-share{background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;flex:1;font-size:11px;font-weight:700}.btn-share:hover{background:#dcfce7}.movein-promo-banner{margin:4px 16px 8px;background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #93c5fd;border-radius:12px;padding:9px 12px;display:flex;justify-content:space-between;align-items:center;gap:8px;cursor:pointer;box-shadow:0 1px 4px rgba(30,58,138,0.08);transition:all 0.2s ease}.movein-promo-banner:hover{background:#bfdbfe}.movein-tag{font-size:10.5px;font-weight:800;color:#1e40af;background:white;padding:3px 8px;border-radius:8px;border:1px solid #93c5fd;white-space:nowrap}.action-pill-btn.spare-pill{border-color:#a7f3d0;color:#047857;font-weight:800}.action-pill-btn.spare-pill:hover{background:#d1fae5}.action-pill-btn.bidding-pill{border-color:#fde68a;color:#b45309;font-weight:800}.action-pill-btn.bidding-pill:hover{background:#fef3c7}.action-pill-btn.pool-pill{border-color:#fbcfe8;color:#be185d;font-weight:800}.action-pill-btn.pool-pill:hover{background:#fce7f3}.spare-cat-bar{display:flex;gap:6px;overflow-x:auto;padding:4px 0 8px;scrollbar-width:none}.spare-cat-bar::-webkit-scrollbar{display:none}.spare-cat-chip{padding:4px 10px;background:#f1f5f9;border-radius:12px;font-size:11px;font-weight:700;color:#475569;cursor:pointer;white-space:nowrap;border:1px solid #cbd5e1}.spare-cat-chip.active{background:#059669;color:white;border-color:#059669}.spare-table{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:6px}.spare-table th{background:#f8fafc;padding:7px 8px;text-align:left;border-bottom:2px solid #cbd5e1;color:#1e293b;font-weight:800}.spare-table td{padding:7px 8px;border-bottom:1px solid #e2e8f0;color:#334155}.spare-fair-price{color:#059669;font-weight:800;text-align:right;white-space:nowrap}.bid-card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:10px 12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;gap:10px}.bid-title{font-weight:800;font-size:13px;color:#0f172a}.bid-sub{font-size:11px;color:#64748b;margin-top:2px}.bid-budget-badge{background:#fef3c7;color:#b45309;padding:3px 8px;border-radius:8px;font-weight:900;font-size:12px;border:1px solid #fde68a;white-space:nowrap}.btn-accept-bid{background:#16a34a;color:white;border:none;padding:5px 10px;border-radius:8px;font-size:11px;font-weight:800;cursor:pointer;white-space:nowrap}.pool-discount-box{background:linear-gradient(135deg,#fdf2f8,#fce7f3);border:1px solid #fbcfe8;border-radius:12px;padding:12px;margin-bottom:12px}.pool-tier-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:8px}.pool-tier-card{background:white;border:1px solid #f472b6;border-radius:8px;padding:8px;text-align:center}.pool-tier-num{font-weight:900;font-size:13px;color:#be185d}.pool-tier-off{font-size:10.5px;color:#15803d;font-weight:800;margin-top:2px}.card{background:white;border-radius:10px;padding:7px 10px;margin-bottom:6px;border:1px solid #e2e8f0;box-shadow:0 1px 2px rgba(0,0,0,0.02);transition:all 0.15s ease}.card.featured-card{border:1.5px solid #f59e0b;background:linear-gradient(180deg,#fffdf8 0%,#ffffff 100%);box-shadow:0 2px 6px rgba(245,158,11,0.12)}.compact-header-row{display:flex;justify-content:space-between;align-items:center;gap:4px;margin-bottom:2px}.compact-title-wrap{display:flex;align-items:center;gap:5px;flex:1;overflow:hidden;white-space:nowrap}.name{font-size:13.5px;font-weight:800;color:#0f172a;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.compact-meta-row{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#64748b;margin-bottom:3px;gap:6px}.compact-left-meta{display:flex;align-items:center;gap:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.compact-price-wrap{display:flex;align-items:center;gap:5px;flex-shrink:0}.price{font-size:12.5px;font-weight:800;color:#0284c7}.rating-star-btn{font-weight:800;font-size:10px;color:#854d0e;background:#fef9c3;padding:1px 5px;border-radius:4px;cursor:pointer;border:1px solid #fde047;white-space:nowrap}.compact-desc-text{font-size:10px;color:#64748b;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.2}.compact-actions-bar{display:flex;gap:3px;width:100%;margin-top:3px;padding-top:4px;border-top:1px solid #f1f5f9}.btn{padding:4px 6px;border-radius:5px;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:2px;cursor:pointer;border:none;min-height:25px;white-space:nowrap}.compact-actions-bar .btn-book{flex:2;background:#0284c7;color:white;font-size:10.5px}.compact-actions-bar .btn-call{flex:0.9;background:#f1f5f9;color:#334155;border:1px solid #cbd5e1}.compact-actions-bar .btn-wa{flex:0.9;background:#22c55e;color:white}.compact-actions-bar .btn-id{flex:0.8;background:#f8fafc;color:#0284c7;border:1px solid #bae6fd}.compact-actions-bar .btn-video{flex:0.7;background:#eef2ff;color:#4f46e5;border:1px solid #c7d2fe}.compact-actions-bar .btn-map{flex:0.7;background:#ecfdf5;color:#059669;border:1px solid #a7f3d0}.compact-actions-bar .btn-share{flex:0.7;background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0}.badge{font-size:9.5px;padding:1px 5px;border-radius:8px}.badge-pro{font-size:9px;padding:1px 5px}.badge-express{font-size:9px;padding:1px 5px}.status-badge{font-size:9px;padding:1px 5px;border-radius:8px}.card-img-banner{height:140px;margin-bottom:6px}
 
 @media print {
 
@@ -699,9 +699,9 @@ body {
 
 </div>
 
-<!-- === Urban Company Style Clean & Professional Header === -->
+<!-- === Fixr Clean & Professional Supercharged Header === -->
 
-<div class="uc-header-section" id="ucHeaderSection">
+<div class="uc-header-section" id="ucHeaderSection" style="background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #4338ca 100%);">
 
   <!-- Top Location & Action Row -->
 
@@ -709,7 +709,7 @@ body {
 
     <div class="uc-location-wrap" onclick="triggerNearMeLocation()" title="உங்கள் இருப்பிடத்தைத் தேர்வு செய்க (Select Location)">
 
-      <span style="font-size:18px;">📍</span>
+      <span style="font-size:18px;">🛡️</span>
 
       <div>
 
@@ -717,13 +717,13 @@ body {
 
           <span class="uc-live-dot"></span>
 
-          <span id="ucDeliveryTime">In 30 minutes</span>
+          <span id="ucDeliveryTime">0% கமிஷன் நேரடி தளம்</span>
 
         </div>
 
         <div class="uc-location-sub" id="ucCurrentCitySub">
 
-          <span id="ucCurrentCityText">தமிழ்நாடு (Tamil Nadu)</span> ▾
+          <span id="ucCurrentCityText">📍 தமிழ்நாடு (Chennai, Madurai, CBE...)</span> ▾
 
         </div>
 
@@ -736,11 +736,13 @@ body {
 
     <div class="uc-top-actions">
 
+      <div class="brand" style="font-size:18px; margin-right:4px;">Fix<span style="color:#fde047;">r</span></div>
+
       <button class="lang-btn" id="langToggleBtn" onclick="toggleLanguage()" title="Switch Language (மொழி மாற்று)">EN</button>
 
       <div id="authContainer">
 
-        <button class="auth-btn" id="authBtn" onclick="openLoginModal()" style="padding:4px 10px; font-size:11px; border-radius:12px;">Login</button>
+        <button class="auth-btn" id="authBtn" onclick="openLoginModal()" style="padding:4px 10px; font-size:11px; border-radius:12px; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3);">Login</button>
 
       </div>
 
@@ -755,40 +757,40 @@ body {
 
     <span class="uc-search-icon">🔍</span>
 
-    <input type="text" id="searchInput" class="uc-search-input" placeholder="Search for 'AC Service', 'Electrician', 'Plumber'...">
+    <input type="text" id="searchInput" class="uc-search-input" placeholder="பழுது, வாடகை வீடு அல்லது தொழிலாளரைத் தேடுக...">
 
-    <button type="button" class="uc-voice-btn" onclick="startVoiceBooking()" title="தமிழில் பேசி முன்பதிவு / தேடுக (Tamil Voice Booking)">🎙️</button>
+    <button type="button" class="uc-voice-btn" onclick="startVoiceBooking()" title="தமிழில் பேசி முன்பதிவு / தேடுக (Tamil Voice Booking)" style="background:#4338ca;">🎙️</button>
 
   </div>
 
 
-  <!-- Hero Promo Banner (Urban Company Purple Gradient Promo) -->
+  <!-- Hero Promo Banner (Fixr Exclusive Feature: Budget Bidding & 0% Commission) -->
 
-  <div class="uc-hero-banner" id="ucHeroBanner" onclick="openCommunityPoolingModal()">
+  <div class="uc-hero-banner" id="ucHeroBanner" onclick="openBudgetBiddingModal()" style="background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.06)); border: 1px solid rgba(255,255,255,0.25); border-radius: 16px; padding: 12px 14px; margin-top: 14px; display: flex; justify-content: space-between; align-items: center;">
 
     <div>
 
-      <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.5px; color:#fde047; font-weight:800;" id="ucPromoTag">FIXR HOME SERVICES</div>
+      <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#fde047; font-weight:800;" id="ucPromoTag">FIXR EXCLUSIVE • 0% COMMISSION</div>
 
       <div style="font-size:14px; font-weight:800; line-height:1.25; margin:3px 0 5px 0; color:white;" id="ucPromoTitle">
 
-        25% நேரடித் தள்ளுபடி<br>
+        🎯 என் பட்ஜெட் என் வேலை<br>
 
-        <span style="font-size:11px; font-weight:normal; opacity:0.95;" id="ucPromoSub">குழு & முதல் முன்பதிவுக்கு</span>
+        <span style="font-size:11px; font-weight:normal; opacity:0.95;" id="ucPromoSub">உங்கள் பட்ஜெட்டில் சேவை; தொழிலாளர் ஏற்பார்!</span>
 
       </div>
 
-      <button type="button" style="background:white; color:#4f46e5; border:none; padding:4px 10px; border-radius:16px; font-size:10.5px; font-weight:800; cursor:pointer; display:inline-flex; align-items:center; gap:4px; box-shadow:0 2px 6px rgba(0,0,0,0.15);" id="ucPromoBtn">
+      <button type="button" style="background:#fde047; color:#1e1b4b; border:none; padding:4px 12px; border-radius:16px; font-size:10.5px; font-weight:800; cursor:pointer; display:inline-flex; align-items:center; gap:4px; box-shadow:0 2px 6px rgba(0,0,0,0.2);" id="ucPromoBtn">
 
-        Book now ➔
+        பட்ஜெட் சொல்ல ➔
 
       </button>
 
     </div>
 
-    <div style="font-size:38px; filter:drop-shadow(0 4px 8px rgba(0,0,0,0.2));">
+    <div style="font-size:38px; filter:drop-shadow(0 4px 8px rgba(0,0,0,0.3));">
 
-      🏡⚡
+      🎯⚡
 
     </div>
 
@@ -797,30 +799,30 @@ body {
 </div>
 
 
-<!-- === Urban Company Style 8-Category Grid === -->
+<!-- === Fixr 8-Category Grid (Featuring Fixr's Unique Services) === -->
 
 <div class="uc-cat-section" id="ucCatSection">
 
   <div class="uc-section-title">
 
-    <span id="lblUcCategories">சேவைகள் (Services)</span>
+    <span id="lblUcCategories">Fixr சேவைகள் (Services)</span>
 
-    <span style="font-size:11px; font-weight:700; color:#4f46e5; cursor:pointer;" onclick="selectCategoryFromGrid('அனைத்தும்')">அனைத்தும் ➔</span>
+    <span style="font-size:11px; font-weight:700; color:#4338ca; cursor:pointer;" id="lblUcAllLink" onclick="selectCategoryFromGrid('அனைத்தும்')">அனைத்தும் ➔</span>
 
   </div>
 
 
   <div class="uc-cat-grid" id="ucCategoryGrid">
 
-    <!-- Card 1: Caregiver / InstaHelp -->
+    <!-- Card 1: Electrician & Plumber -->
 
-    <div class="uc-cat-card" onclick="selectCategoryFromGrid('கேர் டேக்கர்')">
+    <div class="uc-cat-card" onclick="selectCategoryFromGrid('எலக்ட்ரீஷியன்')">
 
-      <div class="uc-cat-icon">👵</div>
+      <div class="uc-cat-icon">⚡</div>
 
-      <span class="uc-cat-badge">24/7 Care</span>
+      <span class="uc-cat-badge" id="badgeCatElec" style="background:#e0f2fe; color:#0369a1; border-color:#bae6fd;">Verified Pro</span>
 
-      <div class="uc-cat-title" id="lblCatCare">கேர் டேக்கர்<br>(InstaHelp)</div>
+      <div class="uc-cat-title" id="lblCatElec">எலக்ட்ரீஷியன்<br>& பிளம்பர்</div>
 
     </div>
 
@@ -831,74 +833,74 @@ body {
 
       <div class="uc-cat-icon">❄️</div>
 
-      <span class="uc-cat-badge">30 mins</span>
+      <span class="uc-cat-badge" id="badgeCatAc" style="background:#dcfce7; color:#15803d; border-color:#bbf7d0;">Fair Price</span>
 
       <div class="uc-cat-title" id="lblCatAc">AC பழுது<br>& சர்வீஸ்</div>
 
     </div>
 
 
-    <!-- Card 3: Electrician & Plumber -->
-
-    <div class="uc-cat-card" onclick="selectCategoryFromGrid('எலக்ட்ரீஷியன்')">
-
-      <div class="uc-cat-icon">⚡</div>
-
-      <span class="uc-cat-badge">30 mins</span>
-
-      <div class="uc-cat-title" id="lblCatElec">எலக்ட்ரீஷியன்<br>& பிளம்பர்</div>
-
-    </div>
-
-
-    <!-- Card 4: Deep Cleaning -->
-
-    <div class="uc-cat-card" onclick="selectCategoryFromGrid('டீப் கிளீனிங்')">
-
-      <div class="uc-cat-icon">✨</div>
-
-      <span class="uc-cat-badge">Eco Clean</span>
-
-      <div class="uc-cat-title" id="lblCatClean">முழு வீடு<br>கிளீனிங்</div>
-
-    </div>
-
-
-    <!-- Card 5: Packers & Movers -->
-
-    <div class="uc-cat-card" onclick="selectCategoryFromGrid('பேக்கர்ஸ் & மூவர்ஸ்')">
-
-      <div class="uc-cat-icon">📦</div>
-
-      <span class="uc-cat-badge">Safe Move</span>
-
-      <div class="uc-cat-title" id="lblCatPack">பேக்கர்ஸ்<br>& மூவர்ஸ்</div>
-
-    </div>
-
-
-    <!-- Card 6: House Rentals (0% Brokerage) -->
+    <!-- Card 3: House Rentals (Fixr Exclusive!) -->
 
     <div class="uc-cat-card" onclick="selectCategoryFromGrid('வாடகை வீடுகள்')">
 
       <div class="uc-cat-icon">🏠</div>
 
-      <span class="uc-cat-badge" style="background:#fee2e2; color:#991b1b; border-color:#fecaca;">0% Broker</span>
+      <span class="uc-cat-badge" id="badgeCatRental" style="background:#fee2e2; color:#991b1b; border-color:#fecaca;">0% Broker</span>
 
       <div class="uc-cat-title" id="lblCatRental">வாடகை<br>வீடுகள்</div>
 
     </div>
 
 
-    <!-- Card 7: Rental Agreement (E-Stamp) -->
+    <!-- Card 4: Rental Agreement (Fixr Exclusive!) -->
 
     <div class="uc-cat-card" onclick="openRentalAgreementModal()">
 
       <div class="uc-cat-icon">📑</div>
 
-      <span class="uc-cat-badge" style="background:#fef9c3; color:#854d0e; border-color:#fde047;">Govt Stamp</span>
+      <span class="uc-cat-badge" id="badgeCatAgr" style="background:#fef9c3; color:#854d0e; border-color:#fde047;">Govt Stamp</span>
 
       <div class="uc-cat-title" id="lblCatAgr">வாடகை<br>ஒப்பந்தம்</div>
+
+    </div>
+
+
+    <!-- Card 5: Packers & Movers (Fixr Exclusive!) -->
+
+    <div class="uc-cat-card" onclick="selectCategoryFromGrid('பேக்கர்ஸ் & மூவர்ஸ்')">
+
+      <div class="uc-cat-icon">📦</div>
+
+      <span class="uc-cat-badge" id="badgeCatPack" style="background:#ffedd5; color:#c2410c; border-color:#fed7aa;">Safe Shift</span>
+
+      <div class="uc-cat-title" id="lblCatPack">பேக்கர்ஸ்<br>& மூவர்ஸ்</div>
+
+    </div>
+
+
+    <!-- Card 6: Caregiver / InstaHelp (Fixr Exclusive!) -->
+
+    <div class="uc-cat-card" onclick="selectCategoryFromGrid('கேர் டேக்கர்')">
+
+      <div class="uc-cat-icon">👵</div>
+
+      <span class="uc-cat-badge" id="badgeCatCare" style="background:#fdf2f8; color:#be185d; border-color:#fbcfe8;">24/7 Care</span>
+
+      <div class="uc-cat-title" id="lblCatCare">கேர் டேக்கர்<br>(InstaHelp)</div>
+
+    </div>
+
+
+    <!-- Card 7: Deep Cleaning -->
+
+    <div class="uc-cat-card" onclick="selectCategoryFromGrid('டீப் கிளீனிங்')">
+
+      <div class="uc-cat-icon">✨</div>
+
+      <span class="uc-cat-badge" id="badgeCatClean" style="background:#f5f3ff; color:#6d28d9; border-color:#ddd6fe;">Eco Clean</span>
+
+      <div class="uc-cat-title" id="lblCatClean">முழு வீடு<br>கிளீனிங்</div>
 
     </div>
 
@@ -909,7 +911,7 @@ body {
 
       <div class="uc-cat-icon">📱</div>
 
-      <span class="uc-cat-badge" style="background:#f3e8ff; color:#6b21a8; border-color:#e9d5ff;">All in One</span>
+      <span class="uc-cat-badge" id="badgeCatAll" style="background:#f1f5f9; color:#475569; border-color:#cbd5e1;">All in One</span>
 
       <div class="uc-cat-title" id="lblCatAll">அனைத்து<br>சேவைகள்</div>
 
@@ -920,45 +922,41 @@ body {
 </div>
 
 
-<!-- === Fixr Smart Products / Quick Tools (Urban Company "Native Products" style) === -->
+<!-- === Fixr பிரத்யேக சிறப்பம்சங்கள் (Fixr Exclusive Super Features) === -->
 
 <div style="padding: 10px 0 6px 0;">
 
-  <div class="uc-section-title" style="padding: 0 16px;">
+  <div class="uc-section-title" style="padding: 0 16px; margin-bottom:4px;">
 
-    <span id="lblUcSmartProducts">Fixr ஸ்மார்ட் வசதிகள் (Smart Tools)</span>
+    <span id="lblUcSmartProducts">Fixr பிரத்யேக வசதிகள் (Exclusive Tools)</span>
+
+  </div>
+
+  <div style="font-size:10.5px; color:#64748b; padding: 0 16px 8px 16px;" id="lblUcSmartSub">
+
+    அதிக கட்டணம் & இடைத்தரகர்கள் இல்லாத தமிழ்நாட்டின் பிரத்யேக தளம்
 
   </div>
 
   <div class="uc-tools-scroll" id="ucSmartToolsScroll">
 
-    <div class="uc-tool-item" onclick="openMyBookingsModal()">
+    <div class="uc-tool-item" onclick="openBudgetBiddingModal()" style="border-color:#fde047; background:#fffef9;">
 
-      <div class="uc-tool-icon">📋</div>
+      <div class="uc-tool-icon">🎯</div>
 
-      <div class="uc-tool-title" id="lblUcMyBookings">முன்பதிவுகள்</div>
+      <div class="uc-tool-title" id="lblUcBudget">என் பட்ஜெட்</div>
 
-      <div class="uc-tool-sub">My Bookings</div>
-
-    </div>
-
-    <div class="uc-tool-item" onclick="openWarrantyCardModal()" style="border-color:#fde047; background:#fffef9;">
-
-      <div class="uc-tool-icon">🛡️</div>
-
-      <div class="uc-tool-title" id="lblUcWarranty">30 நாள் கேரண்டி</div>
-
-      <div class="uc-tool-sub">Guarantee Card</div>
+      <div class="uc-tool-sub" id="lblUcBudgetSub">Customer Bidding</div>
 
     </div>
 
-    <div class="uc-tool-item" onclick="openInvoiceGeneratorModal()">
+    <div class="uc-tool-item" onclick="openCommunityPoolingModal()" style="border-color:#fbcfe8; background:#fdf2f8;">
 
-      <div class="uc-tool-icon">🧾</div>
+      <div class="uc-tool-icon">🏢</div>
 
-      <div class="uc-tool-title" id="lblUcInvoice">டிஜிட்டல் பில்</div>
+      <div class="uc-tool-title" id="lblUcPool">25% குழு தள்ளுபடி</div>
 
-      <div class="uc-tool-sub">Instant Invoice</div>
+      <div class="uc-tool-sub" id="lblUcPoolSub">Street Pool</div>
 
     </div>
 
@@ -968,27 +966,57 @@ body {
 
       <div class="uc-tool-title" id="lblUcPhotoDiag">Photo Diag</div>
 
-      <div class="uc-tool-sub">பழுது படம்</div>
+      <div class="uc-tool-sub" id="lblUcPhotoDiagSub">பழுது படம்</div>
 
     </div>
 
-    <div class="uc-tool-item" onclick="openBudgetBiddingModal()">
+    <div class="uc-tool-item" onclick="openRentalAgreementModal()" style="border-color:#bbf7d0; background:#f0fdf4;">
 
-      <div class="uc-tool-icon">🎯</div>
+      <div class="uc-tool-icon">📑</div>
 
-      <div class="uc-tool-title" id="lblUcBudget">என் பட்ஜெட்</div>
+      <div class="uc-tool-title" id="lblUcAgrTool">வாடகை பத்திரம்</div>
 
-      <div class="uc-tool-sub">Bidding Job</div>
+      <div class="uc-tool-sub" id="lblUcAgrToolSub">Govt E-Stamp</div>
 
     </div>
 
-    <div class="uc-tool-item" onclick="openCommunityPoolingModal()" style="border-color:#fbcfe8; background:#fdf2f8;">
+    <div class="uc-tool-item" onclick="openSparePartsModal()">
 
-      <div class="uc-tool-icon">🏢</div>
+      <div class="uc-tool-icon">🛡️</div>
 
-      <div class="uc-tool-title" id="lblUcPool">குழு தள்ளுபடி</div>
+      <div class="uc-tool-title" id="lblUcSpareTool">உதிரிபாக விலை</div>
 
-      <div class="uc-tool-sub">Group Pool</div>
+      <div class="uc-tool-sub" id="lblUcSpareToolSub">Fair Price List</div>
+
+    </div>
+
+    <div class="uc-tool-item" onclick="openWarrantyCardModal()" style="border-color:#fed7aa; background:#fff7ed;">
+
+      <div class="uc-tool-icon">🛡️</div>
+
+      <div class="uc-tool-title" id="lblUcWarranty">30 நாள் கேரண்டி</div>
+
+      <div class="uc-tool-sub" id="lblUcWarrantySub">Free Rework</div>
+
+    </div>
+
+    <div class="uc-tool-item" onclick="openInvoiceGeneratorModal()">
+
+      <div class="uc-tool-icon">🧾</div>
+
+      <div class="uc-tool-title" id="lblUcInvoice">டிஜிட்டல் பில்</div>
+
+      <div class="uc-tool-sub" id="lblUcInvoiceSub">Instant Bill</div>
+
+    </div>
+
+    <div class="uc-tool-item" onclick="openMyBookingsModal()">
+
+      <div class="uc-tool-icon">📋</div>
+
+      <div class="uc-tool-title" id="lblUcMyBookings">முன்பதிவுகள்</div>
+
+      <div class="uc-tool-sub" id="lblUcMyBookingsSub">My Bookings</div>
 
     </div>
 
@@ -998,7 +1026,7 @@ body {
 
       <div class="uc-tool-title" style="color:#dc2626;" id="lblUcSos">24/7 SOS உதவி</div>
 
-      <div class="uc-tool-sub" style="color:#991b1b;">Emergency</div>
+      <div class="uc-tool-sub" style="color:#991b1b;" id="lblUcSosSub">Police 112</div>
 
     </div>
 
@@ -1008,7 +1036,7 @@ body {
 
       <div class="uc-tool-title" id="lblUcTechPortal">தொழிலாளர் போர்டல்</div>
 
-      <div class="uc-tool-sub">Partner Portal</div>
+      <div class="uc-tool-sub" id="lblUcTechPortalSub">Partner Portal</div>
 
     </div>
 
@@ -1057,7 +1085,7 @@ body {
 
 <span class="pulse-lightning" style="font-size:13px;">⚡</span>
 
-<span style="font-size:11px; font-weight:800; color:#c2410c;" id="expressStripText">30 Mins Express: அவசர எலக்ட்ரீஷியன் & பிளம்பர் தேவைக்கு</span>
+<span style="font-size:11px; font-weight:800; color:#c2410c;" id="expressStripText">Fixr Express: அவசர எலக்ட்ரீஷியன் & பிளம்பர் நேரடி சேவை</span>
 
 </div>
 
@@ -1079,7 +1107,7 @@ body {
 
 <button class="action-pill-btn express-btn" id="expressFilterBtn" onclick="toggleExpressFilter()">
 
-⚡ 30 Mins Express
+⚡ Fixr Express
 
 </button>
 
@@ -1293,13 +1321,13 @@ body {
 
 <input type="checkbox" id="bookExpressCheck" style="width:18px; height:18px; accent-color:#ea580c;">
 
-<span id="lblBookExpress">⚡ அவசர சேவை தேவை (30 நிமிடங்களில் வருகை)</span>
+<span id="lblBookExpress">⚡ அவசர சேவை தேவை (உடனடி நேரடி வருகை)</span>
 
 </label>
 
 <div id="bookExpressDesc" style="font-size:10.5px; color:#9a3412; margin-top:4px; padding-left:26px;">
 
-அவசர தேவைக்கு டெக்னீசியன் 30 நிமிடத்தில் நேரடியாக வந்து உதவுவார்.
+அவசர தேவைக்கு டெக்னீசியன் உடனடியாக நேரடியாக வந்து உதவுவார்.
 
 </div>
 
@@ -1777,7 +1805,7 @@ body {
 
 <span class="badge badge-pro" style="font-size:9.5px; padding:1px 6px;">🌟 Verified Pro</span>
 
-<span id="idCardExpressBadge" class="badge badge-express" style="font-size:9.5px; padding:1px 6px;">⚡ 30 Mins Express</span>
+<span id="idCardExpressBadge" class="badge badge-express" style="font-size:9.5px; padding:1px 6px;">⚡ Fixr Express</span>
 
 </div>
 
@@ -3236,7 +3264,7 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
     <b style="font-size:15px; color:#854d0e;" id="wModalTitle">🛡️ Fixr 30-Day Service Guarantee</b>
 
-    <div style="font-size:10.5px; color:#a16207;">அங்கீகரிக்கப்பட்ட சேவை மறுபரிசீலனை உத்தரவாத அட்டை</div>
+    <div style="font-size:10.5px; color:#a16207;" id="wModalSub">அங்கீகரிக்கப்பட்ட சேவை மறுபரிசீலனை உத்தரவாத அட்டை</div>
 
   </div>
 
@@ -3691,7 +3719,7 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
     <div>
 
-      🛡️ <b>30-Day Auto Cleanup:</b> 30 நாட்களுக்கு மேற்பட்ட பழைய முன்பதிவுகள் Firebase-லிருந்து தானாக அழிக்கப்படும்.
+      🛡️ <span id="lblTechCleanupDesc"><b>30-Day Auto Cleanup:</b> 30 நாட்களுக்கு மேற்பட்ட பழைய முன்பதிவுகள் Firebase-லிருந்து தானாக அழிக்கப்படும்.</span>
 
     </div>
 
@@ -3730,13 +3758,13 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
     <button type="button" class="btn" style="background:#0284c7; color:white; flex:1; padding:7px; border-radius:8px; font-size:11px; font-weight:bold;" onclick="openInvoiceGeneratorForCurrentTech()">
 
-      🧾 பில் தயாரிக்க
+      <span id="lblTechToolInv">🧾 பில் தயாரிக்க</span>
 
     </button>
 
     <button type="button" class="btn" style="background:#16a34a; color:white; flex:1; padding:7px; border-radius:8px; font-size:11px; font-weight:bold;" onclick="openWarrantyForCurrentTech()">
 
-      🛡️ உத்தரவாத அட்டை
+      <span id="lblTechToolWar">🛡️ உத்தரவாத அட்டை</span>
 
     </button>
 
@@ -3978,7 +4006,7 @@ function setActiveBottomNav(btnId) {
 
   { label: "📅 How to book a service?", query: "How to book a service?" },
 
-  { label: "⚡ 30 Mins Express Service", query: "Tell me about 30 Mins Express service" },
+  { label: "⚡ Fixr Express Service", query: "Tell me about Fixr Express service" },
 
   { label: "💰 Pricing & Rate Card", query: "What are the service charges?" },
 
@@ -4002,7 +4030,7 @@ function setActiveBottomNav(btnId) {
 
   ta: {
 
-  langBtn: "🌐 English",
+  langBtn: "🌐 EN",
 
   searchPlaceholder: "🔍 நகரம் (Chennai, Madurai...), சேவை அல்லது பெயர் தேடுக...",
 
@@ -4120,7 +4148,7 @@ function setActiveBottomNav(btnId) {
 
   moveinTag: "Explore ➔",
 
-  expressText: "30 Mins Express Service: Emergency service for Plumber, Electrician & AC repair!",
+  expressText: "Fixr Express Service: Emergency service for Plumber, Electrician & AC repair!",
 
   expressTag: "Emergency Service ➔",
 
@@ -4162,123 +4190,22 @@ function setActiveBottomNav(btnId) {
 
   function updateI18n() {
 
-  // Urban Company Elements Translations
+  const isTa = (currentLang === 'ta');
+
+
+  // --- Header, Brand & Location ---
 
   const ucDel = document.getElementById('ucDeliveryTime');
 
-  if (ucDel) ucDel.innerText = isTa ? '30 நிமிடங்களில் வருகை' : 'In 30 minutes';
+  if (ucDel) ucDel.innerText = isTa ? '🛡️ 0% கமிஷன் நேரடி தளம்' : '🛡️ 0% Commission Direct Platform';
 
   const ucCity = document.getElementById('ucCurrentCityText');
 
-  if (ucCity) ucCity.innerText = isTa ? 'தமிழ்நாடு (Tamil Nadu)' : 'Tamil Nadu, India';
-
-  const ucTag = document.getElementById('ucPromoTag');
-
-  if (ucTag) ucTag.innerText = isTa ? 'FIXR வீட்டுப் பராமரிப்பு சேவைகள்' : 'FIXR HOME SERVICES';
-
-  const ucTitle = document.getElementById('ucPromoTitle');
-
-  if (ucTitle) ucTitle.innerHTML = isTa ? '25% நேரடித் தள்ளுபடி<br><span style="font-size:11px;font-weight:normal;opacity:0.95;">குழு & முதல் முன்பதிவுக்கு</span>' : '25% Instant Discount<br><span style="font-size:11px;font-weight:normal;opacity:0.95;">On Group & First Booking</span>';
-
-  const ucBtn = document.getElementById('ucPromoBtn');
-
-  if (ucBtn) ucBtn.innerText = isTa ? 'முன்பதிவு ➔' : 'Book now ➔';
-
-  const ucCatH = document.getElementById('lblUcCategories');
-
-  if (ucCatH) ucCatH.innerText = isTa ? 'சேவைகள் (Services)' : 'Categories';
-
-  const ucCare = document.getElementById('lblCatCare');
-
-  if (ucCare) ucCare.innerHTML = isTa ? 'கேர் டேக்கர்<br>(InstaHelp)' : 'Caregiver<br>(InstaHelp)';
-
-  const ucAc = document.getElementById('lblCatAc');
-
-  if (ucAc) ucAc.innerHTML = isTa ? 'AC பழுது<br>& சர்வீஸ்' : 'AC Repair<br>& Service';
-
-  const ucElec = document.getElementById('lblCatElec');
-
-  if (ucElec) ucElec.innerHTML = isTa ? 'எலக்ட்ரீஷியன்<br>& பிளம்பர்' : 'Electrician<br>& Plumber';
-
-  const ucClean = document.getElementById('lblCatClean');
-
-  if (ucClean) ucClean.innerHTML = isTa ? 'முழு வீடு<br>கிளீனிங்' : 'Deep<br>Cleaning';
-
-  const ucPack = document.getElementById('lblCatPack');
-
-  if (ucPack) ucPack.innerHTML = isTa ? 'பேக்கர்ஸ்<br>& மூவர்ஸ்' : 'Packers<br>& Movers';
-
-  const ucRent = document.getElementById('lblCatRental');
-
-  if (ucRent) ucRent.innerHTML = isTa ? 'வாடகை<br>வீடுகள்' : 'House<br>Rentals';
-
-  const ucAgr = document.getElementById('lblCatAgr');
-
-  if (ucAgr) ucAgr.innerHTML = isTa ? 'வாடகை<br>ஒப்பந்தம்' : 'Rental<br>Agreement';
-
-  const ucAll = document.getElementById('lblCatAll');
-
-  if (ucAll) ucAll.innerHTML = isTa ? 'அனைத்து<br>சேவைகள்' : 'All<br>Services';
-
-  const ucSmart = document.getElementById('lblUcSmartProducts');
-
-  if (ucSmart) ucSmart.innerText = isTa ? 'Fixr ஸ்மார்ட் வசதிகள் (Smart Tools)' : 'Fixr Smart Features';
-
-  // Bottom Nav
-
-  const nHome = document.getElementById('lblNavHome');
-
-  if (nHome) nHome.innerText = isTa ? 'முகப்பு' : 'Home';
-
-  const nBk = document.getElementById('lblNavBookings');
-
-  if (nBk) nBk.innerText = isTa ? 'முன்பதிவுகள்' : 'Bookings';
-
-  const nVc = document.getElementById('lblNavVoice');
-
-  if (nVc) nVc.innerText = isTa ? 'குரல்வழி' : 'Voice';
-
-  const nGu = document.getElementById('lblNavGuarantee');
-
-  if (nGu) nGu.innerText = isTa ? 'கேரண்டி' : 'Guarantee';
-
-  const nAcc = document.getElementById('lblNavAccount');
-
-  if (nAcc) nAcc.innerText = isTa ? 'தொழிலாளர்' : 'Partner';
-
-  const isTa = (currentLang === 'ta');
-
-  // Quick Tools Bar
-
-  const tBk = document.getElementById('lblToolMyBookings');
-
-  if (tBk) tBk.innerText = isTa ? 'முன்பதிவுகள்' : 'My Bookings';
-
-  const tWr = document.getElementById('lblToolWarranty');
-
-  if (tWr) tWr.innerText = isTa ? '30 நாள் கேரண்டி' : 'Guarantee Card';
-
-  const tInv = document.getElementById('lblToolInvoice');
-
-  if (tInv) tInv.innerText = isTa ? 'டிஜிட்டல் பில்' : 'Instant Invoice';
-
-  const tVc = document.getElementById('lblToolVoice');
-
-  if (tVc) tVc.innerText = isTa ? 'வாய்ஸ் புக்கிங்' : 'Voice Booking';
-
-  const tSos = document.getElementById('lblToolSos');
-
-  if (tSos) tSos.innerText = isTa ? '24/7 SOS உதவி' : '24/7 SOS Safety';
-
-  const tPt = document.getElementById('lblToolTechPortal');
-
-  if (tPt) tPt.innerText = isTa ? 'தொழிலாளர் போர்டல்' : 'Tech Portal';
-
-// Header & Navigation
+  if (ucCity) ucCity.innerText = isTa ? '📍 தமிழ்நாடு (Chennai, Madurai, CBE...)' : '📍 Tamil Nadu, India';
 
   const langBtn = document.getElementById('langToggleBtn');
 
-  if (langBtn) langBtn.innerText = isTa ? "EN" : "த";
+  if (langBtn) langBtn.innerHTML = isTa ? "🌐 EN" : "🌐 தமிழ்";
 
   const instBtn = document.getElementById('headerInstallBtn');
 
@@ -4288,45 +4215,238 @@ function setActiveBottomNav(btnId) {
 
   if (authBtn) {
 
-  const savedUser = localStorage.getItem('fixr_user');
+    const savedUser = localStorage.getItem('fixr_user');
 
-  if (savedUser) {
+    if (savedUser) {
 
-  try {
+      try {
 
-  const u = JSON.parse(savedUser);
+        const u = JSON.parse(savedUser);
 
-  authBtn.innerText = isTa ? `வெளியேறு (${u.name})` : `Logout (${u.name})`;
+        authBtn.innerText = isTa ? `வெளியேறு (${u.name})` : `Logout (${u.name})`;
 
-  } catch(e) {
+      } catch(e) {
 
-  authBtn.innerText = isTa ? "உள்நுழைக" : "Login";
+        authBtn.innerText = isTa ? "உள்நுழைக" : "Login";
+
+      }
+
+    } else {
+
+      authBtn.innerText = isTa ? "உள்நுழைக" : "Login";
+
+    }
 
   }
 
-  } else {
 
-  authBtn.innerText = isTa ? "உள்நுழைக" : "Login";
-
-  }
-
-  }
-
-  // Banners & Sync
-
-  const pwaTxt = document.getElementById('pwaBannerText');
-
-  if (pwaTxt) pwaTxt.innerText = isTa ? "📲 Fixr ஆப்பை உங்கள் மொபைலில் இன்ஸ்டால் செய்ய" : "📲 Install Fixr App on your mobile for faster booking";
-
-  const cloudTxt = document.getElementById('cloudStatusText');
-
-  if (cloudTxt) cloudTxt.innerText = isTa ? "☁️ Google Cloud Database: இணைக்கப்பட்டது (Online)" : "☁️ Google Cloud Database: Connected (Online)";
+  // --- Search Bar ---
 
   const searchInp = document.getElementById('searchInput');
 
   if (searchInp) searchInp.placeholder = isTa ? "🔍 நகரம் (Chennai, Madurai...), சேவை அல்லது பெயர் தேடுக..." : "🔍 Search city (Chennai, Madurai...), service or name...";
 
-  // City Chips
+
+  // --- Hero Promo Banner ---
+
+  const ucTag = document.getElementById('ucPromoTag');
+
+  if (ucTag) ucTag.innerText = isTa ? 'FIXR பிரத்யேக சலுகை • 0% கமிஷன்' : 'FIXR EXCLUSIVE • 0% COMMISSION';
+
+  const ucTitle = document.getElementById('ucPromoTitle');
+
+  if (ucTitle) ucTitle.innerHTML = isTa ? '🎯 என் பட்ஜெட் என் வேலை<br><span style="font-size:11px;font-weight:normal;opacity:0.95;">உங்கள் பட்ஜெட்டில் சேவை; தொழிலாளர் ஏற்பார்!</span>' : '🎯 Customer Budget Bidding<br><span style="font-size:11px;font-weight:normal;opacity:0.95;">Set your own price; local pros will accept!</span>';
+
+  const ucBtn = document.getElementById('ucPromoBtn');
+
+  if (ucBtn) ucBtn.innerText = isTa ? 'பட்ஜெட் சொல்ல ➔' : 'Place Budget ➔';
+
+
+  // --- 8-Category Grid ---
+
+  const ucCatH = document.getElementById('lblUcCategories');
+
+  if (ucCatH) ucCatH.innerText = isTa ? 'Fixr சேவைகள் (Services)' : 'Fixr Services';
+
+  const ucAllL = document.getElementById('lblUcAllLink');
+
+  if (ucAllL) ucAllL.innerText = isTa ? 'அனைத்தும் ➔' : 'View All ➔';
+
+
+  const ucElec = document.getElementById('lblCatElec');
+
+  if (ucElec) ucElec.innerHTML = isTa ? 'எலக்ட்ரீஷியன்<br>& பிளம்பர்' : 'Electrician<br>& Plumber';
+
+  const bElec = document.getElementById('badgeCatElec');
+
+  if (bElec) bElec.innerText = isTa ? 'சரிபார்க்கப்பட்டது' : 'Verified Pro';
+
+
+  const ucAc = document.getElementById('lblCatAc');
+
+  if (ucAc) ucAc.innerHTML = isTa ? 'AC பழுது<br>& சர்வீஸ்' : 'AC Repair<br>& Service';
+
+  const bAc = document.getElementById('badgeCatAc');
+
+  if (bAc) bAc.innerText = isTa ? 'நியாய விலை' : 'Fair Price';
+
+
+  const ucRent = document.getElementById('lblCatRental');
+
+  if (ucRent) ucRent.innerHTML = isTa ? 'வாடகை<br>வீடுகள்' : 'House<br>Rentals';
+
+  const bRent = document.getElementById('badgeCatRental');
+
+  if (bRent) bRent.innerText = isTa ? '0% புரோக்கர்' : '0% Broker';
+
+
+  const ucAgr = document.getElementById('lblCatAgr');
+
+  if (ucAgr) ucAgr.innerHTML = isTa ? 'வாடகை<br>ஒப்பந்தம்' : 'Rental<br>Agreement';
+
+  const bAgr = document.getElementById('badgeCatAgr');
+
+  if (bAgr) bAgr.innerText = isTa ? 'அரசு முத்திரை' : 'Govt Stamp';
+
+
+  const ucPack = document.getElementById('lblCatPack');
+
+  if (ucPack) ucPack.innerHTML = isTa ? 'பேக்கர்ஸ்<br>& மூவர்ஸ்' : 'Packers<br>& Movers';
+
+  const bPack = document.getElementById('badgeCatPack');
+
+  if (bPack) bPack.innerText = isTa ? 'பாதுகாப்பான ஷிப்ட்' : 'Safe Shift';
+
+
+  const ucCare = document.getElementById('lblCatCare');
+
+  if (ucCare) ucCare.innerHTML = isTa ? 'கேர் டேக்கர்<br>(InstaHelp)' : 'Caregiver<br>(InstaHelp)';
+
+  const bCare = document.getElementById('badgeCatCare');
+
+  if (bCare) bCare.innerText = isTa ? '24/7 கவனிப்பு' : '24/7 Care';
+
+
+  const ucClean = document.getElementById('lblCatClean');
+
+  if (ucClean) ucClean.innerHTML = isTa ? 'முழு வீடு<br>கிளீனிங்' : 'Deep<br>Cleaning';
+
+  const bClean = document.getElementById('badgeCatClean');
+
+  if (bClean) bClean.innerText = isTa ? 'சுத்தமான சேவை' : 'Eco Clean';
+
+
+  const ucAll = document.getElementById('lblCatAll');
+
+  if (ucAll) ucAll.innerHTML = isTa ? 'அனைத்து<br>சேவைகள்' : 'All<br>Services';
+
+  const bAll = document.getElementById('badgeCatAll');
+
+  if (bAll) bAll.innerText = isTa ? 'அனைத்தும்' : 'All in One';
+
+
+  // --- Smart Tools / Quick Tools Scroll ---
+
+  const ucSmart = document.getElementById('lblUcSmartProducts');
+
+  if (ucSmart) ucSmart.innerText = isTa ? 'Fixr ஸ்மார்ட் வசதிகள் (Smart Tools)' : 'Fixr Exclusive Tools';
+
+  const ucSmartSub = document.getElementById('lblUcSmartSub');
+
+  if (ucSmartSub) ucSmartSub.innerText = isTa ? 'அதிக கட்டணம் & இடைத்தரகர்கள் இல்லாத தமிழ்நாட்டின் பிரத்யேக தளம்' : 'Tamil Nadu\'s leading zero-commission hyperlocal living platform';
+
+
+  const tBudget = document.getElementById('lblUcBudget');
+
+  if (tBudget) tBudget.innerText = isTa ? 'என் பட்ஜெட்' : 'My Budget';
+
+  const sBudget = document.getElementById('lblUcBudgetSub');
+
+  if (sBudget) sBudget.innerText = isTa ? 'வாடிக்கையாளர் விலை' : 'Customer Bidding';
+
+
+  const tPool = document.getElementById('lblUcPool');
+
+  if (tPool) tPool.innerText = isTa ? '25% குழு தள்ளுபடி' : '25% Group Pool';
+
+  const sPool = document.getElementById('lblUcPoolSub');
+
+  if (sPool) sPool.innerText = isTa ? 'தெரு & குடியிருப்புகள்' : 'Street & Flat Pool';
+
+
+  const tPhoto = document.getElementById('lblUcPhotoDiag');
+
+  if (tPhoto) tPhoto.innerText = isTa ? 'பழுது படம்' : 'Photo Diag';
+
+  const sPhoto = document.getElementById('lblUcPhotoDiagSub');
+
+  if (sPhoto) sPhoto.innerText = isTa ? 'கட்டண ஆலோசனை' : 'Free Estimate';
+
+
+  const tAgr = document.getElementById('lblUcAgrTool');
+
+  if (tAgr) tAgr.innerText = isTa ? 'வாடகை பத்திரம்' : 'Rental Deed';
+
+  const sAgr = document.getElementById('lblUcAgrToolSub');
+
+  if (sAgr) sAgr.innerText = isTa ? 'அரசு E-Stamp' : 'Govt E-Stamp';
+
+
+  const tSpare = document.getElementById('lblUcSpareTool');
+
+  if (tSpare) tSpare.innerText = isTa ? 'உதிரிபாக விலை' : 'Spare Parts';
+
+  const sSpare = document.getElementById('lblUcSpareToolSub');
+
+  if (sSpare) sSpare.innerText = isTa ? 'நியாய விலை பட்டியல்' : 'Fair Price List';
+
+
+  const tWar = document.getElementById('lblUcWarranty');
+
+  if (tWar) tWar.innerText = isTa ? '30 நாள் கேரண்டி' : '30-Day Guarantee';
+
+  const sWar = document.getElementById('lblUcWarrantySub');
+
+  if (sWar) sWar.innerText = isTa ? 'இலவச மறுவேலை' : 'Free Rework';
+
+
+  const tInv = document.getElementById('lblUcInvoice');
+
+  if (tInv) tInv.innerText = isTa ? 'டிஜிட்டல் பில்' : 'Digital Invoice';
+
+  const sInv = document.getElementById('lblUcInvoiceSub');
+
+  if (sInv) sInv.innerText = isTa ? 'உடனடி ரசீது' : 'Instant Bill';
+
+
+  const tBook = document.getElementById('lblUcMyBookings');
+
+  if (tBook) tBook.innerText = isTa ? 'முன்பதிவுகள்' : 'My Bookings';
+
+  const sBook = document.getElementById('lblUcMyBookingsSub');
+
+  if (sBook) sBook.innerText = isTa ? 'நிலை அறிய' : 'Track Status';
+
+
+  const tSos = document.getElementById('lblUcSos');
+
+  if (tSos) tSos.innerText = isTa ? '24/7 SOS உதவி' : '24/7 SOS Help';
+
+  const sSos = document.getElementById('lblUcSosSub');
+
+  if (sSos) sSos.innerText = isTa ? 'காவல்துறை 112' : 'Police 112';
+
+
+  const tTech = document.getElementById('lblUcTechPortal');
+
+  if (tTech) tTech.innerText = isTa ? 'தொழிலாளர் போர்டல்' : 'Partner Portal';
+
+  const sTech = document.getElementById('lblUcTechPortalSub');
+
+  if (sTech) sTech.innerText = isTa ? 'தொழிலாளர் லாகின்' : 'Technician Login';
+
+
+  // --- City Chips ---
 
   const cAll = document.getElementById('cityChipAll');
 
@@ -4356,7 +4476,8 @@ function setActiveBottomNav(btnId) {
 
   if (cBlr) cBlr.innerText = isTa ? "பெங்களூரு (Bengaluru)" : "Bengaluru";
 
-  // Promotional Banners
+
+  // --- Promo Strips & Banners ---
 
   const moveinT = document.getElementById('moveinBannerTitle');
 
@@ -4368,7 +4489,7 @@ function setActiveBottomNav(btnId) {
 
   const expStrip = document.getElementById('expressStripText');
 
-  if (expStrip) expStrip.innerText = isTa ? "30 Mins Express: அவசர எலக்ட்ரீஷியன் & பிளம்பர் தேவைக்கு" : "30 Mins Express: Immediate Emergency Electrician & Plumber";
+  if (expStrip) expStrip.innerText = isTa ? "Fixr Express: அவசர எலக்ட்ரீஷியன் & பிளம்பர் நேரடி சேவை" : "Fixr Express: Emergency Electrician & Plumber Service";
 
   const expTag = document.getElementById('expressStripTag');
 
@@ -4382,7 +4503,8 @@ function setActiveBottomNav(btnId) {
 
   if (featBtn) featBtn.innerText = isTa ? "விளம்பரம் ➔" : "Promote ➔";
 
-  // Action Pills
+
+  // --- Action Pills ---
 
   const availTxt = document.getElementById('availToggleText');
 
@@ -4390,7 +4512,7 @@ function setActiveBottomNav(btnId) {
 
   const expPill = document.getElementById('expressFilterBtn');
 
-  if (expPill) expPill.innerText = isTa ? "⚡ 30 நிமிட அவசர சேவை" : "⚡ 30 Mins Express";
+  if (expPill) expPill.innerText = isTa ? "⚡ விரைவு அவசர சேவை" : "⚡ Fixr Express";
 
   const verPill = document.getElementById('proFilterBtn') || document.getElementById('verifiedFilterBtn');
 
@@ -4416,7 +4538,8 @@ function setActiveBottomNav(btnId) {
 
   if (poolPill) poolPill.innerText = isTa ? "🏢 தெரு & அடுக்குமாடி குழு தள்ளுபடி" : "🏢 Community Street Pooling";
 
-  // Rental Sub-chips
+
+  // --- Rental Sub-chips ---
 
   const subAll = document.getElementById('chipSubAll');
 
@@ -4442,119 +4565,168 @@ function setActiveBottomNav(btnId) {
 
   if (subFavs) subFavs.innerText = isTa ? "❤️ சேமித்தவை" : "❤️ Saved";
 
-  // FAB buttons
 
-  const suppFab = document.getElementById('supportFabText');
+  // --- Bottom Navigation Bar ---
 
-  if (suppFab) suppFab.innerText = isTa ? "Fixr AI உதவி (24/7)" : "Fixr AI Support (24/7)";
+  const nHome = document.getElementById('lblNavHome');
 
-  const partFab = document.getElementById('partnerFabText');
+  if (nHome) nHome.innerText = isTa ? 'முகப்பு' : 'Home';
 
-  if (partFab) partFab.innerText = isTa ? "தொழிலாளர் பதிவு (₹49)" : "Join as Partner (₹49)";
+  const nBid = document.getElementById('lblNavBidding');
 
-  // Footer & Admin Button
+  if (nBid) nBid.innerText = isTa ? 'என் பட்ஜெட்' : 'Bidding';
 
-  const footTrust = document.getElementById('footerTrustText');
+  const nVc = document.getElementById('lblNavVoice');
 
-  if (footTrust) footTrust.innerText = isTa ? "🛡️ 100% பின்னணி சரிபார்க்கப்பட்ட தொழிலாளர்கள் | 0% கமிஷன் தளம்" : "🛡️ 100% Background Verified Technicians | 0% Commission Platform";
+  if (nVc) nVc.innerText = isTa ? 'குரல்வழி' : 'Voice';
 
-  const footContact = document.getElementById('footerContactText');
+  const nBk = document.getElementById('lblNavBookings');
 
-  if (footContact) footContact.innerText = isTa ? "📞 தொடர்பு: +91 9884334097 | ✉️ veeraadspromotions@gmail.com" : "📞 Contact: +91 9884334097 | ✉️ veeraadspromotions@gmail.com";
+  if (nBk) nBk.innerText = isTa ? 'முன்பதிவுகள்' : 'Bookings';
 
-  const footPriv = document.getElementById('footerPrivacyLink');
+  const nAcc = document.getElementById('lblNavAccount');
 
-  if (footPriv) footPriv.innerText = isTa ? "Privacy Policy (தனியுரிமை கொள்கை)" : "Privacy Policy";
+  if (nAcc) nAcc.innerText = isTa ? 'தொழிலாளர்' : 'Partner';
 
-  const footAdm = document.getElementById('lblFooterAdmin');
 
-  if (footAdm) footAdm.innerText = isTa ? "நிர்வாகி உள்நுழைவு (Admin Login)" : "Admin Portal Login";
+  // --- Partner / Worker Portal Modal ---
 
-  const footCopy = document.getElementById('footerCopyright');
+  const tpTitle = document.getElementById('techPortalTitle');
 
-  if (footCopy) footCopy.innerText = isTa ? "© 2026 Fixr Services. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை." : "© 2026 Fixr Services. All rights reserved.";
+  if (tpTitle) tpTitle.innerText = isTa ? "Fixr தொழிலாளர் நிர்வாகம் (Partner Portal)" : "Fixr Partner & Technician Portal";
 
-  // Login Modal
+  const tpSub = document.getElementById('techPortalSub');
 
-  const lTitle = document.getElementById('loginTitle');
+  if (tpSub) tpSub.innerText = isTa ? "முன்பதிவுகள், டிஜிட்டல் பில் & கேரண்டி மேலாண்மை" : "Bookings, Digital Invoices & Warranty Management";
 
-  if (lTitle) lTitle.innerText = isTa ? "Fixr OTP உள்நுழைவு 👋" : "Fixr OTP Login 👋";
+  const tplH = document.getElementById('lblTechLoginHeading');
 
-  const lSub = document.getElementById('loginSub');
+  if (tplH) tplH.innerText = isTa ? "வணக்கம்! தொழிலாளர் உள்நுழைவு" : "Welcome! Partner / Worker Login";
 
-  if (lSub) lSub.innerText = isTa ? "சேவையை புக் செய்ய உங்கள் மொபைல் எண்ணை உள்ளிடவும்" : "Enter your mobile number to book services";
+  const tplD = document.getElementById('lblTechLoginDesc');
 
-  const lNameLbl = document.getElementById('lblLoginName');
+  if (tplD) tplD.innerText = isTa ? "உங்கள் பதிவு செய்த 10 இலக்க மொபைல் எண் அல்லது தொழிலாளர் ID உள்ளிட்டு உள்நுழையவும்." : "Enter your registered 10-digit mobile number or Technician ID to manage bookings.";
 
-  if (lNameLbl) lNameLbl.innerText = isTa ? "முழு பெயர்" : "Full Name";
+  const tplI = document.getElementById('lblTechLoginInput');
 
-  const lNameInp = document.getElementById('userName');
+  if (tplI) tplI.innerText = isTa ? "📱 பதிவு செய்த மொபைல் எண் / ID:" : "📱 Registered Mobile Number / ID:";
 
-  if (lNameInp) lNameInp.placeholder = isTa ? "உங்கள் பெயர்" : "Your Name";
+  const tplBtn = document.getElementById('btnTechLoginSubmit');
 
-  const lPhoneLbl = document.getElementById('lblLoginPhone');
+  if (tplBtn) tplBtn.innerText = isTa ? "உள்நுழைக (Login) ➔" : "Access Partner Dashboard ➔";
 
-  if (lPhoneLbl) lPhoneLbl.innerText = isTa ? "10 இலக்க மொபைல் எண்" : "10-digit Mobile Number";
+  const tLogout = document.getElementById('btnTechLogout');
 
-  const lPhoneInp = document.getElementById('userPhone');
+  if (tLogout) tLogout.innerText = isTa ? "🚪 வெளியேறு" : "🚪 Logout";
 
-  if (lPhoneInp) lPhoneInp.placeholder = isTa ? "எ.கா: 9876543210" : "e.g. 9876543210";
+  const tClean = document.getElementById('lblTechCleanupDesc');
 
-  const lSendBtn = document.getElementById('btnSendOtp');
+  if (tClean) tClean.innerHTML = isTa ? "<b>30-Day Auto Cleanup:</b> 30 நாட்களுக்கு மேற்பட்ட பழைய முன்பதிவுகள் Firebase-லிருந்து தானாக அழிக்கப்படும்." : "<b>30-Day Auto Cleanup:</b> Bookings older than 30 days are automatically deleted from database.";
 
-  if (lSendBtn) lSendBtn.innerText = isTa ? "OTP பெறுக (SMS OTP) 📲" : "Send SMS OTP 📲";
+  const tToolInv = document.getElementById('lblTechToolInv');
 
-  const gBtn = document.getElementById("lblLoginGoogleBtn");
+  if (tToolInv) tToolInv.innerText = isTa ? "🧾 பில் தயாரிக்க" : "🧾 Make Invoice";
 
-  if (gBtn) gBtn.innerText = isTa ? "Google மூலம் உள்நுழைக" : "Sign in with Google";
+  const tToolWar = document.getElementById('lblTechToolWar');
 
-  // Booking Modal
+  if (tToolWar) tToolWar.innerText = isTa ? "🛡️ உத்தரவாத அட்டை" : "🛡️ Guarantee Card";
 
-  const bookTitle = document.getElementById('bookModalTitle');
+  const tToolId = document.getElementById('lblTechToolId');
 
-  if (bookTitle) bookTitle.innerText = isTa ? "🗓️ சேவை முன்பதிவு" : "🗓️ Service Booking";
+  if (tToolId) tToolId.innerText = isTa ? "🪪 ID கார்டு" : "🪪 Digital ID";
 
-  const lblDate = document.getElementById('lblBookDate');
+  const tClose = document.getElementById('btnTechPortalClose');
 
-  if (lblDate) lblDate.innerText = isTa ? "📅 வர வேண்டிய தேதி" : "📅 Service Date";
+  if (tClose) tClose.innerText = isTa ? "மூடுக (Close)" : "Close";
 
-  const lblTime = document.getElementById('lblBookTime');
 
-  if (lblTime) lblTime.innerText = isTa ? "⏰ விருப்பமான நேரம்" : "⏰ Preferred Time Slot";
+  // --- Warranty Card Modal ---
 
-  const lblAddr = document.getElementById('lblBookAddress');
+  const wmTitle = document.getElementById('wModalTitle');
 
-  if (lblAddr) lblAddr.innerText = isTa ? "🏠 வீட்டு முகவரி & பகுதி" : "🏠 House Address & Area";
+  if (wmTitle) wmTitle.innerText = isTa ? "🛡️ Fixr 30-Day Service Guarantee" : "🛡️ Fixr 30-Day Service Guarantee";
 
-  const bookAddr = document.getElementById('bookAddress');
+  const wmSub = document.getElementById('wModalSub');
 
-  if (bookAddr) bookAddr.placeholder = isTa ? "கதவு எண், தெரு மற்றும் நகரம்" : "Door No, Street and City";
+  if (wmSub) wmSub.innerText = isTa ? "அங்கீகரிக்கப்பட்ட சேவை மறுபரிசீலனை உத்தரவாத அட்டை" : "Official 30-Day Free Rework Service Guarantee Certificate";
 
-  const lblNotes = document.getElementById('lblBookNotes');
 
-  if (lblNotes) lblNotes.innerText = isTa ? "🛠️ பழுது / தேவை விவரம்" : "🛠️ Problem / Service Details";
+  // --- Invoice Generator Modal ---
 
-  const bookNotes = document.getElementById('bookNotes');
+  const invTitle = document.getElementById('invModalTitle');
 
-  if (bookNotes) bookNotes.placeholder = isTa ? "எ.கா: AC கூலிங் வரவில்லை" : "e.g. AC not cooling";
+  if (invTitle) invTitle.innerText = isTa ? "🧾 டிஜிட்டல் பில் தயாரிப்பாளர் (Invoice Maker)" : "🧾 Instant Digital Invoice Generator";
 
-  const lblExpress = document.getElementById('lblBookExpress');
+  const invSub = document.getElementById('invModalSub');
 
-  if (lblExpress) lblExpress.innerText = isTa ? "⚡ அவசர சேவை தேவை (30 நிமிடங்களில் வருகை)" : "⚡ Emergency Service (Visit within 30 mins)";
+  if (invSub) invSub.innerText = isTa ? "தொழிலாளர் மற்றும் வாடிக்கையாளருக்கான தெளிவான சேவை கட்டண ரசீது" : "Verified digital receipt and payment invoice for customers";
 
-  const descExpress = document.getElementById('bookExpressDesc');
+  const lblITech = document.getElementById('lblInvTechName');
 
-  if (descExpress) descExpress.innerText = isTa ? "அவசர தேவைக்கு டெக்னீசியன் 30 நிமிடத்தில் நேரடியாக வந்து உதவுவார்." : "Technician visits your location directly within 30 mins for emergency repair.";
+  if (lblITech) lblITech.innerText = isTa ? "தொழிலாளர் / கடை பெயர் (Technician Name):" : "Technician / Business Name:";
 
-  const btnConfBook = document.getElementById('btnConfirmBook');
+  const lblICust = document.getElementById('lblInvCustName');
 
-  if (btnConfBook) btnConfBook.innerText = isTa ? "முன்பதிவை உறுதி செய் 🚀" : "Confirm Booking 🚀";
+  if (lblICust) lblICust.innerText = isTa ? "வாடிக்கையாளர் பெயர்:" : "Customer Name:";
 
-  const btnCancBook = document.getElementById('btnCancelBook');
+  const lblIPhone = document.getElementById('lblInvCustPhone');
 
-  if (btnCancBook) btnCancBook.innerText = isTa ? "ரத்து" : "Cancel";
+  if (lblIPhone) lblIPhone.innerText = isTa ? "வாடிக்கையாளர் மொபைல்:" : "Customer Phone:";
 
-  // Rental Agreement Modal
+  const lblILab = document.getElementById('lblInvLabor');
+
+  if (lblILab) lblILab.innerText = isTa ? "வேலைக் கூலி (Labor Charges):" : "Labor / Service Charges (₹):";
+
+  const lblISpare = document.getElementById('lblInvSpares');
+
+  if (lblISpare) lblISpare.innerText = isTa ? "உதிரிபாகங்கள் (Spares Cost):" : "Spare Parts Cost (₹):";
+
+
+  // --- My Bookings Modal ---
+
+  const mbTitle = document.getElementById('myBookingsTitle');
+
+  if (mbTitle) mbTitle.innerText = isTa ? "📋 எனது முன்பதிவுகள்" : "📋 My Bookings Dashboard";
+
+  const mbSub = document.getElementById('myBookingsSub');
+
+  if (mbSub) mbSub.innerText = isTa ? "நீங்கள் புக் செய்த அனைத்து சேவைகள், பில் மற்றும் உத்தரவாத விவரங்கள்" : "Track all your active bookings, bills, and service guarantees";
+
+
+  // --- SOS Safety Modal ---
+
+  const sosTitle = document.getElementById('sosModalTitle');
+
+  if (sosTitle) sosTitle.innerText = isTa ? "🚨 24/7 பாதுகாப்பு & அவசர உதவி (SOS)" : "🚨 24/7 Safety & Emergency SOS Desk";
+
+  const sosSub = document.getElementById('sosModalSub');
+
+  if (sosSub) sosSub.innerText = isTa ? "வாடிக்கையாளர்கள் மற்றும் தொழிலாளர்களின் பாதுகாப்பிற்கு Fixr எப்போதும் துணை நிற்கிறது." : "Customer and technician safety is Fixr\'s topmost commitment.";
+
+
+  // --- Spare Parts Modal ---
+
+  const spTitle = document.getElementById('spareModalTitle');
+
+  if (spTitle) spTitle.innerText = isTa ? "🛡️ உதிரிபாக நியாய விலை சரிபார்ப்பு" : "🛡️ Spare Parts Fair Price Checker";
+
+  const spSub = document.getElementById('spareModalSub');
+
+  if (spSub) spSub.innerText = isTa ? "ஏமாற்றப்படாமல் அசல் சந்தை விலையை சரிபார்க்கவும்!" : "Verify authentic market pricing to prevent overcharging!";
+
+
+  // --- Budget Bidding Modal ---
+
+  const bidTitle = document.getElementById('bidModalTitle');
+
+  if (bidTitle) bidTitle.innerText = isTa ? "🎯 'என் பட்ஜெட் என் வேலை'" : "🎯 Customer Budget Bidding";
+
+  const bidSub = document.getElementById('bidModalSub');
+
+  if (bidSub) bidSub.innerText = isTa ? "உங்கள் வேலையையும், நீங்கள் கொடுக்க விரும்பும் பட்ஜெட் தொகையையும் நீங்களே தீர்மானியுங்கள்!" : "Name your own price; local verified professionals accept your budget directly!";
+
+
+  // --- Rental Agreement Modal ---
 
   const agrTitle = document.getElementById('agrModalTitle');
 
@@ -4624,7 +4796,8 @@ function setActiveBottomNav(btnId) {
 
   if (btnAgrCanc) btnAgrCanc.innerText = isTa ? "ரத்து" : "Cancel";
 
-  // View Rental Agreement Doc Modal
+
+  // --- View Rental Agreement Doc Modal ---
 
   const docTitle = document.getElementById('docModalTitle');
 
@@ -4646,7 +4819,8 @@ function setActiveBottomNav(btnId) {
 
   if (docClose) docClose.innerText = isTa ? "மூடுக (Close)" : "Close";
 
-  // Community Pooling Modal
+
+  // --- Community Pooling Modal ---
 
   const poolTitle = document.getElementById('poolModalTitle');
 
@@ -4676,7 +4850,8 @@ function setActiveBottomNav(btnId) {
 
   if (btnPoolSub) btnPoolSub.innerText = isTa ? "🚀 குழு தள்ளுபடியுடன் WhatsApp-ல் புக் செய்ய" : "🚀 Book Group Pool on WhatsApp";
 
-  // Photo Diagnosis Modal
+
+  // --- Photo Diagnosis Modal ---
 
   const photoTitle = document.getElementById('photoModalTitle');
 
@@ -4702,7 +4877,8 @@ function setActiveBottomNav(btnId) {
 
   if (btnPSub) btnPSub.innerText = isTa ? "🚀 WhatsApp-ல் போட்டோ அனுப்பி கட்டணம் அறிக" : "🚀 Send Photos via WhatsApp for Free Estimate";
 
-  // AI Chat Assistant Modal
+
+  // --- AI Chat Assistant Modal ---
 
   const aiTitle = document.getElementById('aiChatHeaderTitle');
 
@@ -4716,9 +4892,71 @@ function setActiveBottomNav(btnId) {
 
   if (aiInput) aiInput.placeholder = isTa ? "உங்கள் கேள்வியை இங்கு தட்டச்சு செய்யவும்..." : "Type your question here...";
 
+
+  // --- Caregiver Modal ---
+
+  const careTitle = document.getElementById('careModalTitle');
+
+  if (careTitle) careTitle.innerText = isTa ? "🤝 கேர் டேக்கர் தேவை விவரம்" : "🤝 Caregiver Requirements";
+
+
+  // --- Packers Modal ---
+
+  const packTitle = document.getElementById('packersModalTitle');
+
+  if (packTitle) packTitle.innerText = isTa ? "🚚 பேக்கர்ஸ் & மூவர்ஸ் வண்டி தேர்வு" : "🚚 Packers & Movers Vehicle Selection";
+
+
+  // --- Cleaning Modal ---
+
+  const cleanTitle = document.getElementById('cleaningModalTitle');
+
+  if (cleanTitle) cleanTitle.innerText = isTa ? "✨ டீப் கிளீனிங் & பெயிண்டிங் அளவு தேர்வு" : "✨ Deep Cleaning & Painting Estimator";
+
+
+  // --- Rate Card Modal ---
+
+  const rcTitle = document.getElementById('rateCardModalTitle');
+
+  if (rcTitle) rcTitle.innerText = isTa ? "📋 நியாயமான சேவைக் கட்டண விவரம் (Rate Card)" : "📋 Transparent Service Rate Card";
+
+
+  // --- Booking Success Modal ---
+
+  const bsTitle = document.getElementById('bookingSuccessTitle');
+
+  if (bsTitle) bsTitle.innerText = isTa ? "முன்பதிவு வெற்றிகரமாக முடிந்தது! 🎉" : "Booking Confirmed Successfully! 🎉";
+
+  const bsSub = document.getElementById('bookingSuccessSub');
+
+  if (bsSub) bsSub.innerText = isTa ? "உங்கள் முன்பதிவு விவரங்கள் SMS வழியாக அனுப்பப்பட்டுள்ளன." : "Your booking confirmation has been sent via SMS.";
+
+
+  // --- Footer ---
+
+  const footTrust = document.getElementById('footerTrustText');
+
+  if (footTrust) footTrust.innerText = isTa ? "🛡️ 100% பின்னணி சரிபார்க்கப்பட்ட தொழிலாளர்கள் | 0% கமிஷன் நேரடி தளம்" : "🛡️ 100% Background Verified Technicians | 0% Commission Direct Platform";
+
+  const footContact = document.getElementById('footerContactText');
+
+  if (footContact) footContact.innerText = isTa ? "📞 தொடர்பு: +91 9884334097 | ✉️ veeraadspromotions@gmail.com" : "📞 Contact: +91 9884334097 | ✉️ veeraadspromotions@gmail.com";
+
+  const footPriv = document.getElementById('footerPrivacyLink');
+
+  if (footPriv) footPriv.innerText = isTa ? "Privacy Policy (தனியுரிமை கொள்கை)" : "Privacy Policy";
+
+  const footAdm = document.getElementById('lblFooterAdmin');
+
+  if (footAdm) footAdm.innerText = isTa ? "நிர்வாகி உள்நுழைவு (Admin Login)" : "Admin Portal Login";
+
+  const footCopy = document.getElementById('footerCopyright');
+
+  if (footCopy) footCopy.innerText = isTa ? "© 2026 Fixr Services. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை." : "© 2026 Fixr Services. All rights reserved.";
+
 }
 
-function applyLanguage() {
+  function applyLanguage() {
 
   const t = translations[currentLang];
 
@@ -7799,7 +8037,7 @@ function setCityFilter(city) {
 
   if (item.isExpress) {
 
-  badgesHtml += `<span class="badge badge-express">⚡ 30 Mins Express</span> `;
+  badgesHtml += `<span class="badge badge-express">⚡ Fixr Express</span> `;
 
   }
 
@@ -8048,9 +8286,9 @@ function setCityFilter(city) {
 
   if (expBox) expBox.style.display = 'block';
 
-  if (expLbl) expLbl.innerText = isTa ? "⚡ அவசர பராமரிப்பாளர் தேவை (30 நிமிடங்களில் வருகை)" : "⚡ Emergency Caregiver Needed (Arrival in 30 Mins)";
+  if (expLbl) expLbl.innerText = isTa ? "⚡ அவசர பராமரிப்பாளர் தேவை (உடனடி நேரடி வருகை)" : "⚡ Emergency Caregiver Needed (Arrival in 30 Mins)";
 
-  if (expDesc) expDesc.innerText = isTa ? "அவசர மருத்துவ உதவிக்கு பராமரிப்பாளர் 30 நிமிடத்தில் நேரடியாக வந்து உதவுவார்." : "Caregiver will arrive directly within 30 minutes for urgent care assistance.";
+  if (expDesc) expDesc.innerText = isTa ? "அவசர மருத்துவ உதவிக்கு பராமரிப்பாளர் உடனடியாக நேரடியாக வந்து உதவுவார்." : "Caregiver will arrive directly within 30 minutes for urgent care assistance.";
 
   if (confirmBtn) confirmBtn.innerText = isTa ? "முன்பதிவை உறுதி செய் 🚀" : "Confirm Caregiver Booking 🚀";
 
@@ -8296,9 +8534,9 @@ function setCityFilter(city) {
 
   if (expBox) expBox.style.display = 'block';
 
-  if (expLbl) expLbl.innerText = isTa ? "⚡ அவசர சேவை தேவை (30 நிமிடங்களில் வருகை)" : "⚡ Emergency Service Needed (Arrival in 30 Mins)";
+  if (expLbl) expLbl.innerText = isTa ? "⚡ அவசர சேவை தேவை (உடனடி நேரடி வருகை)" : "⚡ Emergency Service Needed (Arrival in 30 Mins)";
 
-  if (expDesc) expDesc.innerText = isTa ? "அவசர தேவைக்கு டெக்னீசியன் 30 நிமிடத்தில் நேரடியாக வந்து உதவுவார்." : "Technician will arrive directly within 30 minutes for urgent repair.";
+  if (expDesc) expDesc.innerText = isTa ? "அவசர தேவைக்கு டெக்னீசியன் உடனடியாக நேரடியாக வந்து உதவுவார்." : "Technician will arrive directly within 30 minutes for urgent repair.";
 
   if (confirmBtn) confirmBtn.innerText = isTa ? "முன்பதிவை உறுதி செய் 🚀" : "Confirm Booking 🚀";
 
@@ -8428,7 +8666,7 @@ function confirmBooking() {
 
   if (currentLang === 'ta') {
 
-  if (isExpress) msg += `🚨 *அவசர 30 நிமிட சேவை கோரிக்கை (EMERGENCY 30 MINS EXPRESS)* 🚨\n\n`;
+  if (isExpress) msg += `🚨 *அவசர விரைவு சேவை கோரிக்கை (EMERGENCY EXPRESS)* 🚨\n\n`;
 
   if (isCare) {
 
@@ -8616,9 +8854,9 @@ function confirmBooking() {
 
   stripText.innerText = filterOnlyExpress ?
 
-  '⚡ 30 Mins Express சேவை வழங்கும் டெக்னீசியன்கள் மட்டுமே காட்டப்படுகிறார்கள்!' :
+  '⚡ Fixr Express சேவை வழங்கும் டெக்னீசியன்கள் மட்டுமே காட்டப்படுகிறார்கள்!' :
 
-  '30 Mins Express சேவை: பிளம்பர், எலக்ட்ரீஷியன் & AC பழுது நீக்க உடனடியாக அழைக்க!';
+  'Fixr Express சேவை: பிளம்பர், எலக்ட்ரீஷியன் & AC பழுது நீக்க உடனடியாக அழைக்க!';
 
   }
 
@@ -10090,7 +10328,7 @@ function sendOtpCode() {
 
   `• <b>Part-time Care</b> (4-6 Hours)<br><br>` +
 
-  `Emergency 30-minute caregiver arrival is also supported.`,
+  `Emergency fast express caregiver arrival is also supported.`,
 
   actionBtn: { label: "❤️ View Care Taker Services", action: "filterCategory('கேர் டேக்கர்')" }
 
@@ -10152,11 +10390,11 @@ function sendOtpCode() {
 
   return {
 
-  text: `⚡ <b>Fixr 30 Mins Express அவசர சேவை:</b><br><br>` +
+  text: `⚡ <b>Fixr Fixr Express அவசர சேவை:</b><br><br>` +
 
   `திடீர் கரண்ட் கட், பைப் உடைந்து தண்ணீர் ஒழுகுதல், AC வேலை செய்யாமல் போவது அல்லது அவசர பராமரிப்பாளர் தேவைக்கு — எங்கள் தொழிலாளர்கள் <b>30 நிமிடங்களில்</b> உங்கள் இருப்பிடத்திற்கு நேரடியாக வந்து உதவுவார்கள்.<br><br>` +
 
-  `முன்பதிவு செய்யும் போது <b>"30 Mins Express"</b> என்பதை டிக் செய்யவும்.`,
+  `முன்பதிவு செய்யும் போது <b>"Fixr Express"</b> என்பதை டிக் செய்யவும்.`,
 
   actionBtn: { label: "⚡ அவசர சேவைகள் மட்டும் பார்க்க", action: "toggleExpressFilter(); closeModal('aiHelpModal');" }
 
@@ -10166,11 +10404,11 @@ function sendOtpCode() {
 
   return {
 
-  text: `⚡ <b>Fixr 30 Mins Express Emergency Service:</b><br><br>` +
+  text: `⚡ <b>Fixr Fixr Express Emergency Service:</b><br><br>` +
 
   `For power failures, burst pipes, AC breakdowns, or urgent caregiver assistance — our certified professionals arrive at your doorstep within <b>30 minutes</b>!<br><br>` +
 
-  `Simply tick <b>"30 Mins Express"</b> in the booking form for priority dispatch.`,
+  `Simply tick <b>"Fixr Express"</b> in the booking form for priority dispatch.`,
 
   actionBtn: { label: "⚡ Filter Express Services", action: "toggleExpressFilter(); closeModal('aiHelpModal');" }
 
@@ -10438,7 +10676,7 @@ function sendOtpCode() {
 
   text: `Hello! Welcome to Fixr AI Support Assistant 😊.<br><br>` +
 
-  `How can I help you today? You can ask about service bookings, emergency 30-min services, rate cards, or partner registrations.`,
+  `How can I help you today? You can ask about service bookings, emergency express services, rate cards, or partner registrations.`,
 
   actionBtn: { label: "📋 View Rate Card", action: "openModal('rateCardModal'); closeModal('aiHelpModal');" }
 
@@ -10454,7 +10692,7 @@ function sendOtpCode() {
 
   text: `நான் Fixr AI தானியங்கி உதவியாளர் 🤖.<br><br>` +
 
-  `உங்கள் கேள்விக்கு உதவ தயாராக உள்ளேன். முன்பதிவு, 30 நிமிட அவசர சேவை, கேர் டேக்கர், வாடகை வீடு, அல்லது கட்டண விவரங்கள் பற்றி தெரிந்துகொள்ள விரும்புகிறீர்களா? கீழே உள்ள விருப்பங்களைத் தேர்ந்தெடுக்கலாம் அல்லது அட்மினை நேரடியாக தொடர்பு கொள்ளலாம்.`,
+  `உங்கள் கேள்விக்கு உதவ தயாராக உள்ளேன். முன்பதிவு, விரைவு அவசர சேவை, கேர் டேக்கர், வாடகை வீடு, அல்லது கட்டண விவரங்கள் பற்றி தெரிந்துகொள்ள விரும்புகிறீர்களா? கீழே உள்ள விருப்பங்களைத் தேர்ந்தெடுக்கலாம் அல்லது அட்மினை நேரடியாக தொடர்பு கொள்ளலாம்.`,
 
   actionBtn: { label: "💬 WhatsApp-ல் அட்மினுடன் பேச", action: "window.open('https://wa.me/919884334097?text=வணக்கம்%20Fixr%20அட்மின்!%20எனக்கு%20உதவி%20வேண்டும்.', '_blank')" }
 
@@ -10466,7 +10704,7 @@ function sendOtpCode() {
 
   text: `I am your Fixr AI Assistant 🤖.<br><br>` +
 
-  `I am here to help you with bookings, emergency 30-min repairs, caregiver requests, rental agreements, or transparent pricing. You can tap the quick topic chips above or connect with our admin team directly.`,
+  `I am here to help you with bookings, emergency express repairs, caregiver requests, rental agreements, or transparent pricing. You can tap the quick topic chips above or connect with our admin team directly.`,
 
   actionBtn: { label: "💬 Chat with Admin on WhatsApp", action: "window.open('https://wa.me/919884334097?text=Hello%20Fixr%20Admin!%20I%20need%20assistance.', '_blank')" }
 
@@ -11437,7 +11675,7 @@ function openMyBookingsModal() {
 </script>
 
 
-<!-- === Urban Company Fixed Bottom Navigation Bar === -->
+<!-- === Fixr Mobile Fixed Bottom Navigation Bar === -->
 
 <div class="uc-bottom-nav" id="ucBottomNav">
 
@@ -11449,6 +11687,22 @@ function openMyBookingsModal() {
 
   </button>
 
+  <button type="button" class="uc-nav-btn" id="btnNavBidding" onclick="openBudgetBiddingModal(); setActiveBottomNav('btnNavBidding');">
+
+    <span class="uc-nav-icon">🎯</span>
+
+    <span id="lblNavBidding">என் பட்ஜெட்</span>
+
+  </button>
+
+  <button type="button" class="uc-nav-btn" id="btnNavVoice" onclick="startVoiceBooking(); setActiveBottomNav('btnNavVoice');" style="color:#4338ca;">
+
+    <span class="uc-nav-icon" style="font-size:22px; filter:drop-shadow(0 2px 4px rgba(67,56,202,0.3));">🎙️</span>
+
+    <span id="lblNavVoice" style="color:#4338ca; font-weight:800;">குரல்வழி</span>
+
+  </button>
+
   <button type="button" class="uc-nav-btn" id="btnNavBookings" onclick="openMyBookingsModal(); setActiveBottomNav('btnNavBookings');">
 
     <span class="uc-nav-icon">📋</span>
@@ -11457,25 +11711,9 @@ function openMyBookingsModal() {
 
   </button>
 
-  <button type="button" class="uc-nav-btn" id="btnNavVoice" onclick="startVoiceBooking(); setActiveBottomNav('btnNavVoice');" style="color:#7c3aed;">
-
-    <span class="uc-nav-icon" style="font-size:22px; filter:drop-shadow(0 2px 4px rgba(124,58,237,0.3));">🎙️</span>
-
-    <span id="lblNavVoice" style="color:#7c3aed; font-weight:800;">குரல்வழி</span>
-
-  </button>
-
-  <button type="button" class="uc-nav-btn" id="btnNavGuarantee" onclick="openWarrantyCardModal(); setActiveBottomNav('btnNavGuarantee');">
-
-    <span class="uc-nav-icon">🛡️</span>
-
-    <span id="lblNavGuarantee">கேரண்டி</span>
-
-  </button>
-
   <button type="button" class="uc-nav-btn" id="btnNavAccount" onclick="openTechPortalModal(); setActiveBottomNav('btnNavAccount');">
 
-    <span class="uc-nav-icon">👤</span>
+    <span class="uc-nav-icon">👷</span>
 
     <span id="lblNavAccount">தொழிலாளர்</span>
 
