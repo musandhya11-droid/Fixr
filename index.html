@@ -2408,7 +2408,7 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
 <div class="modal-overlay" id="warrantyCardModal">
 
-<div class="modal-box" style="max-width: 460px; background:#fffef9; border:2px solid #ca8a04;">
+<div class="modal-box" style="max-width: 480px; max-height: 88vh; overflow-y:auto; background:#fffef9; border:2px solid #ca8a04;">
 
 <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #eab308; padding-bottom:6px; margin-bottom:10px;">
 
@@ -2416,9 +2416,89 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
     <b style="font-size:15px; color:#854d0e;" id="wModalTitle">🛡️ Fixr 30-Day Service Guarantee</b>
 
-    <div style="font-size:10px; color:#a16207;">அங்கீகரிக்கப்பட்ட சேவை மறுபரிசீலனை உத்தரவாத அட்டை</div>
+    <div style="font-size:10.5px; color:#a16207;">அங்கீகரிக்கப்பட்ட சேவை மறுபரிசீலனை உத்தரவாத அட்டை</div>
 
   </div>
+
+  <button type="button" onclick="closeModal('warrantyCardModal')" style="background:none; border:none; font-size:22px; color:#64748b; cursor:pointer;">✕</button>
+
+</div>
+
+
+<!-- Booking Selector (if multiple bookings exist) -->
+
+<div id="warrantySelectBox" style="margin-bottom:8px; display:none;">
+
+  <label style="font-size:11px; font-weight:bold; color:#854d0e;">முன்பதிவைத் தேர்வு செய்க:</label>
+
+  <select id="warrantyBookingSelect" class="form-input" onchange="onWarrantyBookingSelected(this.value)" style="padding:6px; font-size:11.5px;"></select>
+
+</div>
+
+
+<div id="printableWarrantyCard" style="background:white; border:1px solid #fef08a; border-radius:10px; padding:14px; font-size:12px; line-height:1.6; box-shadow:0 1px 4px rgba(0,0,0,0.05);">
+
+  <div style="text-align:center; margin-bottom:10px;">
+
+    <span style="background:#fef9c3; color:#854d0e; border:1px solid #fde047; padding:3px 12px; border-radius:14px; font-size:10.5px; font-weight:800; letter-spacing:0.5px;">
+
+      ★ 100% FREE REWORK GUARANTEE ★
+
+    </span>
+
+    <div style="font-size:10px; color:#64748b; margin-top:4px;" id="wRefId">Ref: FIXR-WAR-001</div>
+
+  </div>
+
+
+  <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:8px; margin-bottom:8px;">
+
+    <div><b>👷 தொழிலாளர் / நிறுவனம்:</b> <span id="wTechName">-</span></div>
+
+    <div style="margin-top:3px;"><b>🛠️ சேவை வகை:</b> <span id="wTechCat">-</span></div>
+
+    <div style="margin-top:3px;"><b>📅 சேவை தேதி:</b> <span id="wDate">-</span></div>
+
+  </div>
+
+
+  <div style="background:#f0fdf4; border:1px solid #bbf7d0; padding:8px; border-radius:8px; color:#166534; margin-bottom:8px;">
+
+    <b style="font-size:12px;">🛡️ உத்தரவாதம் செல்லும் காலம்:</b>
+
+    <div style="font-size:13px; font-weight:bold; color:#15803d; margin-top:2px;" id="wValidTill">30 நாட்கள் (Free Rework)</div>
+
+    <div style="font-size:10.5px; margin-top:4px; line-height:1.4;">
+
+      Fixr மூலம் செய்யப்பட்ட பணிகளுக்கு 30 நாட்களுக்குள் ஏதேனும் பழுது ஏற்பட்டால் அதே டெக்னீசியன் 100% இலவசமாக சரிசெய்து தருவார்.
+
+    </div>
+
+  </div>
+
+
+  <div style="font-size:10px; color:#64748b; text-align:center; border-top:1px dashed #cbd5e1; padding-top:6px;">
+
+    Fixr 24/7 Helpline: 9884334097 | www.fixrservice.in
+
+  </div>
+
+</div>
+
+
+<div style="display:flex; gap:6px; margin-top:10px;">
+
+  <button type="button" class="submit-btn" style="background:#0284c7; flex:1; font-size:12px;" onclick="window.print()">🖨️ பிரிண்ட் / PDF</button>
+
+  <button type="button" class="submit-btn" style="background:#22c55e; flex:1.2; font-size:12px;" onclick="shareWarrantyOnWhatsApp()">📲 WhatsApp-ல் பகிர்க</button>
+
+</div>
+
+<button class="close-btn" onclick="closeModal('warrantyCardModal')" style="margin-top:6px;">மூடுக (Close)</button>
+
+</div>
+
+</div>
 
   <button type="button" onclick="closeModal('warrantyCardModal')" style="background:none; border:none; font-size:22px; color:#64748b; cursor:pointer;">✕</button>
 
@@ -2467,7 +2547,7 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
 <div class="modal-overlay" id="invoiceGeneratorModal">
 
-<div class="modal-box" style="max-width: 460px;">
+<div class="modal-box" style="max-width: 480px; max-height: 88vh; overflow-y:auto;">
 
 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
 
@@ -2479,39 +2559,106 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
 <div class="modal-sub" id="invModalSub">தொழிலாளர் மற்றும் வாடிக்கையாளருக்கான தெளிவான சேவை கட்டண ரசீது</div>
 
-<div class="form-group">
 
-  <label id="lblInvCustName">வாடிக்கையாளர் பெயர் (Customer Name)</label>
+<!-- Printable / Shareable Invoice Card -->
 
-  <input type="text" id="invCustName" class="form-input" placeholder="வாடிக்கையாளர் பெயர்">
+<div id="printableInvoiceCard" style="background:#fffef9; border:1.5px solid #cbd5e1; border-radius:10px; padding:12px; font-size:12px; margin-bottom:10px;">
 
-</div>
+  <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1.5px solid #0f172a; padding-bottom:6px; margin-bottom:8px;">
 
-<div class="form-group">
+    <div>
 
-  <label id="lblInvCustPhone">வாடிக்கையாளர் மொபைல் எண் (WhatsApp)</label>
+      <b style="font-size:14px; color:#0f172a;">Fixr Digital Service Invoice</b>
 
-  <input type="tel" id="invCustPhone" class="form-input" placeholder="10 இலக்க மொபைல் எண்">
+      <div style="font-size:10px; color:#64748b;" id="invBillNumberDate">Ref: FIXR-INV-001 | Date: 05/10/2026</div>
 
-</div>
+    </div>
 
-<div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
-
-  <div class="form-group">
-
-    <label id="lblInvLabor">வேலைக் கூலி (Labor Charges)</label>
-
-    <input type="number" id="invLabor" class="form-input" placeholder="₹" oninput="calcInvoiceTotal()" value="350">
+    <span style="background:#dcfce7; color:#15803d; font-size:9.5px; font-weight:800; padding:2px 6px; border-radius:6px;">PAID / VERIFIED ✓</span>
 
   </div>
 
-  <div class="form-group">
 
-    <label id="lblInvSpares">உதிரிபாகங்கள் (Spares)</label>
+  <div class="form-group" style="margin-bottom:6px;">
 
-    <input type="number" id="invSpares" class="form-input" placeholder="₹" oninput="calcInvoiceTotal()" value="0">
+    <label style="font-size:10.5px;" id="lblInvTechName">தொழிலாளர் / கடை பெயர் (Technician Name):</label>
+
+    <input type="text" id="invTechName" class="form-input" placeholder="தொழிலாளர் பெயர்" style="padding:6px; font-size:11.5px;" value="Fixr Verified Expert">
 
   </div>
+
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:6px;">
+
+    <div class="form-group" style="margin-bottom:0;">
+
+      <label style="font-size:10.5px;" id="lblInvCustName">வாடிக்கையாளர் பெயர்:</label>
+
+      <input type="text" id="invCustName" class="form-input" placeholder="வாடிக்கையாளர் பெயர்" style="padding:6px; font-size:11.5px;">
+
+    </div>
+
+    <div class="form-group" style="margin-bottom:0;">
+
+      <label style="font-size:10.5px;" id="lblInvCustPhone">வாடிக்கையாளர் மொபைல்:</label>
+
+      <input type="tel" id="invCustPhone" class="form-input" placeholder="10 இலக்க எண்" style="padding:6px; font-size:11.5px;">
+
+    </div>
+
+  </div>
+
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:6px;">
+
+    <div class="form-group" style="margin-bottom:0;">
+
+      <label style="font-size:10.5px;" id="lblInvLabor">வேலைக் கூலி (Labor Charges):</label>
+
+      <input type="number" id="invLabor" class="form-input" placeholder="₹" oninput="calcInvoiceTotal()" value="350" style="padding:6px; font-size:11.5px;">
+
+    </div>
+
+    <div class="form-group" style="margin-bottom:0;">
+
+      <label style="font-size:10.5px;" id="lblInvSpares">உதிரிபாகங்கள் (Spares Cost):</label>
+
+      <input type="number" id="invSpares" class="form-input" placeholder="₹" oninput="calcInvoiceTotal()" value="0" style="padding:6px; font-size:11.5px;">
+
+    </div>
+
+  </div>
+
+
+  <div style="background:#f1f5f9; border-radius:8px; padding:8px 10px; margin-top:10px; display:flex; justify-content:space-between; align-items:center;">
+
+    <b style="font-size:13px; color:#0f172a;" id="lblInvTotal">மொத்த கட்டணம் (Total):</b>
+
+    <b style="font-size:18px; color:#16a34a;" id="invTotalDisp">₹350</b>
+
+  </div>
+
+
+  <div style="margin-top:8px; font-size:10px; color:#64748b; text-align:center;">
+
+    🛡️ Fixr 30-Day Free Rework Guarantee Included | Helpline: 9884334097
+
+  </div>
+
+</div>
+
+
+<div style="display:flex; gap:6px; margin-top:6px;">
+
+  <button type="button" class="submit-btn" style="background:#0284c7; flex:1; font-size:12px;" onclick="window.print()">🖨️ பிரிண்ட் / PDF</button>
+
+  <button type="button" class="submit-btn" style="background:#22c55e; flex:1.2; font-size:12px;" onclick="sendInvoiceWhatsApp()">📲 WhatsApp-ல் பில் அனுப்ப</button>
+
+</div>
+
+<button class="close-btn" onclick="closeModal('invoiceGeneratorModal')" style="margin-top:6px;">ரத்து</button>
+
+</div>
 
 </div>
 
@@ -2646,7 +2793,7 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 </div>
 
 
-<!-- 28. தொழிலாளர் நிர்வாகப் போர்டல் (Dedicated Technician Admin Portal) -->
+<!-- 28. தொழிலாளர் நிர்வாகப் போர்டல் (Dedicated Technician Admin Portal with Real Login) -->
 
 <div class="modal-overlay" id="techPortalModal">
 
@@ -2658,9 +2805,200 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
     <b style="font-size:15px; color:#0f172a;" id="techPortalTitle">👷 தொழிலாளர் போர்டல் (Technician Portal)</b>
 
-    <div style="font-size:11px; color:#64748b;" id="techPortalSub">உங்கள் முன்பதிவுகள், பில் & உத்தரவாத மேலாண்மை</div>
+    <div style="font-size:11px; color:#64748b;" id="techPortalSub">முன்பதிவுகள், டிஜிட்டல் பில் & 30 நாள் உத்தரவாத மேலாண்மை</div>
 
   </div>
+
+  <button type="button" onclick="closeModal('techPortalModal')" style="background:none; border:none; font-size:22px; color:#64748b; cursor:pointer;">✕</button>
+
+</div>
+
+
+<!-- VIEW 1: Worker Login View (Shown when not logged in) -->
+
+<div id="techLoginView">
+
+  <div style="text-align:center; padding:10px 0 14px 0;">
+
+    <div style="width:54px; height:54px; border-radius:50%; background:#e0f2fe; color:#0284c7; font-size:28px; display:inline-flex; align-items:center; justify-content:center; margin-bottom:6px;">
+
+      👷
+
+    </div>
+
+    <div style="font-weight:800; font-size:14px; color:#0f172a;" id="lblTechLoginHeading">தொழிலாளர் உள்நுழைவு (Worker Login)</div>
+
+    <div style="font-size:11.5px; color:#64748b; margin-top:2px;" id="lblTechLoginDesc">உங்கள் பதிவு செய்த மொபைல் எண் அல்லது Fixr ID மூலம் உள்நுழையவும்</div>
+
+  </div>
+
+
+  <div class="form-group">
+
+    <label id="lblTechLoginInput">📱 பதிவு செய்த மொபைல் எண் / தொழிலாளர் ID</label>
+
+    <input type="text" id="techLoginInput" class="form-input" placeholder="எ.கா: 9884334097 அல்லது FIXR-TN-2026-0881">
+
+  </div>
+
+
+  <!-- Quick Login Chips for easy testing -->
+
+  <div style="margin-bottom:12px;">
+
+    <div style="font-size:10.5px; color:#64748b; font-weight:bold; margin-bottom:4px;">விரைவு உள்நுழைவு (Quick Select):</div>
+
+    <div style="display:flex; gap:6px; flex-wrap:wrap;">
+
+      <button type="button" class="btn" onclick="quickTechLogin('9884334097')" style="background:#f1f5f9; color:#0f172a; border:1px solid #cbd5e1; font-size:10.5px; padding:3px 8px; border-radius:12px;">⚡ Murthi (9884334097)</button>
+
+      <button type="button" class="btn" onclick="quickTechLogin('9876543211')" style="background:#f1f5f9; color:#0f172a; border:1px solid #cbd5e1; font-size:10.5px; padding:3px 8px; border-radius:12px;">❄️ CoolCare AC (9876543211)</button>
+
+      <button type="button" class="btn" onclick="quickTechLogin('9876543212')" style="background:#f1f5f9; color:#0f172a; border:1px solid #cbd5e1; font-size:10.5px; padding:3px 8px; border-radius:12px;">💧 AquaPure RO (9876543212)</button>
+
+    </div>
+
+  </div>
+
+
+  <button type="button" class="submit-btn" style="background:#0284c7;" id="btnTechLoginSubmit" onclick="submitTechLogin()">
+
+    🚀 போர்டலில் உள்நுழைக (Login to Portal)
+
+  </button>
+
+
+  <div style="text-align:center; margin-top:14px; padding-top:10px; border-top:1px dashed #cbd5e1; font-size:11.5px; color:#64748b;">
+
+    இன்னும் Fixr தொழிலாளராக இணையவில்லையா? <br>
+
+    <a href="javascript:void(0)" onclick="closeModal('techPortalModal'); openModal('partnerModal');" style="color:#0284c7; font-weight:bold; text-decoration:none;">🛠️ இப்போதே பார்ட்னராகப் பதிவு செய்க (₹49) ➔</a>
+
+  </div>
+
+</div>
+
+
+<!-- VIEW 2: Worker Dashboard View (Shown when logged in) -->
+
+<div id="techDashboardView" style="display:none;">
+
+  <!-- Profile & Status Card -->
+
+  <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:10px; margin-bottom:10px;">
+
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+
+      <div style="display:flex; align-items:center; gap:8px;">
+
+        <div style="width:38px; height:38px; border-radius:50%; background:#e0f2fe; color:#0284c7; font-size:20px; display:flex; align-items:center; justify-content:center;" id="techDashAvatar">👷</div>
+
+        <div>
+
+          <b style="font-size:13px; color:#0f172a;" id="techDashName">தொழிலாளர் பெயர்</b>
+
+          <div style="font-size:11px; color:#64748b;" id="techDashTrade">சேவை வகை | பகுதி</div>
+
+        </div>
+
+      </div>
+
+      <button type="button" onclick="techLogout()" style="background:#fee2e2; border:1px solid #fca5a5; color:#991b1b; padding:4px 8px; border-radius:8px; font-size:10px; font-weight:bold; cursor:pointer;" id="btnTechLogout">
+
+        🚪 வெளியேறு
+
+      </button>
+
+    </div>
+
+   
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px; border-top:1px solid #e2e8f0; padding-top:6px;">
+
+      <span id="techDashIdTag" style="font-size:11px; font-weight:bold; color:#0284c7;">🪪 ID: FIXR-TN-2026-0881</span>
+
+      <button type="button" id="btnTechAvailToggle" onclick="toggleTechOnlineStatus()" style="font-size:10.5px; font-weight:700; padding:2px 8px; border-radius:12px; background:#dcfce7; color:#166534; border:1px solid #86efac; cursor:pointer;">
+
+        🟢 பணியில் தயார் (Available)
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- 30-Day Auto Delete Status Card -->
+
+  <div style="background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:8px 10px; margin-bottom:10px; font-size:11px; color:#92400e; display:flex; justify-content:space-between; align-items:center;">
+
+    <div>
+
+      🛡️ <b>30-Day Auto Cleanup:</b> 30 நாட்களுக்கு மேற்பட்ட பழைய முன்பதிவுகள் Firebase-லிருந்து தானாக அழிக்கப்படும்.
+
+    </div>
+
+    <button type="button" onclick="manualRun30DayCleanup()" style="background:#fef3c7; border:1px solid #d97706; color:#b45309; padding:3px 8px; border-radius:6px; font-size:10px; font-weight:bold; cursor:pointer; flex-shrink:0; margin-left:6px;">🧹 Clean</button>
+
+  </div>
+
+
+  <!-- Bookings Tabs -->
+
+  <div style="display:flex; border-bottom:1px solid #e2e8f0; margin-bottom:10px;">
+
+    <button type="button" id="tabTechActive" onclick="switchTechPortalTab('active')" style="flex:1; padding:8px; border:none; background:none; font-weight:800; font-size:12px; border-bottom:2px solid #0284c7; color:#0284c7; cursor:pointer;">
+
+      🔔 புதிய முன்பதிவுகள் (<span id="techActiveCount">0</span>)
+
+    </button>
+
+    <button type="button" id="tabTechHistory" onclick="switchTechPortalTab('history')" style="flex:1; padding:8px; border:none; background:none; font-weight:700; font-size:12px; color:#64748b; cursor:pointer;">
+
+      📁 பழைய முன்பதிவுகள் (<span id="techHistoryCount">0</span>)
+
+    </button>
+
+  </div>
+
+
+  <!-- Bookings Container -->
+
+  <div id="techBookingsContainer" style="min-height:120px;"></div>
+
+
+  <!-- Technician Toolkit Buttons -->
+
+  <div style="display:flex; gap:6px; margin-top:10px;">
+
+    <button type="button" class="btn" style="background:#0284c7; color:white; flex:1; padding:7px; border-radius:8px; font-size:11px; font-weight:bold;" onclick="openInvoiceGeneratorForCurrentTech()">
+
+      🧾 பில் தயாரிக்க
+
+    </button>
+
+    <button type="button" class="btn" style="background:#16a34a; color:white; flex:1; padding:7px; border-radius:8px; font-size:11px; font-weight:bold;" onclick="openWarrantyForCurrentTech()">
+
+      🛡️ உத்தரவாத அட்டை
+
+    </button>
+
+    <button type="button" class="btn" style="background:#f1f5f9; color:#0f172a; border:1px solid #cbd5e1; flex:1; padding:7px; border-radius:8px; font-size:11px; font-weight:bold;" onclick="openDigitalIdForCurrentTech()">
+
+      🪪 ID கார்டு
+
+    </button>
+
+  </div>
+
+</div>
+
+
+<button class="close-btn" onclick="closeModal('techPortalModal')" style="margin-top:10px;">மூடுக (Close)</button>
+
+</div>
+
+</div>
 
   <button type="button" onclick="closeModal('techPortalModal')" style="background:none; border:none; font-size:22px; color:#64748b; cursor:pointer;">✕</button>
 
@@ -9193,7 +9531,7 @@ function sendOtpCode() {
 
   // --- 1. My Bookings Dashboard Logic ---
 
-// --- Technician Portal & 30-Day Auto Delete Logic ---
+// --- Technician Portal & Real Worker Login & 30-Day Auto Delete Logic ---
 
 let currentPortalTech = null;
 
@@ -9201,35 +9539,25 @@ let currentPortalTab = 'active';
 
 function openTechPortalModal() {
 
-  const select = document.getElementById('techPortalSelect');
+  const savedTech = localStorage.getItem('fixr_tech_session');
 
-  if (select) {
+  if (savedTech) {
 
-  select.innerHTML = '';
+  try {
 
-  const techs = liveServicesList.filter(x => !((x.category || '').includes('வாடகை வீடுகள்')));
+  currentPortalTech = JSON.parse(savedTech);
 
-  techs.forEach(t => {
+  showTechDashboardView();
 
-  const opt = document.createElement('option');
+  } catch(e) {
 
-  opt.value = t.id;
-
-  opt.innerText = `👷 ${t.name} - ${getDisplayCategory(t.category)} (${t.area})`;
-
-  select.appendChild(opt);
-
-  });
-
-  if (techs.length > 0) {
-
-  if (!currentPortalTech) currentPortalTech = techs[0];
-
-  select.value = currentPortalTech.id;
-
-  onTechPortalSelected(currentPortalTech.id);
+  showTechLoginView();
 
   }
+
+  } else {
+
+  showTechLoginView();
 
   }
 
@@ -9239,21 +9567,157 @@ function openTechPortalModal() {
 
 }
 
-function onTechPortalSelected(techId) {
+function showTechLoginView() {
 
-  currentPortalTech = liveServicesList.find(x => x.id === techId) || liveServicesList[0];
+  document.getElementById('techLoginView').style.display = 'block';
+
+  document.getElementById('techDashboardView').style.display = 'none';
+
+  const inp = document.getElementById('techLoginInput');
+
+  if (inp) inp.value = '';
+
+}
+
+function showTechDashboardView() {
+
+  document.getElementById('techLoginView').style.display = 'none';
+
+  document.getElementById('techDashboardView').style.display = 'block';
 
   if (!currentPortalTech) return;
 
-  const idTag = document.getElementById('techPortalIdTag');
+  const dName = document.getElementById('techDashName');
 
-  if (idTag) idTag.innerText = `🪪 ID: ${currentPortalTech.partnerId || 'FIXR-TN-2026-0881'}`;
+  if (dName) dName.innerText = currentPortalTech.name;
 
-  const phoneTag = document.getElementById('techPortalPhoneTag');
+  const dTrade = document.getElementById('techDashTrade');
 
-  if (phoneTag) phoneTag.innerText = `📞 ${currentPortalTech.phone}`;
+  if (dTrade) dTrade.innerText = `${getDisplayCategory(currentPortalTech.category)} | ${currentPortalTech.area || 'தமிழ்நாடு'}`;
+
+  const dId = document.getElementById('techDashIdTag');
+
+  if (dId) dId.innerText = `🪪 ID: ${currentPortalTech.partnerId || 'FIXR-TN-2026-0881'}`;
+
+  const btnAvail = document.getElementById('btnTechAvailToggle');
+
+  if (btnAvail) {
+
+  if (currentPortalTech.isAvailable !== false) {
+
+  btnAvail.innerText = "🟢 பணியில் தயார் (Available)";
+
+  btnAvail.style.background = "#dcfce7";
+
+  btnAvail.style.color = "#166534";
+
+  } else {
+
+  btnAvail.innerText = "🔴 விடுப்பில் (Busy)";
+
+  btnAvail.style.background = "#fee2e2";
+
+  btnAvail.style.color = "#991b1b";
+
+  }
+
+  }
 
   renderTechBookings();
+
+}
+
+function quickTechLogin(phone) {
+
+  const inp = document.getElementById('techLoginInput');
+
+  if (inp) inp.value = phone;
+
+  submitTechLogin();
+
+}
+
+function submitTechLogin() {
+
+  const inputVal = (document.getElementById('techLoginInput').value || '').trim();
+
+  if (!inputVal) {
+
+  alert(currentLang === 'ta' ? 'பதிவு செய்த மொபைல் எண் அல்லது தொழிலாளர் ID-ஐ உள்ளிடவும்.' : 'Please enter registered mobile number or Technician ID.');
+
+  return;
+
+  }
+
+  const cleanNum = inputVal.replace(/[^0-9]/g, '');
+
+  // Search technician in liveServicesList
+
+  let found = liveServicesList.find(x => {
+
+  const xPhone = (x.phone || '').replace(/[^0-9]/g, '');
+
+  const xId = (x.partnerId || '').toLowerCase();
+
+  const sId = (x.id || '').toLowerCase();
+
+  const query = inputVal.toLowerCase();
+
+  return (cleanNum && xPhone.endsWith(cleanNum.slice(-10))) || xId === query || sId === query;
+
+  });
+
+  if (!found) {
+
+  // If not in default, check cached/storage
+
+  try {
+
+  const cached = JSON.parse(localStorage.getItem('fixr_services_cached') || '[]');
+
+  found = cached.find(x => {
+
+  const xPhone = (x.phone || '').replace(/[^0-9]/g, '');
+
+  return cleanNum && xPhone.endsWith(cleanNum.slice(-10));
+
+  });
+
+  } catch(e) {}
+
+  }
+
+  if (found) {
+
+  currentPortalTech = found;
+
+  localStorage.setItem('fixr_tech_session', JSON.stringify(found));
+
+  showTechDashboardView();
+
+  alert(currentLang === 'ta' ? `வணக்கம் ${found.name}! தொழிலாளர் போர்ட்டலில் வெற்றிகரமாக உள்நுழைந்துள்ளீர்கள் 🎉` : `Welcome ${found.name}! Successfully logged in to Technician Portal 🎉`);
+
+  } else {
+
+  alert(currentLang === 'ta' ?
+
+  'இந்த எண் தொழிலாளராகப் பதிவு செய்யப்படவில்லை. தயவுசெய்து பதிவு செய்யவும் அல்லது சரியான எண்ணை உள்ளிடவும்.' :
+
+  'This number is not registered as a technician. Please register or check your number.');
+
+  }
+
+}
+
+function techLogout() {
+
+  currentPortalTech = null;
+
+  localStorage.removeItem('fixr_tech_session');
+
+  showTechLoginView();
+
+  alert(currentLang === 'ta' ? 'தொழிலாளர் போர்ட்டலிலிருந்து வெளியேறிவிட்டீர்கள்.' : 'Logged out from Technician Portal.');
 
 }
 
@@ -9261,35 +9725,21 @@ function toggleTechOnlineStatus() {
 
   if (!currentPortalTech) return;
 
-  currentPortalTech.isAvailable = !currentPortalTech.isAvailable;
+  currentPortalTech.isAvailable = (currentPortalTech.isAvailable === false) ? true : false;
 
-  const btn = document.getElementById('btnTechAvailToggle');
+  localStorage.setItem('fixr_tech_session', JSON.stringify(currentPortalTech));
 
-  if (btn) {
+  // Update in live list
 
-  if (currentPortalTech.isAvailable) {
+  const idx = liveServicesList.findIndex(x => x.id === currentPortalTech.id);
 
-  btn.innerText = "🟢 பணியில் தயார் (Available)";
+  if (idx !== -1) {
 
-  btn.style.background = "#dcfce7";
-
-  btn.style.color = "#166534";
-
-  btn.style.borderColor = "#86efac";
-
-  } else {
-
-  btn.innerText = "🔴 விடுப்பில் (Busy)";
-
-  btn.style.background = "#fee2e2";
-
-  btn.style.color = "#991b1b";
-
-  btn.style.borderColor = "#fca5a5";
+  liveServicesList[idx].isAvailable = currentPortalTech.isAvailable;
 
   }
 
-  }
+  showTechDashboardView();
 
   render();
 
@@ -9337,11 +9787,15 @@ function renderTechBookings() {
 
   const allBookings = JSON.parse(localStorage.getItem('fixr_my_bookings') || '[]');
 
-  const techBookings = allBookings.filter(b =>
+  const techDigits = (currentPortalTech.phone || '').replace(/[^0-9]/g, '').slice(-10);
 
-  b.techName === currentPortalTech.name || b.techPhone === currentPortalTech.phone || b.techId === currentPortalTech.id
+  const techBookings = allBookings.filter(b => {
 
-  );
+  const bTechDigits = (b.techPhone || '').replace(/[^0-9]/g, '').slice(-10);
+
+  return b.techName === currentPortalTech.name || b.techId === currentPortalTech.id || (techDigits && bTechDigits === techDigits);
+
+  });
 
   const activeBookings = techBookings.filter(b => !(b.status || '').includes('முடிந்தது') && !(b.status || '').includes('Completed'));
 
@@ -9451,6 +9905,46 @@ function setBookingStatus(bookingId, status) {
 
 }
 
+function openInvoiceGeneratorForCurrentTech() {
+
+  if (!currentPortalTech) return;
+
+  const tName = document.getElementById('invTechName');
+
+  if (tName) tName.value = currentPortalTech.name;
+
+  calcInvoiceTotal();
+
+  openModal('invoiceGeneratorModal');
+
+}
+
+function openWarrantyForCurrentTech() {
+
+  if (!currentPortalTech) return;
+
+  document.getElementById('wTechName').innerText = currentPortalTech.name;
+
+  document.getElementById('wTechCat').innerText = getDisplayCategory(currentPortalTech.category);
+
+  document.getElementById('wDate').innerText = new Date().toLocaleDateString('ta-IN');
+
+  document.getElementById('wValidTill').innerText = "30 நாட்கள் (100% Free Rework Guarantee)";
+
+  openModal('warrantyCardModal');
+
+}
+
+function openDigitalIdForCurrentTech() {
+
+  if (currentPortalTech && currentPortalTech.id) {
+
+  openDigitalIdModal(currentPortalTech.id);
+
+  }
+
+}
+
 async function run30DayAutoDeleteBookings() {
 
   const thirtyDaysAgoMs = Date.now() - (30 * 24 * 60 * 60 * 1000);
@@ -9503,27 +9997,35 @@ function openWarrantyCardModal() {
 
   const bookings = JSON.parse(localStorage.getItem('fixr_my_bookings') || '[]');
 
-  if (bookings.length > 0) {
+  const selectBox = document.getElementById('warrantySelectBox');
+
+  const bSelect = document.getElementById('warrantyBookingSelect');
+
+  if (bookings.length > 1 && selectBox && bSelect) {
+
+  selectBox.style.display = 'block';
+
+  bSelect.innerHTML = bookings.map(b => `<option value="${b.id}">${b.techName} - ${b.date}</option>`).join('');
+
+  viewBookingWarranty(bookings[0].id);
+
+  } else if (bookings.length === 1) {
+
+  if (selectBox) selectBox.style.display = 'none';
 
   viewBookingWarranty(bookings[0].id);
 
   } else {
 
-  const wN = document.getElementById('wTechName');
+  if (selectBox) selectBox.style.display = 'none';
 
-  if (wN) wN.innerText = "Fixr Verified Expert";
+  document.getElementById('wTechName').innerText = "Fixr Verified Expert";
 
-  const wC = document.getElementById('wTechCat');
+  document.getElementById('wTechCat').innerText = "அனைத்து பழுது பார்க்கும் பணிகள்";
 
-  if (wC) wC.innerText = "அனைத்து பழுது பார்க்கும் பணிகள்";
+  document.getElementById('wDate').innerText = new Date().toLocaleDateString('ta-IN');
 
-  const wD = document.getElementById('wDate');
-
-  if (wD) wD.innerText = new Date().toLocaleDateString('ta-IN');
-
-  const wV = document.getElementById('wValidTill');
-
-  if (wV) wV.innerText = "30 நாட்கள் (100% Free Rework Guarantee)";
+  document.getElementById('wValidTill').innerText = "30 நாட்கள் (100% Free Rework Guarantee)";
 
   openModal('warrantyCardModal');
 
@@ -9531,11 +10033,27 @@ function openWarrantyCardModal() {
 
 }
 
+function onWarrantyBookingSelected(bookingId) {
+
+  viewBookingWarranty(bookingId);
+
+}
+
 function openInvoiceGeneratorModal() {
+
+  const bookings = JSON.parse(localStorage.getItem('fixr_my_bookings') || '[]');
+
+  if (bookings.length > 0) {
+
+  openInvoiceGeneratorForBooking(bookings[0].id);
+
+  } else {
 
   calcInvoiceTotal();
 
   openModal('invoiceGeneratorModal');
+
+  }
 
 }
 
@@ -9687,33 +10205,47 @@ function openMyBookingsModal() {
 
   const phone = document.getElementById('invCustPhone').value.trim();
 
+  const tech = document.getElementById('invTechName') ? document.getElementById('invTechName').value.trim() : 'Fixr Professional';
+
   const labor = document.getElementById('invLabor').value || '0';
 
   const spares = document.getElementById('invSpares').value || '0';
 
   const total = calcInvoiceTotal();
 
-  const msg = `🧾 *FIXR DIGITAL SERVICE BILL* 🧾\n\n` +
+  const billDate = new Date().toLocaleDateString('ta-IN');
 
-  `வணக்கம் ${name}! உங்கள் Fixr சேவைக்கான கட்டண விவரம்:\n` +
+  const msg = `🧾 *FIXR OFFICIAL DIGITAL SERVICE INVOICE* 🧾\n\n` +
 
-  `• தொழிலாளர் கட்டணம் (Labor): ₹${labor}\n` +
+  `📅 பில் தேதி: ${billDate}\n` +
+
+  `👤 வாடிக்கையாளர்: ${name}\n` +
+
+  `👷 சேவை வழங்கியவர்: ${tech}\n` +
+
+  `------------------------------------\n` +
+
+  `• தொழிலாளர் கூலி (Labor): ₹${labor}\n` +
 
   `• உதிரிபாகங்கள் (Spare Parts): ₹${spares}\n` +
 
-  `• *மொத்த தொகை (Total Bill): ₹${total}*\n\n` +
+  `• *மொத்த தொகை (Total Bill): ₹${total}*\n` +
 
-  `🛡️ 30 நாட்கள் Fixr சர்வீஸ் உத்தரவாதம் உண்டு.\n` +
+  `------------------------------------\n` +
 
-  `நன்றி! Fixr Helpline: 9884334097 | https://www.fixrservice.in/`;
+  `🛡️ 30 நாட்கள் Fixr இலவச சேவை மறுபரிசீலனை உத்தரவாதம் உண்டு (100% Free Rework Guarantee).\n\n` +
 
-  const targetUrl = phone ? `https://wa.me/91${phone}?text=${encodeURIComponent(msg)}` : `https://wa.me/?text=${encodeURIComponent(msg)}`;
+  `Fixr Helpline: 9884334097 | https://www.fixrservice.in/`;
+
+  const cleanPhone = phone.replace(/[^0-9]/g, '').slice(-10);
+
+  const targetUrl = cleanPhone ? `https://wa.me/91${cleanPhone}?text=${encodeURIComponent(msg)}` : `https://wa.me/?text=${encodeURIComponent(msg)}`;
 
   window.open(targetUrl, '_blank');
 
   closeModal('invoiceGeneratorModal');
 
-  }
+}
 
   // --- 3. Cost Estimator Logic ---
 
