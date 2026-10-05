@@ -126,6 +126,549 @@
 
 }
 
+
+/* === Urban Company Mobile-First Clean Professional Theme === */
+
+body {
+
+  padding-bottom: 72px !important;
+
+  background: #f8fafc !important;
+
+}
+
+
+/* UC Purple Gradient Header Section */
+
+.uc-header-section {
+
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 60%, #6366f1 100%);
+
+  color: white;
+
+  padding: 12px 16px 20px 16px;
+
+  border-radius: 0 0 24px 24px;
+
+  box-shadow: 0 4px 20px rgba(79, 70, 229, 0.25);
+
+}
+
+
+.uc-top-location-row {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 12px;
+
+}
+
+
+.uc-location-wrap {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  cursor: pointer;
+
+}
+
+
+.uc-time-badge {
+
+  font-size: 13px;
+
+  font-weight: 800;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  color: white;
+
+}
+
+
+.uc-live-dot {
+
+  width: 7px;
+
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #4ade80;
+
+  display: inline-block;
+
+  box-shadow: 0 0 6px #4ade80;
+
+}
+
+
+.uc-location-sub {
+
+  font-size: 11px;
+
+  opacity: 0.9;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 3px;
+
+  color: #e0e7ff;
+
+}
+
+
+.uc-top-actions {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+}
+
+
+.uc-search-container {
+
+  position: relative;
+
+  margin-top: 10px;
+
+}
+
+
+.uc-search-input {
+
+  width: 100%;
+
+  padding: 12px 46px 12px 42px !important;
+
+  border-radius: 16px !important;
+
+  border: none !important;
+
+  background: white !important;
+
+  font-size: 13px !important;
+
+  box-shadow: 0 4px 15px rgba(0,0,0,0.12) !important;
+
+  color: #0f172a !important;
+
+  outline: none !important;
+
+}
+
+
+.uc-search-icon {
+
+  position: absolute;
+
+  left: 14px;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  font-size: 16px;
+
+  color: #64748b;
+
+  pointer-events: none;
+
+}
+
+
+.uc-voice-btn {
+
+  position: absolute;
+
+  right: 6px;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  background: #7c3aed;
+
+  border: none;
+
+  width: 32px;
+
+  height: 32px;
+
+  border-radius: 50%;
+
+  color: white;
+
+  font-size: 15px;
+
+  cursor: pointer;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  box-shadow: 0 2px 6px rgba(124,58,237,0.4);
+
+  transition: transform 0.15s;
+
+}
+
+.uc-voice-btn:active {
+
+  transform: translateY(-50%) scale(0.92);
+
+}
+
+
+.uc-hero-banner {
+
+  margin-top: 14px;
+
+  background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.08));
+
+  border: 1px solid rgba(255,255,255,0.25);
+
+  border-radius: 16px;
+
+  padding: 12px 14px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  backdrop-filter: blur(8px);
+
+}
+
+
+/* UC 8-Card Category Grid */
+
+.uc-cat-section {
+
+  padding: 14px 12px 6px 12px;
+
+}
+
+
+.uc-section-title {
+
+  font-size: 14px;
+
+  font-weight: 800;
+
+  color: #0f172a;
+
+  margin-bottom: 10px;
+
+  padding-left: 4px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+}
+
+
+.uc-cat-grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 10px;
+
+}
+
+
+.uc-cat-card {
+
+  background: white;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 16px;
+
+  padding: 10px 4px 8px 4px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  text-align: center;
+
+  cursor: pointer;
+
+  position: relative;
+
+  transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+
+}
+
+
+.uc-cat-card:active {
+
+  transform: scale(0.93);
+
+  background: #f8fafc;
+
+}
+
+
+.uc-cat-card.active {
+
+  border-color: #7c3aed;
+
+  box-shadow: 0 0 0 2px rgba(124,58,237,0.2);
+
+  background: #fdf4ff;
+
+}
+
+
+.uc-cat-icon {
+
+  font-size: 28px;
+
+  margin-bottom: 4px;
+
+  line-height: 1;
+
+}
+
+
+.uc-cat-badge {
+
+  background: #dcfce7;
+
+  color: #15803d;
+
+  border: 1px solid #bbf7d0;
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  padding: 1px 5px;
+
+  border-radius: 10px;
+
+  margin-bottom: 3px;
+
+  white-space: nowrap;
+
+}
+
+
+.uc-cat-title {
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  color: #1e293b;
+
+  line-height: 1.25;
+
+}
+
+
+/* UC Smart Products / Quick Tools */
+
+.uc-tools-scroll {
+
+  display: flex;
+
+  gap: 10px;
+
+  overflow-x: auto;
+
+  padding: 2px 14px 10px 14px;
+
+  -webkit-overflow-scrolling: touch;
+
+}
+
+.uc-tools-scroll::-webkit-scrollbar {
+
+  display: none;
+
+}
+
+
+.uc-tool-item {
+
+  flex: 0 0 100px;
+
+  background: white;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 14px;
+
+  padding: 10px 8px;
+
+  text-align: center;
+
+  cursor: pointer;
+
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+
+  transition: transform 0.15s;
+
+}
+
+.uc-tool-item:active {
+
+  transform: scale(0.93);
+
+}
+
+
+.uc-tool-icon {
+
+  font-size: 22px;
+
+  margin-bottom: 4px;
+
+}
+
+.uc-tool-title {
+
+  font-size: 10.5px;
+
+  font-weight: 700;
+
+  color: #0f172a;
+
+  line-height: 1.2;
+
+}
+
+.uc-tool-sub {
+
+  font-size: 9px;
+
+  color: #64748b;
+
+  margin-top: 2px;
+
+}
+
+
+/* UC Fixed Bottom Navigation Bar */
+
+.uc-bottom-nav {
+
+  position: fixed;
+
+  bottom: 0;
+
+  left: 0;
+
+  right: 0;
+
+  height: 60px;
+
+  background: white;
+
+  border-top: 1px solid #e2e8f0;
+
+  display: flex;
+
+  justify-content: space-around;
+
+  align-items: center;
+
+  z-index: 999;
+
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.06);
+
+}
+
+
+.uc-nav-btn {
+
+  background: none;
+
+  border: none;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 9.5px;
+
+  font-weight: 700;
+
+  color: #64748b;
+
+  cursor: pointer;
+
+  flex: 1;
+
+  height: 100%;
+
+  padding: 0;
+
+  transition: color 0.15s, transform 0.15s;
+
+}
+
+
+.uc-nav-btn.active, .uc-nav-btn:hover {
+
+  color: #6366f1;
+
+}
+
+
+.uc-nav-btn:active {
+
+  transform: scale(0.92);
+
+}
+
+
+.uc-nav-icon {
+
+  font-size: 18px;
+
+  margin-bottom: 2px;
+
+}
+
+
 </style>
 
 </head>
@@ -156,138 +699,341 @@
 
 </div>
 
-<header>
+<!-- === Urban Company Style Clean & Professional Header === -->
 
-<div class="brand">Fix<span>r</span></div>
+<div class="uc-header-section" id="ucHeaderSection">
 
-<div class="nav-btns">
+  <!-- Top Location & Action Row -->
 
-<button class="install-pwa-btn" id="headerInstallBtn" onclick="installPwaApp()">📲 Install App</button>
+  <div class="uc-top-location-row">
 
-<button class="lang-btn" id="langToggleBtn" onclick="toggleLanguage()" title="Switch Language (மொழி மாற்று)">EN</button>
+    <div class="uc-location-wrap" onclick="triggerNearMeLocation()" title="உங்கள் இருப்பிடத்தைத் தேர்வு செய்க (Select Location)">
 
-<div id="authContainer">
+      <span style="font-size:18px;">📍</span>
 
-<button class="auth-btn" id="authBtn" onclick="openLoginModal()">Login</button>
+      <div>
 
-</div>
+        <div class="uc-time-badge">
 
-</div>
+          <span class="uc-live-dot"></span>
 
-</header>
+          <span id="ucDeliveryTime">In 30 minutes</span>
 
-<div class="pwa-banner" id="pwaBanner">
+        </div>
 
-<span id="pwaBannerText">📲 Fixr ஆப்பை உங்கள் மொபைலில் இன்ஸ்டால் செய்ய</span>
+        <div class="uc-location-sub" id="ucCurrentCitySub">
 
-<div style="display:flex; gap:6px;">
+          <span id="ucCurrentCityText">தமிழ்நாடு (Tamil Nadu)</span> ▾
 
-<button class="pwa-btn" onclick="installPwaApp()">Install</button>
+        </div>
 
-<button onclick="dismissPwaBanner()" style="background:none; border:none; color:white; font-size:14px; cursor:pointer;">✕</button>
+      </div>
 
-</div>
+    </div>
 
-</div>
 
-<div class="sync-bar" style="display: none !important;">
+    <!-- Right Actions: Brand, Lang, Auth -->
 
-<span id="cloudStatusText">☁️ Google Cloud Database: இணைக்கப்பட்டது (Online)</span>
+    <div class="uc-top-actions">
 
-<span style="background:#0284c7; color:white; padding:1px 7px; border-radius:10px; font-size:10px;">Live</span>
+      <button class="lang-btn" id="langToggleBtn" onclick="toggleLanguage()" title="Switch Language (மொழி மாற்று)">EN</button>
 
-</div>
+      <div id="authContainer">
 
-<div class="search-box" style="position:relative; display:flex; align-items:center;">
+        <button class="auth-btn" id="authBtn" onclick="openLoginModal()" style="padding:4px 10px; font-size:11px; border-radius:12px;">Login</button>
 
-<input type="text" id="searchInput" class="search-input" style="padding-right:45px;" placeholder="🔍 நகரம் (Chennai, Madurai...), சேவை அல்லது பெயர் தேடுக...">
+      </div>
 
-<button type="button" class="voice-mic-btn" onclick="startVoiceBooking()" title="தமிழில் பேசி முன்பதிவு / தேடுக (Tamil Voice Booking)" style="position:absolute; right:8px; background:linear-gradient(135deg,#0284c7,#2563eb); border:none; width:34px; height:34px; border-radius:50%; color:white; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(2,132,199,0.4);">🎙️</button>
-
-</div>
-
-<div class="city-chips-bar" id="cityChipsContainer">
-
-<div class="city-chip active" id="cityChipAll" onclick="setCityFilter('all')">📍 அனைத்து ஊர்கள்</div>
-
-<!-- Fixr பிரத்யேக வசதிகள் (Exclusive Quick Tools Bar) -->
-
-<div class="quick-tools-grid" id="quickToolsSection" style="display:flex; gap:8px; overflow-x:auto; padding:6px 12px; margin-bottom:8px; -webkit-overflow-scrolling:touch;">
-
-  <div class="tool-card" onclick="openMyBookingsModal()" style="flex:0 0 auto; min-width:92px; background:white; border:1px solid #cbd5e1; border-radius:12px; padding:7px 8px; text-align:center; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.05);">
-
-    <div style="font-size:18px;">📋</div>
-
-    <div style="font-size:11px; font-weight:700; color:#0f172a;" id="lblToolMyBookings">முன்பதிவுகள்</div>
-
-    <div style="font-size:9.5px; color:#64748b;" id="lblToolMyBookingsSub">My Bookings</div>
+    </div>
 
   </div>
 
-  <div class="tool-card" onclick="openWarrantyCardModal()" style="flex:0 0 auto; min-width:92px; background:white; border:1px solid #cbd5e1; border-radius:12px; padding:7px 8px; text-align:center; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.05);">
 
-    <div style="font-size:18px;">🛡️</div>
+  <!-- Sleek Floating White Search Bar -->
 
-    <div style="font-size:11px; font-weight:700; color:#0f172a;" id="lblToolWarranty">30 நாள் கேரண்டி</div>
+  <div class="uc-search-container">
 
-    <div style="font-size:9.5px; color:#64748b;" id="lblToolWarrantySub">Guarantee Card</div>
+    <span class="uc-search-icon">🔍</span>
 
-  </div>
+    <input type="text" id="searchInput" class="uc-search-input" placeholder="Search for 'AC Service', 'Electrician', 'Plumber'...">
 
-  <div class="tool-card" onclick="openInvoiceGeneratorModal()" style="flex:0 0 auto; min-width:92px; background:white; border:1px solid #cbd5e1; border-radius:12px; padding:7px 8px; text-align:center; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.05);">
-
-    <div style="font-size:18px;">🧾</div>
-
-    <div style="font-size:11px; font-weight:700; color:#0f172a;" id="lblToolInvoice">டிஜிட்டல் பில்</div>
-
-    <div style="font-size:9.5px; color:#64748b;" id="lblToolInvoiceSub">Instant Invoice</div>
+    <button type="button" class="uc-voice-btn" onclick="startVoiceBooking()" title="தமிழில் பேசி முன்பதிவு / தேடுக (Tamil Voice Booking)">🎙️</button>
 
   </div>
 
-  <div class="tool-card" onclick="startVoiceBooking()" style="flex:0 0 auto; min-width:92px; background:#f0f9ff; border:1px solid #38bdf8; border-radius:12px; padding:7px 8px; text-align:center; cursor:pointer; box-shadow:0 1px 3px rgba(2,132,199,0.1);">
 
-    <div style="font-size:18px;">🎤</div>
+  <!-- Hero Promo Banner (Urban Company Purple Gradient Promo) -->
 
-    <div style="font-size:11px; font-weight:700; color:#0284c7;" id="lblToolVoice">வாய்ஸ் புக்கிங்</div>
+  <div class="uc-hero-banner" id="ucHeroBanner" onclick="openCommunityPoolingModal()">
 
-    <div style="font-size:9.5px; color:#0369a1;" id="lblToolVoiceSub">Voice Booking</div>
+    <div>
 
-  </div>
+      <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.5px; color:#fde047; font-weight:800;" id="ucPromoTag">FIXR HOME SERVICES</div>
 
-  <div class="tool-card" onclick="openSosModal()" style="flex:0 0 auto; min-width:92px; background:#fff1f2; border:1px solid #fca5a5; border-radius:12px; padding:7px 8px; text-align:center; cursor:pointer; box-shadow:0 1px 3px rgba(220,38,38,0.1);">
+      <div style="font-size:14px; font-weight:800; line-height:1.25; margin:3px 0 5px 0; color:white;" id="ucPromoTitle">
 
-    <div style="font-size:18px;">🚨</div>
+        25% நேரடித் தள்ளுபடி<br>
 
-    <div style="font-size:11px; font-weight:700; color:#dc2626;" id="lblToolSos">24/7 SOS உதவி</div>
+        <span style="font-size:11px; font-weight:normal; opacity:0.95;" id="ucPromoSub">குழு & முதல் முன்பதிவுக்கு</span>
 
-    <div style="font-size:9.5px; color:#991b1b;" id="lblToolSosSub">Emergency</div>
+      </div>
 
-  </div>
+      <button type="button" style="background:white; color:#4f46e5; border:none; padding:4px 10px; border-radius:16px; font-size:10.5px; font-weight:800; cursor:pointer; display:inline-flex; align-items:center; gap:4px; box-shadow:0 2px 6px rgba(0,0,0,0.15);" id="ucPromoBtn">
 
-  <div class="tool-card" onclick="openTechPortalModal()" style="flex:0 0 auto; min-width:92px; background:#f8fafc; border:1px solid #94a3b8; border-radius:12px; padding:7px 8px; text-align:center; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.05);">
+        Book now ➔
 
-    <div style="font-size:18px;">👷</div>
+      </button>
 
-    <div style="font-size:11px; font-weight:700; color:#0f172a;" id="lblToolTechPortal">தொழிலாளர் போர்டல்</div>
+    </div>
 
-    <div style="font-size:9.5px; color:#64748b;" id="lblToolTechPortalSub">Tech Portal</div>
+    <div style="font-size:38px; filter:drop-shadow(0 4px 8px rgba(0,0,0,0.2));">
+
+      🏡⚡
+
+    </div>
 
   </div>
 
 </div>
 
 
-<div class="city-chip" id="cityChipChennai" onclick="setCityFilter('சென்னை')">சென்னை (Chennai)</div>
+<!-- === Urban Company Style 8-Category Grid === -->
 
-<div class="city-chip" id="cityChipCbe" onclick="setCityFilter('கோயம்புத்தூர்')">கோவை (Coimbatore)</div>
+<div class="uc-cat-section" id="ucCatSection">
 
-<div class="city-chip" id="cityChipMadurai" onclick="setCityFilter('மதுரை')">மதுரை (Madurai)</div>
+  <div class="uc-section-title">
 
-<div class="city-chip" id="cityChipTrichy" onclick="setCityFilter('திருச்சி')">திருச்சி (Trichy)</div>
+    <span id="lblUcCategories">சேவைகள் (Services)</span>
 
-<div class="city-chip" id="cityChipSalem" onclick="setCityFilter('சேலம்')">சேலம் (Salem)</div>
+    <span style="font-size:11px; font-weight:700; color:#4f46e5; cursor:pointer;" onclick="selectCategoryFromGrid('அனைத்தும்')">அனைத்தும் ➔</span>
 
-<div class="city-chip" id="cityChipBlr" onclick="setCityFilter('பெங்களூரு')">பெங்களூரு (Bengaluru)</div>
+  </div>
+
+
+  <div class="uc-cat-grid" id="ucCategoryGrid">
+
+    <!-- Card 1: Caregiver / InstaHelp -->
+
+    <div class="uc-cat-card" onclick="selectCategoryFromGrid('கேர் டேக்கர்')">
+
+      <div class="uc-cat-icon">👵</div>
+
+      <span class="uc-cat-badge">24/7 Care</span>
+
+      <div class="uc-cat-title" id="lblCatCare">கேர் டேக்கர்<br>(InstaHelp)</div>
+
+    </div>
+
+
+    <!-- Card 2: AC Service -->
+
+    <div class="uc-cat-card" onclick="selectCategoryFromGrid('AC சர்வீஸ்')">
+
+      <div class="uc-cat-icon">❄️</div>
+
+      <span class="uc-cat-badge">30 mins</span>
+
+      <div class="uc-cat-title" id="lblCatAc">AC பழுது<br>& சர்வீஸ்</div>
+
+    </div>
+
+
+    <!-- Card 3: Electrician & Plumber -->
+
+    <div class="uc-cat-card" onclick="selectCategoryFromGrid('எலக்ட்ரீஷியன்')">
+
+      <div class="uc-cat-icon">⚡</div>
+
+      <span class="uc-cat-badge">30 mins</span>
+
+      <div class="uc-cat-title" id="lblCatElec">எலக்ட்ரீஷியன்<br>& பிளம்பர்</div>
+
+    </div>
+
+
+    <!-- Card 4: Deep Cleaning -->
+
+    <div class="uc-cat-card" onclick="selectCategoryFromGrid('டீப் கிளீனிங்')">
+
+      <div class="uc-cat-icon">✨</div>
+
+      <span class="uc-cat-badge">Eco Clean</span>
+
+      <div class="uc-cat-title" id="lblCatClean">முழு வீடு<br>கிளீனிங்</div>
+
+    </div>
+
+
+    <!-- Card 5: Packers & Movers -->
+
+    <div class="uc-cat-card" onclick="selectCategoryFromGrid('பேக்கர்ஸ் & மூவர்ஸ்')">
+
+      <div class="uc-cat-icon">📦</div>
+
+      <span class="uc-cat-badge">Safe Move</span>
+
+      <div class="uc-cat-title" id="lblCatPack">பேக்கர்ஸ்<br>& மூவர்ஸ்</div>
+
+    </div>
+
+
+    <!-- Card 6: House Rentals (0% Brokerage) -->
+
+    <div class="uc-cat-card" onclick="selectCategoryFromGrid('வாடகை வீடுகள்')">
+
+      <div class="uc-cat-icon">🏠</div>
+
+      <span class="uc-cat-badge" style="background:#fee2e2; color:#991b1b; border-color:#fecaca;">0% Broker</span>
+
+      <div class="uc-cat-title" id="lblCatRental">வாடகை<br>வீடுகள்</div>
+
+    </div>
+
+
+    <!-- Card 7: Rental Agreement (E-Stamp) -->
+
+    <div class="uc-cat-card" onclick="openRentalAgreementModal()">
+
+      <div class="uc-cat-icon">📑</div>
+
+      <span class="uc-cat-badge" style="background:#fef9c3; color:#854d0e; border-color:#fde047;">Govt Stamp</span>
+
+      <div class="uc-cat-title" id="lblCatAgr">வாடகை<br>ஒப்பந்தம்</div>
+
+    </div>
+
+
+    <!-- Card 8: All Services -->
+
+    <div class="uc-cat-card" onclick="selectCategoryFromGrid('அனைத்தும்')">
+
+      <div class="uc-cat-icon">📱</div>
+
+      <span class="uc-cat-badge" style="background:#f3e8ff; color:#6b21a8; border-color:#e9d5ff;">All in One</span>
+
+      <div class="uc-cat-title" id="lblCatAll">அனைத்து<br>சேவைகள்</div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- === Fixr Smart Products / Quick Tools (Urban Company "Native Products" style) === -->
+
+<div style="padding: 10px 0 6px 0;">
+
+  <div class="uc-section-title" style="padding: 0 16px;">
+
+    <span id="lblUcSmartProducts">Fixr ஸ்மார்ட் வசதிகள் (Smart Tools)</span>
+
+  </div>
+
+  <div class="uc-tools-scroll" id="ucSmartToolsScroll">
+
+    <div class="uc-tool-item" onclick="openMyBookingsModal()">
+
+      <div class="uc-tool-icon">📋</div>
+
+      <div class="uc-tool-title" id="lblUcMyBookings">முன்பதிவுகள்</div>
+
+      <div class="uc-tool-sub">My Bookings</div>
+
+    </div>
+
+    <div class="uc-tool-item" onclick="openWarrantyCardModal()" style="border-color:#fde047; background:#fffef9;">
+
+      <div class="uc-tool-icon">🛡️</div>
+
+      <div class="uc-tool-title" id="lblUcWarranty">30 நாள் கேரண்டி</div>
+
+      <div class="uc-tool-sub">Guarantee Card</div>
+
+    </div>
+
+    <div class="uc-tool-item" onclick="openInvoiceGeneratorModal()">
+
+      <div class="uc-tool-icon">🧾</div>
+
+      <div class="uc-tool-title" id="lblUcInvoice">டிஜிட்டல் பில்</div>
+
+      <div class="uc-tool-sub">Instant Invoice</div>
+
+    </div>
+
+    <div class="uc-tool-item" onclick="openPhotoDiagnosisModal()" style="border-color:#bae6fd; background:#f0f9ff;">
+
+      <div class="uc-tool-icon">📸</div>
+
+      <div class="uc-tool-title" id="lblUcPhotoDiag">Photo Diag</div>
+
+      <div class="uc-tool-sub">பழுது படம்</div>
+
+    </div>
+
+    <div class="uc-tool-item" onclick="openBudgetBiddingModal()">
+
+      <div class="uc-tool-icon">🎯</div>
+
+      <div class="uc-tool-title" id="lblUcBudget">என் பட்ஜெட்</div>
+
+      <div class="uc-tool-sub">Bidding Job</div>
+
+    </div>
+
+    <div class="uc-tool-item" onclick="openCommunityPoolingModal()" style="border-color:#fbcfe8; background:#fdf2f8;">
+
+      <div class="uc-tool-icon">🏢</div>
+
+      <div class="uc-tool-title" id="lblUcPool">குழு தள்ளுபடி</div>
+
+      <div class="uc-tool-sub">Group Pool</div>
+
+    </div>
+
+    <div class="uc-tool-item" onclick="openSosModal()" style="border-color:#fca5a5; background:#fff1f2;">
+
+      <div class="uc-tool-icon">🚨</div>
+
+      <div class="uc-tool-title" style="color:#dc2626;" id="lblUcSos">24/7 SOS உதவி</div>
+
+      <div class="uc-tool-sub" style="color:#991b1b;">Emergency</div>
+
+    </div>
+
+    <div class="uc-tool-item" onclick="openTechPortalModal()" style="border-color:#cbd5e1; background:#f8fafc;">
+
+      <div class="uc-tool-icon">👷</div>
+
+      <div class="uc-tool-title" id="lblUcTechPortal">தொழிலாளர் போர்டல்</div>
+
+      <div class="uc-tool-sub">Partner Portal</div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- City Filter Bar (Clean Modern Scroll) -->
+
+<div class="city-chips-bar" id="cityChipsContainer" style="margin-bottom:8px;">
+
+  <div class="city-chip active" id="cityChipAll" onclick="setCityFilter('all')">📍 அனைத்து ஊர்கள்</div>
+
+  <div class="city-chip" id="cityChipChennai" onclick="setCityFilter('சென்னை')">சென்னை (Chennai)</div>
+
+  <div class="city-chip" id="cityChipCbe" onclick="setCityFilter('கோயம்புத்தூர்')">கோவை (Coimbatore)</div>
+
+  <div class="city-chip" id="cityChipMadurai" onclick="setCityFilter('மதுரை')">மதுரை (Madurai)</div>
+
+  <div class="city-chip" id="cityChipTrichy" onclick="setCityFilter('திருச்சி')">திருச்சி (Trichy)</div>
+
+  <div class="city-chip" id="cityChipSalem" onclick="setCityFilter('சேலம்')">சேலம் (Salem)</div>
+
+  <div class="city-chip" id="cityChipBlr" onclick="setCityFilter('பெங்களூரு')">பெங்களூரு (Bengaluru)</div>
 
 </div>
 
@@ -3014,6 +3760,54 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
 <script>
 
+// --- Urban Company UI Helpers ---
+
+function selectCategoryFromGrid(catKey) {
+
+  currentCategory = catKey;
+
+  currentRentalSubFilter = 'all';
+
+  // Highlight active category card
+
+  document.querySelectorAll('.uc-cat-card').forEach(card => card.classList.remove('active'));
+
+  // Highlight matching card if available
+
+  const cards = document.querySelectorAll('.uc-cat-card');
+
+  cards.forEach(c => {
+
+  if (c.innerText.includes(catKey)) c.classList.add('active');
+
+  });
+
+  renderCategories();
+
+  render();
+
+  // Scroll smoothly to services list
+
+  const listEl = document.getElementById('servicesList');
+
+  if (listEl && catKey !== 'அனைத்தும்') {
+
+  listEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  }
+
+}
+
+function setActiveBottomNav(btnId) {
+
+  document.querySelectorAll('.uc-nav-btn').forEach(btn => btn.classList.remove('active'));
+
+  const target = document.getElementById(btnId);
+
+  if (target) target.classList.add('active');
+
+}
+
   const ADMIN_PHONE = "9884334097";
 
   function formatWaNumber(num) {
@@ -3367,6 +4161,90 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
   }
 
   function updateI18n() {
+
+  // Urban Company Elements Translations
+
+  const ucDel = document.getElementById('ucDeliveryTime');
+
+  if (ucDel) ucDel.innerText = isTa ? '30 நிமிடங்களில் வருகை' : 'In 30 minutes';
+
+  const ucCity = document.getElementById('ucCurrentCityText');
+
+  if (ucCity) ucCity.innerText = isTa ? 'தமிழ்நாடு (Tamil Nadu)' : 'Tamil Nadu, India';
+
+  const ucTag = document.getElementById('ucPromoTag');
+
+  if (ucTag) ucTag.innerText = isTa ? 'FIXR வீட்டுப் பராமரிப்பு சேவைகள்' : 'FIXR HOME SERVICES';
+
+  const ucTitle = document.getElementById('ucPromoTitle');
+
+  if (ucTitle) ucTitle.innerHTML = isTa ? '25% நேரடித் தள்ளுபடி<br><span style="font-size:11px;font-weight:normal;opacity:0.95;">குழு & முதல் முன்பதிவுக்கு</span>' : '25% Instant Discount<br><span style="font-size:11px;font-weight:normal;opacity:0.95;">On Group & First Booking</span>';
+
+  const ucBtn = document.getElementById('ucPromoBtn');
+
+  if (ucBtn) ucBtn.innerText = isTa ? 'முன்பதிவு ➔' : 'Book now ➔';
+
+  const ucCatH = document.getElementById('lblUcCategories');
+
+  if (ucCatH) ucCatH.innerText = isTa ? 'சேவைகள் (Services)' : 'Categories';
+
+  const ucCare = document.getElementById('lblCatCare');
+
+  if (ucCare) ucCare.innerHTML = isTa ? 'கேர் டேக்கர்<br>(InstaHelp)' : 'Caregiver<br>(InstaHelp)';
+
+  const ucAc = document.getElementById('lblCatAc');
+
+  if (ucAc) ucAc.innerHTML = isTa ? 'AC பழுது<br>& சர்வீஸ்' : 'AC Repair<br>& Service';
+
+  const ucElec = document.getElementById('lblCatElec');
+
+  if (ucElec) ucElec.innerHTML = isTa ? 'எலக்ட்ரீஷியன்<br>& பிளம்பர்' : 'Electrician<br>& Plumber';
+
+  const ucClean = document.getElementById('lblCatClean');
+
+  if (ucClean) ucClean.innerHTML = isTa ? 'முழு வீடு<br>கிளீனிங்' : 'Deep<br>Cleaning';
+
+  const ucPack = document.getElementById('lblCatPack');
+
+  if (ucPack) ucPack.innerHTML = isTa ? 'பேக்கர்ஸ்<br>& மூவர்ஸ்' : 'Packers<br>& Movers';
+
+  const ucRent = document.getElementById('lblCatRental');
+
+  if (ucRent) ucRent.innerHTML = isTa ? 'வாடகை<br>வீடுகள்' : 'House<br>Rentals';
+
+  const ucAgr = document.getElementById('lblCatAgr');
+
+  if (ucAgr) ucAgr.innerHTML = isTa ? 'வாடகை<br>ஒப்பந்தம்' : 'Rental<br>Agreement';
+
+  const ucAll = document.getElementById('lblCatAll');
+
+  if (ucAll) ucAll.innerHTML = isTa ? 'அனைத்து<br>சேவைகள்' : 'All<br>Services';
+
+  const ucSmart = document.getElementById('lblUcSmartProducts');
+
+  if (ucSmart) ucSmart.innerText = isTa ? 'Fixr ஸ்மார்ட் வசதிகள் (Smart Tools)' : 'Fixr Smart Features';
+
+  // Bottom Nav
+
+  const nHome = document.getElementById('lblNavHome');
+
+  if (nHome) nHome.innerText = isTa ? 'முகப்பு' : 'Home';
+
+  const nBk = document.getElementById('lblNavBookings');
+
+  if (nBk) nBk.innerText = isTa ? 'முன்பதிவுகள்' : 'Bookings';
+
+  const nVc = document.getElementById('lblNavVoice');
+
+  if (nVc) nVc.innerText = isTa ? 'குரல்வழி' : 'Voice';
+
+  const nGu = document.getElementById('lblNavGuarantee');
+
+  if (nGu) nGu.innerText = isTa ? 'கேரண்டி' : 'Guarantee';
+
+  const nAcc = document.getElementById('lblNavAccount');
+
+  if (nAcc) nAcc.innerText = isTa ? 'தொழிலாளர்' : 'Partner';
 
   const isTa = (currentLang === 'ta');
 
@@ -10557,6 +11435,54 @@ function openMyBookingsModal() {
   }
 
 </script>
+
+
+<!-- === Urban Company Fixed Bottom Navigation Bar === -->
+
+<div class="uc-bottom-nav" id="ucBottomNav">
+
+  <button type="button" class="uc-nav-btn active" id="btnNavHome" onclick="selectCategoryFromGrid('அனைத்தும்'); setActiveBottomNav('btnNavHome');">
+
+    <span class="uc-nav-icon">🏠</span>
+
+    <span id="lblNavHome">முகப்பு</span>
+
+  </button>
+
+  <button type="button" class="uc-nav-btn" id="btnNavBookings" onclick="openMyBookingsModal(); setActiveBottomNav('btnNavBookings');">
+
+    <span class="uc-nav-icon">📋</span>
+
+    <span id="lblNavBookings">முன்பதிவுகள்</span>
+
+  </button>
+
+  <button type="button" class="uc-nav-btn" id="btnNavVoice" onclick="startVoiceBooking(); setActiveBottomNav('btnNavVoice');" style="color:#7c3aed;">
+
+    <span class="uc-nav-icon" style="font-size:22px; filter:drop-shadow(0 2px 4px rgba(124,58,237,0.3));">🎙️</span>
+
+    <span id="lblNavVoice" style="color:#7c3aed; font-weight:800;">குரல்வழி</span>
+
+  </button>
+
+  <button type="button" class="uc-nav-btn" id="btnNavGuarantee" onclick="openWarrantyCardModal(); setActiveBottomNav('btnNavGuarantee');">
+
+    <span class="uc-nav-icon">🛡️</span>
+
+    <span id="lblNavGuarantee">கேரண்டி</span>
+
+  </button>
+
+  <button type="button" class="uc-nav-btn" id="btnNavAccount" onclick="openTechPortalModal(); setActiveBottomNav('btnNavAccount');">
+
+    <span class="uc-nav-icon">👤</span>
+
+    <span id="lblNavAccount">தொழிலாளர்</span>
+
+  </button>
+
+</div>
+
 
 </body>
 
