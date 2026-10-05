@@ -301,9 +301,11 @@
 
 <button class="submit-btn" id="btnSendOtp" onclick="sendOtpCode()">OTP பெறுக (Send SMS OTP) 📲</button>
 
-<button type="button" class="submit-btn" style="background:#22c55e; margin-top:8px; display:flex; align-items:center; justify-content:center; gap:6px;" onclick="loginWithWhatsApp()">
+<button type="button" class="submit-btn" style="background:#ffffff; color:#1f2937; border:1px solid #cbd5e1; margin-top:8px; display:flex; align-items:center; justify-content:center; gap:8px; font-weight:700;" onclick="loginWithGoogle()">
 
-  <span>💬</span> <span id="lblLoginWaBtn">WhatsApp மூலம் உடனடி உள்நுழைவு</span>
+  <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.65v3.03h3.88c2.27-2.09 3.665-5.17 3.665-9.12z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.03c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.13C3.27 21.43 7.35 24 12 24z"/><path fill="#FBBC05" d="M5.28 14.29c-.25-.72-.38-1.49-.38-2.29s.13-1.57.38-2.29V6.58H1.25C.45 8.17 0 9.99 0 12s.45 3.83 1.25 5.42l4.03-3.13z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.35 0 3.27 2.57 1.25 6.58l4.03 3.13c.95-2.83 3.6-4.96 6.72-4.96z"/></svg>
+
+  <span id="lblLoginGoogleBtn">Google மூலம் உள்நுழைக</span>
 
 </button>
 
@@ -503,6 +505,28 @@
 
 </div>
 
+<div class="form-group" style="background:#f8fafc; border:1px dashed #0284c7; padding:10px; border-radius:10px; margin-bottom:10px;">
+
+<label style="display:flex; justify-content:space-between; align-items:center; font-size:12px; font-weight:700; color:#0f172a; margin-bottom:4px;">
+
+  <span>📸 தொழிலாளர் புகைப்படம் (Profile Photo)</span>
+
+  <span style="font-size:10px; color:#0284c7;">விருப்பத்தேர்வு (Optional)</span>
+
+</label>
+
+<input type="file" id="pTechPhoto" accept="image/*" class="form-input" style="background:white; padding:4px; font-size:11px;" onchange="previewPartnerPhoto(this)">
+
+<div id="pTechPhotoPreview" style="margin-top:6px; display:none; align-items:center; gap:8px;">
+
+  <img id="pTechPhotoImg" src="" style="width:44px; height:44px; border-radius:50%; object-fit:cover; border:2px solid #0284c7;">
+
+  <span style="font-size:11px; color:#166534; font-weight:700;">✅ படம் இணைக்கப்பட்டது</span>
+
+</div>
+
+</div>
+
 <div id="housePhotoUploadSection" style="display:none; margin: 12px 0; background: #eff6ff; padding: 12px; border-radius: 12px; border: 1px dashed #3b82f6;">
 
 <div style="font-size: 13px; font-weight: bold; color: #1d4ed8; margin-bottom: 4px;">
@@ -692,6 +716,24 @@
 <input type="text" id="admRating" class="form-input" placeholder="மதிப்பீடு (எ.கா: ★ 4.9)" style="margin-bottom:6px;">
 
 <input type="text" id="admDesc" class="form-input" placeholder="சேவை விவரக் குறிப்பு" style="margin-bottom:8px;">
+
+<div style="background:#f0f9ff; border:1px dashed #38bdf8; padding:8px; border-radius:8px; margin-bottom:8px;">
+
+  <label style="font-size:11px; font-weight:bold; color:#0369a1; display:block; margin-bottom:3px;">📸 தொழிலாளர் புகைப்படம் (Profile Photo):</label>
+
+  <input type="file" id="admTechPhoto" accept="image/*" class="form-input" style="background:white; padding:4px; font-size:11px;" onchange="previewAdminPhoto(this)">
+
+  <input type="text" id="admPhotoUrl" class="form-input" placeholder="அல்லது புகைப்பட URL (Optional)" style="margin-top:4px; font-size:11px;">
+
+  <div id="admTechPhotoPreview" style="margin-top:4px; display:none; align-items:center; gap:6px;">
+
+    <img id="admTechPhotoImg" src="" style="width:36px; height:36px; border-radius:50%; object-fit:cover; border:1.5px solid #0284c7;">
+
+    <span style="font-size:10px; color:#166534; font-weight:bold;">✅ படம் தேர்ந்தெடுக்கப்பட்டது</span>
+
+  </div>
+
+</div>
 
 <div id="admHousePhotoSection" style="display:none; margin-bottom:8px; background:#eff6ff; padding:10px; border-radius:10px; border:1px dashed #3b82f6;">
 
@@ -2485,9 +2527,7 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
       if (admBtn) admBtn.innerText = isTa ? "🔒 நிர்வாகி" : "🔒 Admin";
 
-      const waLoginBtn = document.getElementById('lblLoginWaBtn');
-
-      if (waLoginBtn) waLoginBtn.innerText = isTa ? "WhatsApp மூலம் உடனடி உள்நுழைவு" : "Instant Login with WhatsApp";
+      const gBtn = document.getElementById("lblLoginGoogleBtn"); if (gBtn) gBtn.innerText = isTa ? "Google மூலம் உள்நுழைக" : "Sign in with Google";
 
       const authBtn = document.getElementById('authBtn');
 
@@ -3415,7 +3455,7 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
             <div>
 
-              <b style="font-size:14px; color:#0f172a;">${req.name}</b>
+              <div style="display:flex; align-items:center; gap:8px;">${req.photoUrl ? `<img src="${req.photoUrl}" style="width:38px; height:38px; border-radius:50%; object-fit:cover; border:1.5px solid #0284c7;">` : ""}<b style="font-size:14px; color:#0f172a;">${req.name}</b></div>
 
               <div style="font-size:11px; color:#64748b;">📍 ${req.area} | 📞 ${req.phone}</div>
 
@@ -3467,7 +3507,11 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
           price: req.price,
 
+          photoUrl: techPhotoUrl,
+
           rating: '★ 5.0 (Verified)',
+
+          photoUrl: req.photoUrl || '',
 
           desc: req.desc || 'அங்கீகரிக்கப்பட்ட Fixr சேவை',
 
@@ -3557,6 +3601,8 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
       const pBack = document.getElementById('pPanBack').files[0];
 
+      const pTechPhotoFile = document.getElementById('pTechPhoto') && document.getElementById('pTechPhoto').files ? document.getElementById('pTechPhoto').files[0] : null;
+
       const payProof = document.getElementById('pPaymentProof').files[0];
 
       const housePhotoInput = document.getElementById('pHousePhotos');
@@ -3602,6 +3648,8 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
         const pFrontUrl = pFront ? await uploadDocFile(pFront, `${fld}/pan_front_${pFront.name}`) : "";
 
         const pBackUrl = pBack ? await uploadDocFile(pBack, `${fld}/pan_back_${pBack.name}`) : "";
+
+        const techPhotoUrl = pTechPhotoFile ? await uploadDocFile(pTechPhotoFile, `${fld}/photo_${pTechPhotoFile.name}`) : '';
 
         const payProofUrl = payProof ? await uploadDocFile(payProof, `${fld}/payment_${payProof.name}`) : "";
 
@@ -3717,6 +3765,8 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
       const rating = document.getElementById('admRating').value.trim();
 
+      const photoUrl = document.getElementById('admPhotoUrl') ? document.getElementById('admPhotoUrl').value.trim() : '';
+
       const desc = document.getElementById('admDesc').value.trim();
 
       if (!name || !area || phone.length < 10) {
@@ -3757,7 +3807,9 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
         rating: rating || '★ 5.0 (Verified)',
 
-        desc: desc || (currentLang === 'ta' ? 'அங்கீகரிக்கப்பட்ட சேவை' : 'Verified Partner')
+        desc: desc || (currentLang === 'ta' ? 'அங்கீகரிக்கப்பட்ட சேவை' : 'Verified Partner'),
+
+        photoUrl: photoUrl
 
       };
 
@@ -3802,6 +3854,12 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
       document.getElementById('admPrice').value = '';
 
       document.getElementById('admRating').value = '';
+
+      if (document.getElementById('admPhotoUrl')) document.getElementById('admPhotoUrl').value = '';
+
+      if (document.getElementById('admTechPhoto')) document.getElementById('admTechPhoto').value = '';
+
+      if (document.getElementById('admTechPhotoPreview')) document.getElementById('admTechPhotoPreview').style.display = 'none';
 
       document.getElementById('admDesc').value = '';
 
@@ -3888,6 +3946,20 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
       document.getElementById('admPrice').value = item.price;
 
       document.getElementById('admRating').value = item.rating || '';
+
+      if (document.getElementById('admPhotoUrl')) document.getElementById('admPhotoUrl').value = item.photoUrl || '';
+
+      if (item.photoUrl && document.getElementById('admTechPhotoPreview')) {
+
+        document.getElementById('admTechPhotoImg').src = item.photoUrl;
+
+        document.getElementById('admTechPhotoPreview').style.display = 'flex';
+
+      } else if (document.getElementById('admTechPhotoPreview')) {
+
+        document.getElementById('admTechPhotoPreview').style.display = 'none';
+
+      }
 
       document.getElementById('admDesc').value = item.desc || '';
 
@@ -5174,7 +5246,7 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
               ${topTag}
 
-              <span class="name">${item.name}</span>
+              ${item.photoUrl ? `<img src="${item.photoUrl}" alt="${item.name}" style="width:32px; height:32px; border-radius:50%; object-fit:cover; border:1.5px solid #0284c7; flex-shrink:0;">` : ""}<span class="name">${item.name}</span>
 
               <button type="button" class="fav-btn" onclick="toggleFavorite('${item.id}')" title="Favorite">${isFav ? '❤️' : '🤍'}</button>
 
@@ -6712,43 +6784,109 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
     }
 
 
-    function loginWithWhatsApp() {
+    function loginWithGoogle() {
 
-      const name = document.getElementById('userName').value.trim() || 'Customer';
+      if (!auth || typeof firebase === 'undefined') {
 
-      const phone = document.getElementById('userPhone').value.trim() || '';
+        alert(currentLang === 'ta' ? 'Google உள்நுழைவு தயாராகிறது, தயவுசெய்து சிறிது நேரம் கழித்து முயற்சிக்கவும்.' : 'Google Sign-in is initializing, please try again.');
 
-      const cleanPhone = phone.replace(/[^0-9]/g, '').slice(-10);
+        return;
 
-      const isTa = (currentLang === 'ta');
+      }
 
-     
+      const provider = new firebase.auth.GoogleAuthProvider();
 
-      // Auto login user
+      auth.signInWithPopup(provider)
 
-      localStorage.setItem('fixr_user', JSON.stringify({ name: name, phone: cleanPhone || ADMIN_PHONE }));
+        .then(function(result) {
 
-      closeModal('loginModal');
+          const user = result.user;
 
-      checkUserLoggedIn();
+          const name = user.displayName || 'Customer';
 
+          const email = user.email || '';
 
-      // Open WhatsApp verification to Admin
+          const phone = user.phoneNumber || '';
 
-      const waMsg = isTa ?
+          const photoUrl = user.photoURL || '';
 
-        `வணக்கம் Fixr! நான் ${name} (+91 ${cleanPhone || 'User'}). Fixr தளத்தில் உள்நுழைய விரும்புகிறேன்.` :
+          localStorage.setItem('fixr_user', JSON.stringify({ name: name, email: email, phone: phone, photoUrl: photoUrl, uid: user.uid }));
 
-        `Hello Fixr! I am ${name} (+91 ${cleanPhone || 'User'}). I want to login to Fixr.`;
+          closeModal('loginModal');
 
-      window.open(`https://wa.me/91${ADMIN_PHONE}?text=${encodeURIComponent(waMsg)}`, '_blank');
+          checkUserLoggedIn();
 
-      alert(isTa ? `வாட்ஸ்அப் வழியாக வெற்றிகரமாக உள்நுழைந்துள்ளீர்கள், ${name}! 🎉` : `Logged in via WhatsApp successfully, ${name}! 🎉`);
+          alert(currentLang === 'ta' ? `வணக்கம் ${name}! Google மூலம் வெற்றிகரமாக உள்நுழைந்துள்ளீர்கள் 🎉` : `Welcome ${name}! Successfully logged in with Google 🎉`);
+
+        })
+
+        .catch(function(error) {
+
+          console.warn("Google popup error, trying redirect:", error);
+
+          try {
+
+            auth.signInWithRedirect(provider);
+
+          } catch(e) {
+
+            alert(currentLang === 'ta' ? 'Google உள்நுழைவு தோல்வியடைந்தது. மொபைல் எண் OTP மூலம் உள்நுழையவும்.' : 'Google Sign-in failed. Please login using mobile OTP.');
+
+          }
+
+        });
 
     }
 
 
-    function sendOtpCode() {
+    function previewPartnerPhoto(input) {
+
+      if (input.files && input.files[0]) {
+
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+
+          document.getElementById('pTechPhotoImg').src = e.target.result;
+
+          document.getElementById('pTechPhotoPreview').style.display = 'flex';
+
+        };
+
+        reader.readAsDataURL(input.files[0]);
+
+      }
+
+    }
+
+
+    function previewAdminPhoto(input) {
+
+      if (input.files && input.files[0]) {
+
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+
+          document.getElementById('admTechPhotoImg').src = e.target.result;
+
+          document.getElementById('admTechPhotoPreview').style.display = 'flex';
+
+          if (document.getElementById('admPhotoUrl')) {
+
+            document.getElementById('admPhotoUrl').value = e.target.result;
+
+          }
+
+        };
+
+        reader.readAsDataURL(input.files[0]);
+
+      }
+
+    }
+
+function sendOtpCode() {
 
       const name = document.getElementById('userName').value.trim();
 
