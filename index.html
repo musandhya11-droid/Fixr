@@ -2574,48 +2574,6 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
 </div>
 
-  <button type="button" onclick="closeModal('warrantyCardModal')" style="background:none; border:none; font-size:22px; color:#64748b; cursor:pointer;">✕</button>
-
-</div>
-
-<div id="printableWarrantyCard" style="background:white; border:1px solid #fef08a; border-radius:8px; padding:12px; font-size:12px; line-height:1.6;">
-
-  <div style="text-align:center; margin-bottom:8px;">
-
-    <span style="background:#fef9c3; color:#854d0e; border:1px solid #fde047; padding:2px 8px; border-radius:12px; font-size:10px; font-weight:800;">GUARANTEED 100% FREE REWORK</span>
-
-  </div>
-
-  <div style="margin:4px 0;"><b>👷 தொழிலாளர் / நிறுவனம்:</b> <span id="wTechName">-</span></div>
-
-  <div style="margin:4px 0;"><b>🛠️ சேவை வகை:</b> <span id="wTechCat">-</span></div>
-
-  <div style="margin:4px 0;"><b>📅 சேவை தேதி:</b> <span id="wDate">-</span></div>
-
-  <div style="margin:4px 0; background:#f0fdf4; border:1px solid #bbf7d0; padding:6px; border-radius:6px; color:#166534;">
-
-    <b>🛡️ உத்தரவாதம் செல்லும் காலம்:</b> <span id="wValidTill">30 நாட்கள் (Free Rework)</span>
-
-    <div style="font-size:10px; margin-top:2px;">சேவைக்குப் பின் 30 நாட்களுக்குள் அதே பழுது ஏற்பட்டால் இலவசமாக சரிசெய்து தரப்படும்.</div>
-
-  </div>
-
-</div>
-
-<div style="display:flex; gap:6px; margin-top:10px;">
-
-  <button type="button" class="submit-btn" style="background:#0284c7; flex:1;" onclick="window.print()">🖨️ பிரிண்ட் / PDF</button>
-
-  <button type="button" class="submit-btn" style="background:#22c55e; flex:1;" onclick="shareWarrantyOnWhatsApp()">📲 WhatsApp-ல் பகிர்க</button>
-
-</div>
-
-<button class="close-btn" onclick="closeModal('warrantyCardModal')" style="margin-top:6px;">மூடுக (Close)</button>
-
-</div>
-
-</div>
-
 
 <!-- 25. டிஜிட்டல் பில் தயாரிப்பு (Instant Invoice Generator Modal) -->
 
@@ -2736,28 +2694,6 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
 </div>
 
-<div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:10px; margin:8px 0; display:flex; justify-content:space-between; align-items:center;">
-
-  <b style="font-size:13px; color:#0f172a;" id="lblInvTotal">மொத்த கட்டணம் (Total):</b>
-
-  <b style="font-size:16px; color:#16a34a;" id="invTotalDisp">₹350</b>
-
-</div>
-
-<div style="display:flex; gap:6px; margin-top:8px;">
-
-  <button type="button" class="submit-btn" style="background:#0284c7; flex:1;" onclick="window.print()">🖨️ பிரிண்ட் / PDF</button>
-
-  <button type="button" class="submit-btn" style="background:#22c55e; flex:1;" onclick="sendInvoiceWhatsApp()">📲 WhatsApp-ல் பில் அனுப்ப</button>
-
-</div>
-
-<button class="close-btn" onclick="closeModal('invoiceGeneratorModal')" style="margin-top:6px;">ரத்து</button>
-
-</div>
-
-</div>
-
 
 <!-- 26. 24/7 பாதுகாப்பு & அவசர உதவி (SOS Safety Helpline Modal) -->
 
@@ -2867,19 +2803,25 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 </div>
 
 
-<!-- 28. தொழிலாளர் நிர்வாகப் போர்டல் (Dedicated Technician Admin Portal with Real Login) -->
+<!-- 28. தொழிலாளர் நிர்வாகப் போர்டல் (Dedicated Technician / Partner Admin Portal) -->
 
 <div class="modal-overlay" id="techPortalModal">
 
-<div class="modal-box" style="max-width: 500px; max-height: 88vh; overflow-y:auto;">
+<div class="modal-box" style="max-width: 480px; max-height: 88vh; overflow-y:auto;">
 
-<div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #0f172a; padding-bottom:8px; margin-bottom:10px;">
+<div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #0f172a; padding-bottom:8px; margin-bottom:12px;">
 
-  <div>
+  <div style="display:flex; align-items:center; gap:8px;">
 
-    <b style="font-size:15px; color:#0f172a;" id="techPortalTitle">👷 தொழிலாளர் போர்டல் (Technician Portal)</b>
+    <div style="width:34px; height:34px; border-radius:50%; background:#e0f2fe; color:#0284c7; display:flex; align-items:center; justify-content:center; font-size:18px;">👷</div>
 
-    <div style="font-size:11px; color:#64748b;" id="techPortalSub">முன்பதிவுகள், டிஜிட்டல் பில் & 30 நாள் உத்தரவாத மேலாண்மை</div>
+    <div>
+
+      <b style="font-size:14px; color:#0f172a;" id="techPortalTitle">Fixr தொழிலாளர் நிர்வாகம் (Partner Portal)</b>
+
+      <div style="font-size:10.5px; color:#64748b;" id="techPortalSub">முன்பதிவுகள், டிஜிட்டல் பில் & கேரண்டி மேலாண்மை</div>
+
+    </div>
 
   </div>
 
@@ -2888,72 +2830,67 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 </div>
 
 
-<!-- VIEW 1: Worker Login View (Shown when not logged in) -->
+<!-- SCREEN 1: Partner / Technician Login (Shown when not logged in) -->
 
 <div id="techLoginView">
 
-  <div style="text-align:center; padding:10px 0 14px 0;">
+  <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:12px; padding:16px; margin-bottom:12px; text-align:center;">
 
-    <div style="width:54px; height:54px; border-radius:50%; background:#e0f2fe; color:#0284c7; font-size:28px; display:inline-flex; align-items:center; justify-content:center; margin-bottom:6px;">
+    <div style="font-size:13px; font-weight:800; color:#0f172a; margin-bottom:4px;" id="lblTechLoginHeading">வணக்கம்! தொழிலாளர் உள்நுழைவு</div>
 
-      👷
+    <div style="font-size:11px; color:#64748b; line-height:1.5;" id="lblTechLoginDesc">உங்கள் பதிவு செய்த 10 இலக்க மொபைல் எண் அல்லது தொழிலாளர் ID உள்ளிட்டு உள்நுழையவும்.</div>
 
-    </div>
+   
 
-    <div style="font-weight:800; font-size:14px; color:#0f172a;" id="lblTechLoginHeading">தொழிலாளர் உள்நுழைவு (Worker Login)</div>
+    <div class="form-group" style="text-align:left; margin-top:12px;">
 
-    <div style="font-size:11.5px; color:#64748b; margin-top:2px;" id="lblTechLoginDesc">உங்கள் பதிவு செய்த மொபைல் எண் அல்லது Fixr ID மூலம் உள்நுழையவும்</div>
+      <label id="lblTechLoginInput" style="font-size:11px; font-weight:700;">📱 பதிவு செய்த மொபைல் எண் / ID:</label>
 
-  </div>
-
-
-  <div class="form-group">
-
-    <label id="lblTechLoginInput">📱 பதிவு செய்த மொபைல் எண் / தொழிலாளர் ID</label>
-
-    <input type="text" id="techLoginInput" class="form-input" placeholder="எ.கா: 9884334097 அல்லது FIXR-TN-2026-0881">
-
-  </div>
-
-
-  <!-- Quick Login Chips for easy testing -->
-
-  <div style="margin-bottom:12px;">
-
-    <div style="font-size:10.5px; color:#64748b; font-weight:bold; margin-bottom:4px;">விரைவு உள்நுழைவு (Quick Select):</div>
-
-    <div style="display:flex; gap:6px; flex-wrap:wrap;">
-
-      <button type="button" class="btn" onclick="quickTechLogin('9884334097')" style="background:#f1f5f9; color:#0f172a; border:1px solid #cbd5e1; font-size:10.5px; padding:3px 8px; border-radius:12px;">⚡ Murthi (9884334097)</button>
-
-      <button type="button" class="btn" onclick="quickTechLogin('9876543211')" style="background:#f1f5f9; color:#0f172a; border:1px solid #cbd5e1; font-size:10.5px; padding:3px 8px; border-radius:12px;">❄️ CoolCare AC (9876543211)</button>
-
-      <button type="button" class="btn" onclick="quickTechLogin('9876543212')" style="background:#f1f5f9; color:#0f172a; border:1px solid #cbd5e1; font-size:10.5px; padding:3px 8px; border-radius:12px;">💧 AquaPure RO (9876543212)</button>
+      <input type="text" id="techLoginInput" class="form-input" placeholder="எ.கா: 9884334097 அல்லது FIXR-TN-2026-0881" style="font-size:13px;">
 
     </div>
 
+
+    <!-- Quick test logins -->
+
+    <div style="text-align:left; margin-bottom:12px;">
+
+      <div style="font-size:10px; color:#64748b; font-weight:bold; margin-bottom:4px;">மாதிரி தொழிலாளர் (Quick Login):</div>
+
+      <div style="display:flex; gap:6px; flex-wrap:wrap;">
+
+        <button type="button" class="btn" onclick="quickTechLogin('9884334097')" style="background:white; color:#0f172a; border:1px solid #cbd5e1; font-size:10.5px; padding:4px 8px; border-radius:12px;">⚡ Murthi (9884334097)</button>
+
+        <button type="button" class="btn" onclick="quickTechLogin('9876543211')" style="background:white; color:#0f172a; border:1px solid #cbd5e1; font-size:10.5px; padding:4px 8px; border-radius:12px;">❄️ CoolCare AC (9876543211)</button>
+
+        <button type="button" class="btn" onclick="quickTechLogin('9876543212')" style="background:white; color:#0f172a; border:1px solid #cbd5e1; font-size:10.5px; padding:4px 8px; border-radius:12px;">💧 AquaPure RO (9876543212)</button>
+
+      </div>
+
+    </div>
+
+
+    <button type="button" class="submit-btn" style="background:#0284c7; width:100%; padding:10px; font-size:13px;" id="btnTechLoginSubmit" onclick="submitTechLogin()">
+
+      🚀 போர்ட்டலில் உள்நுழைக (Login to Portal)
+
+    </button>
+
   </div>
 
 
-  <button type="button" class="submit-btn" style="background:#0284c7;" id="btnTechLoginSubmit" onclick="submitTechLogin()">
-
-    🚀 போர்டலில் உள்நுழைக (Login to Portal)
-
-  </button>
-
-
-  <div style="text-align:center; margin-top:14px; padding-top:10px; border-top:1px dashed #cbd5e1; font-size:11.5px; color:#64748b;">
+  <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:10px; padding:10px; text-align:center; font-size:11.5px; color:#1e40af;">
 
     இன்னும் Fixr தொழிலாளராக இணையவில்லையா? <br>
 
-    <a href="javascript:void(0)" onclick="closeModal('techPortalModal'); openModal('partnerModal');" style="color:#0284c7; font-weight:bold; text-decoration:none;">🛠️ இப்போதே பார்ட்னராகப் பதிவு செய்க (₹49) ➔</a>
+    <a href="javascript:void(0)" onclick="closeModal('techPortalModal'); openModal('partnerModal');" style="color:#0284c7; font-weight:bold; text-decoration:underline;">🛠️ புதிய தொழிலாளராகப் பதிவு செய்க (₹49) ➔</a>
 
   </div>
 
 </div>
 
 
-<!-- VIEW 2: Worker Dashboard View (Shown when logged in) -->
+<!-- SCREEN 2: Partner / Technician Dashboard (Shown when logged in) -->
 
 <div id="techDashboardView" style="display:none;">
 
@@ -2977,7 +2914,7 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
       </div>
 
-      <button type="button" onclick="techLogout()" style="background:#fee2e2; border:1px solid #fca5a5; color:#991b1b; padding:4px 8px; border-radius:8px; font-size:10px; font-weight:bold; cursor:pointer;" id="btnTechLogout">
+      <button type="button" onclick="techLogout()" style="background:#fee2e2; border:1px solid #fca5a5; color:#991b1b; padding:4px 8px; border-radius:8px; font-size:10.5px; font-weight:bold; cursor:pointer;" id="btnTechLogout">
 
         🚪 வெளியேறு
 
@@ -3038,7 +2975,7 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
   <!-- Bookings Container -->
 
-  <div id="techBookingsContainer" style="min-height:120px;"></div>
+  <div id="techBookingsContainer" style="min-height:100px;"></div>
 
 
   <!-- Technician Toolkit Buttons -->
@@ -3069,98 +3006,6 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
 
 <button class="close-btn" onclick="closeModal('techPortalModal')" style="margin-top:10px;">மூடுக (Close)</button>
-
-</div>
-
-</div>
-
-  <button type="button" onclick="closeModal('techPortalModal')" style="background:none; border:none; font-size:22px; color:#64748b; cursor:pointer;">✕</button>
-
-</div>
-
-
-<!-- Technician Selector & Status -->
-
-<div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:10px; margin-bottom:10px;">
-
-  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-
-    <label style="font-size:11.5px; font-weight:700; color:#0f172a; margin:0;" id="lblSelectTechPortal">தொழிலாளர் சுயவிவரம்:</label>
-
-    <button type="button" id="btnTechAvailToggle" onclick="toggleTechOnlineStatus()" style="font-size:10.5px; font-weight:700; padding:2px 8px; border-radius:12px; background:#dcfce7; color:#166534; border:1px solid #86efac; cursor:pointer;">
-
-      🟢 பணியில் தயார் (Available)
-
-    </button>
-
-  </div>
-
-  <select id="techPortalSelect" class="form-input" onchange="onTechPortalSelected(this.value)" style="font-weight:bold; margin-bottom:4px;"></select>
-
-  <div id="techPortalMetaInfo" style="font-size:11px; color:#475569; display:flex; justify-content:space-between; margin-top:4px;">
-
-    <span id="techPortalIdTag">🪪 ID: FIXR-TN-2026-0881</span>
-
-    <span id="techPortalPhoneTag">📞 9884334097</span>
-
-  </div>
-
-</div>
-
-
-<!-- Tabs: Active Bookings vs Completed Bookings -->
-
-<div style="display:flex; border-bottom:1px solid #e2e8f0; margin-bottom:10px;">
-
-  <button type="button" id="tabTechActive" onclick="switchTechPortalTab('active')" style="flex:1; padding:8px; border:none; background:none; font-weight:800; font-size:12px; border-bottom:2px solid #0284c7; color:#0284c7; cursor:pointer;">
-
-    🔔 புதிய முன்பதிவுகள் (<span id="techActiveCount">0</span>)
-
-  </button>
-
-  <button type="button" id="tabTechHistory" onclick="switchTechPortalTab('history')" style="flex:1; padding:8px; border:none; background:none; font-weight:700; font-size:12px; color:#64748b; cursor:pointer;">
-
-    📁 பழைய முன்பதிவுகள் (<span id="techHistoryCount">0</span>)
-
-  </button>
-
-</div>
-
-
-<!-- Bookings Container -->
-
-<div id="techBookingsContainer" style="min-height:120px;"></div>
-
-
-<!-- 30-Day Auto Delete Notice & Actions -->
-
-<div style="background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:8px 10px; margin:10px 0; font-size:11px; color:#92400e; display:flex; justify-content:space-between; align-items:center;">
-
-  <span>🛡️ <b>30-Day Auto Cleanup:</b> 30 நாட்களுக்கு முந்தைய பழைய பதிவுகள் Firebase-லிருந்து தானாக அழிக்கப்படும்.</span>
-
-  <button type="button" onclick="manualRun30DayCleanup()" style="background:#fef3c7; border:1px solid #d97706; color:#b45309; padding:3px 8px; border-radius:6px; font-size:10px; font-weight:bold; cursor:pointer;">🧹 Clean</button>
-
-</div>
-
-
-<div style="display:flex; gap:6px;">
-
-  <button type="button" class="btn" style="background:#0284c7; color:white; flex:1; padding:7px; border-radius:8px; font-size:11px; font-weight:bold;" onclick="closeModal('techPortalModal'); openInvoiceGeneratorModal();">
-
-    🧾 பில் தயாரிக்க
-
-  </button>
-
-  <button type="button" class="btn" style="background:#16a34a; color:white; flex:1; padding:7px; border-radius:8px; font-size:11px; font-weight:bold;" onclick="closeModal('techPortalModal'); openWarrantyCardModal();">
-
-    🛡️ உத்தரவாத அட்டை
-
-  </button>
-
-</div>
-
-
-<button class="close-btn" onclick="closeModal('techPortalModal')" style="margin-top:8px;">மூடுக (Close)</button>
 
 </div>
 
