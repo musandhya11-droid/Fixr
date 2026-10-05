@@ -36,7 +36,7 @@
 
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 
-<style>*{box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans Tamil",sans-serif;margin:0;padding:0}body{background:#f8fafc;padding-bottom:95px;color:#1e293b}header{background:#0f172a;color:white;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.1)}.brand{font-size:22px;font-weight:800;letter-spacing:-0.5px}.brand span{color:#38bdf8}.nav-btns{display:flex;gap:6px;align-items:center}.lang-btn{background:#1e293b;color:#f8fafc;border:1px solid #475569;padding:5px 8px;border-radius:12px;font-size:11px;font-weight:bold;cursor:pointer;display:flex;align-items:center;gap:4px}.admin-btn{background:#334155;color:#38bdf8;border:1px solid #475569;padding:5px 8px;border-radius:12px;font-size:11px;font-weight:bold;cursor:pointer}.auth-btn{background:#38bdf8;color:#0f172a;border:none;padding:6px 12px;border-radius:20px;font-weight:bold;font-size:11px;cursor:pointer}.user-profile{font-size:11px;color:#38bdf8;font-weight:bold;display:flex;align-items:center;gap:4px;background:#1e293b;padding:4px 10px;border-radius:16px}.sync-bar{display:none !important}.search-box{padding:12px 16px 4px}.search-input{width:100%;padding:12px 16px;border-radius:12px;border:1px solid #cbd5e1;font-size:14px;outline:none;background:white;box-shadow:0 1px 3px rgba(0,0,0,0.05)}.categories{display:flex;overflow-x:auto;padding:10px 16px;gap:8px;scrollbar-width:none}.categories::-webkit-scrollbar{display:none}.chip{padding:7px 14px;background:white;border-radius:20px;font-size:12px;font-weight:600;border:1px solid #e2e8f0;white-space:nowrap;cursor:pointer}.chip.active{background:#0f172a;color:white;border-color:#0f172a}.list{padding:8px 16px}.card-img-banner{position:relative;width:100%;height:180px;border-radius:12px;overflow:hidden;margin-bottom:12px;cursor:pointer;background:#e2e8f0}.card-cover-img{width:100%;height:100%;object-fit:cover;transition:transform 0.25s ease}.card-img-banner:hover .card-cover-img{transform:scale(1.04)}.photo-badge{position:absolute;bottom:8px;right:8px;background:rgba(15,23,42,0.85);color:white;padding:4px 10px;border-radius:14px;font-size:11px;font-weight:700;backdrop-filter:blur(4px);box-shadow:0 2px 6px rgba(0,0,0,0.25)}.house-preview-thumb{width:64px;height:64px;object-fit:cover;border-radius:8px;border:1px solid #cbd5e1;cursor:pointer}.card{background:white;border-radius:12px;padding:10px 12px;margin-bottom:8px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,0.02)}.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2px}.name{font-size:14.5px;font-weight:700;color:#0f172a}.badge{font-size:10px;padding:2px 6px;border-radius:10px;font-weight:700;background:#f0fdf4;color:#166534}.details{font-size:11.5px;color:#64748b;margin-top:2px}.rating-row{display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-size:12px}.rating{background:#fef08a;color:#854d0e;padding:2px 6px;border-radius:5px;font-weight:bold;font-size:11px}.price{font-size:13.5px;font-weight:800;color:#0284c7}.actions{display:flex;flex-direction:column;gap:4px;margin-top:8px;padding-top:6px;border-top:1px solid #f1f5f9}.actions-row-primary{display:flex;gap:5px;width:100%}.actions-row-secondary{display:flex;gap:4px;width:100%}.btn{padding:6px 8px;border-radius:6px;text-decoration:none;font-size:11px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:3px;cursor:pointer;border:none;min-height:28px}.actions-row-primary .btn-book{background:#0284c7;color:white;flex:1.8;font-weight:700;min-height:30px;font-size:11.5px}.actions-row-primary .btn-call{background:#f1f5f9;color:#334155;flex:0.9;border:1px solid #cbd5e1;min-height:30px}.actions-row-primary .btn-wa{background:#22c55e;color:white;flex:0.9;min-height:30px;font-weight:bold}.actions-row-secondary .btn{flex:1;font-size:10px;padding:4px 6px;min-height:25px}.partner-fab{position:fixed;bottom:20px;right:16px;background:#0f172a;color:white;padding:11px 16px;border-radius:30px;font-weight:bold;font-size:12px;border:1px solid #38bdf8;box-shadow:0 4px 14px rgba(15,23,42,0.35);cursor:pointer;z-index:90;display:flex;align-items:center;gap:6px}.support-fab{position:fixed;bottom:20px;left:16px;background:linear-gradient(135deg,#1e3a8a,#2563eb);color:white;padding:10px 15px;border-radius:30px;font-weight:700;font-size:12px;border:1px solid rgba(255,255,255,0.3);box-shadow:0 4px 14px rgba(37,99,235,0.4);z-index:90;display:flex;align-items:center;gap:6px;cursor:pointer;text-decoration:none;transition:transform 0.15s,box-shadow 0.15s}.support-fab:active{transform:scale(0.96)}.ai-chat-bubble{max-width:86%;padding:10px 14px;border-radius:14px;font-size:12.5px;line-height:1.5;word-wrap:break-word;animation:fadeInBubble 0.2s ease-out}@keyframes fadeInBubble{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}.ai-bubble-bot{background:white;color:#1e293b;align-self:flex-start;border-bottom-left-radius:3px;border:1px solid #e2e8f0;box-shadow:0 1px 4px rgba(0,0,0,0.04)}.ai-bubble-user{background:linear-gradient(135deg,#2563eb,#1d4ed8);color:white;align-self:flex-end;border-bottom-right-radius:3px;box-shadow:0 2px 6px rgba(37,99,235,0.25)}.ai-chip-pill{background:white;border:1px solid #cbd5e1;color:#334155;padding:5px 11px;border-radius:20px;font-size:11.5px;font-weight:600;cursor:pointer;white-space:nowrap;transition:all 0.15s;box-shadow:0 1px 2px rgba(0,0,0,0.03);display:inline-flex;align-items:center;gap:4px}.ai-chip-pill:hover,.ai-chip-pill:active{background:#eff6ff;border-color:#3b82f6;color:#1d4ed8}.ai-action-btn{display:inline-block;margin-top:8px;background:#2563eb;color:white;padding:6px 12px;border-radius:7px;font-size:11.5px;font-weight:bold;text-decoration:none;cursor:pointer;border:none;box-shadow:0 2px 5px rgba(37,99,235,0.3)}.ai-action-btn:hover{background:#1d4ed8}.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:1000;justify-content:center;align-items:center;padding:16px}.modal-overlay.active{display:flex}.modal-box{background:white;width:100%;max-width:450px;border-radius:20px;padding:20px;max-height:90vh;overflow-y:auto}.modal-title{font-size:18px;font-weight:bold;margin-bottom:4px;color:#0f172a}.modal-sub{font-size:12px;color:#64748b;margin-bottom:14px}.form-group{margin-bottom:10px}.form-group label{display:block;font-size:12px;font-weight:600;margin-bottom:4px;color:#475569}.form-input{width:100%;padding:10px 12px;border:1px solid #cbd5e1;border-radius:8px;font-size:14px;outline:none}.submit-btn{width:100%;background:#0284c7;color:white;border:none;padding:12px;border-radius:10px;font-weight:bold;cursor:pointer;margin-top:8px;font-size:14px}.close-btn{width:100%;background:none;border:none;color:#64748b;margin-top:10px;font-size:13px;cursor:pointer}.payment-box{background:#f0fdf4;border:1px solid #86efac;border-radius:14px;padding:12px;margin:10px 0;text-align:center}.payment-title{font-size:13px;font-weight:bold;color:#166534;display:flex;justify-content:space-between;margin-bottom:6px}.payment-amount{background:#22c55e;color:white;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:800}.upi-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:8px 0}.upi-btn{padding:9px 6px;border-radius:8px;font-weight:bold;font-size:12px;cursor:pointer;border:none;color:white}.btn-gpay{background:#0f172a;color:#38bdf8;border:1px solid #38bdf8;grid-column:span 2}.btn-phonepe{background:#5f259f}.btn-paytm{background:#002970}.btn-all-upi{background:#16a34a;grid-column:span 2}.doc-upload-section{background:#f8fafc;border:1px dashed #94a3b8;border-radius:12px;padding:12px;margin:12px 0}.doc-title{font-size:12px;font-weight:bold;color:#0f172a;margin-bottom:8px}.doc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.doc-box{background:white;border:1px solid #e2e8f0;border-radius:8px;padding:8px}.doc-box label{display:block;font-size:11px;font-weight:700;color:#334155;margin-bottom:3px}.doc-box input[type="file"]{width:100%;font-size:10px}.upload-progress{display:none;background:#e0f2fe;color:#0369a1;padding:10px;border-radius:8px;font-size:12px;font-weight:600;text-align:center;margin:8px 0}.admin-tab-nav{display:flex;gap:6px;margin-bottom:12px;border-bottom:2px solid #e2e8f0;padding-bottom:6px}.admin-tab-btn{flex:1;padding:8px;border:none;background:#f1f5f9;color:#64748b;font-weight:bold;font-size:12px;border-radius:8px;cursor:pointer}.admin-tab-btn.active{background:#0284c7;color:white}.badge-count{background:#ef4444;color:white;padding:1px 6px;border-radius:10px;font-size:10px;margin-left:4px}.approval-card{background:white;border:1px solid #cbd5e1;border-radius:10px;padding:12px;margin-bottom:10px;font-size:12px}.doc-badge-row{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.doc-link-btn{display:inline-flex;align-items:center;background:#f0fdf4;color:#166534;border:1px solid #bbf7d0;padding:3px 6px;border-radius:6px;font-size:11px;text-decoration:none;font-weight:600}.approval-actions{display:flex;gap:6px;margin-top:8px;border-top:1px solid #f1f5f9;padding-top:8px}.btn-approve{flex:1;background:#16a34a;color:white;border:none;padding:7px;border-radius:6px;font-weight:bold;font-size:11px;cursor:pointer}.btn-reject{background:#fee2e2;color:#dc2626;border:none;padding:7px 10px;border-radius:6px;font-weight:bold;font-size:11px;cursor:pointer}.admin-tech-item{display:flex;justify-content:space-between;align-items:center;padding:8px;border-bottom:1px solid #f1f5f9;font-size:12px}.edit-btn{background:#e0f2fe;color:#0284c7;border:none;padding:4px 8px;border-radius:6px;font-weight:bold;cursor:pointer;font-size:11px}.del-btn{background:#fee2e2;color:#dc2626;border:none;padding:4px 8px;border-radius:6px;font-weight:bold;cursor:pointer;font-size:11px}.otp-banner{background:#fefce8;border:1px solid #fde047;padding:8px 12px;border-radius:8px;font-size:12px;color:#854d0e;margin-bottom:12px;text-align:center}footer{background:#0f172a;color:#94a3b8;padding:24px 16px 85px;text-align:center;font-size:12px;line-height:1.8;margin-top:30px;border-top:1px solid #334155}footer a{color:#38bdf8;text-decoration:none;margin:0 4px}#splashScreen{position:fixed;inset:0;background:#0f172a;z-index:99999;display:flex;flex-direction:column;justify-content:center;align-items:center;transition:opacity 0.5s ease-out,visibility 0.5s ease-out;animation:autoHideSplash 0.4s ease-out 1.4s forwards}@keyframes autoHideSplash{0%{opacity:1;visibility:visible}99%{opacity:0;visibility:visible;pointer-events:none}100%{opacity:0;visibility:hidden;pointer-events:none;display:none}}#splashScreen.fade-out{opacity:0;visibility:hidden;pointer-events:none}.splash-box{text-align:center;padding:20px;animation:splashZoomIn 0.8s cubic-bezier(0.16,1,0.3,1) forwards}@keyframes splashZoomIn{0%{transform:scale(0.8);opacity:0}100%{transform:scale(1);opacity:1}}.splash-logo-wrap{width:100px;height:100px;margin:0 auto 16px;border-radius:26px;background:#1e293b;border:2px solid #38bdf8;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(56,189,248,0.35);position:relative;overflow:hidden}.splash-logo-img{width:100%;height:100%;object-fit:cover}.splash-brand{font-size:38px;font-weight:800;letter-spacing:-1px;color:white;margin-bottom:4px}.splash-brand span{color:#38bdf8}.splash-sub{font-size:13px;color:#94a3b8;font-weight:600;margin-bottom:24px}.splash-bar-outer{width:140px;height:4px;background:#334155;border-radius:4px;margin:0 auto;overflow:hidden}.splash-bar-inner{width:100%;height:100%;background:#38bdf8;border-radius:4px;animation:splashProgress 1.4s ease-in-out forwards}@keyframes splashProgress{0%{transform:translateX(-100%)}60%{transform:translateX(-20%)}100%{transform:translateX(0)}}.pwa-banner{background:#0284c7;color:white;padding:8px 16px;font-size:12px;font-weight:600;display:none;justify-content:space-between;align-items:center;box-shadow:0 2px 6px rgba(0,0,0,0.1)}.pwa-btn{background:white;color:#0284c7;border:none;padding:4px 10px;border-radius:12px;font-weight:bold;font-size:11px;cursor:pointer}.amenities-row{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0}.amenity-tag{background:#f1f5f9;color:#475569;padding:2px 7px;border-radius:6px;font-size:10px;font-weight:600;border:1px solid #e2e8f0;display:inline-flex;align-items:center;gap:3px}.status-badge{font-size:10px;padding:2px 8px;border-radius:10px;font-weight:bold}.status-available{background:#dcfce7;color:#15803d}.status-rented{background:#fee2e2;color:#b91c1c}.fav-btn{background:none;border:none;font-size:18px;cursor:pointer;padding:0 4px;line-height:1;transition:transform 0.15s}.fav-btn:active{transform:scale(1.3)}.sub-chips{display:none;overflow-x:auto;padding:0 16px 8px;gap:6px;scrollbar-width:none}.sub-chips::-webkit-scrollbar{display:none}.sub-chip{padding:4px 10px;background:#e2e8f0;border-radius:14px;font-size:11px;font-weight:600;color:#475569;cursor:pointer;border:1px solid #cbd5e1;white-space:nowrap}.sub-chip.active{background:#0284c7;color:white;border-color:#0284c7}.install-pwa-btn{background:linear-gradient(135deg,#0284c7,#38bdf8);color:#0f172a;border:1px solid #7dd3fc;padding:5px 10px;border-radius:12px;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:4px;box-shadow:0 2px 6px rgba(56,189,248,0.35);animation:pulseGlow 2.5s infinite}@keyframes pulseGlow{0%,100%{box-shadow:0 2px 6px rgba(56,189,248,0.35)}50%{box-shadow:0 2px 14px rgba(56,189,248,0.7)}}.quick-action-bar{display:flex;gap:8px;padding:6px 16px 8px;overflow-x:auto;scrollbar-width:none;align-items:center}.quick-action-bar::-webkit-scrollbar{display:none}.toggle-pill{background:white;border:1.5px solid #cbd5e1;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:700;color:#334155;display:inline-flex;align-items:center;gap:6px;cursor:pointer;white-space:nowrap;user-select:none;transition:all 0.2s ease;box-shadow:0 1px 3px rgba(0,0,0,0.04)}.toggle-pill.active{background:#059669;border-color:#059669;color:white}.toggle-pill .toggle-status{font-size:9px;padding:1px 5px;border-radius:8px;background:#f1f5f9;color:#64748b;font-weight:800}.toggle-pill.active .toggle-status{background:#34d399;color:#064e3b}.action-pill-btn{padding:6px 12px;border-radius:20px;font-size:11px;font-weight:700;border:1.5px solid #cbd5e1;background:white;color:#334155;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:4px;transition:all 0.2s ease;box-shadow:0 1px 3px rgba(0,0,0,0.04)}.action-pill-btn.express-btn{border-color:#fed7aa;color:#c2410c}.action-pill-btn.express-btn.active{background:linear-gradient(135deg,#ea580c,#f97316);color:white;border-color:#ea580c;box-shadow:0 2px 8px rgba(234,88,12,0.35)}.action-pill-btn.pro-btn{border-color:#e9d5ff;color:#7e22ce}.action-pill-btn.pro-btn.active{background:linear-gradient(135deg,#7e22ce,#a855f7);color:white;border-color:#7e22ce;box-shadow:0 2px 8px rgba(126,34,206,0.35)}.featured-promo-banner{margin:2px 16px 3px;background:linear-gradient(135deg,#fffbeb,#fef3c7);border:1px solid #fde68a;border-radius:8px;padding:5px 10px;display:flex;justify-content:space-between;align-items:center;gap:6px;cursor:pointer;box-shadow:0 1px 2px rgba(245,158,11,0.04);transition:all 0.15s ease}.featured-promo-banner:hover{background:#fef08a}.featured-banner-left{display:flex;align-items:center;gap:6px;flex:1;overflow:hidden}.featured-banner-title{font-size:11px;font-weight:800;color:#92400e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.featured-banner-desc{display:none}.boost-btn{background:linear-gradient(135deg,#d97706,#f59e0b);color:white;border:none;padding:3px 8px;border-radius:6px;font-weight:800;font-size:9.5px;cursor:pointer;white-space:nowrap}.action-pill-btn.video-pill{border-color:#c7d2fe;color:#4338ca;font-weight:800}.action-pill-btn.video-pill:hover{background:#e0e7ff}.btn-video{background:#eef2ff;color:#4f46e5;border:1px solid #c7d2fe;flex:1;font-size:11px;font-weight:700}.btn-video:hover{background:#e0e7ff}.card.featured-card{border:2px solid #f59e0b;background:linear-gradient(180deg,#fffdfa 0%,#ffffff 100%);box-shadow:0 4px 16px rgba(245,158,11,0.16);position:relative}.featured-listing-strip{background:linear-gradient(135deg,#d97706,#f59e0b);color:white;font-size:9.5px;font-weight:800;padding:2px 7px;border-radius:6px;display:inline-flex;align-items:center;gap:3px;margin-bottom:4px;box-shadow:0 1px 2px rgba(217,119,6,0.2)}.badge-pro{background:linear-gradient(135deg,#7e22ce,#9333ea);color:white !important;font-weight:800;border:1px solid #c084fc;box-shadow:0 2px 4px rgba(126,34,206,0.2)}.badge-express{background:linear-gradient(135deg,#ea580c,#f97316);color:white !important;font-weight:800;border:1px solid #fdba74;box-shadow:0 2px 4px rgba(234,88,12,0.2)}.dot-pulse{display:inline-block;width:6px;height:6px;background:#16a34a;border-radius:50%;margin-right:4px;animation:pulseGreen 1.5s infinite}@keyframes pulseGreen{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(1.3)}}.status-busy{background:#f1f5f9;color:#64748b}.rating-badge-btn{display:inline-flex;align-items:center;gap:6px;cursor:pointer;background:#fef9c3;padding:3px 8px;border-radius:8px;border:1px solid #fde047;transition:background 0.15s ease}.rating-badge-btn:hover{background:#fef08a}.rating-star{color:#854d0e;font-weight:800;font-size:12px}.rating-reviews{color:#713f12;font-size:11px;font-weight:600;text-decoration:underline}.btn-id{background:#f8fafc;color:#0284c7;border:1px solid #bae6fd;flex:1.1;font-size:11px;font-weight:700}.btn-id:hover{background:#f0f9ff}.btn-map{background:#ecfdf5;color:#059669;border:1px solid #a7f3d0;flex:1.1;font-size:11px;font-weight:700}.btn-map:hover{background:#d1fae5}.id-card-wrapper{background:linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#0f172a 100%);border:2px solid #38bdf8;border-radius:18px;padding:16px;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.4),inset 0 0 20px rgba(56,189,248,0.15);position:relative;overflow:hidden}.id-card-wrapper::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(56,189,248,0.08) 0%,transparent 60%);pointer-events:none}.id-card-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(56,189,248,0.3);padding-bottom:10px;margin-bottom:12px}.id-card-brand{font-size:18px;font-weight:900;letter-spacing:-0.5px}.id-card-brand span{color:#38bdf8}.id-verified-seal{background:linear-gradient(135deg,#10b981,#059669);color:white;font-size:10px;font-weight:800;padding:3px 8px;border-radius:12px;box-shadow:0 2px 6px rgba(16,185,129,0.3)}.id-card-body{display:flex;gap:14px;align-items:center}.id-photo-frame{width:78px;height:78px;border-radius:50%;border:3px solid #38bdf8;padding:2px;background:#1e293b;display:flex;align-items:center;justify-content:center;font-size:34px;box-shadow:0 4px 10px rgba(0,0,0,0.3);flex-shrink:0;overflow:hidden}.id-photo-frame img{width:100%;height:100%;object-fit:cover;border-radius:50%}.id-meta-name{font-size:16px;font-weight:800;color:white;line-height:1.2}.id-meta-trade{font-size:12px;color:#38bdf8;font-weight:700;margin-top:3px}.id-meta-id{font-size:11px;color:#94a3b8;font-family:monospace;margin-top:2px}.id-details-grid{background:rgba(15,23,42,0.6);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:10px;margin:12px 0;display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:11px}.id-detail-item{display:flex;flex-direction:column}.id-detail-lbl{color:#94a3b8;font-size:9.5px;text-transform:uppercase;letter-spacing:0.5px}.id-detail-val{color:#f1f5f9;font-weight:700;margin-top:2px}.id-qr-row{display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(56,189,248,0.2);padding-top:10px;margin-top:10px}.id-qr-img{width:58px;height:58px;background:white;padding:3px;border-radius:6px}.id-security-txt{font-size:10px;color:#94a3b8;line-height:1.4;flex:1;padding-left:10px}.review-score-banner{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac;border-radius:14px;padding:12px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.review-score-big{font-size:26px;font-weight:900;color:#15803d}.review-item{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px 12px;margin-bottom:8px;font-size:12px}.review-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}.review-author{font-weight:700;color:#0f172a}.review-date{font-size:10px;color:#94a3b8}.review-stars{color:#eab308;font-size:12px;margin-bottom:4px}.review-comment{color:#334155;line-height:1.4}.review-add-box{background:#f1f5f9;border-radius:12px;padding:12px;margin-top:14px;border:1px solid #cbd5e1}.star-rating-select{display:flex;gap:6px;font-size:22px;cursor:pointer}.star-btn{color:#cbd5e1;transition:color 0.15s}.star-btn.active{color:#eab308}.boost-plan-card{background:white;border:2px solid #cbd5e1;border-radius:12px;padding:10px 12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:all 0.2s}.boost-plan-card.selected{border-color:#f59e0b;background:#fffbeb;box-shadow:0 2px 8px rgba(245,158,11,0.15)}.boost-plan-title{font-weight:800;font-size:13px;color:#0f172a}.boost-plan-sub{font-size:11px;color:#64748b}.boost-plan-price{font-size:16px;font-weight:900;color:#d97706}.express-emergency-strip{margin:2px 16px 3px;background:linear-gradient(135deg,#fff7ed,#ffedd5);border:1px solid #fed7aa;border-radius:8px;padding:5px 10px;display:flex;justify-content:space-between;align-items:center;gap:6px;cursor:pointer;box-shadow:0 1px 2px rgba(234,88,12,0.04);transition:all 0.15s ease}.express-emergency-strip:hover{background:#fed7aa}.express-strip-tag{font-size:9.5px;font-weight:800;color:#c2410c;background:white;padding:2px 7px;border-radius:6px;border:1px solid #fed7aa;white-space:nowrap}.pulse-lightning{font-size:16px;display:inline-block;animation:lightningPulse 1.2s infinite}@keyframes lightningPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.3);opacity:0.7}}.city-chips-bar{display:flex;gap:6px;padding:0 16px 8px;overflow-x:auto;scrollbar-width:none;align-items:center}.city-chips-bar::-webkit-scrollbar{display:none}.city-chip{padding:5px 11px;background:white;border:1px solid #cbd5e1;border-radius:16px;font-size:11px;font-weight:700;color:#334155;cursor:pointer;white-space:nowrap;transition:all 0.15s ease;box-shadow:0 1px 2px rgba(0,0,0,0.03)}.city-chip.active{background:#0284c7;color:white;border-color:#0284c7;box-shadow:0 2px 6px rgba(2,132,199,0.3)}.rate-card-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:12px}.rate-card-table th{background:#f1f5f9;color:#1e293b;padding:8px 10px;text-align:left;font-weight:800;border-bottom:2px solid #cbd5e1}.rate-card-table td{padding:8px 10px;border-bottom:1px solid #e2e8f0;color:#334155}.rate-cat-header{background:#e0f2fe;color:#0369a1;font-weight:800;padding:6px 10px;font-size:11.5px}.rate-price{font-weight:800;color:#0284c7;text-align:right;white-space:nowrap}.btn-share{background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;flex:1;font-size:11px;font-weight:700}.btn-share:hover{background:#dcfce7}.movein-promo-banner{margin:4px 16px 8px;background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #93c5fd;border-radius:12px;padding:9px 12px;display:flex;justify-content:space-between;align-items:center;gap:8px;cursor:pointer;box-shadow:0 1px 4px rgba(30,58,138,0.08);transition:all 0.2s ease}.movein-promo-banner:hover{background:#bfdbfe}.movein-tag{font-size:10.5px;font-weight:800;color:#1e40af;background:white;padding:3px 8px;border-radius:8px;border:1px solid #93c5fd;white-space:nowrap}.action-pill-btn.spare-pill{border-color:#a7f3d0;color:#047857;font-weight:800}.action-pill-btn.spare-pill:hover{background:#d1fae5}.action-pill-btn.bidding-pill{border-color:#fde68a;color:#b45309;font-weight:800}.action-pill-btn.bidding-pill:hover{background:#fef3c7}.action-pill-btn.pool-pill{border-color:#fbcfe8;color:#be185d;font-weight:800}.action-pill-btn.pool-pill:hover{background:#fce7f3}.spare-cat-bar{display:flex;gap:6px;overflow-x:auto;padding:4px 0 8px;scrollbar-width:none}.spare-cat-bar::-webkit-scrollbar{display:none}.spare-cat-chip{padding:4px 10px;background:#f1f5f9;border-radius:12px;font-size:11px;font-weight:700;color:#475569;cursor:pointer;white-space:nowrap;border:1px solid #cbd5e1}.spare-cat-chip.active{background:#059669;color:white;border-color:#059669}.spare-table{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:6px}.spare-table th{background:#f8fafc;padding:7px 8px;text-align:left;border-bottom:2px solid #cbd5e1;color:#1e293b;font-weight:800}.spare-table td{padding:7px 8px;border-bottom:1px solid #e2e8f0;color:#334155}.spare-fair-price{color:#059669;font-weight:800;text-align:right;white-space:nowrap}.bid-card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:10px 12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;gap:10px}.bid-title{font-weight:800;font-size:13px;color:#0f172a}.bid-sub{font-size:11px;color:#64748b;margin-top:2px}.bid-budget-badge{background:#fef3c7;color:#b45309;padding:3px 8px;border-radius:8px;font-weight:900;font-size:12px;border:1px solid #fde68a;white-space:nowrap}.btn-accept-bid{background:#16a34a;color:white;border:none;padding:5px 10px;border-radius:8px;font-size:11px;font-weight:800;cursor:pointer;white-space:nowrap}.pool-discount-box{background:linear-gradient(135deg,#fdf2f8,#fce7f3);border:1px solid #fbcfe8;border-radius:12px;padding:12px;margin-bottom:12px}.pool-tier-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:8px}.pool-tier-card{background:white;border:1px solid #f472b6;border-radius:8px;padding:8px;text-align:center}.pool-tier-num{font-weight:900;font-size:13px;color:#be185d}.pool-tier-off{font-size:10.5px;color:#15803d;font-weight:800;margin-top:2px}.card{background:white;border-radius:10px;padding:7px 10px;margin-bottom:6px;border:1px solid #e2e8f0;box-shadow:0 1px 2px rgba(0,0,0,0.02);transition:all 0.15s ease}.card.featured-card{border:1.5px solid #f59e0b;background:linear-gradient(180deg,#fffdf8 0%,#ffffff 100%);box-shadow:0 2px 6px rgba(245,158,11,0.12)}.compact-header-row{display:flex;justify-content:space-between;align-items:center;gap:4px;margin-bottom:2px}.compact-title-wrap{display:flex;align-items:center;gap:5px;flex:1;overflow:hidden;white-space:nowrap}.name{font-size:13.5px;font-weight:800;color:#0f172a;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.compact-meta-row{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#64748b;margin-bottom:3px;gap:6px}.compact-left-meta{display:flex;align-items:center;gap:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.compact-price-wrap{display:flex;align-items:center;gap:5px;flex-shrink:0}.price{font-size:12.5px;font-weight:800;color:#0284c7}.rating-star-btn{font-weight:800;font-size:10px;color:#854d0e;background:#fef9c3;padding:1px 5px;border-radius:4px;cursor:pointer;border:1px solid #fde047;white-space:nowrap}.compact-desc-text{font-size:10px;color:#64748b;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.2}.compact-actions-bar{display:flex;gap:3px;width:100%;margin-top:3px;padding-top:4px;border-top:1px solid #f1f5f9}.btn{padding:4px 6px;border-radius:5px;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:2px;cursor:pointer;border:none;min-height:25px;white-space:nowrap}.compact-actions-bar .btn-book{flex:2;background:#0284c7;color:white;font-size:10.5px}.compact-actions-bar .btn-call{flex:0.9;background:#f1f5f9;color:#334155;border:1px solid #cbd5e1}.compact-actions-bar .btn-wa{flex:0.9;background:#22c55e;color:white}.compact-actions-bar .btn-id{flex:0.8;background:#f8fafc;color:#0284c7;border:1px solid #bae6fd}.compact-actions-bar .btn-video{flex:0.7;background:#eef2ff;color:#4f46e5;border:1px solid #c7d2fe}.compact-actions-bar .btn-map{flex:0.7;background:#ecfdf5;color:#059669;border:1px solid #a7f3d0}.compact-actions-bar .btn-share{flex:0.7;background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0}.badge{font-size:9.5px;padding:1px 5px;border-radius:8px}.badge-pro{font-size:9px;padding:1px 5px}.badge-express{font-size:9px;padding:1px 5px}.status-badge{font-size:9px;padding:1px 5px;border-radius:8px}.card-img-banner{height:140px;margin-bottom:6px}
+<style>*{box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans Tamil",sans-serif;margin:0;padding:0}body{background:#f8fafc;padding-bottom:95px;color:#1e293b}header{background:#0f172a;color:white;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.1)}.brand{font-size:22px;font-weight:800;letter-spacing:-0.5px}.brand span{color:#38bdf8}.nav-btns{display:flex;gap:6px;align-items:center}.lang-btn{background:#0f172a;color:#38bdf8;border:1.5px solid #38bdf8;width:34px;height:34px;border-radius:50%;padding:0;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,0.3);transition:transform 0.15s}.lang-btn:active{transform:scale(0.9)}.admin-btn{background:#334155;color:#38bdf8;border:1px solid #475569;padding:5px 8px;border-radius:12px;font-size:11px;font-weight:bold;cursor:pointer}.auth-btn{background:#38bdf8;color:#0f172a;border:none;padding:6px 12px;border-radius:20px;font-weight:bold;font-size:11px;cursor:pointer}.user-profile{font-size:11px;color:#38bdf8;font-weight:bold;display:flex;align-items:center;gap:4px;background:#1e293b;padding:4px 10px;border-radius:16px}.sync-bar{display:none !important}.search-box{padding:12px 16px 4px}.search-input{width:100%;padding:12px 16px;border-radius:12px;border:1px solid #cbd5e1;font-size:14px;outline:none;background:white;box-shadow:0 1px 3px rgba(0,0,0,0.05)}.categories{display:flex;overflow-x:auto;padding:10px 16px;gap:8px;scrollbar-width:none}.categories::-webkit-scrollbar{display:none}.chip{padding:7px 14px;background:white;border-radius:20px;font-size:12px;font-weight:600;border:1px solid #e2e8f0;white-space:nowrap;cursor:pointer}.chip.active{background:#0f172a;color:white;border-color:#0f172a}.list{padding:8px 16px}.card-img-banner{position:relative;width:100%;height:180px;border-radius:12px;overflow:hidden;margin-bottom:12px;cursor:pointer;background:#e2e8f0}.card-cover-img{width:100%;height:100%;object-fit:cover;transition:transform 0.25s ease}.card-img-banner:hover .card-cover-img{transform:scale(1.04)}.photo-badge{position:absolute;bottom:8px;right:8px;background:rgba(15,23,42,0.85);color:white;padding:4px 10px;border-radius:14px;font-size:11px;font-weight:700;backdrop-filter:blur(4px);box-shadow:0 2px 6px rgba(0,0,0,0.25)}.house-preview-thumb{width:64px;height:64px;object-fit:cover;border-radius:8px;border:1px solid #cbd5e1;cursor:pointer}.card{background:white;border-radius:12px;padding:10px 12px;margin-bottom:8px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,0.02)}.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2px}.name{font-size:14.5px;font-weight:700;color:#0f172a}.badge{font-size:10px;padding:2px 6px;border-radius:10px;font-weight:700;background:#f0fdf4;color:#166534}.details{font-size:11.5px;color:#64748b;margin-top:2px}.rating-row{display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-size:12px}.rating{background:#fef08a;color:#854d0e;padding:2px 6px;border-radius:5px;font-weight:bold;font-size:11px}.price{font-size:13.5px;font-weight:800;color:#0284c7}.actions{display:flex;flex-direction:column;gap:4px;margin-top:8px;padding-top:6px;border-top:1px solid #f1f5f9}.actions-row-primary{display:flex;gap:5px;width:100%}.actions-row-secondary{display:flex;gap:4px;width:100%}.btn{padding:6px 8px;border-radius:6px;text-decoration:none;font-size:11px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:3px;cursor:pointer;border:none;min-height:28px}.actions-row-primary .btn-book{background:#0284c7;color:white;flex:1.8;font-weight:700;min-height:30px;font-size:11.5px}.actions-row-primary .btn-call{background:#f1f5f9;color:#334155;flex:0.9;border:1px solid #cbd5e1;min-height:30px}.actions-row-primary .btn-wa{background:#22c55e;color:white;flex:0.9;min-height:30px;font-weight:bold}.actions-row-secondary .btn{flex:1;font-size:10px;padding:4px 6px;min-height:25px}.partner-fab{position:fixed;bottom:20px;right:16px;background:#0f172a;color:white;padding:11px 16px;border-radius:30px;font-weight:bold;font-size:12px;border:1px solid #38bdf8;box-shadow:0 4px 14px rgba(15,23,42,0.35);cursor:pointer;z-index:90;display:flex;align-items:center;gap:6px}.support-fab{position:fixed;bottom:20px;left:16px;background:linear-gradient(135deg,#1e3a8a,#2563eb);color:white;padding:10px 15px;border-radius:30px;font-weight:700;font-size:12px;border:1px solid rgba(255,255,255,0.3);box-shadow:0 4px 14px rgba(37,99,235,0.4);z-index:90;display:flex;align-items:center;gap:6px;cursor:pointer;text-decoration:none;transition:transform 0.15s,box-shadow 0.15s}.support-fab:active{transform:scale(0.96)}.ai-chat-bubble{max-width:86%;padding:10px 14px;border-radius:14px;font-size:12.5px;line-height:1.5;word-wrap:break-word;animation:fadeInBubble 0.2s ease-out}@keyframes fadeInBubble{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}.ai-bubble-bot{background:white;color:#1e293b;align-self:flex-start;border-bottom-left-radius:3px;border:1px solid #e2e8f0;box-shadow:0 1px 4px rgba(0,0,0,0.04)}.ai-bubble-user{background:linear-gradient(135deg,#2563eb,#1d4ed8);color:white;align-self:flex-end;border-bottom-right-radius:3px;box-shadow:0 2px 6px rgba(37,99,235,0.25)}.ai-chip-pill{background:white;border:1px solid #cbd5e1;color:#334155;padding:5px 11px;border-radius:20px;font-size:11.5px;font-weight:600;cursor:pointer;white-space:nowrap;transition:all 0.15s;box-shadow:0 1px 2px rgba(0,0,0,0.03);display:inline-flex;align-items:center;gap:4px}.ai-chip-pill:hover,.ai-chip-pill:active{background:#eff6ff;border-color:#3b82f6;color:#1d4ed8}.ai-action-btn{display:inline-block;margin-top:8px;background:#2563eb;color:white;padding:6px 12px;border-radius:7px;font-size:11.5px;font-weight:bold;text-decoration:none;cursor:pointer;border:none;box-shadow:0 2px 5px rgba(37,99,235,0.3)}.ai-action-btn:hover{background:#1d4ed8}.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:1000;justify-content:center;align-items:center;padding:16px}.modal-overlay.active{display:flex}.modal-box{background:white;width:100%;max-width:450px;border-radius:20px;padding:20px;max-height:90vh;overflow-y:auto}.modal-title{font-size:18px;font-weight:bold;margin-bottom:4px;color:#0f172a}.modal-sub{font-size:12px;color:#64748b;margin-bottom:14px}.form-group{margin-bottom:10px}.form-group label{display:block;font-size:12px;font-weight:600;margin-bottom:4px;color:#475569}.form-input{width:100%;padding:10px 12px;border:1px solid #cbd5e1;border-radius:8px;font-size:14px;outline:none}.submit-btn{width:100%;background:#0284c7;color:white;border:none;padding:12px;border-radius:10px;font-weight:bold;cursor:pointer;margin-top:8px;font-size:14px}.close-btn{width:100%;background:none;border:none;color:#64748b;margin-top:10px;font-size:13px;cursor:pointer}.payment-box{background:#f0fdf4;border:1px solid #86efac;border-radius:14px;padding:12px;margin:10px 0;text-align:center}.payment-title{font-size:13px;font-weight:bold;color:#166534;display:flex;justify-content:space-between;margin-bottom:6px}.payment-amount{background:#22c55e;color:white;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:800}.upi-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:8px 0}.upi-btn{padding:9px 6px;border-radius:8px;font-weight:bold;font-size:12px;cursor:pointer;border:none;color:white}.btn-gpay{background:#0f172a;color:#38bdf8;border:1px solid #38bdf8;grid-column:span 2}.btn-phonepe{background:#5f259f}.btn-paytm{background:#002970}.btn-all-upi{background:#16a34a;grid-column:span 2}.doc-upload-section{background:#f8fafc;border:1px dashed #94a3b8;border-radius:12px;padding:12px;margin:12px 0}.doc-title{font-size:12px;font-weight:bold;color:#0f172a;margin-bottom:8px}.doc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.doc-box{background:white;border:1px solid #e2e8f0;border-radius:8px;padding:8px}.doc-box label{display:block;font-size:11px;font-weight:700;color:#334155;margin-bottom:3px}.doc-box input[type="file"]{width:100%;font-size:10px}.upload-progress{display:none;background:#e0f2fe;color:#0369a1;padding:10px;border-radius:8px;font-size:12px;font-weight:600;text-align:center;margin:8px 0}.admin-tab-nav{display:flex;gap:6px;margin-bottom:12px;border-bottom:2px solid #e2e8f0;padding-bottom:6px}.admin-tab-btn{flex:1;padding:8px;border:none;background:#f1f5f9;color:#64748b;font-weight:bold;font-size:12px;border-radius:8px;cursor:pointer}.admin-tab-btn.active{background:#0284c7;color:white}.badge-count{background:#ef4444;color:white;padding:1px 6px;border-radius:10px;font-size:10px;margin-left:4px}.approval-card{background:white;border:1px solid #cbd5e1;border-radius:10px;padding:12px;margin-bottom:10px;font-size:12px}.doc-badge-row{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.doc-link-btn{display:inline-flex;align-items:center;background:#f0fdf4;color:#166534;border:1px solid #bbf7d0;padding:3px 6px;border-radius:6px;font-size:11px;text-decoration:none;font-weight:600}.approval-actions{display:flex;gap:6px;margin-top:8px;border-top:1px solid #f1f5f9;padding-top:8px}.btn-approve{flex:1;background:#16a34a;color:white;border:none;padding:7px;border-radius:6px;font-weight:bold;font-size:11px;cursor:pointer}.btn-reject{background:#fee2e2;color:#dc2626;border:none;padding:7px 10px;border-radius:6px;font-weight:bold;font-size:11px;cursor:pointer}.admin-tech-item{display:flex;justify-content:space-between;align-items:center;padding:8px;border-bottom:1px solid #f1f5f9;font-size:12px}.edit-btn{background:#e0f2fe;color:#0284c7;border:none;padding:4px 8px;border-radius:6px;font-weight:bold;cursor:pointer;font-size:11px}.del-btn{background:#fee2e2;color:#dc2626;border:none;padding:4px 8px;border-radius:6px;font-weight:bold;cursor:pointer;font-size:11px}.otp-banner{background:#fefce8;border:1px solid #fde047;padding:8px 12px;border-radius:8px;font-size:12px;color:#854d0e;margin-bottom:12px;text-align:center}footer{background:#0f172a;color:#94a3b8;padding:24px 16px 85px;text-align:center;font-size:12px;line-height:1.8;margin-top:30px;border-top:1px solid #334155}footer a{color:#38bdf8;text-decoration:none;margin:0 4px}#splashScreen{position:fixed;inset:0;background:#0f172a;z-index:99999;display:flex;flex-direction:column;justify-content:center;align-items:center;transition:opacity 0.5s ease-out,visibility 0.5s ease-out;animation:autoHideSplash 0.4s ease-out 1.4s forwards}@keyframes autoHideSplash{0%{opacity:1;visibility:visible}99%{opacity:0;visibility:visible;pointer-events:none}100%{opacity:0;visibility:hidden;pointer-events:none;display:none}}#splashScreen.fade-out{opacity:0;visibility:hidden;pointer-events:none}.splash-box{text-align:center;padding:20px;animation:splashZoomIn 0.8s cubic-bezier(0.16,1,0.3,1) forwards}@keyframes splashZoomIn{0%{transform:scale(0.8);opacity:0}100%{transform:scale(1);opacity:1}}.splash-logo-wrap{width:100px;height:100px;margin:0 auto 16px;border-radius:26px;background:#1e293b;border:2px solid #38bdf8;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(56,189,248,0.35);position:relative;overflow:hidden}.splash-logo-img{width:100%;height:100%;object-fit:cover}.splash-brand{font-size:38px;font-weight:800;letter-spacing:-1px;color:white;margin-bottom:4px}.splash-brand span{color:#38bdf8}.splash-sub{font-size:13px;color:#94a3b8;font-weight:600;margin-bottom:24px}.splash-bar-outer{width:140px;height:4px;background:#334155;border-radius:4px;margin:0 auto;overflow:hidden}.splash-bar-inner{width:100%;height:100%;background:#38bdf8;border-radius:4px;animation:splashProgress 1.4s ease-in-out forwards}@keyframes splashProgress{0%{transform:translateX(-100%)}60%{transform:translateX(-20%)}100%{transform:translateX(0)}}.pwa-banner{background:#0284c7;color:white;padding:8px 16px;font-size:12px;font-weight:600;display:none;justify-content:space-between;align-items:center;box-shadow:0 2px 6px rgba(0,0,0,0.1)}.pwa-btn{background:white;color:#0284c7;border:none;padding:4px 10px;border-radius:12px;font-weight:bold;font-size:11px;cursor:pointer}.amenities-row{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0}.amenity-tag{background:#f1f5f9;color:#475569;padding:2px 7px;border-radius:6px;font-size:10px;font-weight:600;border:1px solid #e2e8f0;display:inline-flex;align-items:center;gap:3px}.status-badge{font-size:10px;padding:2px 8px;border-radius:10px;font-weight:bold}.status-available{background:#dcfce7;color:#15803d}.status-rented{background:#fee2e2;color:#b91c1c}.fav-btn{background:none;border:none;font-size:18px;cursor:pointer;padding:0 4px;line-height:1;transition:transform 0.15s}.fav-btn:active{transform:scale(1.3)}.sub-chips{display:none;overflow-x:auto;padding:0 16px 8px;gap:6px;scrollbar-width:none}.sub-chips::-webkit-scrollbar{display:none}.sub-chip{padding:4px 10px;background:#e2e8f0;border-radius:14px;font-size:11px;font-weight:600;color:#475569;cursor:pointer;border:1px solid #cbd5e1;white-space:nowrap}.sub-chip.active{background:#0284c7;color:white;border-color:#0284c7}.install-pwa-btn{background:linear-gradient(135deg,#0284c7,#38bdf8);color:#0f172a;border:1px solid #7dd3fc;padding:5px 10px;border-radius:12px;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:4px;box-shadow:0 2px 6px rgba(56,189,248,0.35);animation:pulseGlow 2.5s infinite}@keyframes pulseGlow{0%,100%{box-shadow:0 2px 6px rgba(56,189,248,0.35)}50%{box-shadow:0 2px 14px rgba(56,189,248,0.7)}}.quick-action-bar{display:flex;gap:8px;padding:6px 16px 8px;overflow-x:auto;scrollbar-width:none;align-items:center}.quick-action-bar::-webkit-scrollbar{display:none}.toggle-pill{background:white;border:1.5px solid #cbd5e1;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:700;color:#334155;display:inline-flex;align-items:center;gap:6px;cursor:pointer;white-space:nowrap;user-select:none;transition:all 0.2s ease;box-shadow:0 1px 3px rgba(0,0,0,0.04)}.toggle-pill.active{background:#059669;border-color:#059669;color:white}.toggle-pill .toggle-status{font-size:9px;padding:1px 5px;border-radius:8px;background:#f1f5f9;color:#64748b;font-weight:800}.toggle-pill.active .toggle-status{background:#34d399;color:#064e3b}.action-pill-btn{padding:6px 12px;border-radius:20px;font-size:11px;font-weight:700;border:1.5px solid #cbd5e1;background:white;color:#334155;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:4px;transition:all 0.2s ease;box-shadow:0 1px 3px rgba(0,0,0,0.04)}.action-pill-btn.express-btn{border-color:#fed7aa;color:#c2410c}.action-pill-btn.express-btn.active{background:linear-gradient(135deg,#ea580c,#f97316);color:white;border-color:#ea580c;box-shadow:0 2px 8px rgba(234,88,12,0.35)}.action-pill-btn.pro-btn{border-color:#e9d5ff;color:#7e22ce}.action-pill-btn.pro-btn.active{background:linear-gradient(135deg,#7e22ce,#a855f7);color:white;border-color:#7e22ce;box-shadow:0 2px 8px rgba(126,34,206,0.35)}.featured-promo-banner{margin:2px 16px 3px;background:linear-gradient(135deg,#fffbeb,#fef3c7);border:1px solid #fde68a;border-radius:8px;padding:5px 10px;display:flex;justify-content:space-between;align-items:center;gap:6px;cursor:pointer;box-shadow:0 1px 2px rgba(245,158,11,0.04);transition:all 0.15s ease}.featured-promo-banner:hover{background:#fef08a}.featured-banner-left{display:flex;align-items:center;gap:6px;flex:1;overflow:hidden}.featured-banner-title{font-size:11px;font-weight:800;color:#92400e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.featured-banner-desc{display:none}.boost-btn{background:linear-gradient(135deg,#d97706,#f59e0b);color:white;border:none;padding:3px 8px;border-radius:6px;font-weight:800;font-size:9.5px;cursor:pointer;white-space:nowrap}.action-pill-btn.video-pill{border-color:#c7d2fe;color:#4338ca;font-weight:800}.action-pill-btn.video-pill:hover{background:#e0e7ff}.btn-video{background:#eef2ff;color:#4f46e5;border:1px solid #c7d2fe;flex:1;font-size:11px;font-weight:700}.btn-video:hover{background:#e0e7ff}.card.featured-card{border:2px solid #f59e0b;background:linear-gradient(180deg,#fffdfa 0%,#ffffff 100%);box-shadow:0 4px 16px rgba(245,158,11,0.16);position:relative}.featured-listing-strip{background:linear-gradient(135deg,#d97706,#f59e0b);color:white;font-size:9.5px;font-weight:800;padding:2px 7px;border-radius:6px;display:inline-flex;align-items:center;gap:3px;margin-bottom:4px;box-shadow:0 1px 2px rgba(217,119,6,0.2)}.badge-pro{background:linear-gradient(135deg,#7e22ce,#9333ea);color:white !important;font-weight:800;border:1px solid #c084fc;box-shadow:0 2px 4px rgba(126,34,206,0.2)}.badge-express{background:linear-gradient(135deg,#ea580c,#f97316);color:white !important;font-weight:800;border:1px solid #fdba74;box-shadow:0 2px 4px rgba(234,88,12,0.2)}.dot-pulse{display:inline-block;width:6px;height:6px;background:#16a34a;border-radius:50%;margin-right:4px;animation:pulseGreen 1.5s infinite}@keyframes pulseGreen{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(1.3)}}.status-busy{background:#f1f5f9;color:#64748b}.rating-badge-btn{display:inline-flex;align-items:center;gap:6px;cursor:pointer;background:#fef9c3;padding:3px 8px;border-radius:8px;border:1px solid #fde047;transition:background 0.15s ease}.rating-badge-btn:hover{background:#fef08a}.rating-star{color:#854d0e;font-weight:800;font-size:12px}.rating-reviews{color:#713f12;font-size:11px;font-weight:600;text-decoration:underline}.btn-id{background:#f8fafc;color:#0284c7;border:1px solid #bae6fd;flex:1.1;font-size:11px;font-weight:700}.btn-id:hover{background:#f0f9ff}.btn-map{background:#ecfdf5;color:#059669;border:1px solid #a7f3d0;flex:1.1;font-size:11px;font-weight:700}.btn-map:hover{background:#d1fae5}.id-card-wrapper{background:linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#0f172a 100%);border:2px solid #38bdf8;border-radius:18px;padding:16px;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.4),inset 0 0 20px rgba(56,189,248,0.15);position:relative;overflow:hidden}.id-card-wrapper::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(56,189,248,0.08) 0%,transparent 60%);pointer-events:none}.id-card-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(56,189,248,0.3);padding-bottom:10px;margin-bottom:12px}.id-card-brand{font-size:18px;font-weight:900;letter-spacing:-0.5px}.id-card-brand span{color:#38bdf8}.id-verified-seal{background:linear-gradient(135deg,#10b981,#059669);color:white;font-size:10px;font-weight:800;padding:3px 8px;border-radius:12px;box-shadow:0 2px 6px rgba(16,185,129,0.3)}.id-card-body{display:flex;gap:14px;align-items:center}.id-photo-frame{width:78px;height:78px;border-radius:50%;border:3px solid #38bdf8;padding:2px;background:#1e293b;display:flex;align-items:center;justify-content:center;font-size:34px;box-shadow:0 4px 10px rgba(0,0,0,0.3);flex-shrink:0;overflow:hidden}.id-photo-frame img{width:100%;height:100%;object-fit:cover;border-radius:50%}.id-meta-name{font-size:16px;font-weight:800;color:white;line-height:1.2}.id-meta-trade{font-size:12px;color:#38bdf8;font-weight:700;margin-top:3px}.id-meta-id{font-size:11px;color:#94a3b8;font-family:monospace;margin-top:2px}.id-details-grid{background:rgba(15,23,42,0.6);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:10px;margin:12px 0;display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:11px}.id-detail-item{display:flex;flex-direction:column}.id-detail-lbl{color:#94a3b8;font-size:9.5px;text-transform:uppercase;letter-spacing:0.5px}.id-detail-val{color:#f1f5f9;font-weight:700;margin-top:2px}.id-qr-row{display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(56,189,248,0.2);padding-top:10px;margin-top:10px}.id-qr-img{width:58px;height:58px;background:white;padding:3px;border-radius:6px}.id-security-txt{font-size:10px;color:#94a3b8;line-height:1.4;flex:1;padding-left:10px}.review-score-banner{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac;border-radius:14px;padding:12px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.review-score-big{font-size:26px;font-weight:900;color:#15803d}.review-item{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px 12px;margin-bottom:8px;font-size:12px}.review-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}.review-author{font-weight:700;color:#0f172a}.review-date{font-size:10px;color:#94a3b8}.review-stars{color:#eab308;font-size:12px;margin-bottom:4px}.review-comment{color:#334155;line-height:1.4}.review-add-box{background:#f1f5f9;border-radius:12px;padding:12px;margin-top:14px;border:1px solid #cbd5e1}.star-rating-select{display:flex;gap:6px;font-size:22px;cursor:pointer}.star-btn{color:#cbd5e1;transition:color 0.15s}.star-btn.active{color:#eab308}.boost-plan-card{background:white;border:2px solid #cbd5e1;border-radius:12px;padding:10px 12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:all 0.2s}.boost-plan-card.selected{border-color:#f59e0b;background:#fffbeb;box-shadow:0 2px 8px rgba(245,158,11,0.15)}.boost-plan-title{font-weight:800;font-size:13px;color:#0f172a}.boost-plan-sub{font-size:11px;color:#64748b}.boost-plan-price{font-size:16px;font-weight:900;color:#d97706}.express-emergency-strip{margin:2px 16px 3px;background:linear-gradient(135deg,#fff7ed,#ffedd5);border:1px solid #fed7aa;border-radius:8px;padding:5px 10px;display:flex;justify-content:space-between;align-items:center;gap:6px;cursor:pointer;box-shadow:0 1px 2px rgba(234,88,12,0.04);transition:all 0.15s ease}.express-emergency-strip:hover{background:#fed7aa}.express-strip-tag{font-size:9.5px;font-weight:800;color:#c2410c;background:white;padding:2px 7px;border-radius:6px;border:1px solid #fed7aa;white-space:nowrap}.pulse-lightning{font-size:16px;display:inline-block;animation:lightningPulse 1.2s infinite}@keyframes lightningPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.3);opacity:0.7}}.city-chips-bar{display:flex;gap:6px;padding:0 16px 8px;overflow-x:auto;scrollbar-width:none;align-items:center}.city-chips-bar::-webkit-scrollbar{display:none}.city-chip{padding:5px 11px;background:white;border:1px solid #cbd5e1;border-radius:16px;font-size:11px;font-weight:700;color:#334155;cursor:pointer;white-space:nowrap;transition:all 0.15s ease;box-shadow:0 1px 2px rgba(0,0,0,0.03)}.city-chip.active{background:#0284c7;color:white;border-color:#0284c7;box-shadow:0 2px 6px rgba(2,132,199,0.3)}.rate-card-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:12px}.rate-card-table th{background:#f1f5f9;color:#1e293b;padding:8px 10px;text-align:left;font-weight:800;border-bottom:2px solid #cbd5e1}.rate-card-table td{padding:8px 10px;border-bottom:1px solid #e2e8f0;color:#334155}.rate-cat-header{background:#e0f2fe;color:#0369a1;font-weight:800;padding:6px 10px;font-size:11.5px}.rate-price{font-weight:800;color:#0284c7;text-align:right;white-space:nowrap}.btn-share{background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;flex:1;font-size:11px;font-weight:700}.btn-share:hover{background:#dcfce7}.movein-promo-banner{margin:4px 16px 8px;background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #93c5fd;border-radius:12px;padding:9px 12px;display:flex;justify-content:space-between;align-items:center;gap:8px;cursor:pointer;box-shadow:0 1px 4px rgba(30,58,138,0.08);transition:all 0.2s ease}.movein-promo-banner:hover{background:#bfdbfe}.movein-tag{font-size:10.5px;font-weight:800;color:#1e40af;background:white;padding:3px 8px;border-radius:8px;border:1px solid #93c5fd;white-space:nowrap}.action-pill-btn.spare-pill{border-color:#a7f3d0;color:#047857;font-weight:800}.action-pill-btn.spare-pill:hover{background:#d1fae5}.action-pill-btn.bidding-pill{border-color:#fde68a;color:#b45309;font-weight:800}.action-pill-btn.bidding-pill:hover{background:#fef3c7}.action-pill-btn.pool-pill{border-color:#fbcfe8;color:#be185d;font-weight:800}.action-pill-btn.pool-pill:hover{background:#fce7f3}.spare-cat-bar{display:flex;gap:6px;overflow-x:auto;padding:4px 0 8px;scrollbar-width:none}.spare-cat-bar::-webkit-scrollbar{display:none}.spare-cat-chip{padding:4px 10px;background:#f1f5f9;border-radius:12px;font-size:11px;font-weight:700;color:#475569;cursor:pointer;white-space:nowrap;border:1px solid #cbd5e1}.spare-cat-chip.active{background:#059669;color:white;border-color:#059669}.spare-table{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:6px}.spare-table th{background:#f8fafc;padding:7px 8px;text-align:left;border-bottom:2px solid #cbd5e1;color:#1e293b;font-weight:800}.spare-table td{padding:7px 8px;border-bottom:1px solid #e2e8f0;color:#334155}.spare-fair-price{color:#059669;font-weight:800;text-align:right;white-space:nowrap}.bid-card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:10px 12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;gap:10px}.bid-title{font-weight:800;font-size:13px;color:#0f172a}.bid-sub{font-size:11px;color:#64748b;margin-top:2px}.bid-budget-badge{background:#fef3c7;color:#b45309;padding:3px 8px;border-radius:8px;font-weight:900;font-size:12px;border:1px solid #fde68a;white-space:nowrap}.btn-accept-bid{background:#16a34a;color:white;border:none;padding:5px 10px;border-radius:8px;font-size:11px;font-weight:800;cursor:pointer;white-space:nowrap}.pool-discount-box{background:linear-gradient(135deg,#fdf2f8,#fce7f3);border:1px solid #fbcfe8;border-radius:12px;padding:12px;margin-bottom:12px}.pool-tier-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:8px}.pool-tier-card{background:white;border:1px solid #f472b6;border-radius:8px;padding:8px;text-align:center}.pool-tier-num{font-weight:900;font-size:13px;color:#be185d}.pool-tier-off{font-size:10.5px;color:#15803d;font-weight:800;margin-top:2px}.card{background:white;border-radius:10px;padding:7px 10px;margin-bottom:6px;border:1px solid #e2e8f0;box-shadow:0 1px 2px rgba(0,0,0,0.02);transition:all 0.15s ease}.card.featured-card{border:1.5px solid #f59e0b;background:linear-gradient(180deg,#fffdf8 0%,#ffffff 100%);box-shadow:0 2px 6px rgba(245,158,11,0.12)}.compact-header-row{display:flex;justify-content:space-between;align-items:center;gap:4px;margin-bottom:2px}.compact-title-wrap{display:flex;align-items:center;gap:5px;flex:1;overflow:hidden;white-space:nowrap}.name{font-size:13.5px;font-weight:800;color:#0f172a;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.compact-meta-row{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#64748b;margin-bottom:3px;gap:6px}.compact-left-meta{display:flex;align-items:center;gap:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.compact-price-wrap{display:flex;align-items:center;gap:5px;flex-shrink:0}.price{font-size:12.5px;font-weight:800;color:#0284c7}.rating-star-btn{font-weight:800;font-size:10px;color:#854d0e;background:#fef9c3;padding:1px 5px;border-radius:4px;cursor:pointer;border:1px solid #fde047;white-space:nowrap}.compact-desc-text{font-size:10px;color:#64748b;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.2}.compact-actions-bar{display:flex;gap:3px;width:100%;margin-top:3px;padding-top:4px;border-top:1px solid #f1f5f9}.btn{padding:4px 6px;border-radius:5px;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:2px;cursor:pointer;border:none;min-height:25px;white-space:nowrap}.compact-actions-bar .btn-book{flex:2;background:#0284c7;color:white;font-size:10.5px}.compact-actions-bar .btn-call{flex:0.9;background:#f1f5f9;color:#334155;border:1px solid #cbd5e1}.compact-actions-bar .btn-wa{flex:0.9;background:#22c55e;color:white}.compact-actions-bar .btn-id{flex:0.8;background:#f8fafc;color:#0284c7;border:1px solid #bae6fd}.compact-actions-bar .btn-video{flex:0.7;background:#eef2ff;color:#4f46e5;border:1px solid #c7d2fe}.compact-actions-bar .btn-map{flex:0.7;background:#ecfdf5;color:#059669;border:1px solid #a7f3d0}.compact-actions-bar .btn-share{flex:0.7;background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0}.badge{font-size:9.5px;padding:1px 5px;border-radius:8px}.badge-pro{font-size:9px;padding:1px 5px}.badge-express{font-size:9px;padding:1px 5px}.status-badge{font-size:9px;padding:1px 5px;border-radius:8px}.card-img-banner{height:140px;margin-bottom:6px}
 
 @media print {
 
@@ -90,9 +90,7 @@
 
 <button class="install-pwa-btn" id="headerInstallBtn" onclick="installPwaApp()">📲 Install App</button>
 
-<button class="lang-btn" id="langToggleBtn" onclick="toggleLanguage()">🌐 English</button>
-
-<button class="admin-btn" id="headerAdminBtn" onclick="openAdminLogin()">🔒 Admin</button>
+<button class="lang-btn" id="langToggleBtn" onclick="toggleLanguage()" title="Switch Language (மொழி மாற்று)">EN</button>
 
 <div id="authContainer">
 
@@ -106,7 +104,7 @@
 
 <div class="pwa-banner" id="pwaBanner">
 
-<span>📲 Fixr ஆப்பை உங்கள் மொபைலில் இன்ஸ்டால் செய்ய</span>
+<span id="pwaBannerText">📲 Fixr ஆப்பை உங்கள் மொபைலில் இன்ஸ்டால் செய்ய</span>
 
 <div style="display:flex; gap:6px;">
 
@@ -1454,15 +1452,15 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
 
-<div class="modal-title" style="margin-bottom:0;">📑 சட்டப்பூர்வ வாடகை ஒப்பந்தம்</div>
+<div class="modal-title" style="margin-bottom:0;" id="agrModalTitle">📑 சட்டப்பூர்வ வாடகை ஒப்பந்தம்</div>
 
 <button onclick="closeModal('rentalAgreementModal')" style="background:none; border:none; font-size:22px; color:#64748b; cursor:pointer;">✕</button>
 
 </div>
 
-<div class="modal-sub">வீட்டிலிருந்தே 24 மணி நேரத்தில் ₹100 அரசு முத்திரைத் தாளுடன் (E-Stamp) அக்ரீமென்ட் பெறுக</div>
+<div class="modal-sub" id="agrModalSub">வீட்டிலிருந்தே 24 மணி நேரத்தில் ₹100 அரசு முத்திரைத் தாளுடன் (E-Stamp) அக்ரீமென்ட் பெறுக</div>
 
-<div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:10px; padding:8px 12px; font-size:11.5px; color:#166534; margin-bottom:12px;">
+<div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:10px; padding:8px 12px; font-size:11.5px; color:#166534; margin-bottom:12px;" id="agrGovTrustBanner">
 
 🛡️ <b>அரசு அங்கீகாரம்:</b> நோட்டரி வழக்கறிஞர் சரிபார்ப்புடன், நீதிமன்ற செல்லுபடியாகும் வாடகை ஒப்பந்தம்.
 
@@ -1470,7 +1468,7 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
 <div class="form-group">
 
-<label>வீட்டு உரிமையாளர் பெயர் (Owner Name)</label>
+<label id="lblAgrOwner">வீட்டு உரிமையாளர் பெயர் (Owner Name)</label>
 
 <input type="text" id="agrOwnerName" class="form-input" placeholder="உரிமையாளர் பெயர்">
 
@@ -1478,7 +1476,7 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
 <div class="form-group">
 
-<label>வாடகைதாரர் பெயர் (Tenant Name)</label>
+<label id="lblAgrTenant">வாடகைதாரர் பெயர் (Tenant Name)</label>
 
 <input type="text" id="agrTenantName" class="form-input" placeholder="குடிவருபவர் பெயர்">
 
@@ -1486,7 +1484,7 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
 <div class="form-group">
 
-<label>வாடகை வீட்டின் முழு முகவரி (House Address)</label>
+<label id="lblAgrAddress">வாடகை வீட்டின் முழு முகவரி (House Address)</label>
 
 <input type="text" id="agrHouseAddr" class="form-input" placeholder="கதவு எண், தெரு, பகுதி & ஊர்">
 
@@ -1496,7 +1494,7 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
 <div class="form-group">
 
-<label>மாத வாடகை (Rent)</label>
+<label id="lblAgrRent">மாத வாடகை (Rent)</label>
 
 <input type="text" id="agrRent" class="form-input" placeholder="எ.கா: ₹12,000">
 
@@ -1504,7 +1502,7 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
 <div class="form-group">
 
-<label>முன்பணம் (Advance)</label>
+<label id="lblAgrAdvance">முன்பணம் (Advance)</label>
 
 <input type="text" id="agrAdvance" class="form-input" placeholder="எ.கா: ₹50,000">
 
@@ -1514,31 +1512,31 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
 <div class="form-group">
 
-<label>ஒப்பந்தத் திட்டம் (Select Plan):</label>
+<label id="lblAgrPlan">ஒப்பந்தத் திட்டம் (Select Plan):</label>
 
 <select id="agrPlan" class="form-input">
 
-<option value="₹299 - Digital PDF Agreement (24 Hours)">₹299 - Digital PDF அக்ரீமென்ட் (வாட்ஸ்அப்/இமெயில்)</option>
+<option value="₹299 - Digital PDF Agreement (24 Hours)" id="optAgrPlan1">₹299 - Digital PDF அக்ரீமென்ட் (வாட்ஸ்அப்/இமெயில்)</option>
 
-<option value="₹499 - ₹100 Govt E-Stamp + Home Delivery">₹499 - ₹100 அரசு E-Stamp + நோட்டரி + டோர் டெலிவரி (பிரபலம்)</option>
+<option value="₹499 - ₹100 Govt E-Stamp + Home Delivery" id="optAgrPlan2">₹499 - ₹100 அரசு E-Stamp + நோட்டரி + டோர் டெலிவரி (பிரபலம்)</option>
 
 </select>
 
 </div>
 
-<button type="button" class="submit-btn" style="background:#0369a1; margin-bottom:6px; font-size:12px;" onclick="previewInAppAgreementDoc()">
+<button type="button" class="submit-btn" style="background:#0369a1; margin-bottom:6px; font-size:12px;" id="btnAgrPreview" onclick="previewInAppAgreementDoc()">
 
   📑 அக்ரீமென்ட் பத்திரத்தை ஆப்பிலேயே பார்க்க (View Agreement In-App)
 
 </button>
 
-<button class="submit-btn" style="background:#0284c7;" onclick="submitRentalAgreementOrder()">
+<button class="submit-btn" style="background:#0284c7;" id="btnAgrSubmit" onclick="submitRentalAgreementOrder()">
 
 🚀 WhatsApp வழியாக அக்ரீமென்ட் ஆர்டர் செய்ய
 
 </button>
 
-<button class="close-btn" onclick="closeModal('rentalAgreementModal')">ரத்து</button>
+<button class="close-btn" id="btnAgrCancel" onclick="closeModal('rentalAgreementModal')">ரத்து</button>
 
 </div>
 
@@ -1784,7 +1782,7 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
 <div class="pool-discount-box">
 
-<div style="font-weight:bold; font-size:12px; color:#9d174d; text-align:center;">✨ குழு முன்பதிவு தள்ளுபடி அளவுகள்:</div>
+<div style="font-weight:bold; font-size:12px; color:#9d174d; text-align:center;" id="poolTierTitle">✨ குழு முன்பதிவு தள்ளுபடி அளவுகள்:</div>
 
 <div class="pool-tier-grid">
 
@@ -1818,7 +1816,7 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
 <div class="form-group">
 
-<label>குடியிருப்பு / தெருவின் பெயர் (Apartment or Street Name)</label>
+<label id="lblPoolApt">குடியிருப்பு / தெருவின் பெயர் (Apartment or Street Name)</label>
 
 <input type="text" id="poolAptName" class="form-input" placeholder="எ.கா: ராகவேந்திரா அபார்ட்மெண்ட், வேளச்சேரி">
 
@@ -2156,20 +2154,31 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
 <div style="font-weight: bold; color: white; margin-bottom: 6px; font-size: 14px;">Fixr - Home Services & Partner Network</div>
 
-<div>🛡️ 100% பின்னணி சரிபார்க்கப்பட்ட தொழிலாளர்கள் | 0% கமிஷன் தளம்</div>
+<div id="footerTrustText">🛡️ 100% பின்னணி சரிபார்க்கப்பட்ட தொழிலாளர்கள் | 0% கமிஷன் தளம்</div>
 
-<div style="margin: 8px 0;">📞 தொடர்பு: +91 9884334097 | ✉️ veeraadspromotions@gmail.com</div>
+<div style="margin: 8px 0;" id="footerContactText">📞 தொடர்பு: +91 9884334097 | ✉️ veeraadspromotions@gmail.com</div>
 
 <div>
 
-<a href="javascript:void(0)" onclick="openModal('privacyModal')">Privacy Policy (தனியுரிமை கொள்கை)</a> •
+<a href="javascript:void(0)" onclick="openModal('privacyModal')" id="footerPrivacyLink">Privacy Policy (தனியுரிமை கொள்கை)</a> •
 
 <a href="https://www.fixrservice.in">www.fixrservice.in</a>
 
 </div>
 
-<div style="margin-top: 10px; font-size: 11px; color: #64748b;">© 2026 Fixr Services. All rights reserved.</div>
+<div style="margin-top: 14px;">
 
+<button class="admin-btn" id="footerAdminBtn" onclick="openAdminLogin()" style="padding: 7px 16px; font-size: 12px; border-radius: 20px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.3); color: #e2e8f0; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;">
+
+  🔒 <span id="lblFooterAdmin">நிர்வாகி உள்நுழைவு (Admin Login)</span>
+
+</button>
+
+</div>
+
+<div style="margin-top: 10px; font-size: 11px; color: #64748b;" id="footerCopyright">© 2026 Fixr Services. All rights reserved.</div>
+
+</footer>
 
 <!-- சட்டப்பூர்வ வாடகை ஒப்பந்த ஆவணப் பார்வை (View Full Rental Agreement Document Modal) -->
 
@@ -2181,137 +2190,11 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
   <div>
 
-    <b style="font-size:15px; color:#0f172a;">📑 சட்டப்பூர்வ வாடகை ஒப்பந்த பத்திரம்</b>
+    <b style="font-size:15px; color:#0f172a;" id="docModalTitle">📑 சட்டப்பூர்வ வாடகை ஒப்பந்த பத்திரம்</b>
 
-    <div style="font-size:11px; color:#64748b;">Residential Rental Agreement Document</div>
-
-  </div>
-
-  <button type="button" onclick="closeModal('viewRentalAgreementDocModal')" style="background:none; border:none; font-size:22px; color:#64748b; cursor:pointer;">✕</button>
-
-</div>
-
-
-<!-- Printable Agreement Container -->
-
-<div id="printableAgreementDoc" style="background:#fffef9; border:1px solid #cbd5e1; border-radius:8px; padding:14px; font-size:11.5px; line-height:1.7; color:#1e293b;">
-
-  <div style="text-align:center; border-bottom:2px solid #334155; padding-bottom:8px; margin-bottom:10px;">
-
-    <h3 style="font-size:14px; color:#0f172a; text-transform:uppercase; letter-spacing:0.5px; margin:0;">வாடகை ஒப்பந்த பத்திரம்</h3>
-
-    <div style="font-size:10.5px; color:#475569; font-weight:bold;">(TAMIL NADU MODEL RESIDENTIAL RENTAL AGREEMENT)</div>
-
-    <div style="font-size:10px; color:#64748b;">Fixr Legal Services | 11 Months Validity</div>
+    <div style="font-size:11px; color:#64748b;" id="docModalSub">Residential Rental Agreement Document</div>
 
   </div>
-
-
-  <p style="margin:6px 0;">இந்த வாடகை ஒப்பந்தம் <b id="docAgreementDate">-</b> அன்று எழுதப்பட்டது.</p>
-
- 
-
-  <div style="margin:8px 0; background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; padding:8px;">
-
-    <div><b>1. வீட்டு உரிமையாளர் (Landlord):</b> <span id="docOwnerName">-</span></div>
-
-    <div style="margin-top:3px;"><b>2. வாடகைதாரர் (Tenant):</b> <span id="docTenantName">-</span></div>
-
-    <div style="margin-top:3px;"><b>3. வாடகை வீட்டின் முகவரி (Premises):</b> <span id="docHouseAddr">-</span></div>
-
-  </div>
-
-
-  <div style="margin:8px 0; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:6px; padding:8px;">
-
-    <div><b>4. மாத வாடகை (Monthly Rent):</b> ₹<span id="docRentAmt">-</span> (ஒவ்வொரு மாதமும் 5-ம் தேதிக்குள் செலுத்தப்பட வேண்டும்)</div>
-
-    <div style="margin-top:3px;"><b>5. முன்பணம் / அட்வான்ஸ் (Security Deposit):</b> ₹<span id="docAdvanceAmt">-</span> (வட்டி இல்லாத திருப்பிச் செலுத்தப்படும் தொகை)</div>
-
-    <div style="margin-top:3px;"><b>6. ஒப்பந்த காலம் (Term of Tenancy):</b> 11 மாதங்கள் (11 Months)</div>
-
-  </div>
-
-
-  <div style="margin:8px 0;">
-
-    <b style="font-size:11.5px; color:#0f172a;">முக்கிய விதிமுறைகள் மற்றும் நிபந்தனைகள்:</b>
-
-    <ol style="padding-left:16px; margin-top:4px; font-size:10.5px; color:#334155; line-height:1.6;">
-
-      <li>மின்சாரக் கட்டணம் (EB Charges) வாடகைதாரரால் மீட்டர் ரீடிங் படி நேரடியாகச் செலுத்தப்பட வேண்டும்.</li>
-
-      <li>வாடகைதாரர் வீட்டை குடியிருப்புப் பயன்பாட்டிற்கு மட்டுமே பயன்படுத்த வேண்டும்; வர்த்தக நோக்கத்திற்குப் பயன்படுத்தக் கூடாது.</li>
-
-      <li>வீட்டை காலி செய்ய விரும்பினால், இரு தரப்பினரும் 1 மாதத்திற்கு முன்பே முன்னறிவிப்பு (1 Month Notice) வழங்க வேண்டும்.</li>
-
-      <li>வீட்டை காலி செய்யும்போது, முன்பணத்திலிருந்து நிலுவை வாடகை அல்லது வெள்ளையடிக்கும் செலவு கழிக்கப்பட்டு மீதித் தொகை திருப்பித் தரப்படும்.</li>
-
-    </ol>
-
-  </div>
-
-
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:16px; border-top:1px dashed #94a3b8; padding-top:10px; font-size:10.5px;">
-
-    <div>
-
-      <div>_____________________________</div>
-
-      <b>வீட்டு உரிமையாளர் கையொப்பம்</b>
-
-      <div style="color:#64748b;">(Landlord Signature)</div>
-
-    </div>
-
-    <div style="text-align:right;">
-
-      <div>_____________________________</div>
-
-      <b>வாடகைதாரர் கையொப்பம்</b>
-
-      <div style="color:#64748b;">(Tenant Signature)</div>
-
-    </div>
-
-    <div style="margin-top:8px;">
-
-      <div>சாட்சி 1 (Witness 1): _______________</div>
-
-    </div>
-
-    <div style="margin-top:8px; text-align:right;">
-
-      <div>சாட்சி 2 (Witness 2): _______________</div>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-<div style="display:flex; gap:6px; margin-top:10px;">
-
-  <button type="button" class="submit-btn" style="background:#0284c7; flex:1.2; font-size:11.5px;" onclick="printRentalAgreementDoc()">
-
-    🖨️ பிரிண்ட் / PDF சேமிக்க
-
-  </button>
-
-  <button type="button" class="submit-btn" style="background:#22c55e; flex:1.2; font-size:11.5px;" onclick="shareAgreementDocOnWhatsApp()">
-
-    📲 WhatsApp-ல் அக்ரீமென்ட் அனுப்ப
-
-  </button>
-
-</div>
-
-<button class="close-btn" onclick="closeModal('viewRentalAgreementDocModal')" style="margin-top:8px;">மூடுக (Close)</button>
-
-</div>
-
-</div>
 
 <div class="modal-overlay" id="aiHelpModal">
 
@@ -2343,31 +2226,6 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
 </div>
 
-<button onclick="closeModal('aiHelpModal')" style="background:rgba(255,255,255,0.1); border:none; color:white; width:30px; height:30px; border-radius:50%; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center;">✕</button>
-
-</div>
-
-<div style="background:#f1f5f9; padding:8px 12px; border-bottom:1px solid #e2e8f0; overflow-x:auto; white-space:nowrap; -webkit-overflow-scrolling:touch; display:flex; gap:6px;" id="aiQuickChipsContainer"></div>
-
-<div id="aiChatMessages" style="flex:1; overflow-y:auto; padding:14px; background:#f8fafc; display:flex; flex-direction:column; gap:10px;"></div>
-
-<div style="padding:10px 12px; background:white; border-top:1px solid #e2e8f0; display:flex; gap:8px; align-items:center;">
-
-<input type="text" id="aiChatInput" class="form-input" style="margin:0; border-radius:24px; padding:10px 16px; font-size:13px;" placeholder="உங்கள் கேள்வியை இங்கு தட்டச்சு செய்யவும்..." onkeydown="if(event.key==='Enter') sendAiMessage()">
-
-<button onclick="sendAiMessage()" style="background:linear-gradient(135deg,#2563eb,#7c3aed); color:white; border:none; width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0; box-shadow:0 2px 8px rgba(37,99,235,0.4); font-size:15px;">
-
-➤
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</footer>
 
 <script>
 
@@ -2727,19 +2585,15 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
   const isTa = (currentLang === 'ta');
 
+  // Header & Navigation
+
   const langBtn = document.getElementById('langToggleBtn');
 
-  if (langBtn) langBtn.innerText = isTa ? "🌐 English" : "🌐 தமிழ்";
+  if (langBtn) langBtn.innerText = isTa ? "EN" : "த";
 
   const instBtn = document.getElementById('headerInstallBtn');
 
   if (instBtn) instBtn.innerText = isTa ? "📲 ஆப் நிறுவுக" : "📲 Install App";
-
-  const admBtn = document.getElementById('headerAdminBtn');
-
-  if (admBtn) admBtn.innerText = isTa ? "🔒 நிர்வாகி" : "🔒 Admin";
-
-  const gBtn = document.getElementById("lblLoginGoogleBtn"); if (gBtn) gBtn.innerText = isTa ? "Google மூலம் உள்நுழைக" : "Sign in with Google";
 
   const authBtn = document.getElementById('authBtn');
 
@@ -2769,39 +2623,87 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
   }
 
+  // Banners & Sync
+
+  const pwaTxt = document.getElementById('pwaBannerText');
+
+  if (pwaTxt) pwaTxt.innerText = isTa ? "📲 Fixr ஆப்பை உங்கள் மொபைலில் இன்ஸ்டால் செய்ய" : "📲 Install Fixr App on your mobile for faster booking";
+
+  const cloudTxt = document.getElementById('cloudStatusText');
+
+  if (cloudTxt) cloudTxt.innerText = isTa ? "☁️ Google Cloud Database: இணைக்கப்பட்டது (Online)" : "☁️ Google Cloud Database: Connected (Online)";
+
+  const searchInp = document.getElementById('searchInput');
+
+  if (searchInp) searchInp.placeholder = isTa ? "🔍 நகரம் (Chennai, Madurai...), சேவை அல்லது பெயர் தேடுக..." : "🔍 Search city (Chennai, Madurai...), service or name...";
+
+  // City Chips
+
   const cAll = document.getElementById('cityChipAll');
 
   if (cAll) cAll.innerText = isTa ? "📍 அனைத்து ஊர்கள்" : "📍 All Cities";
 
   const cChn = document.getElementById('cityChipChennai');
 
-  if (cChn) cChn.innerText = isTa ? "சென்னை" : "Chennai";
+  if (cChn) cChn.innerText = isTa ? "சென்னை (Chennai)" : "Chennai";
 
   const cCbe = document.getElementById('cityChipCbe');
 
-  if (cCbe) cCbe.innerText = isTa ? "கோவை" : "Coimbatore";
+  if (cCbe) cCbe.innerText = isTa ? "கோவை (Coimbatore)" : "Coimbatore";
 
   const cMad = document.getElementById('cityChipMadurai');
 
-  if (cMad) cMad.innerText = isTa ? "மதுரை" : "Madurai";
+  if (cMad) cMad.innerText = isTa ? "மதுரை (Madurai)" : "Madurai";
 
   const cTri = document.getElementById('cityChipTrichy');
 
-  if (cTri) cTri.innerText = isTa ? "திருச்சி" : "Trichy";
+  if (cTri) cTri.innerText = isTa ? "திருச்சி (Trichy)" : "Trichy";
 
   const cSal = document.getElementById('cityChipSalem');
 
-  if (cSal) cSal.innerText = isTa ? "சேலம்" : "Salem";
+  if (cSal) cSal.innerText = isTa ? "சேலம் (Salem)" : "Salem";
 
   const cBlr = document.getElementById('cityChipBlr');
 
-  if (cBlr) cBlr.innerText = isTa ? "பெங்களூரு" : "Bengaluru";
+  if (cBlr) cBlr.innerText = isTa ? "பெங்களூரு (Bengaluru)" : "Bengaluru";
+
+  // Promotional Banners
+
+  const moveinT = document.getElementById('moveinBannerTitle');
+
+  if (moveinT) moveinT.innerText = isTa ? "வீடு மாறுகிறீர்களா? பேக்கர்ஸ் & அக்ரீமென்ட்" : "Moving Homes? Packers & Rental Agreement";
+
+  const moveinTag = document.getElementById('moveinBannerTag');
+
+  if (moveinTag) moveinTag.innerText = isTa ? "பார்க்க ➔" : "Explore ➔";
+
+  const expStrip = document.getElementById('expressStripText');
+
+  if (expStrip) expStrip.innerText = isTa ? "30 Mins Express: அவசர எலக்ட்ரீஷியன் & பிளம்பர் தேவைக்கு" : "30 Mins Express: Immediate Emergency Electrician & Plumber";
+
+  const expTag = document.getElementById('expressStripTag');
+
+  if (expTag) expTag.innerText = isTa ? "அவசர சேவை ➔" : "Emergency ➔";
+
+  const featT = document.getElementById('featuredBannerTitle');
+
+  if (featT) featT.innerText = isTa ? "வாடகை வீடு முன்னுரிமை விளம்பரம் (Top Listing ₹99)" : "Promote Your House in Top 3 Spots (₹99 / 7 Days)";
+
+  const featBtn = document.getElementById('featuredBannerBtn');
+
+  if (featBtn) featBtn.innerText = isTa ? "விளம்பரம் ➔" : "Promote ➔";
+
+  // Action Pills
+
+  const availTxt = document.getElementById('availToggleText');
+
+  if (availTxt) availTxt.innerText = isTa ? "Available Only (பணியில் உள்ளவர்கள்)" : "Available Only (Active Pros)";
 
   const expPill = document.getElementById('expressFilterBtn');
 
   if (expPill) expPill.innerText = isTa ? "⚡ 30 நிமிட அவசர சேவை" : "⚡ 30 Mins Express";
 
-  const verPill = document.getElementById('verifiedFilterBtn');
+  const verPill = document.getElementById('proFilterBtn') || document.getElementById('verifiedFilterBtn');
 
   if (verPill) verPill.innerText = isTa ? "🌟 சரிபார்க்கப்பட்ட தொழிலாளர்கள்" : "🌟 Verified Pros Only";
 
@@ -2824,6 +2726,66 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
   const poolPill = document.getElementById('poolPillBtn');
 
   if (poolPill) poolPill.innerText = isTa ? "🏢 தெரு & அடுக்குமாடி குழு தள்ளுபடி" : "🏢 Community Street Pooling";
+
+  // Rental Sub-chips
+
+  const subAll = document.getElementById('chipSubAll');
+
+  if (subAll) subAll.innerText = isTa ? "அனைத்தும்" : "All";
+
+  const subHouse = document.getElementById('chipSubHouse');
+
+  if (subHouse) subHouse.innerText = isTa ? "தனி வீடு" : "Individual House";
+
+  const subLow = document.getElementById('chipSubBudgetLow');
+
+  if (subLow) subLow.innerText = isTa ? "💰 ₹10k-க்குள்" : "💰 Under ₹10k";
+
+  const subMid = document.getElementById('chipSubBudgetMid');
+
+  if (subMid) subMid.innerText = isTa ? "💰 ₹10k - ₹15k" : "💰 ₹10k - ₹15k";
+
+  const subHigh = document.getElementById('chipSubBudgetHigh');
+
+  if (subHigh) subHigh.innerText = isTa ? "💰 ₹15k+" : "💰 ₹15k+";
+
+  const subFavs = document.getElementById('chipSubFavs');
+
+  if (subFavs) subFavs.innerText = isTa ? "❤️ சேமித்தவை" : "❤️ Saved";
+
+  // FAB buttons
+
+  const suppFab = document.getElementById('supportFabText');
+
+  if (suppFab) suppFab.innerText = isTa ? "Fixr AI உதவி (24/7)" : "Fixr AI Support (24/7)";
+
+  const partFab = document.getElementById('partnerFabText');
+
+  if (partFab) partFab.innerText = isTa ? "தொழிலாளர் பதிவு (₹49)" : "Join as Partner (₹49)";
+
+  // Footer & Admin Button
+
+  const footTrust = document.getElementById('footerTrustText');
+
+  if (footTrust) footTrust.innerText = isTa ? "🛡️ 100% பின்னணி சரிபார்க்கப்பட்ட தொழிலாளர்கள் | 0% கமிஷன் தளம்" : "🛡️ 100% Background Verified Technicians | 0% Commission Platform";
+
+  const footContact = document.getElementById('footerContactText');
+
+  if (footContact) footContact.innerText = isTa ? "📞 தொடர்பு: +91 9884334097 | ✉️ veeraadspromotions@gmail.com" : "📞 Contact: +91 9884334097 | ✉️ veeraadspromotions@gmail.com";
+
+  const footPriv = document.getElementById('footerPrivacyLink');
+
+  if (footPriv) footPriv.innerText = isTa ? "Privacy Policy (தனியுரிமை கொள்கை)" : "Privacy Policy";
+
+  const footAdm = document.getElementById('lblFooterAdmin');
+
+  if (footAdm) footAdm.innerText = isTa ? "நிர்வாகி உள்நுழைவு (Admin Login)" : "Admin Portal Login";
+
+  const footCopy = document.getElementById('footerCopyright');
+
+  if (footCopy) footCopy.innerText = isTa ? "© 2026 Fixr Services. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை." : "© 2026 Fixr Services. All rights reserved.";
+
+  // Login Modal
 
   const lTitle = document.getElementById('loginTitle');
 
@@ -2853,153 +2815,205 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
   if (lSendBtn) lSendBtn.innerText = isTa ? "OTP பெறுக (SMS OTP) 📲" : "Send SMS OTP 📲";
 
-  const lOtpLbl = document.getElementById('lblLoginOtp');
+  const gBtn = document.getElementById("lblLoginGoogleBtn");
 
-  if (lOtpLbl) lOtpLbl.innerText = isTa ? "4 இலக்க OTP குறியீடு" : "4-digit OTP Code";
+  if (gBtn) gBtn.innerText = isTa ? "Google மூலம் உள்நுழைக" : "Sign in with Google";
 
-  const lVerifyBtn = document.getElementById('btnVerifyOtp');
+  // Booking Modal
 
-  if (lVerifyBtn) lVerifyBtn.innerText = isTa ? "உள்நுழைவை உறுதி செய் 🚀" : "Verify OTP & Login 🚀";
+  const bookTitle = document.getElementById('bookModalTitle');
 
-  const lResendBtn = document.getElementById('btnResendOtp');
+  if (bookTitle) bookTitle.innerText = isTa ? "🗓️ சேவை முன்பதிவு" : "🗓️ Service Booking";
 
-  if (lResendBtn) lResendBtn.innerText = isTa ? "மீண்டும் OTP அனுப்புக" : "Resend OTP";
+  const lblDate = document.getElementById('lblBookDate');
 
-  const lCancelBtn = document.getElementById('loginCancelBtn');
+  if (lblDate) lblDate.innerText = isTa ? "📅 வர வேண்டிய தேதி" : "📅 Service Date";
 
-  if (lCancelBtn) lCancelBtn.innerText = isTa ? "ரத்து" : "Cancel";
+  const lblTime = document.getElementById('lblBookTime');
 
-  const pTitle = document.getElementById('pModalTitle');
+  if (lblTime) lblTime.innerText = isTa ? "⏰ விருப்பமான நேரம்" : "⏰ Preferred Time Slot";
 
-  if (pTitle) pTitle.innerText = isTa ? "தொழிலாளராக இணைக 💼" : "Join as Partner 💼";
+  const lblAddr = document.getElementById('lblBookAddress');
 
-  const pSub = document.getElementById('pModalSub');
+  if (lblAddr) lblAddr.innerText = isTa ? "🏠 வீட்டு முகவரி & பகுதி" : "🏠 House Address & Area";
 
-  if (pSub) pSub.innerText = isTa ? "Fixr பார்ட்னராக பதிவு செய்து வாடிக்கையாளர்களைப் பெறுங்கள்" : "Register as Fixr Partner & get direct customer leads";
+  const bookAddr = document.getElementById('bookAddress');
 
-  const pPay = document.getElementById('pPayTitle');
+  if (bookAddr) bookAddr.placeholder = isTa ? "கதவு எண், தெரு மற்றும் நகரம்" : "Door No, Street and City";
 
-  if (pPay) pPay.innerText = isTa ? "💳 ஒருமுறை பதிவுக் கட்டணம்" : "💳 One-time Verification Fee";
+  const lblNotes = document.getElementById('lblBookNotes');
 
-  const pNameLbl = document.getElementById('lblPName');
+  if (lblNotes) lblNotes.innerText = isTa ? "🛠️ பழுது / தேவை விவரம்" : "🛠️ Problem / Service Details";
 
-  if (pNameLbl) pNameLbl.innerText = isTa ? "பெயர் / நிறுவன பெயர்" : "Name / Business Name";
+  const bookNotes = document.getElementById('bookNotes');
 
-  const pNameInp = document.getElementById('pName');
+  if (bookNotes) bookNotes.placeholder = isTa ? "எ.கா: AC கூலிங் வரவில்லை" : "e.g. AC not cooling";
 
-  if (pNameInp) pNameInp.placeholder = isTa ? "எ.கா: அன்பு / AC Solutions" : "e.g. Anbu / AC Solutions";
+  const lblExpress = document.getElementById('lblBookExpress');
 
-  const pCatLbl = document.getElementById('lblPCat');
+  if (lblExpress) lblExpress.innerText = isTa ? "⚡ அவசர சேவை தேவை (30 நிமிடங்களில் வருகை)" : "⚡ Emergency Service (Visit within 30 mins)";
 
-  if (pCatLbl) pCatLbl.innerText = isTa ? "சேவை வகை" : "Service Category";
+  const descExpress = document.getElementById('bookExpressDesc');
 
-  const pAreaLbl = document.getElementById('lblPArea');
+  if (descExpress) descExpress.innerText = isTa ? "அவசர தேவைக்கு டெக்னீசியன் 30 நிமிடத்தில் நேரடியாக வந்து உதவுவார்." : "Technician visits your location directly within 30 mins for emergency repair.";
 
-  if (pAreaLbl) pAreaLbl.innerText = isTa ? "ஊர் & மாவட்டம் / நகரம்" : "City / District / Area";
+  const btnConfBook = document.getElementById('btnConfirmBook');
 
-  const pAreaInp = document.getElementById('pArea');
+  if (btnConfBook) btnConfBook.innerText = isTa ? "முன்பதிவை உறுதி செய் 🚀" : "Confirm Booking 🚀";
 
-  if (pAreaInp) pAreaInp.placeholder = isTa ? "எ.கா: வேளச்சேரி, சென்னை" : "e.g. Velachery, Chennai";
+  const btnCancBook = document.getElementById('btnCancelBook');
 
-  const pPhoneLbl = document.getElementById('lblPPhone');
+  if (btnCancBook) btnCancBook.innerText = isTa ? "ரத்து" : "Cancel";
 
-  if (pPhoneLbl) pPhoneLbl.innerText = isTa ? "தொடர்பு எண் (WhatsApp Number)" : "Contact Number (WhatsApp)";
-
-  const pPhoneInp = document.getElementById('pPhone');
-
-  if (pPhoneInp) pPhoneInp.placeholder = isTa ? "10 இலக்க மொபைல் எண்" : "10-digit mobile number";
-
-  const pPriceLbl = document.getElementById('lblPPrice');
-
-  if (pPriceLbl) pPriceLbl.innerText = isTa ? "கட்டணம் & சேவை விவரம்" : "Pricing & Service Details";
-
-  const pPriceInp = document.getElementById('pPrice');
-
-  if (pPriceInp) pPriceInp.placeholder = isTa ? "எ.கா: ₹600/நாள் அல்லது ₹499 முதல்" : "e.g. ₹600/day or ₹499 onwards";
-
-  const pDescLbl = document.getElementById('lblPDesc');
-
-  if (pDescLbl) pDescLbl.innerText = isTa ? "அனுபவம் / சிறப்பு விவரம்" : "Experience / Specialization";
-
-  const pDescInp = document.getElementById('pDesc');
-
-  if (pDescInp) pDescInp.placeholder = isTa ? "எ.கா: 5 ஆண்டுகள் அனுபவம் / 24/7 சேவை" : "e.g. 5 years experience / 24/7 service";
-
-  const pSubmit = document.getElementById('pSubmitBtn');
-
-  if (pSubmit) pSubmit.innerText = isTa ? "பதிவு செய்து ஒப்புதலுக்கு அனுப்பு 🚀" : "Submit Registration for Approval 🚀";
-
-  const careTitle = document.getElementById('careModalTitle');
-
-  if (careTitle) careTitle.innerText = isTa ? "🤝 கேர் டேக்கர் தேவை விவரம்" : "🤝 Caregiver Service Requirements";
-
-  const careSub = document.getElementById('careModalSub');
-
-  if (careSub) careSub.innerText = isTa ? "முதியோர், நோயாளி மற்றும் குழந்தை பராமரிப்புத் தேவைகளைக் குறிப்பிட்டு உடனடி உதவி பெறுக" : "Submit your care requirements for instant customized caregiver assistance";
-
-  const careNotesInp = document.getElementById('careNotes');
-
-  if (careNotesInp) careNotesInp.placeholder = isTa ? "எ.கா: சுகர் மருந்து தர வேண்டும், நடக்க உதவி, 24/7 கவனிப்பு..." : "e.g. Medication timing, elderly mobility support, 24/7 care...";
-
-  const spTitle = document.getElementById('spareModalTitle');
-
-  if (spTitle) spTitle.innerText = isTa ? "🛡️ உதிரிபாக நியாய விலை சரிபார்ப்பு" : "🛡️ Spare Parts Fair Price Checker";
-
-  const spSub = document.getElementById('spareModalSub');
-
-  if (spSub) spSub.innerText = isTa ? "அதிக கட்டணம் வசூலிப்பதை தடுக்கும் அதிகாரப்பூர்வ பட்டியல்" : "Official market prices to prevent overcharging";
-
-  const spSearch = document.getElementById('spareSearchInput');
-
-  if (spSearch) spSearch.placeholder = isTa ? "🔍 உதிரிபாகத்தைத் தேடுக (எ.கா: Capacitor, MCB, Membrane...)" : "🔍 Search spare part (e.g. Capacitor, MCB, Membrane...)";
-
-  const bidTitle = document.getElementById('bidModalTitle');
-
-  if (bidTitle) bidTitle.innerText = isTa ? "🎯 'என் பட்ஜெட் என் வேலை'" : "🎯 Customer Budget Bidding";
-
-  const bidSub = document.getElementById('bidModalSub');
-
-  if (bidSub) bidSub.innerText = isTa ? "உங்கள் பட்ஜெட்டை நீங்களே நிர்ணயியுங்கள்; தொழிலாளர்கள் ஏற்று பணிக்கு வருவார்கள்!" : "Set your own budget; nearby technicians will accept your job!";
-
-  const poolTitle = document.getElementById('poolModalTitle');
-
-  if (poolTitle) poolTitle.innerText = isTa ? "🏢 தெரு / அடுக்குமாடி குழு தள்ளுபடி" : "🏢 Community & Street Group Pooling";
-
-  const poolSub = document.getElementById('poolModalSub');
-
-  if (poolSub) poolSub.innerText = isTa ? "அக்கம்பக்கத்தினருடன் இணைந்து ஒரே நாளில் சேவை பெற்று 25% வரை சேமியுங்கள்!" : "Pool bookings with your neighbors & save up to 25% on services!";
+  // Rental Agreement Modal
 
   const agrTitle = document.getElementById('agrModalTitle');
 
-  if (agrTitle) agrTitle.innerText = isTa ? "📑 சட்டப்பூர்வ வாடகை ஒப்பந்தம்" : "📑 Online Rental Agreement Service";
+  if (agrTitle) agrTitle.innerText = isTa ? "📑 சட்டப்பூர்வ வாடகை ஒப்பந்தம்" : "📑 Legal Rental Agreement";
 
   const agrSub = document.getElementById('agrModalSub');
 
-  if (agrSub) agrSub.innerText = isTa ? "அரசு முத்திரை தாளுடன் சட்டப்பூர்வ ஒப்பந்தம் உங்கள் இருப்பிடத்திற்கே!" : "Legally valid E-Stamp rental agreement delivered to your doorstep & WhatsApp";
+  if (agrSub) agrSub.innerText = isTa ? "வீட்டிலிருந்தே 24 மணி நேரத்தில் ₹100 அரசு முத்திரைத் தாளுடன் (E-Stamp) அக்ரீமென்ட் பெறுக" : "Get legally valid Rental Agreement with ₹100 Govt E-Stamp delivered in 24 hours";
 
-  const revTitle = document.getElementById('revModalTitle');
+  const agrGov = document.getElementById('agrGovTrustBanner');
 
-  if (revTitle) revTitle.innerText = isTa ? "⭐ வாடிக்கையாளர் அனுபவம்" : "⭐ Customer Reviews & Ratings";
+  if (agrGov) agrGov.innerHTML = isTa ? "🛡️ <b>அரசு அங்கீகாரம்:</b> நோட்டரி வழக்கறிஞர் சரிபார்ப்புடன், நீதிமன்ற செல்லுபடியாகும் வாடகை ஒப்பந்தம்." : "🛡️ <b>Govt Recognized:</b> Verified by Notary Advocate, court-valid rental agreement.";
 
-  const rateTitle = document.getElementById('rateModalTitle');
+  const lblAgrO = document.getElementById('lblAgrOwner');
 
-  if (rateTitle) rateTitle.innerText = isTa ? "📋 Fixr சேவைக் கட்டண விவரம்" : "📋 Fixr Service Rate Card";
+  if (lblAgrO) lblAgrO.innerText = isTa ? "வீட்டு உரிமையாளர் பெயர் (Owner Name)" : "Property Owner Name (Landlord)";
 
-  const packTitle = document.getElementById('packersModalTitle');
+  const inpAgrO = document.getElementById('agrOwnerName');
 
-  if (packTitle) packTitle.innerText = isTa ? "🚚 பேக்கர்ஸ் & மூவர்ஸ் வண்டி தேர்வு" : "🚚 Packers & Movers Vehicle & Relocation";
+  if (inpAgrO) inpAgrO.placeholder = isTa ? "உரிமையாளர் பெயர்" : "Owner Name";
 
-  const cleanTitle = document.getElementById('cleaningModalTitle');
+  const lblAgrT = document.getElementById('lblAgrTenant');
 
-  if (cleanTitle) cleanTitle.innerText = isTa ? "✨ டீப் கிளீனிங் & பெயிண்டிங் அளவு தேர்வு" : "✨ Deep Cleaning & Painting Estimator";
+  if (lblAgrT) lblAgrT.innerText = isTa ? "வாடகைதாரர் பெயர் (Tenant Name)" : "Tenant Name";
+
+  const inpAgrT = document.getElementById('agrTenantName');
+
+  if (inpAgrT) inpAgrT.placeholder = isTa ? "குடிவருபவர் பெயர்" : "Tenant Name";
+
+  const lblAgrA = document.getElementById('lblAgrAddress');
+
+  if (lblAgrA) lblAgrA.innerText = isTa ? "வாடகை வீட்டின் முழு முகவரி (House Address)" : "House Address (Premises)";
+
+  const inpAgrA = document.getElementById('agrHouseAddr');
+
+  if (inpAgrA) inpAgrA.placeholder = isTa ? "கதவு எண், தெரு, பகுதி & ஊர்" : "Door No, Street, Area & City";
+
+  const lblAgrR = document.getElementById('lblAgrRent');
+
+  if (lblAgrR) lblAgrR.innerText = isTa ? "மாத வாடகை (Rent)" : "Monthly Rent";
+
+  const lblAgrAdv = document.getElementById('lblAgrAdvance');
+
+  if (lblAgrAdv) lblAgrAdv.innerText = isTa ? "முன்பணம் (Advance)" : "Security Deposit (Advance)";
+
+  const lblAgrP = document.getElementById('lblAgrPlan');
+
+  if (lblAgrP) lblAgrP.innerText = isTa ? "ஒப்பந்தத் திட்டம் (Select Plan):" : "Agreement Plan:";
+
+  const optPlan1 = document.getElementById('optAgrPlan1');
+
+  if (optPlan1) optPlan1.innerText = isTa ? "₹299 - Digital PDF அக்ரீமென்ட் (வாட்ஸ்அப்/இமெயில்)" : "₹299 - Digital PDF Agreement (WhatsApp / Email)";
+
+  const optPlan2 = document.getElementById('optAgrPlan2');
+
+  if (optPlan2) optPlan2.innerText = isTa ? "₹499 - ₹100 அரசு E-Stamp + நோட்டரி + டோர் டெலிவரி (பிரபலம்)" : "₹499 - ₹100 Govt E-Stamp + Notary + Doorstep Delivery (Popular)";
+
+  const btnAgrPrev = document.getElementById('btnAgrPreview');
+
+  if (btnAgrPrev) btnAgrPrev.innerText = isTa ? "📑 அக்ரீமென்ட் பத்திரத்தை ஆப்பிலேயே பார்க்க (View Agreement In-App)" : "📑 View Agreement Document In-App";
+
+  const btnAgrSub = document.getElementById('btnAgrSubmit');
+
+  if (btnAgrSub) btnAgrSub.innerText = isTa ? "🚀 WhatsApp வழியாக அக்ரீமென்ட் ஆர்டர் செய்ய" : "🚀 Order Agreement via WhatsApp";
+
+  const btnAgrCanc = document.getElementById('btnAgrCancel');
+
+  if (btnAgrCanc) btnAgrCanc.innerText = isTa ? "ரத்து" : "Cancel";
+
+  // View Rental Agreement Doc Modal
+
+  const docTitle = document.getElementById('docModalTitle');
+
+  if (docTitle) docTitle.innerText = isTa ? "📑 சட்டப்பூர்வ வாடகை ஒப்பந்த பத்திரம்" : "📑 Legal Rental Agreement Document";
+
+  const docSub = document.getElementById('docModalSub');
+
+  if (docSub) docSub.innerText = isTa ? "Residential Rental Agreement Document" : "Residential Rental Agreement Document";
+
+  const docPrint = document.getElementById('lblDocPrint');
+
+  if (docPrint) docPrint.innerText = isTa ? "🖨️ பிரிண்ட் / PDF சேமிக்க" : "🖨️ Print / Save as PDF";
+
+  const docShare = document.getElementById('lblDocShare');
+
+  if (docShare) docShare.innerText = isTa ? "📲 WhatsApp-ல் அக்ரீமென்ட் அனுப்ப" : "📲 Share Agreement on WhatsApp";
+
+  const docClose = document.getElementById('btnDocClose');
+
+  if (docClose) docClose.innerText = isTa ? "மூடுக (Close)" : "Close";
+
+  // Community Pooling Modal
+
+  const poolTitle = document.getElementById('poolModalTitle');
+
+  if (poolTitle) poolTitle.innerText = isTa ? "🏢 தெரு / அபார்ட்மெண்ட் குழு தள்ளுபடி" : "🏢 Street & Apartment Group Discount";
+
+  const poolSub = document.getElementById('poolModalSub');
+
+  if (poolSub) poolSub.innerText = isTa ? "ஒரே தெருவில் அல்லது குடியிருப்பில் 2 அல்லது அதற்கு மேற்பட்ட வீடுகள் ஒன்றாக புக் செய்தால் 25% நேரடித் தள்ளுபடி!" : "Book together with 2+ houses in the same street/apartment to get up to 25% discount!";
+
+  const poolTier = document.getElementById('poolTierTitle');
+
+  if (poolTier) poolTier.innerText = isTa ? "✨ குழு முன்பதிவு தள்ளுபடி அளவுகள்:" : "✨ Group Booking Discount Tiers:";
+
+  const lblPoolApt = document.getElementById('lblPoolApt');
+
+  if (lblPoolApt) lblPoolApt.innerText = isTa ? "குடியிருப்பு / தெருவின் பெயர் (Apartment or Street Name)" : "Apartment or Street Name";
+
+  const poolAptInp = document.getElementById('poolAptName');
+
+  if (poolAptInp) poolAptInp.placeholder = isTa ? "எ.கா: ராகவேந்திரா அபார்ட்மெண்ட், வேளச்சேரி" : "e.g. Raghavendra Apartments, Velachery";
+
+  const lblPoolAdd = document.getElementById('lblPoolAddRow');
+
+  if (lblPoolAdd) lblPoolAdd.innerText = isTa ? "➕ மேலும் ஒரு வீடு & சேவை சேர்க்க (Add House & Service)" : "➕ Add Another House & Service";
+
+  const btnPoolSub = document.getElementById('btnPoolSubmit');
+
+  if (btnPoolSub) btnPoolSub.innerText = isTa ? "🚀 குழு தள்ளுபடியுடன் WhatsApp-ல் புக் செய்ய" : "🚀 Book Group Pool on WhatsApp";
+
+  // Photo Diagnosis Modal
 
   const photoTitle = document.getElementById('photoModalTitle');
 
-  if (photoTitle) photoTitle.innerText = isTa ? "📸 பழுது புகைப்படம் & கட்டண கணிப்பு" : "📸 Photo Diagnosis & Estimate";
+  if (photoTitle) photoTitle.innerText = isTa ? "📸 Photo Diagnosis (பழுது படம் & கட்டணம்)" : "📸 Photo Diagnosis & Upfront Estimate";
 
   const photoSub = document.getElementById('photoModalSub');
 
-  if (photoSub) photoSub.innerText = isTa ? "பழுதான பகுதியை 1 போட்டோ எடுத்து அனுப்பி முன்பே சரியான கட்டணம் & ஆலோசனை பெறுக!" : "Upload a photo of the damaged part to get an upfront estimate and expert advice!";
+  if (photoSub) photoSub.innerText = isTa ? "வீணாக விசிட்டிங் சார்ஜ் கட்டாமல், பழுதான இடத்தை 1 போட்டோ எடுத்து அனுப்பி முன்பே சரியான கட்டணம் & ஆலோசனை பெறுக!" : "Avoid unexpected visiting fees! Send 1 photo of the damaged part to get an accurate upfront estimate & advice.";
+
+  const lblPTech = document.getElementById('lblPhotoTech');
+
+  if (lblPTech) lblPTech.innerText = isTa ? "தேர்ந்தெடுக்கப்பட்ட டெக்னீசியன் (Technician)" : "Selected Specialist / Technician";
+
+  const lblPDesc = document.getElementById('lblPhotoDesc');
+
+  if (lblPDesc) lblPDesc.innerText = isTa ? "🛠️ பழுது விவரம் (Problem Description)" : "🛠️ Problem Description";
+
+  const inpPDesc = document.getElementById('photoDiagDesc');
+
+  if (inpPDesc) inpPDesc.placeholder = isTa ? "எ.கா: AC E1 Error / பைப் ஜாயிண்ட் லீக் ஆகிறது" : "e.g. AC E1 Error / Pipe joint leak";
+
+  const btnPSub = document.getElementById('btnPhotoSubmit');
+
+  if (btnPSub) btnPSub.innerText = isTa ? "🚀 WhatsApp-ல் போட்டோ அனுப்பி கட்டணம் அறிக" : "🚀 Send Photos via WhatsApp for Free Estimate";
+
+  // AI Chat Assistant Modal
 
   const aiTitle = document.getElementById('aiChatHeaderTitle');
 
@@ -3013,9 +3027,9 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
   if (aiInput) aiInput.placeholder = isTa ? "உங்கள் கேள்வியை இங்கு தட்டச்சு செய்யவும்..." : "Type your question here...";
 
-  }
+}
 
-  function applyLanguage() {
+function applyLanguage() {
 
   const t = translations[currentLang];
 
@@ -5278,29 +5292,221 @@ ${serviceListText}
 
   function populateAgreementDocument(owner, tenant, addr, rent, adv) {
 
-  const oEl = document.getElementById('docOwnerName');
+  const container = document.getElementById('printableAgreementDoc');
 
-  const tEl = document.getElementById('docTenantName');
+  if (!container) return;
 
-  const aEl = document.getElementById('docHouseAddr');
+  const isTa = (currentLang === 'ta');
 
-  const rEl = document.getElementById('docRentAmt');
+  const o = owner || '-';
 
-  const dEl = document.getElementById('docAdvanceAmt');
+  const t = tenant || '-';
 
-  const dtEl = document.getElementById('docAgreementDate');
+  const a = addr || '-';
 
-  if (oEl) oEl.innerText = owner || '-';
+  const r = rent || '0';
 
-  if (tEl) tEl.innerText = tenant || '-';
+  const d = adv || '0';
 
-  if (aEl) aEl.innerText = addr || '-';
+  const todayDate = new Date().toLocaleDateString(isTa ? 'ta-IN' : 'en-IN');
 
-  if (rEl) rEl.innerText = rent || '0';
+  if (isTa) {
 
-  if (dEl) dEl.innerText = adv || '0';
+  container.innerHTML = `
 
-  if (dtEl) dtEl.innerText = new Date().toLocaleDateString('ta-IN');
+      <div style="text-align:center; border-bottom:2px solid #334155; padding-bottom:8px; margin-bottom:10px;">
+
+        <h3 style="font-size:14px; color:#0f172a; text-transform:uppercase; letter-spacing:0.5px; margin:0;">வாடகை ஒப்பந்த பத்திரம்</h3>
+
+        <div style="font-size:10.5px; color:#475569; font-weight:bold;">(TAMIL NADU MODEL RESIDENTIAL RENTAL AGREEMENT)</div>
+
+        <div style="font-size:10px; color:#64748b;">Fixr Legal Services | 11 Months Validity</div>
+
+      </div>
+
+
+      <p style="margin:6px 0;">இந்த வாடகை ஒப்பந்தம் <b id="docAgreementDate">${todayDate}</b> அன்று எழுதப்பட்டது.</p>
+
+     
+
+      <div style="margin:8px 0; background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; padding:8px;">
+
+        <div><b>1. வீட்டு உரிமையாளர் (Landlord):</b> <span id="docOwnerName">${o}</span></div>
+
+        <div style="margin-top:3px;"><b>2. வாடகைதாரர் (Tenant):</b> <span id="docTenantName">${t}</span></div>
+
+        <div style="margin-top:3px;"><b>3. வாடகை வீட்டின் முகவரி (Premises):</b> <span id="docHouseAddr">${a}</span></div>
+
+      </div>
+
+
+      <div style="margin:8px 0; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:6px; padding:8px;">
+
+        <div><b>4. மாத வாடகை (Monthly Rent):</b> ₹<span id="docRentAmt">${r}</span> (ஒவ்வொரு மாதமும் 5-ம் தேதிக்குள் செலுத்தப்பட வேண்டும்)</div>
+
+        <div style="margin-top:3px;"><b>5. முன்பணம் / அட்வான்ஸ் (Security Deposit):</b> ₹<span id="docAdvanceAmt">${d}</span> (வட்டி இல்லாத திருப்பிச் செலுத்தப்படும் தொகை)</div>
+
+        <div style="margin-top:3px;"><b>6. ஒப்பந்த காலம் (Term of Tenancy):</b> 11 மாதங்கள் (11 Months)</div>
+
+      </div>
+
+
+      <div style="margin:8px 0;">
+
+        <b style="font-size:11.5px; color:#0f172a;">முக்கிய விதிமுறைகள் மற்றும் நிபந்தனைகள்:</b>
+
+        <ol style="padding-left:16px; margin-top:4px; font-size:10.5px; color:#334155; line-height:1.6;">
+
+          <li>மின்சாரக் கட்டணம் (EB Charges) வாடகைதாரரால் மீட்டர் ரீடிங் படி நேரடியாகச் செலுத்தப்பட வேண்டும்.</li>
+
+          <li>வாடகைதாரர் வீட்டை குடியிருப்புப் பயன்பாட்டிற்கு மட்டுமே பயன்படுத்த வேண்டும்; வர்த்தக நோக்கத்திற்குப் பயன்படுத்தக் கூடாது.</li>
+
+          <li>வீட்டை காலி செய்ய விரும்பினால், இரு தரப்பினரும் 1 மாதத்திற்கு முன்பே முன்னறிவிப்பு (1 Month Notice) வழங்க வேண்டும்.</li>
+
+          <li>வீட்டை காலி செய்யும்போது, முன்பணத்திலிருந்து நிலுவை வாடகை அல்லது வெள்ளையடிக்கும் செலவு கழிக்கப்பட்டு மீதித் தொகை திருப்பித் தரப்படும்.</li>
+
+        </ol>
+
+      </div>
+
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:16px; border-top:1px dashed #94a3b8; padding-top:10px; font-size:10.5px;">
+
+        <div>
+
+          <div>_____________________________</div>
+
+          <b>வீட்டு உரிமையாளர் கையொப்பம்</b>
+
+          <div style="color:#64748b;">(Landlord Signature)</div>
+
+        </div>
+
+        <div style="text-align:right;">
+
+          <div>_____________________________</div>
+
+          <b>வாடகைதாரர் கையொப்பம்</b>
+
+          <div style="color:#64748b;">(Tenant Signature)</div>
+
+        </div>
+
+        <div style="margin-top:8px;">
+
+          <div>சாட்சி 1 (Witness 1): _______________</div>
+
+        </div>
+
+        <div style="margin-top:8px; text-align:right;">
+
+          <div>சாட்சி 2 (Witness 2): _______________</div>
+
+        </div>
+
+      </div>
+
+    `;
+
+  } else {
+
+  container.innerHTML = `
+
+      <div style="text-align:center; border-bottom:2px solid #334155; padding-bottom:8px; margin-bottom:10px;">
+
+        <h3 style="font-size:14px; color:#0f172a; text-transform:uppercase; letter-spacing:0.5px; margin:0;">RENTAL AGREEMENT DEED</h3>
+
+        <div style="font-size:10.5px; color:#475569; font-weight:bold;">(TAMIL NADU MODEL RESIDENTIAL RENTAL AGREEMENT)</div>
+
+        <div style="font-size:10px; color:#64748b;">Fixr Legal Services | 11 Months Validity</div>
+
+      </div>
+
+
+      <p style="margin:6px 0;">This Rental Agreement is made and executed on <b id="docAgreementDate">${todayDate}</b>.</p>
+
+     
+
+      <div style="margin:8px 0; background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; padding:8px;">
+
+        <div><b>1. Property Owner (Landlord):</b> <span id="docOwnerName">${o}</span></div>
+
+        <div style="margin-top:3px;"><b>2. Tenant:</b> <span id="docTenantName">${t}</span></div>
+
+        <div style="margin-top:3px;"><b>3. Rental Premises Address:</b> <span id="docHouseAddr">${a}</span></div>
+
+      </div>
+
+
+      <div style="margin:8px 0; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:6px; padding:8px;">
+
+        <div><b>4. Monthly Rent:</b> ₹<span id="docRentAmt">${r}</span> (payable on or before 5th of each calendar month)</div>
+
+        <div style="margin-top:3px;"><b>5. Security Deposit / Advance:</b> ₹<span id="docAdvanceAmt">${d}</span> (interest-free refundable deposit)</div>
+
+        <div style="margin-top:3px;"><b>6. Tenancy Period:</b> 11 Months</div>
+
+      </div>
+
+
+      <div style="margin:8px 0;">
+
+        <b style="font-size:11.5px; color:#0f172a;">Key Terms and Conditions:</b>
+
+        <ol style="padding-left:16px; margin-top:4px; font-size:10.5px; color:#334155; line-height:1.6;">
+
+          <li>Electricity charges (EB) shall be borne and paid directly by the Tenant based on the EB meter reading.</li>
+
+          <li>The Tenant shall use the premises strictly for residential purposes only and not for commercial activities.</li>
+
+          <li>Either party may terminate this tenancy by giving 1 month prior written notice.</li>
+
+          <li>Upon vacating, the security deposit shall be refunded after adjusting any pending rent or painting charges.</li>
+
+        </ol>
+
+      </div>
+
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:16px; border-top:1px dashed #94a3b8; padding-top:10px; font-size:10.5px;">
+
+        <div>
+
+          <div>_____________________________</div>
+
+          <b>Landlord Signature</b>
+
+          <div style="color:#64748b;">(Property Owner)</div>
+
+        </div>
+
+        <div style="text-align:right;">
+
+          <div>_____________________________</div>
+
+          <b>Tenant Signature</b>
+
+          <div style="color:#64748b;">(Tenant)</div>
+
+        </div>
+
+        <div style="margin-top:8px;">
+
+          <div>Witness 1: _______________</div>
+
+        </div>
+
+        <div style="margin-top:8px; text-align:right;">
+
+          <div>Witness 2: _______________</div>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }
 
 }
 
@@ -7401,6 +7607,8 @@ function setCityFilter(city) {
 
   const provider = new firebase.auth.GoogleAuthProvider();
 
+  provider.setCustomParameters({ prompt: 'select_account' });
+
   auth.signInWithPopup(provider)
 
   .then(function(result) {
@@ -7419,64 +7627,6 @@ function setCityFilter(city) {
 
   closeModal('loginModal');
 
-  if (auth) {
-
-  auth.getRedirectResult().then(function(result) {
-
-  if (result && result.user) {
-
-  const u = result.user;
-
-  const name = u.displayName || 'Customer';
-
-  localStorage.setItem('fixr_user', JSON.stringify({
-
-  name: name,
-
-  email: u.email || '',
-
-  phone: u.phoneNumber || '',
-
-  photoUrl: u.photoURL || '',
-
-  uid: u.uid
-
-  }));
-
-  checkUserLoggedIn();
-
-  }
-
-  }).catch(function(err){ console.warn("Redirect result error:", err); });
-
-  auth.onAuthStateChanged(function(user) {
-
-  if (user && !localStorage.getItem('fixr_user')) {
-
-  const name = user.displayName || 'Customer';
-
-  localStorage.setItem('fixr_user', JSON.stringify({
-
-  name: name,
-
-  email: user.email || '',
-
-  phone: user.phoneNumber || '',
-
-  photoUrl: user.photoURL || '',
-
-  uid: user.uid
-
-  }));
-
-  checkUserLoggedIn();
-
-  }
-
-  });
-
-  }
-
   checkUserLoggedIn();
 
   alert(currentLang === 'ta' ? `வணக்கம் ${name}! Google மூலம் வெற்றிகரமாக உள்நுழைந்துள்ளீர்கள் 🎉` : `Welcome ${name}! Successfully logged in with Google 🎉`);
@@ -7485,33 +7635,41 @@ function setCityFilter(city) {
 
   .catch(function(error) {
 
-  console.warn("Google popup error, trying redirect fallback:", error);
+  console.warn("Google popup error:", error);
 
   if (error.code === 'auth/unauthorized-domain') {
 
   alert(currentLang === 'ta' ?
 
-  'இந்த இணையதளம் Firebase Authorized Domains-ல் சேர்க்கப்படவில்லை.' :
+  'Fixr டொமைன் Firebase Authorized Domains-ல் சேர்க்கப்படவில்லை. Firebase Console -> Authentication -> Settings -> Authorized Domains-ல் fixrservice.in உள்ளதா எனப் பார்க்கவும்.' :
 
-  'Domain not added to Firebase Authorized Domains.');
+  'Domain not authorized. Please ensure fixrservice.in is added to Firebase Authorized Domains.');
+
+  } else if (error.code === 'auth/popup-blocked') {
+
+  alert(currentLang === 'ta' ?
+
+  'உங்கள் பிரவுசரில் பாப்-அப் பிளாக் செய்யப்பட்டுள்ளது. தயவுசெய்து Pop-ups Allow செய்யவும் அல்லது மேலே உள்ள மொபைல் SMS OTP மூலம் உடனடியாக உள்நுழையவும்.' :
+
+  'Pop-up was blocked. Please allow pop-ups or login using mobile SMS OTP.');
+
+  } else if (error.code === 'auth/popup-closed-by-user') {
+
+  console.log("Popup closed by user");
 
   } else {
 
-  try {
+  alert(currentLang === 'ta' ?
 
-  auth.signInWithRedirect(provider);
+  'Google உள்நுழைவில் பிழை ஏற்பட்டது. தயவுசெய்து மேலே உள்ள மொபைல் SMS OTP மூலம் எளிதாக உள்நுழையவும்.' :
 
-  } catch(e) {
-
-  alert(currentLang === 'ta' ? 'தயவுசெய்து மேலே உள்ள மொபைல் SMS OTP மூலம் உள்நுழையவும்.' : 'Please login using mobile SMS OTP.');
-
-  }
+  'Google Sign-in failed. Please login using mobile SMS OTP.');
 
   }
 
   });
 
-  }
+}
 
   function previewPartnerPhoto(input) {
 
