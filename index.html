@@ -2166,7 +2166,15 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
 <script>
 
-    const ADMIN_PHONE = "919884334097";
+    const ADMIN_PHONE = "9884334097";
+
+    function formatWaNumber(num) {
+
+      const digits = (num || "9884334097").toString().replace(/[^0-9]/g, "");
+
+      return "91" + digits.slice(-10);
+
+    }
 
     const ADMIN_UPI_ID = "yugamugesh52-3@oksbi";
 
@@ -4199,7 +4207,7 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
 தயவுசெய்து கட்டணம் மற்றும் பணி விவரங்களை உறுதிசெய்யவும்.`;
 
-      window.open(`https://wa.me/91${selectedCareTech.phone}?text=${encodeURIComponent(msg)}`, '_blank');
+      window.open(`https://wa.me/${formatWaNumber(selectedCareTech.phone)}?text=${encodeURIComponent(msg)}`, '_blank');
 
       closeModal('careTakerModal');
 
@@ -4252,7 +4260,7 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
 தயவுசெய்து கட்டண விவரம் மற்றும் வண்டி உறுதிசெய்து கூறவும்.`;
 
-      window.open(`https://wa.me/91${selectedPackersTech.phone}?text=${encodeURIComponent(msg)}`, '_blank');
+      window.open(`https://wa.me/${formatWaNumber(selectedPackersTech.phone)}?text=${encodeURIComponent(msg)}`, '_blank');
 
       closeModal('packersModal');
 
@@ -4289,7 +4297,7 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
 தயவுசெய்து கட்டண விவரம் மற்றும் எப்போது பணி தொடங்க முடியும் என்று கூறவும்.`;
 
-      window.open(`https://wa.me/91${selectedCleaningTech.phone}?text=${encodeURIComponent(msg)}`, '_blank');
+      window.open(`https://wa.me/${formatWaNumber(selectedCleaningTech.phone)}?text=${encodeURIComponent(msg)}`, '_blank');
 
       closeModal('cleaningEstimatorModal');
 
@@ -4426,7 +4434,7 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
 தயவுசெய்து இந்த வாட்ஸ்அப்பில் படத்தைப் பார்த்து உத்தேச கட்டண விவரம் மற்றும் ஆலோசனை கூறவும்.`;
 
-      window.open(`https://wa.me/91${selectedPhotoTech.phone}?text=${encodeURIComponent(msg)}`, '_blank');
+      window.open(`https://wa.me/${formatWaNumber(selectedPhotoTech.phone)}?text=${encodeURIComponent(msg)}`, '_blank');
 
       closeModal('photoDiagnosisModal');
 
@@ -4815,7 +4823,7 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
 தயவுசெய்து எங்கள் குடியிருப்பிற்கு குழு தள்ளுபடியுடன் டெக்னீசியனை அனுப்பி வைக்கவும்.`;
 
-      window.open(`https://wa.me/91${ADMIN_PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
+      window.open(`https://wa.me/${formatWaNumber(ADMIN_PHONE)}?text=${encodeURIComponent(msg)}`, '_blank');
 
       closeModal('communityPoolingModal');
 
@@ -4892,7 +4900,7 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
 தயவுசெய்து அக்ரீமென்ட் செயல்முறையைத் தொடங்கவும்.`;
 
-      window.open(`https://wa.me/91${ADMIN_PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
+      window.open(`https://wa.me/${formatWaNumber(ADMIN_PHONE)}?text=${encodeURIComponent(msg)}`, '_blank');
 
       closeModal('rentalAgreementModal');
 
@@ -5292,7 +5300,7 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
             <a href="tel:${item.phone}" class="btn btn-call" title="Call">📞</a>
 
-            <a href="https://wa.me/91${item.phone}?text=${encodeURIComponent(waText)}" class="btn btn-wa" target="_blank" title="WhatsApp">💬</a>
+            <a href="https://wa.me/${formatWaNumber(item.phone)}?text=${encodeURIComponent(waText)}" class="btn btn-wa" target="_blank" title="WhatsApp">💬</a>
 
             <button class="btn btn-id" onclick="openDigitalIdModal('${item.id}')" title="Digital ID">🪪 ID</button>
 
@@ -5901,7 +5909,7 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
       sendFast2SmsBookingNotice(selectedBookingTech.name, selectedBookingTech.category, date, time, addr, notes, custPhone);
 
-      window.open(`https://wa.me/91${selectedBookingTech.phone}?text=${encodeURIComponent(msg)}`, '_blank');
+      window.open(`https://wa.me/${formatWaNumber(selectedBookingTech.phone)}?text=${encodeURIComponent(msg)}`, '_blank');
 
 
       // Save into My Bookings dashboard
@@ -6242,7 +6250,7 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
         const waMsg = `வணக்கம் ${item.name}! Fixr ஆப்பில் உங்கள் Verified Partner Digital ID கார்டைப் பார்த்தேன் (${partnerId}). எனக்கு சேவை தேவைப்படுகிறது.`;
 
-        waBtn.href = `https://wa.me/91${item.phone}?text=${encodeURIComponent(waMsg)}`;
+        waBtn.href = `https://wa.me/${formatWaNumber(item.phone)}?text=${encodeURIComponent(waMsg)}`;
 
       }
 
@@ -6476,7 +6484,7 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
 • UPI பணம் செலுத்தப்பட்டது. தயவுசெய்து எனது விளம்பரத்தை ஆக்டிவேட் செய்யவும்.`;
 
-      window.open(`https://wa.me/91${ADMIN_PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
+      window.open(`https://wa.me/${formatWaNumber(ADMIN_PHONE)}?text=${encodeURIComponent(msg)}`, '_blank');
 
       closeModal('featuredPromoModal');
 
@@ -8131,7 +8139,7 @@ function sendOtpCode() {
 
                   `தயவுசெய்து உடனடியாக என்னை தொடர்பு கொள்ளவும் அல்லது காவல்துறைக்கு உதவவும்!`;
 
-      window.open(`https://wa.me/91${ADMIN_PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
+      window.open(`https://wa.me/${formatWaNumber(ADMIN_PHONE)}?text=${encodeURIComponent(msg)}`, '_blank');
 
     }
 
