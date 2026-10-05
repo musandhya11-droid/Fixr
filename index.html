@@ -301,6 +301,12 @@
 
 <button class="submit-btn" id="btnSendOtp" onclick="sendOtpCode()">OTP பெறுக (Send SMS OTP) 📲</button>
 
+<button type="button" class="submit-btn" style="background:#22c55e; margin-top:8px; display:flex; align-items:center; justify-content:center; gap:6px;" onclick="loginWithWhatsApp()">
+
+  <span>💬</span> <span id="lblLoginWaBtn">WhatsApp மூலம் உடனடி உள்நுழைவு</span>
+
+</button>
+
 </div>
 
 <div id="otpStep2" style="display:none;">
@@ -2478,6 +2484,10 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
       const admBtn = document.getElementById('headerAdminBtn');
 
       if (admBtn) admBtn.innerText = isTa ? "🔒 நிர்வாகி" : "🔒 Admin";
+
+      const waLoginBtn = document.getElementById('lblLoginWaBtn');
+
+      if (waLoginBtn) waLoginBtn.innerText = isTa ? "WhatsApp மூலம் உடனடி உள்நுழைவு" : "Instant Login with WhatsApp";
 
       const authBtn = document.getElementById('authBtn');
 
@@ -6591,49 +6601,38 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
    
 
+    let isFast2SmsSending = false;
+
+
     function sendFast2SmsOtp(phone, otpCode) {
+
+      if (isFast2SmsSending) return;
+
+      isFast2SmsSending = true;
+
+      setTimeout(function() { isFast2SmsSending = false; }, 8000);
+
 
       try {
 
         const clean = (phone || '').replace(/[^0-9]/g, '').slice(-10);
 
-        const directUrl = 'https://www.fast2sms.com/dev/bulkV2?authorization=' + FAST2SMS_API_KEY + '&route=otp&variables_values=' + otpCode + '&numbers=' + clean;
+        // Fast2SMS No-DLT Quick Route (route=q)
+
+        const smsMsg = 'Fixr OTP: Your login verification code is ' + otpCode + '. Helpline: 9884334097';
+
+        const directUrl = 'https://www.fast2sms.com/dev/bulkV2?authorization=' + FAST2SMS_API_KEY + '&route=q&message=' + encodeURIComponent(smsMsg) + '&numbers=' + clean;
 
        
 
-        // Channel 1: Hidden Iframe (100% immune to browser CORS policy; forces real HTTP GET)
+        // 1. Cloud Proxy (server-to-server, bypasses all CORS)
 
-        try {
+        const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(directUrl);
 
-          const ifr = document.createElement('iframe');
-
-          ifr.style.width = '1px';
-
-          ifr.style.height = '1px';
-
-          ifr.style.display = 'none';
-
-          ifr.src = directUrl;
-
-          document.body.appendChild(ifr);
-
-          setTimeout(function() { try { ifr.remove(); } catch(err){} }, 5000);
-
-        } catch(e) {}
+        fetch(proxyUrl).then(function(r){ return r.json(); }).catch(function(){});
 
 
-        // Channel 2: AllOrigins Cloud Proxy (server-to-server dispatch, zero CORS block)
-
-        try {
-
-          const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(directUrl);
-
-          fetch(proxyUrl).catch(function(){});
-
-        } catch(e) {}
-
-
-        // Channel 3: Script tag injection
+        // 2. Secondary Script tag injection
 
         try {
 
@@ -6643,40 +6642,29 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
           document.head.appendChild(s);
 
-          setTimeout(function() { try { s.remove(); } catch(err){} }, 5000);
-
-        } catch(e) {}
-
-
-        // Channel 4: Image Beacon fallback
-
-        try {
-
-          const img = new Image();
-
-          img.src = directUrl;
-
-        } catch(e) {}
-
-
-        // Channel 5: Direct Fetch
-
-        try {
-
-          fetch(directUrl, { method: 'GET', mode: 'no-cors' }).catch(function(){});
+          setTimeout(function() { try { s.remove(); } catch(e){} }, 4000);
 
         } catch(e) {}
 
       } catch(err) {
 
-        console.error('Fast2SMS dispatch error:', err);
+        console.error('Fast2SMS error:', err);
 
       }
 
     }
 
 
+    let isBookingSmsSending = false;
+
     function sendFast2SmsBookingNotice(techName, techCat, date, time, addr, notes, userPhone) {
+
+      if (isBookingSmsSending) return;
+
+      isBookingSmsSending = true;
+
+      setTimeout(function() { isBookingSmsSending = false; }, 10000);
+
 
       try {
 
@@ -6684,34 +6672,78 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
         const targetNumbers = cleanCust ? (cleanCust + ',' + ADMIN_PHONE) : ADMIN_PHONE;
 
-        const smsMsg = 'Fixr: Booking confirmed for ' + techName + ' (' + techCat + ') on ' + date + ' (' + time + ') at ' + addr + '. Helpline: 9884334097';
+        const cleanCat = (typeof categoryNameMap !== 'undefined' && categoryNameMap[techCat] && categoryNameMap[techCat].en) ? categoryNameMap[techCat].en : techCat.replace(/[^\x00-\x7F]/g, '');
+
+        const cleanName = (techName || '').replace(/[^\x00-\x7F]/g, '');
+
+        const smsMsg = 'Fixr: Booking confirmed for ' + (cleanName || 'Professional') + ' (' + (cleanCat || 'Service') + ') on ' + date + ' (' + time + '). Helpline: 9884334097';
 
         const directUrl = 'https://www.fast2sms.com/dev/bulkV2?authorization=' + FAST2SMS_API_KEY + '&route=q&message=' + encodeURIComponent(smsMsg) + '&numbers=' + targetNumbers;
 
        
 
-        try {
+        const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(directUrl);
 
-          const ifr = document.createElement('iframe');
+        fetch(proxyUrl).catch(function() {
 
-          ifr.style.display = 'none';
+          try {
 
-          ifr.src = directUrl;
+            fetch('https://corsproxy.io/?' + encodeURIComponent(directUrl)).catch(function(){});
 
-          document.body.appendChild(ifr);
+          } catch(e) {}
 
-          setTimeout(function() { try { ifr.remove(); } catch(e){} }, 5000);
-
-        } catch(e) {}
+        });
 
 
         try {
 
-          fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(directUrl)).catch(function(){});
+          const s = document.createElement('script');
+
+          s.src = directUrl;
+
+          document.head.appendChild(s);
+
+          setTimeout(function() { try { s.remove(); } catch(e){} }, 4000);
 
         } catch(e) {}
 
       } catch(e) {}
+
+    }
+
+
+    function loginWithWhatsApp() {
+
+      const name = document.getElementById('userName').value.trim() || 'Customer';
+
+      const phone = document.getElementById('userPhone').value.trim() || '';
+
+      const cleanPhone = phone.replace(/[^0-9]/g, '').slice(-10);
+
+      const isTa = (currentLang === 'ta');
+
+     
+
+      // Auto login user
+
+      localStorage.setItem('fixr_user', JSON.stringify({ name: name, phone: cleanPhone || ADMIN_PHONE }));
+
+      closeModal('loginModal');
+
+      checkUserLoggedIn();
+
+
+      // Open WhatsApp verification to Admin
+
+      const waMsg = isTa ?
+
+        `வணக்கம் Fixr! நான் ${name} (+91 ${cleanPhone || 'User'}). Fixr தளத்தில் உள்நுழைய விரும்புகிறேன்.` :
+
+        `Hello Fixr! I am ${name} (+91 ${cleanPhone || 'User'}). I want to login to Fixr.`;
+
+      window.open(`https://wa.me/91${ADMIN_PHONE}?text=${encodeURIComponent(waMsg)}`, '_blank');
+
+      alert(isTa ? `வாட்ஸ்அப் வழியாக வெற்றிகரமாக உள்நுழைந்துள்ளீர்கள், ${name}! 🎉` : `Logged in via WhatsApp successfully, ${name}! 🎉`);
 
     }
 
