@@ -6814,7 +6814,66 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
           closeModal('loginModal');
 
+          if (auth) {
+
+      auth.getRedirectResult().then(function(result) {
+
+        if (result && result.user) {
+
+          const u = result.user;
+
+          const name = u.displayName || 'Customer';
+
+          localStorage.setItem('fixr_user', JSON.stringify({
+
+            name: name,
+
+            email: u.email || '',
+
+            phone: u.phoneNumber || '',
+
+            photoUrl: u.photoURL || '',
+
+            uid: u.uid
+
+          }));
+
           checkUserLoggedIn();
+
+        }
+
+      }).catch(function(err){ console.warn("Redirect result error:", err); });
+
+
+      auth.onAuthStateChanged(function(user) {
+
+        if (user && !localStorage.getItem('fixr_user')) {
+
+          const name = user.displayName || 'Customer';
+
+          localStorage.setItem('fixr_user', JSON.stringify({
+
+            name: name,
+
+            email: user.email || '',
+
+            phone: user.phoneNumber || '',
+
+            photoUrl: user.photoURL || '',
+
+            uid: user.uid
+
+          }));
+
+          checkUserLoggedIn();
+
+        }
+
+      });
+
+    }
+
+    checkUserLoggedIn();
 
           alert(currentLang === 'ta' ? `வணக்கம் ${name}! Google மூலம் வெற்றிகரமாக உள்நுழைந்துள்ளீர்கள் 🎉` : `Welcome ${name}! Successfully logged in with Google 🎉`);
 
@@ -6822,15 +6881,27 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
         .catch(function(error) {
 
-          console.warn("Google popup error, trying redirect:", error);
+          console.warn("Google popup error, trying redirect fallback:", error);
 
-          try {
+          if (error.code === 'auth/unauthorized-domain') {
 
-            auth.signInWithRedirect(provider);
+            alert(currentLang === 'ta' ?
 
-          } catch(e) {
+              'இந்த இணையதளம் Firebase Authorized Domains-ல் சேர்க்கப்படவில்லை.' :
 
-            alert(currentLang === 'ta' ? 'Google உள்நுழைவு தோல்வியடைந்தது. மொபைல் எண் OTP மூலம் உள்நுழையவும்.' : 'Google Sign-in failed. Please login using mobile OTP.');
+              'Domain not added to Firebase Authorized Domains.');
+
+          } else {
+
+            try {
+
+              auth.signInWithRedirect(provider);
+
+            } catch(e) {
+
+              alert(currentLang === 'ta' ? 'தயவுசெய்து மேலே உள்ள மொபைல் SMS OTP மூலம் உள்நுழையவும்.' : 'Please login using mobile SMS OTP.');
+
+            }
 
           }
 
