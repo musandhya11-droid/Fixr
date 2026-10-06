@@ -847,13 +847,11 @@ body {
 
   <!-- Sleek Floating White Search Bar -->
 
-  <div class="uc-search-container">
+  <div class="uc-search-container" style="display:flex; align-items:center; background:white; border-radius:14px; padding:6px 12px; box-shadow:0 3px 10px rgba(0,0,0,0.12);">
 
-    <span class="uc-search-icon">🔍</span>
+    <span class="uc-search-icon" style="font-size:16px; margin-right:8px; color:#64748b;">🔍</span>
 
-    <input type="text" id="searchInput" class="uc-search-input" placeholder="பழுது, வாடகை வீடு அல்லது தொழிலாளரைத் தேடுக...">
-
-    <button type="button" class="uc-voice-btn" onclick="startVoiceBooking()" title="தமிழில் பேசி முன்பதிவு / தேடுக (Tamil Voice Booking)" style="background:#4338ca;">🎙️</button>
+    <input type="text" id="searchInput" class="uc-search-input" placeholder="பழுது, வாடகை வீடு அல்லது தொழிலாளரைத் தேடுக..." style="flex:1; border:none; outline:none; font-size:13px; color:#0f172a; padding:6px 0; background:transparent;">
 
   </div>
 
@@ -1033,6 +1031,16 @@ body {
   </div>
 
   <div class="uc-tools-scroll" id="ucSmartToolsScroll">
+
+    <div class="uc-tool-item" onclick="openCommunityChatModal()" style="border-color:#86efac; background:#f0fdf4;">
+
+      <div class="uc-tool-icon">💬</div>
+
+      <div class="uc-tool-title" id="lblUcCommTool">மக்கள் சமூகம்</div>
+
+      <div class="uc-tool-sub" id="lblUcCommToolSub">Community Chat</div>
+
+    </div>
 
     <div class="uc-tool-item" onclick="openAiHelpModal()" style="border-color:#93c5fd; background:#eff6ff;">
 
@@ -3693,6 +3701,161 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
 <!-- 28. தொழிலாளர் நிர்வாகப் போர்டல் (Dedicated Technician / Partner Admin Portal) -->
 
+<!-- 29. Language Selection Modal (Tri-Lingual Selector) -->
+
+<div class="modal-overlay" <!-- 30. Fixr Community Chat Modal (Hyperlocal Discussion Feed) -->
+
+<div class="modal-overlay" id="communityChatModal">
+
+  <div class="modal-box" style="max-width: 520px; max-height: 90vh; display:flex; flex-direction:column; padding:0; overflow:hidden; border-radius:16px;">
+
+    <!-- Chat Header -->
+
+    <div style="background: linear-gradient(135deg, #1e1b4b, #3730a3); color:white; padding:14px 16px; display:flex; justify-content:space-between; align-items:center;">
+
+      <div style="display:flex; align-items:center; gap:8px;">
+
+        <div style="width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.2); display:flex; align-items:center; justify-content:center; font-size:18px;">💬</div>
+
+        <div>
+
+          <b style="font-size:14.5px; color:white;" id="commChatTitle">Fixr மக்கள் சமூகம் (Community Chat)</b>
+
+          <div style="font-size:10.5px; color:#c7d2fe;" id="commChatSub">உள்ளூர் கேள்விகள், உதவி & நேரலை ஆலோசனைகள்</div>
+
+        </div>
+
+      </div>
+
+      <button type="button" onclick="closeModal('communityChatModal')" style="background:rgba(255,255,255,0.15); border:none; width:30px; height:30px; border-radius:50%; color:white; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center;">✕</button>
+
+    </div>
+
+
+    <!-- City Filter Chips for Community Messages -->
+
+    <div style="display:flex; gap:6px; padding:10px 14px; background:#f8fafc; border-bottom:1px solid #e2e8f0; overflow-x:auto; scrollbar-width:none;">
+
+      <button type="button" class="city-chip active" id="commFilterAll" onclick="filterCommCity('all')" style="font-size:11px; padding:4px 10px;">📍 அனைத்து ஊர்கள்</button>
+
+      <button type="button" class="city-chip" id="commFilterChennai" onclick="filterCommCity('சென்னை')" style="font-size:11px; padding:4px 10px;">சென்னை</button>
+
+      <button type="button" class="city-chip" id="commFilterCbe" onclick="filterCommCity('கோவை')" style="font-size:11px; padding:4px 10px;">கோவை</button>
+
+      <button type="button" class="city-chip" id="commFilterMadurai" onclick="filterCommCity('மதுரை')" style="font-size:11px; padding:4px 10px;">மதுரை</button>
+
+      <button type="button" class="city-chip" id="commFilterTrichy" onclick="filterCommCity('திருச்சி')" style="font-size:11px; padding:4px 10px;">திருச்சி</button>
+
+    </div>
+
+
+    <!-- Live Messages Scroll Container -->
+
+    <div id="communityChatFeed" style="flex:1; padding:14px; overflow-y:auto; background:#f1f5f9; display:flex; flex-direction:column; gap:10px; min-height:280px; max-height:42vh;">
+
+      <!-- Populated dynamically via renderCommunityMessages() -->
+
+    </div>
+
+
+    <!-- Post Message Box -->
+
+    <div style="background:white; border-top:1px solid #cbd5e1; padding:12px 14px;">
+
+      <div style="display:grid; grid-template-columns:1.2fr 1fr; gap:8px; margin-bottom:8px;">
+
+        <input type="text" id="commAuthorName" class="form-input" placeholder="உங்கள் பெயர் (Your Name)" style="padding:7px; font-size:12px;">
+
+        <select id="commCitySelect" class="form-input" style="padding:7px; font-size:12px;">
+
+          <option value="சென்னை">சென்னை (Chennai)</option>
+
+          <option value="கோவை">கோவை (Coimbatore)</option>
+
+          <option value="மதுரை">மதுரை (Madurai)</option>
+
+          <option value="திருச்சி">திருச்சி (Trichy)</option>
+
+          <option value="சேலம்">சேலம் (Salem)</option>
+
+          <option value="இதர பகுதி">இதர பகுதி (Other)</option>
+
+        </select>
+
+      </div>
+
+      <div style="display:flex; gap:6px;">
+
+        <input type="text" id="commMsgInput" class="form-input" placeholder="கேள்வி அல்லது தகவலைப் பகிர்க..." style="flex:1; padding:8px 12px; font-size:12px; border-radius:20px;" onkeypress="if(event.key==='Enter') submitCommunityMessage()">
+
+        <button type="button" class="submit-btn" onclick="submitCommunityMessage()" style="margin:0; padding:8px 16px; border-radius:20px; font-size:12px; font-weight:800; background:#4338ca; display:flex; align-items:center; gap:4px;" id="btnCommSend">
+
+          பகிரு ➔
+
+        </button>
+
+      </div>
+
+      <div style="font-size:10px; color:#64748b; margin-top:6px; display:flex; justify-content:space-between;">
+
+        <span id="commHelpTip">💡 சர்வீஸ் ஆலோசனை, வாடகை வீடு & குழு உதவி கேட்கலாம்.</span>
+
+        <span style="color:#16a34a; font-weight:bold;">🟢 நேரலை (Live)</span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+id="langSelectModal">
+
+  <div class="modal-box" style="max-width: 360px; text-align:center;">
+
+    <div style="font-size:26px; margin-bottom:4px;">🌐</div>
+
+    <div class="modal-title" style="margin-bottom:4px;" id="langModalTitle">மொழியைத் தேர்வு செய்க / Select Language</div>
+
+    <div class="modal-sub" id="langModalSub">Choose your preferred language / भाषा चुनें</div>
+
+    <div style="display:flex; flex-direction:column; gap:8px; margin:14px 0;">
+
+      <button type="button" class="btn" onclick="setLanguage('ta')" style="background:#f8fafc; border:1.5px solid #cbd5e1; padding:10px; border-radius:10px; font-size:13px; font-weight:800; display:flex; justify-content:space-between; align-items:center;">
+
+        <span>🇮🇳 தமிழ் (Tamil)</span>
+
+        <span style="color:#0284c7;">தேர்வு செய் ➔</span>
+
+      </button>
+
+      <button type="button" class="btn" onclick="setLanguage('en')" style="background:#f8fafc; border:1.5px solid #cbd5e1; padding:10px; border-radius:10px; font-size:13px; font-weight:800; display:flex; justify-content:space-between; align-items:center;">
+
+        <span>🇬🇧 English</span>
+
+        <span style="color:#0284c7;">Select ➔</span>
+
+      </button>
+
+      <button type="button" class="btn" onclick="setLanguage('hi')" style="background:#f8fafc; border:1.5px solid #cbd5e1; padding:10px; border-radius:10px; font-size:13px; font-weight:800; display:flex; justify-content:space-between; align-items:center;">
+
+        <span>🇮🇳 हिंदी (Hindi)</span>
+
+        <span style="color:#0284c7;">चुनें ➔</span>
+
+      </button>
+
+    </div>
+
+    <button class="close-btn" onclick="closeModal('langSelectModal')" style="margin-top:6px;">மூடுக (Close)</button>
+
+  </div>
+
+</div>
+
+
 <div class="modal-overlay" id="techPortalModal">
 
 <div class="modal-box" style="max-width: 480px; max-height: 88vh; overflow-y:auto;">
@@ -3907,18 +4070,7 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 </div>
 
 
-<!-- Voice Recognition Feedback Banner -->
-
-<div id="voiceFeedbackBanner" style="display:none; position:fixed; top:75px; left:16px; right:16px; background:linear-gradient(135deg, #1e1b4b, #4338ca); color:white; padding:12px 16px; border-radius:14px; z-index:9999; box-shadow:0 4px 16px rgba(0,0,0,0.35); text-align:center; animation:fadeIn 0.2s ease;">
-
-  <div style="font-size:18px; margin-bottom:2px;" id="voiceFeedbackIcon">🎙️</div>
-
-  <div style="font-size:12.5px; font-weight:800;" id="voiceFeedbackTitle">பேசுங்கள்... கேட்கிறது (Listening...)</div>
-
-  <div style="font-size:10.5px; color:#c7d2fe; margin-top:2px;" id="voiceFeedbackSub">எ.கா: "சென்னை AC சர்வீஸ்", "எலக்ட்ரீஷியன்", "வாடகை வீடு"</div>
-
-</div>
-
+ 
 
 <!-- === Fixr Mobile Fixed Bottom Navigation Bar === -->
 
@@ -3940,11 +4092,11 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
   </button>
 
-  <button type="button" class="uc-nav-btn" id="btnNavVoice" onclick="startVoiceBooking(); setActiveBottomNav('btnNavVoice');" style="color:#4338ca;">
+  <button type="button" class="uc-nav-btn" id="btnNavCommunity" onclick="openCommunityChatModal(); setActiveBottomNav('btnNavCommunity');">
 
-    <span class="uc-nav-icon" style="font-size:22px; filter:drop-shadow(0 2px 4px rgba(67,56,202,0.3));">🎙️</span>
+    <span class="uc-nav-icon" style="font-size:20px; color:#4338ca;">💬</span>
 
-    <span id="lblNavVoice" style="color:#4338ca; font-weight:800;">குரல்வழி</span>
+    <span id="lblNavCommunity" style="color:#4338ca; font-weight:800;">சமூகம்</span>
 
   </button>
 
@@ -4122,29 +4274,40 @@ function setActiveBottomNav(btnId) {
 
   const categoryNameMap = {
 
-  "அனைத்தும்": { ta: "அனைத்தும்", en: "All Services" },
+  "அனைத்தும்": { ta: "அனைத்தும்", en: "All Services", hi: "सभी सेवाएं" },
 
-  "கேர் டேக்கர்": { ta: "கேர் டேக்கர்", en: "Care Taker" },
+  "கேர் டேக்கர்": { ta: "கேர் டேக்கர்", en: "Caregiver", hi: "केयरटेकर / देखभाल" },
 
-  "AC சர்வீஸ்": { ta: "AC சர்வீஸ்", en: "AC Service" },
+  "AC சர்வீஸ்": { ta: "AC சர்வீஸ்", en: "AC Service", hi: "एसी सर्विस और रिपेयर" },
 
-  "RO சர்வீஸ்": { ta: "RO சர்வீஸ்", en: "RO Service" },
+  "RO சர்வீஸ்": { ta: "RO சர்வீஸ்", en: "RO Service", hi: "आरओ वाटर प्यूरीफायर" },
 
-  "இன்வெர்ட்டர் & பேட்டரி": { ta: "இன்வெர்ட்டர் & பேட்டரி", en: "Battery & Inverter" },
+  "இன்வெர்ட்டர் & பேட்டரி": { ta: "இன்வெர்ட்டர் & பேட்டரி", en: "Battery & Inverter", hi: "इन्वर्टर और बैटरी" },
 
-  "எலக்ட்ரீஷியன்": { ta: "எலக்ட்ரீஷியன்", en: "Electrician" },
+  "எலக்ட்ரீஷியன்": { ta: "எலக்ட்ரீஷியன்", en: "Electrician", hi: "इलेक्ट्रीशियन" },
 
-  "பிளம்பர்": { ta: "பிளம்பர்", en: "Plumber" },
+  "பிளம்பர்": { ta: "பிளம்பர்", en: "Plumber", hi: "प्लंबर" },
 
-  "வாடகை வீடுகள்": { ta: "வாடகை வீடுகள்", en: "House Rentals" },
+  "வாடகை வீடுகள்": { ta: "வாடகை வீடுகள்", en: "House Rentals", hi: "किराए के मकान" },
 
-  "பேக்கர்ஸ் & மூவர்ஸ்": { ta: "பேக்கர்ஸ் & மூவர்ஸ்", en: "Packers & Movers" },
+  "பேக்கர்ஸ் & மூவர்ஸ்": { ta: "பேக்கர்ஸ் & மூவர்ஸ்", en: "Packers & Movers", hi: "पैकर्स एंड मूवर्स" },
 
-  "வாடகை ஒப்பந்தம்": { ta: "வாடகை ஒப்பந்தம்", en: "Rental Agreement" },
+  "வாடகை ஒப்பந்தம்": { ta: "வாடகை ஒப்பந்தம்", en: "Rental Agreement", hi: "किरायानामा (एग्रीमेंट)" },
 
-  "டீப் கிளீனிங்": { ta: "டீப் கிளீனிங் & பெயிண்டிங்", en: "Deep Cleaning & Painting" }
+  "டீப் கிளீனிங்": { ta: "டீப் கிளீனிங் & பெயிண்டிங்", en: "Deep Cleaning & Painting", hi: "डीप क्लीनिंग और पेंटिंग" }
 
   };
+
+
+  function tLang(ta, en, hi) {
+
+    if (currentLang === 'hi') return hi || en;
+
+    if (currentLang === 'en') return en;
+
+    return ta;
+
+  }
 
   function getDisplayCategory(cat) {
 
@@ -4154,49 +4317,55 @@ function setActiveBottomNav(btnId) {
 
   if (categoryNameMap[trimmed]) {
 
-  return (currentLang === 'ta') ? categoryNameMap[trimmed].ta : categoryNameMap[trimmed].en;
+    return categoryNameMap[trimmed][currentLang] || categoryNameMap[trimmed].en || categoryNameMap[trimmed].ta;
 
   }
 
   for (const key in categoryNameMap) {
 
-  if (trimmed.includes(key) || (categoryNameMap[key].en && trimmed.toLowerCase().includes(categoryNameMap[key].en.toLowerCase()))) {
+    if (trimmed.includes(key) || (categoryNameMap[key].en && trimmed.toLowerCase().includes(categoryNameMap[key].en.toLowerCase()))) {
 
-  return (currentLang === 'ta') ? categoryNameMap[key].ta : categoryNameMap[key].en;
+      return categoryNameMap[key][currentLang] || categoryNameMap[key].en || categoryNameMap[key].ta;
 
-  }
+    }
 
   }
 
   return cat;
 
-  }
+}
 
-  function getDisplayPrice(price) {
+function getDisplayPrice(price) {
 
-  if (!price) return currentLang === 'ta' ? 'தொடர்பு கொள்க' : 'Contact for price';
+  if (!price) return tLang('தொடர்பு கொள்க', 'Contact for price', 'कीमत के लिए संपर्क करें');
 
   if (currentLang === 'en') {
 
-  return price.replace('/நாள்', '/day').replace('முதல்', 'onwards');
+    return price.replace('/நாள்', '/day').replace('முதல்', 'onwards').replace('/மாதம்', '/month');
+
+  }
+
+  if (currentLang === 'hi') {
+
+    return price.replace('/நாள்', '/दिन').replace('முதல்', 'से शुरू').replace('/மாதம்', '/माह');
 
   }
 
   return price;
 
-  }
+}
 
-  function getDisplayDesc(desc) {
+function getDisplayDesc(desc) {
 
   if (!desc || desc === 'அங்கீகரிக்கப்பட்ட சேவை' || desc === 'அங்கீகரிக்கப்பட்ட Fixr சேவை') {
 
-  return currentLang === 'ta' ? 'அங்கீகரிக்கப்பட்ட Fixr சேவை' : 'Verified Fixr Partner';
+    return tLang('அங்கீகரிக்கப்பட்ட Fixr சேவை', 'Verified Fixr Partner', 'सत्यापित Fixr पार्टनर');
 
   }
 
   return desc;
 
-  }
+}
 
   const aiSuggestions = {
 
@@ -4204,7 +4373,7 @@ function setActiveBottomNav(btnId) {
 
   { label: "📅 முன்பதிவு செய்வது எப்படி?", query: "முன்பதிவு செய்வது எப்படி?" },
 
-  { label: "⚡ 30 நிமிடம் எக்ஸ்பிரஸ் சேவை", query: "30 நிமிடம் எக்ஸ்பிரஸ் சேவை விவரம்" },
+  { label: "⚡ Fixr Express அவசர சேவை", query: "Fixr Express அவசர சேவை விவரம்" },
 
   { label: "💰 கட்டண விவரம் (Rate Card)", query: "கட்டண விவரம் என்ன?" },
 
@@ -4232,7 +4401,7 @@ function setActiveBottomNav(btnId) {
 
   { label: "🛡️ Spare Parts Fair Price", query: "Spare parts fair price checker" },
 
-  { label: "❤️ Care Taker Services", query: "Tell me about Care Taker services" },
+  { label: "❤️ Caregiver Services", query: "Tell me about Caregiver services" },
 
   { label: "🏠 House Rental & Agreement", query: "House rentals and rental agreement" },
 
@@ -4242,6 +4411,28 @@ function setActiveBottomNav(btnId) {
 
   { label: "📞 Connect with Admin", query: "Talk to human admin on WhatsApp" }
 
+  ],
+
+  hi: [
+
+  { label: "📅 सेवा कैसे बुक करें?", query: "सेवा कैसे बुक करें?" },
+
+  { label: "⚡ Fixr Express आपातकालीन सेवा", query: "Fixr Express आपातकालीन सेवा की जानकारी" },
+
+  { label: "💰 रेट कार्ड और शुल्क", query: "सेवाओं का शुल्क क्या है?" },
+
+  { label: "🛡️ स्पेयर पार्ट्स सही मूल्य", query: "स्पेयर पार्ट्स का सही मूल्य जांचें" },
+
+  { label: "❤️ केयरटेकर देखभाल सेवा", query: "केयरटेकर सेवा की जानकारी" },
+
+  { label: "🏠 किराए का मकान और एग्रीमेंट", query: "किराए का मकान और एग्रीमेंट" },
+
+  { label: "🎯 मेरा बजट मेरा काम", query: "मेरा बजट मेरा काम क्या है?" },
+
+  { label: "🛠️ पार्टनर रजिस्ट्रेशन (₹49)", query: "कारीगर के रूप में कैसे जुड़ें?" },
+
+  { label: "📞 एडमिन से बात करें", query: "एडमिन व्हाट्सएप संपर्क नंबर" }
+
   ]
 
   };
@@ -4250,186 +4441,568 @@ function setActiveBottomNav(btnId) {
 
   ta: {
 
-  langBtn: "🌐 EN",
+    langBtn: "🌐 தமிழ்",
 
-  searchPlaceholder: "🔍 நகரம் (Chennai, Madurai...), சேவை அல்லது பெயர் தேடுக...",
+    searchPlaceholder: "🔍 நகரம் (Chennai, Madurai...), சேவை அல்லது பெயர் தேடுக...",
 
-  partnerFab: "தொழிலாளர் பதிவு (₹49)",
+    partnerFab: "தொழிலாளர் பதிவு (₹49)",
 
-  supportFab: "Fixr AI உதவி (24/7)",
+    supportFab: "Fixr AI உதவி (24/7)",
 
-  book: "முன்பதிவு",
+    book: "முன்பதிவு",
 
-  viewPhotos: "📷 படங்கள் பார்க்க",
+    viewPhotos: "📷 படங்கள் பார்க்க",
 
-  rentedOut: "வாடகைக்கு விடப்பட்டது",
+    rentedOut: "வாடகைக்கு விடப்பட்டது",
 
-  statusAvailable: "🟢 பணியில் தயார்",
+    statusAvailable: "🟢 பணியில் தயார்",
 
-  statusRentalAvail: "🟢 காலியாக உள்ளது",
+    statusRentalAvail: "🟢 காலியாக உள்ளது",
 
-  statusRented: "🔴 வாடகைக்கு விடப்பட்டது",
+    statusRented: "🔴 வாடகைக்கு விடப்பட்டது",
 
-  statusBusy: "⚪ தற்போது பணியில் உள்ளார்",
+    statusBusy: "⚪ தற்போது பணியில் உள்ளார்",
 
-  digitalId: "🪪 ID கார்டு",
+    digitalId: "🪪 ID கார்டு",
 
-  directions: "📍 வழிகாட்டி",
+    directions: "📍 வழிகாட்டி",
 
-  share: "📤 பகிர்க",
+    share: "📤 பகிர்க",
 
-  reviews: "அனுபவங்கள்",
+    reviews: "அனுபவங்கள்",
 
-  featuredStrip: "👑 முன்னுரிமை விளம்பரம் #",
+    featuredStrip: "👑 முன்னுரிமை விளம்பரம் #",
 
-  cloudOnline: "☁️ கூகுள் கிளவுட்: இணைக்கப்பட்டது",
+    cloudOnline: "☁️ கூகுள் கிளவுட்: இணைக்கப்பட்டது",
 
-  empty: "இந்த நகரம் அல்லது தேடலுக்கு எந்த சேவையும் கிடைக்கவில்லை.<br>வேறு நகரத்தைத் தேடவும்.",
+    empty: "இந்த நகரம் அல்லது தேடலுக்கு எந்த சேவையும் கிடைக்கவில்லை.<br>வேறு நகரத்தைத் தேடவும்.",
 
-  cityAll: "📍 அனைத்து ஊர்கள்",
+    cityAll: "📍 அனைத்து ஊர்கள்",
 
-  moveinTitle: "வீடு மாறுகிறீர்களா? (வீடு மாற்றும் சேவைகள்)",
+    moveinTitle: "வீடு மாறுகிறீர்களா? (வீடு மாற்றும் சேவைகள்)",
 
-  moveinDesc: "பேக்கர்ஸ் & மூவர்ஸ் • வாடகை ஒப்பந்தம் • டீப் கிளீனிங்",
+    moveinDesc: "பேக்கர்ஸ் & மூவர்ஸ் • வாடகை ஒப்பந்தம் • டீப் கிளீனிங்",
 
-  moveinTag: "பார்க்க ➔",
+    moveinTag: "பார்க்க ➔",
 
-  expressText: "30 நிமிட எக்ஸ்பிரஸ் சேவை: பிளம்பர், எலக்ட்ரீஷியன் & AC பழுது நீக்க உடனடியாக அழைக்க!",
+    expressText: "Fixr Express: அவசர எலக்ட்ரீஷியன் & பிளம்பர் நேரடி சேவை",
 
-  expressTag: "அவசர சேவை ➔",
+    expressTag: "அவசர சேவை ➔",
 
-  availToggleText: "பணியில் உள்ளவர்கள் மட்டும்",
+    availToggleText: "பணியில் உள்ளவர்கள் மட்டும்",
 
-  featuredTitle: "வீட்டை சீக்கிரம் வாடகைக்கு விட வேண்டுமா?",
+    featuredTitle: "வீட்டை சீக்கிரம் வாடகைக்கு விட வேண்டுமா?",
 
-  featuredDesc: "முதல் 3 இடங்களில் உங்கள் வீட்டை முன்னிறுத்த சிறிய கட்டணம் (₹99 / 7 நாட்கள்)",
+    featuredDesc: "முதல் 3 இடங்களில் உங்கள் வீட்டை முன்னிறுத்த சிறிய கட்டணம் (₹99 / 7 நாட்கள்)",
 
-  featuredBtn: "🚀 விளம்பரம் செய்க",
+    featuredBtn: "🚀 விளம்பரம் செய்க",
 
-  rateCardBtn: "📋 சேவைக் கட்டண விவரம்",
+    rateCardBtn: "📋 சேவைக் கட்டண விவரம்",
 
-  subAll: "அனைத்தும்",
+    subAll: "அனைத்தும்",
 
-  subHouse: "தனி வீடு",
+    subHouse: "தனி வீடு",
 
-  subBudgetLow: "💰 ₹10k-க்குள்",
+    subBudgetLow: "💰 ₹10k-க்குள்",
 
-  subBudgetMid: "💰 ₹10k - ₹15k",
+    subBudgetMid: "💰 ₹10k - ₹15k",
 
-  subBudgetHigh: "💰 ₹15k+",
+    subBudgetHigh: "💰 ₹15k+",
 
-  subFavs: "❤️ சேமித்தவை"
+    subFavs: "❤️ சேமித்தவை"
 
   },
 
   en: {
 
-  langBtn: "🌐 தமிழ்",
+    langBtn: "🌐 English",
 
-  searchPlaceholder: "🔍 Search city (Chennai, Madurai...), service or name...",
+    searchPlaceholder: "🔍 Search city (Chennai, Madurai...), service or name...",
 
-  partnerFab: "Join as Partner (₹49)",
+    partnerFab: "Join as Partner (₹49)",
 
-  supportFab: "Fixr AI Support (24/7)",
+    supportFab: "Fixr AI Support (24/7)",
 
-  book: "Book Now",
+    book: "Book Now",
 
-  viewPhotos: "📷 View Photos",
+    viewPhotos: "📷 View Photos",
 
-  rentedOut: "Rented Out",
+    rentedOut: "Rented Out",
 
-  statusAvailable: "🟢 Available Now",
+    statusAvailable: "🟢 Available Now",
 
-  statusRentalAvail: "🟢 Available (Vacant)",
+    statusRentalAvail: "🟢 Available (Vacant)",
 
-  statusRented: "🔴 Rented Out",
+    statusRented: "🔴 Rented Out",
 
-  statusBusy: "⚪ Currently Busy",
+    statusBusy: "⚪ Currently Busy",
 
-  digitalId: "🪪 Digital ID",
+    digitalId: "🪪 Digital ID",
 
-  directions: "📍 Directions",
+    directions: "📍 Directions",
 
-  share: "📤 Share",
+    share: "📤 Share",
 
-  reviews: "Reviews",
+    reviews: "Reviews",
 
-  featuredStrip: "👑 FEATURED • Top Listing #",
+    featuredStrip: "👑 FEATURED • Top Listing #",
 
-  cloudOnline: "☁️ Google Cloud: Connected",
+    cloudOnline: "☁️ Google Cloud: Connected",
 
-  empty: "No services found matching this search or city.<br>Please try a different city or category.",
+    empty: "No services found matching this search or city.<br>Please try a different city or category.",
 
-  cityAll: "📍 All Cities",
+    cityAll: "📍 All Cities",
 
-  moveinTitle: "Moving Homes? (Move-in Services)",
+    moveinTitle: "Moving Homes? (Move-in Services)",
 
-  moveinDesc: "Packers & Movers • Rental Agreement • Deep Cleaning",
+    moveinDesc: "Packers & Movers • Rental Agreement • Deep Cleaning",
 
-  moveinTag: "Explore ➔",
+    moveinTag: "Explore ➔",
 
-  expressText: "Fixr Express Service: Emergency service for Plumber, Electrician & AC repair!",
+    expressText: "Fixr Express Service: Emergency service for Plumber, Electrician & AC repair!",
 
-  expressTag: "Emergency Service ➔",
+    expressTag: "Emergency Service ➔",
 
-  availToggleText: "Available Only",
+    availToggleText: "Available Only",
 
-  featuredTitle: "Want to rent out your house quickly?",
+    featuredTitle: "Want to rent out your house quickly?",
 
-  featuredDesc: "Promote your house in top 3 spots (₹99 / 7 Days)",
+    featuredDesc: "Promote your house in top 3 spots (₹99 / 7 Days)",
 
-  featuredBtn: "🚀 Promote Now",
+    featuredBtn: "🚀 Promote Now",
 
-  rateCardBtn: "📋 Service Rate Card",
+    rateCardBtn: "📋 Service Rate Card",
 
-  subAll: "All",
+    subAll: "All",
 
-  subHouse: "Individual House",
+    subHouse: "Individual House",
 
-  subBudgetLow: "💰 Under ₹10k",
+    subBudgetLow: "💰 Under ₹10k",
 
-  subBudgetMid: "💰 ₹10k - ₹15k",
+    subBudgetMid: "💰 ₹10k - ₹15k",
 
-  subBudgetHigh: "💰 ₹15k+",
+    subBudgetHigh: "💰 ₹15k+",
 
-  subFavs: "❤️ Saved"
+    subFavs: "❤️ Saved"
+
+  },
+
+  hi: {
+
+    langBtn: "🌐 हिंदी",
+
+    searchPlaceholder: "🔍 शहर (चेन्नई, मदुरै...), सेवा या मिस्त्री खोजें...",
+
+    partnerFab: "कारीगर रजिस्ट्रेशन (₹49)",
+
+    supportFab: "Fixr AI सहायता (24/7)",
+
+    book: "बुक करें",
+
+    viewPhotos: "📷 तस्वीरें देखें",
+
+    rentedOut: "किराए पर दिया गया",
+
+    statusAvailable: "🟢 उपलब्ध हैं",
+
+    statusRentalAvail: "🟢 खाली है (उपलब्ध)",
+
+    statusRented: "🔴 किराए पर दिया गया",
+
+    statusBusy: "⚪ अभी व्यस्त हैं",
+
+    digitalId: "🪪 आईडी कार्ड",
+
+    directions: "📍 रास्ता",
+
+    share: "📤 शेयर करें",
+
+    reviews: "समीक्षाएं",
+
+    featuredStrip: "👑 टॉप लिस्टिंग #",
+
+    cloudOnline: "☁️ गूगल क्लाउड: कनेक्टेड",
+
+    empty: "इस शहर या सर्च के लिए कोई सेवा नहीं मिली।<br>कृपया दूसरा शहर चुनें।",
+
+    cityAll: "📍 सभी शहर",
+
+    moveinTitle: "मकान बदल रहे हैं? (शिफ्टिंग सेवाएं)",
+
+    moveinDesc: "पैकर्स एंड मूवर्स • रेंटल एग्रीमेंट • डीप क्लीनिंग",
+
+    moveinTag: "देखें ➔",
+
+    expressText: "Fixr Express: आपातकालीन इलेक्ट्रीशियन और प्लंबर सेवा!",
+
+    expressTag: "आपातकालीन ➔",
+
+    availToggleText: "केवल उपलब्ध कारीगर",
+
+    featuredTitle: "मकान जल्दी किराए पर देना चाहते हैं?",
+
+    featuredDesc: "टॉप 3 स्थानों में अपना मकान दिखाएं (₹99 / 7 दिन)",
+
+    featuredBtn: "🚀 प्रमोट करें",
+
+    rateCardBtn: "📋 सर्विस रेट कार्ड (दरें)",
+
+    subAll: "सभी",
+
+    subHouse: "स्वतंत्र मकान",
+
+    subBudgetLow: "💰 ₹10k के अंदर",
+
+    subBudgetMid: "💰 ₹10k - ₹15k",
+
+    subBudgetHigh: "💰 ₹15k+",
+
+    subFavs: "❤️ सुरक्षित"
 
   }
 
-  };
+};
 
   function toggleLanguage() {
 
-  currentLang = (currentLang === 'ta') ? 'en' : 'ta';
+  if (currentLang === 'ta') {
+
+    currentLang = 'en';
+
+  } else if (currentLang === 'en') {
+
+    currentLang = 'hi';
+
+  } else {
+
+    currentLang = 'ta';
+
+  }
 
   localStorage.setItem('fixr_lang', currentLang);
 
   applyLanguage();
 
+  showLangToast();
+
+}
+
+
+function setLanguage(lang) {
+
+  if (['ta', 'en', 'hi'].includes(lang)) {
+
+    currentLang = lang;
+
+    localStorage.setItem('fixr_lang', currentLang);
+
+    applyLanguage();
+
+    closeModal('langSelectModal');
+
+    showLangToast();
+
   }
 
-  function updateI18n() {
+}
+
+
+function showLangToast() {
+
+  const msg = (currentLang === 'hi') ? '🌐 भाषा बदली गई: हिंदी' : ((currentLang === 'en') ? '🌐 Language switched to English' : '🌐 மொழி மாற்றப்பட்டது: தமிழ்');
+
+  const banner = document.getElementById('voiceFeedbackBanner');
+
+  if (banner) {
+
+    const bIcon = document.getElementById('voiceFeedbackIcon');
+
+    const bTitle = document.getElementById('voiceFeedbackTitle');
+
+    const bSub = document.getElementById('voiceFeedbackSub');
+
+    banner.style.display = 'block';
+
+    if (bIcon) bIcon.innerText = '🌐';
+
+    if (bTitle) bTitle.innerText = msg;
+
+    if (bSub) bSub.innerText = (currentLang === 'hi') ? 'पूरी वेबसाइट अब हिंदी में उपलब्ध है।' : ((currentLang === 'en') ? 'Entire application is now in English.' : 'முழு தளமும் இப்போது தமிழில் உள்ளது.');
+
+    setTimeout(() => { banner.style.display = 'none'; }, 2000);
+
+  }
+
+}
+
+
+function openLanguageSelectModal() {
+
+  openModal('langSelectModal');
+
+}
+
+ 
+
+// --- Fixr Hyperlocal Community Chat Engine ---
+
+const defaultCommunityMsgs = [
+
+  { id: 'cmsg-1', author: 'சுரேஷ் (Suresh)', city: 'சென்னை', time: '10 நிமிடங்களுக்கு முன்', text: 'வேளச்சேரியில் AC சர்வீஸுக்கு CoolCare AC கூப்பிட்டோம், மிகச் சிறப்பாக ஜெட் வாட்டர் சர்வீஸ் செய்து தந்தார்! நியாயமான கட்டணம்.', isVerified: true },
+
+  { id: 'cmsg-2', author: 'பிரியா (Priya)', city: 'கோவை', time: 'அரை மணி நேரத்திற்கு முன்', text: 'காந்திபுரம் பகுதியில் அவசர வாட்டர் பைப் லீக்கேஜுக்கு நல்ல பிளம்பர் யார் உள்ளனர்? உடனடி உதவி தேவை.', isVerified: false },
+
+  { id: 'cmsg-3', author: 'Ravi (பிளம்பிங் நிபுணர்)', city: 'கோவை', time: '20 நிமிடங்களுக்கு முன்', text: 'வணக்கம் பிரியா! Fixr மூலம் என்னை அழைக்கலாம். உடனடியாக 30 நிமிடத்திற்குள் நேரில் வந்து சரிசெய்து தருகிறேன்.', isVerified: true, isPro: true },
+
+  { id: 'cmsg-4', author: 'கார்த்திக் (Karthik)', city: 'மதுரை', time: '1 மணி நேரத்திற்கு முன்', text: 'அண்ணா நகரில் 2 BHK புது வீடு வாடகைக்கு வந்துள்ளது (₹12,000). 0% புரோக்கரேஜ், நல்ல குடிநீர் வசதி.', isVerified: false },
+
+  { id: 'cmsg-5', author: 'செந்தில்குமார்', city: 'சென்னை', time: '2 மணி நேரத்திற்கு முன்', text: 'Fixr ₹100 E-Stamp வாடகை ஒப்பந்தம் பயன்படுத்தினோம். வீட்டிற்கே நோட்டரி சீலுடன் வந்தது, மிக்க நன்றி!', isVerified: true }
+
+];
+
+
+let currentCommFilterCity = 'all';
+
+
+function openCommunityChatModal() {
+
+  renderCommunityMessages();
+
+  // Auto-fill logged in user name if available
+
+  const savedUser = localStorage.getItem('fixr_user');
+
+  if (savedUser) {
+
+    try {
+
+      const u = JSON.parse(savedUser);
+
+      const inp = document.getElementById('commAuthorName');
+
+      if (inp && u.name) inp.value = u.name;
+
+    } catch(e) {}
+
+  }
+
+  openModal('communityChatModal');
+
+}
+
+
+function filterCommCity(city) {
+
+  currentCommFilterCity = city;
+
+  const chipIds = ['commFilterAll', 'commFilterChennai', 'commFilterCbe', 'commFilterMadurai', 'commFilterTrichy'];
+
+  chipIds.forEach(id => {
+
+    const el = document.getElementById(id);
+
+    if (el) el.classList.remove('active');
+
+  });
+
+  if (city === 'all') document.getElementById('commFilterAll')?.classList.add('active');
+
+  else if (city.includes('சென்னை')) document.getElementById('commFilterChennai')?.classList.add('active');
+
+  else if (city.includes('கோவை')) document.getElementById('commFilterCbe')?.classList.add('active');
+
+  else if (city.includes('மதுரை')) document.getElementById('commFilterMadurai')?.classList.add('active');
+
+  else if (city.includes('திருச்சி')) document.getElementById('commFilterTrichy')?.classList.add('active');
+
+  renderCommunityMessages();
+
+}
+
+
+function renderCommunityMessages() {
+
+  const feed = document.getElementById('communityChatFeed');
+
+  if (!feed) return;
+
+  feed.innerHTML = '';
+
+
+  let customMsgs = [];
+
+  try {
+
+    customMsgs = JSON.parse(localStorage.getItem('fixr_community_msgs') || '[]');
+
+  } catch(e) {}
+
+
+  const allMsgs = [...customMsgs, ...defaultCommunityMsgs];
+
+  const filtered = allMsgs.filter(m => {
+
+    if (currentCommFilterCity === 'all') return true;
+
+    return (m.city || '').includes(currentCommFilterCity);
+
+  });
+
+
+  if (filtered.length === 0) {
+
+    feed.innerHTML = `<div style="text-align:center; padding:30px; color:#64748b; font-size:12px;">${tLang('இந்த ஊரில் இன்னும் பதிவுகள் இல்லை. முதல் கேள்வியைப் பதியுங்கள்!', 'No community posts in this city yet. Be the first to share!', 'इस शहर में अभी कोई पोस्ट नहीं है। पहला संदेश साझा करें!')}</div>`;
+
+    return;
+
+  }
+
+
+  filtered.forEach(msg => {
+
+    const div = document.createElement('div');
+
+    div.style.cssText = 'background:white; border-radius:12px; padding:10px 12px; box-shadow:0 1px 3px rgba(0,0,0,0.06); border:1px solid #e2e8f0;';
+
+    const isPro = msg.isPro === true;
+
+    div.innerHTML = `
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+
+        <div style="display:flex; align-items:center; gap:6px;">
+
+          <b style="font-size:12px; color:#0f172a;">${msg.author}</b>
+
+          ${isPro ? `<span style="background:#e0f2fe; color:#0369a1; font-size:9.5px; font-weight:800; padding:1px 6px; border-radius:6px;">PRO ✓</span>` : ''}
+
+          <span style="background:#f1f5f9; color:#475569; font-size:9.5px; padding:1px 6px; border-radius:6px;">📍 ${msg.city}</span>
+
+        </div>
+
+        <span style="font-size:10px; color:#94a3b8;">${msg.time || 'இப்போது'}</span>
+
+      </div>
+
+      <div style="font-size:12px; color:#334155; line-height:1.5;">${msg.text}</div>
+
+    `;
+
+    feed.appendChild(div);
+
+  });
+
+}
+
+
+function submitCommunityMessage() {
+
+  const name = (document.getElementById('commAuthorName')?.value || '').trim() || tLang('உள்ளூர் வாடிக்கையாளர்', 'Local Resident', 'स्थानीय निवासी');
+
+  const city = document.getElementById('commCitySelect')?.value || 'சென்னை';
+
+  const textInput = document.getElementById('commMsgInput');
+
+  const msgText = (textInput?.value || '').trim();
+
+
+  if (!msgText) {
+
+    alert(tLang('உங்கள் கேள்வி அல்லது தகவலை உள்ளிடவும்.', 'Please type your question or tip.', 'कृपया अपना संदेश या प्रश्न लिखें।'));
+
+    return;
+
+  }
+
+
+  const newPost = {
+
+    id: 'cmsg-' + Date.now(),
+
+    author: name,
+
+    city: city,
+
+    time: tLang('இப்போது', 'Just now', 'अभी'),
+
+    text: msgText,
+
+    isVerified: true
+
+  };
+
+
+  let customMsgs = [];
+
+  try {
+
+    customMsgs = JSON.parse(localStorage.getItem('fixr_community_msgs') || '[]');
+
+  } catch(e) {}
+
+  customMsgs.unshift(newPost);
+
+  localStorage.setItem('fixr_community_msgs', JSON.stringify(customMsgs));
+
+
+  if (textInput) textInput.value = '';
+
+  renderCommunityMessages();
+
+
+  // If Firebase connected, sync to community collection
+
+  if (typeof db !== 'undefined' && db) {
+
+    db.collection('community_messages').add({
+
+      ...newPost,
+
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+
+    }).catch(()=>{});
+
+  }
+
+
+  const feed = document.getElementById('communityChatFeed');
+
+  if (feed) feed.scrollTop = 0;
+
+}
+
+
+function updateI18n() {
 
   const isTa = (currentLang === 'ta');
+
+  const isHi = (currentLang === 'hi');
 
 
   // --- Header, Brand & Location ---
 
   const ucDel = document.getElementById('ucDeliveryTime');
 
-  if (ucDel) ucDel.innerText = isTa ? '🛡️ 0% கமிஷன் நேரடி தளம்' : '🛡️ 0% Commission Direct Platform';
+  if (ucDel) ucDel.innerText = tLang('🛡️ 0% கமிஷன் நேரடி தளம்', '🛡️ 0% Commission Direct Platform', '🛡️ 0% कमीशन डायरेक्ट प्लेटफॉर्म');
 
   const ucCity = document.getElementById('ucCurrentCityText');
 
-  if (ucCity) ucCity.innerText = isTa ? '📍 தமிழ்நாடு (Chennai, Madurai, CBE...)' : '📍 Tamil Nadu, India';
+  if (ucCity) ucCity.innerText = tLang('📍 தமிழ்நாடு (Chennai, Madurai, CBE...)', '📍 Tamil Nadu, India', '📍 तमिलनाडु (चेन्नई, मदुरै, कोयंबटूर...)');
 
   const langBtn = document.getElementById('langToggleBtn');
 
-  if (langBtn) langBtn.innerHTML = isTa ? "🌐 EN" : "🌐 தமிழ்";
+  if (langBtn) {
+
+    langBtn.innerHTML = tLang('🌐 தமிழ்', '🌐 English', '🌐 हिंदी');
+
+    langBtn.title = tLang('மொழி மாற்று (Switch: தமிழ் ➔ English ➔ हिंदी)', 'Switch Language (English ➔ हिंदी ➔ தமிழ்)', 'भाषा बदलें (हिंदी ➔ தமிழ் ➔ English)');
+
+  }
+
 
   const instBtn = document.getElementById('headerInstallBtn');
 
-  if (instBtn) instBtn.innerText = isTa ? "📲 ஆப் நிறுவுக" : "📲 Install App";
+  if (instBtn) instBtn.innerText = tLang('📲 ஆப் நிறுவுக', '📲 Install App', '📲 ऐप इंस्टॉल करें');
 
   const authBtn = document.getElementById('authBtn');
 
@@ -4443,17 +5016,17 @@ function setActiveBottomNav(btnId) {
 
         const u = JSON.parse(savedUser);
 
-        authBtn.innerText = isTa ? `வெளியேறு (${u.name})` : `Logout (${u.name})`;
+        authBtn.innerText = tLang(`வெளியேறு (${u.name})`, `Logout (${u.name})`, `लॉग आउट (${u.name})`);
 
       } catch(e) {
 
-        authBtn.innerText = isTa ? "உள்நுழைக" : "Login";
+        authBtn.innerText = tLang('உள்நுழைக', 'Login', 'लॉग इन');
 
       }
 
     } else {
 
-      authBtn.innerText = isTa ? "உள்நுழைக" : "Login";
+      authBtn.innerText = tLang('உள்நுழைக', 'Login', 'लॉग इन');
 
     }
 
@@ -4464,755 +5037,931 @@ function setActiveBottomNav(btnId) {
 
   const searchInp = document.getElementById('searchInput');
 
-  if (searchInp) searchInp.placeholder = isTa ? "🔍 நகரம் (Chennai, Madurai...), சேவை அல்லது பெயர் தேடுக..." : "🔍 Search city (Chennai, Madurai...), service or name...";
+  if (searchInp) searchInp.placeholder = tLang('🔍 நகரம் (Chennai, Madurai...), சேவை அல்லது பெயர் தேடுக...', '🔍 Search city (Chennai, Madurai...), service or name...', '🔍 शहर (चेन्नई, मदुरै...), सेवा या मिस्त्री खोजें...');
 
 
   // --- Hero Promo Banner ---
 
   const ucTag = document.getElementById('ucPromoTag');
 
-  if (ucTag) ucTag.innerText = isTa ? 'FIXR பிரத்யேக சலுகை • 0% கமிஷன்' : 'FIXR EXCLUSIVE • 0% COMMISSION';
+  if (ucTag) ucTag.innerText = tLang('FIXR பிரத்யேக சலுகை • 0% கமிஷன்', 'FIXR EXCLUSIVE • 0% COMMISSION', 'FIXR विशेष सुविधा • 0% कमीशन');
 
   const ucTitle = document.getElementById('ucPromoTitle');
 
-  if (ucTitle) ucTitle.innerHTML = isTa ? '🎯 என் பட்ஜெட் என் வேலை<br><span style="font-size:11px;font-weight:normal;opacity:0.95;">உங்கள் பட்ஜெட்டில் சேவை; தொழிலாளர் ஏற்பார்!</span>' : '🎯 Customer Budget Bidding<br><span style="font-size:11px;font-weight:normal;opacity:0.95;">Set your own price; local pros will accept!</span>';
+  if (ucTitle) ucTitle.innerHTML = tLang(
+
+    '🎯 என் பட்ஜெட் என் வேலை<br><span style="font-size:11px;font-weight:normal;opacity:0.95;">உங்கள் பட்ஜெட்டில் சேவை; தொழிலாளர் ஏற்பார்!</span>',
+
+    '🎯 Customer Budget Bidding<br><span style="font-size:11px;font-weight:normal;opacity:0.95;">Set your own price; local pros will accept!</span>',
+
+    '🎯 मेरा बजट मेरा काम (Budget Bidding)<br><span style="font-size:11px;font-weight:normal;opacity:0.95;">अपना बजट खुद तय करें; स्थानीय कारीगर काम स्वीकार करेंगे!</span>'
+
+  );
 
   const ucBtn = document.getElementById('ucPromoBtn');
 
-  if (ucBtn) ucBtn.innerText = isTa ? 'பட்ஜெட் சொல்ல ➔' : 'Place Budget ➔';
+  if (ucBtn) ucBtn.innerText = tLang('பட்ஜெட் சொல்ல ➔', 'Place Budget ➔', 'बजट बताएं ➔');
 
 
   // --- 8-Category Grid ---
 
   const ucCatH = document.getElementById('lblUcCategories');
 
-  if (ucCatH) ucCatH.innerText = isTa ? 'Fixr சேவைகள் (Services)' : 'Fixr Services';
+  if (ucCatH) ucCatH.innerText = tLang('Fixr சேவைகள் (Services)', 'Fixr Services', 'Fixr सेवाएं (Services)');
 
   const ucAllL = document.getElementById('lblUcAllLink');
 
-  if (ucAllL) ucAllL.innerText = isTa ? 'அனைத்தும் ➔' : 'View All ➔';
+  if (ucAllL) ucAllL.innerText = tLang('அனைத்தும் ➔', 'View All ➔', 'सभी देखें ➔');
 
 
   const ucElec = document.getElementById('lblCatElec');
 
-  if (ucElec) ucElec.innerHTML = isTa ? 'எலக்ட்ரீஷியன்<br>& பிளம்பர்' : 'Electrician<br>& Plumber';
+  if (ucElec) ucElec.innerHTML = tLang('எலக்ட்ரீஷியன்<br>& பிளம்பர்', 'Electrician<br>& Plumber', 'इलेक्ट्रीशियन<br>& प्लंबर');
 
   const bElec = document.getElementById('badgeCatElec');
 
-  if (bElec) bElec.innerText = isTa ? 'சரிபார்க்கப்பட்டது' : 'Verified Pro';
+  if (bElec) bElec.innerText = tLang('சரிபார்க்கப்பட்டது', 'Verified Pro', 'वेरीफाइड कारीगर');
 
 
   const ucAc = document.getElementById('lblCatAc');
 
-  if (ucAc) ucAc.innerHTML = isTa ? 'AC பழுது<br>& சர்வீஸ்' : 'AC Repair<br>& Service';
+  if (ucAc) ucAc.innerHTML = tLang('AC பழுது<br>& சர்வீஸ்', 'AC Repair<br>& Service', 'एसी रिपेयर<br>& सर्विस');
 
   const bAc = document.getElementById('badgeCatAc');
 
-  if (bAc) bAc.innerText = isTa ? 'நியாய விலை' : 'Fair Price';
+  if (bAc) bAc.innerText = tLang('நியாய விலை', 'Fair Price', 'उचित दाम');
 
 
   const ucRent = document.getElementById('lblCatRental');
 
-  if (ucRent) ucRent.innerHTML = isTa ? 'வாடகை<br>வீடுகள்' : 'House<br>Rentals';
+  if (ucRent) ucRent.innerHTML = tLang('வாடகை<br>வீடுகள்', 'House<br>Rentals', 'किराए के<br>मकान');
 
   const bRent = document.getElementById('badgeCatRental');
 
-  if (bRent) bRent.innerText = isTa ? '0% புரோக்கர்' : '0% Broker';
+  if (bRent) bRent.innerText = tLang('0% புரோக்கர்', '0% Broker', '0% दलाली');
 
 
   const ucAgr = document.getElementById('lblCatAgr');
 
-  if (ucAgr) ucAgr.innerHTML = isTa ? 'வாடகை<br>ஒப்பந்தம்' : 'Rental<br>Agreement';
+  if (ucAgr) ucAgr.innerHTML = tLang('வாடகை<br>ஒப்பந்தம்', 'Rental<br>Agreement', 'किरायानामा<br>(एग्रीमेंट)');
 
   const bAgr = document.getElementById('badgeCatAgr');
 
-  if (bAgr) bAgr.innerText = isTa ? 'அரசு முத்திரை' : 'Govt Stamp';
+  if (bAgr) bAgr.innerText = tLang('அரசு முத்திரை', 'Govt Stamp', 'सरकारी स्टांप');
 
 
   const ucPack = document.getElementById('lblCatPack');
 
-  if (ucPack) ucPack.innerHTML = isTa ? 'பேக்கர்ஸ்<br>& மூவர்ஸ்' : 'Packers<br>& Movers';
+  if (ucPack) ucPack.innerHTML = tLang('பேக்கர்ஸ்<br>& மூவர்ஸ்', 'Packers<br>& Movers', 'पैकर्स<br>& मूवर्स');
 
   const bPack = document.getElementById('badgeCatPack');
 
-  if (bPack) bPack.innerText = isTa ? 'பாதுகாப்பான ஷிப்ட்' : 'Safe Shift';
+  if (bPack) bPack.innerText = tLang('பாதுகாப்பான ஷிப்ட்', 'Safe Shift', 'सुरक्षित शिफ्टिंग');
 
 
   const ucCare = document.getElementById('lblCatCare');
 
-  if (ucCare) ucCare.innerHTML = isTa ? 'கேர் டேக்கர்<br>(InstaHelp)' : 'Caregiver<br>(InstaHelp)';
+  if (ucCare) ucCare.innerHTML = tLang('கேர் டேக்கர்<br>(InstaHelp)', 'Caregiver<br>(InstaHelp)', 'केयरटेकर<br>(देखभाल)');
 
   const bCare = document.getElementById('badgeCatCare');
 
-  if (bCare) bCare.innerText = isTa ? '24/7 கவனிப்பு' : '24/7 Care';
+  if (bCare) bCare.innerText = tLang('24/7 கவனிப்பு', '24/7 Care', '24/7 देखभाल');
 
 
   const ucClean = document.getElementById('lblCatClean');
 
-  if (ucClean) ucClean.innerHTML = isTa ? 'முழு வீடு<br>கிளீனிங்' : 'Deep<br>Cleaning';
+  if (ucClean) ucClean.innerHTML = tLang('முழு வீடு<br>கிளீனிங்', 'Deep<br>Cleaning', 'घर की डीप<br>क्लीनिंग');
 
   const bClean = document.getElementById('badgeCatClean');
 
-  if (bClean) bClean.innerText = isTa ? 'சுத்தமான சேவை' : 'Eco Clean';
+  if (bClean) bClean.innerText = tLang('சுத்தமான சேவை', 'Eco Clean', 'सफाई सेवा');
 
 
   const ucAll = document.getElementById('lblCatAll');
 
-  if (ucAll) ucAll.innerHTML = isTa ? 'அனைத்து<br>சேவைகள்' : 'All<br>Services';
+  if (ucAll) ucAll.innerHTML = tLang('அனைத்து<br>சேவைகள்', 'All<br>Services', 'सभी<br>सेवाएं');
 
   const bAll = document.getElementById('badgeCatAll');
 
-  if (bAll) bAll.innerText = isTa ? 'அனைத்தும்' : 'All in One';
+  if (bAll) bAll.innerText = tLang('அனைத்தும்', 'All in One', 'ऑल इन वन');
 
 
   // --- Smart Tools / Quick Tools Scroll ---
 
   const ucSmart = document.getElementById('lblUcSmartProducts');
 
-  if (ucSmart) ucSmart.innerText = isTa ? 'Fixr ஸ்மார்ட் வசதிகள் (Smart Tools)' : 'Fixr Exclusive Tools';
+  if (ucSmart) ucSmart.innerText = tLang('Fixr ஸ்மார்ட் வசதிகள் (Smart Tools)', 'Fixr Smart Tools', 'Fixr स्मार्ट सुविधाएं');
 
   const ucSmartSub = document.getElementById('lblUcSmartSub');
 
-  if (ucSmartSub) ucSmartSub.innerText = isTa ? 'அதிக கட்டணம் & இடைத்தரகர்கள் இல்லாத தமிழ்நாட்டின் பிரத்யேக தளம்' : 'Tamil Nadu\'s leading zero-commission hyperlocal living platform';
+  if (ucSmartSub) ucSmartSub.innerText = tLang(
+
+    'அதிக கட்டணம் & இடைத்தரகர்கள் இல்லாத தமிழ்நாட்டின் பிரத்யேக தளம்',
+
+    'Zero commission hyperlocal home living platform in Tamil Nadu',
+
+    'बिना बिचौलियों और बिना कमीशन का तमिलनाडु का विश्वसनीय प्लेटफॉर्म'
+
+  );
 
 
   const tBudget = document.getElementById('lblUcBudget');
 
-  if (tBudget) tBudget.innerText = isTa ? 'என் பட்ஜெட்' : 'My Budget';
+  if (tBudget) tBudget.innerText = tLang('என் பட்ஜெட்', 'My Budget', 'मेरा बजट');
 
   const sBudget = document.getElementById('lblUcBudgetSub');
 
-  if (sBudget) sBudget.innerText = isTa ? 'வாடிக்கையாளர் விலை' : 'Customer Bidding';
+  if (sBudget) sBudget.innerText = tLang('வாடிக்கையாளர் விலை', 'Customer Bidding', 'ग्राहक बोली');
 
 
   const tPool = document.getElementById('lblUcPool');
 
-  if (tPool) tPool.innerText = isTa ? '25% குழு தள்ளுபடி' : '25% Group Pool';
+  if (tPool) tPool.innerText = tLang('25% குழு தள்ளுபடி', '25% Group Pool', '25% ग्रुप छूट');
 
   const sPool = document.getElementById('lblUcPoolSub');
 
-  if (sPool) sPool.innerText = isTa ? 'தெரு & குடியிருப்புகள்' : 'Street & Flat Pool';
+  if (sPool) sPool.innerText = tLang('தெரு & குடியிருப்புகள்', 'Street & Flat Pool', 'मोहल्ला / सोसायटी');
 
 
   const tPhoto = document.getElementById('lblUcPhotoDiag');
 
-  if (tPhoto) tPhoto.innerText = isTa ? 'பழுது படம்' : 'Photo Diag';
+  if (tPhoto) tPhoto.innerText = tLang('பழுது படம்', 'Photo Diag', 'फोटो डायग्नोसिस');
 
   const sPhoto = document.getElementById('lblUcPhotoDiagSub');
 
-  if (sPhoto) sPhoto.innerText = isTa ? 'கட்டண ஆலோசனை' : 'Free Estimate';
+  if (sPhoto) sPhoto.innerText = tLang('கட்டண ஆலோசனை', 'Free Estimate', 'मुफ्त अनुमान');
 
 
   const tAgr = document.getElementById('lblUcAgrTool');
 
-  if (tAgr) tAgr.innerText = isTa ? 'வாடகை பத்திரம்' : 'Rental Deed';
+  if (tAgr) tAgr.innerText = tLang('வாடகை பத்திரம்', 'Rental Deed', 'किराया एग्रीमेंट');
 
   const sAgr = document.getElementById('lblUcAgrToolSub');
 
-  if (sAgr) sAgr.innerText = isTa ? 'அரசு E-Stamp' : 'Govt E-Stamp';
+  if (sAgr) sAgr.innerText = tLang('அரசு E-Stamp', 'Govt E-Stamp', 'सरकारी ई-स्टांप');
 
 
   const tSpare = document.getElementById('lblUcSpareTool');
 
-  if (tSpare) tSpare.innerText = isTa ? 'உதிரிபாக விலை' : 'Spare Parts';
+  if (tSpare) tSpare.innerText = tLang('உதிரிபாக விலை', 'Spare Parts', 'स्पेयर पार्ट्स');
 
   const sSpare = document.getElementById('lblUcSpareToolSub');
 
-  if (sSpare) sSpare.innerText = isTa ? 'நியாய விலை பட்டியல்' : 'Fair Price List';
+  if (sSpare) sSpare.innerText = tLang('நியாய விலை பட்டியல்', 'Fair Price List', 'सही मूल्य सूची');
 
 
   const tWar = document.getElementById('lblUcWarranty');
 
-  if (tWar) tWar.innerText = isTa ? '30 நாள் கேரண்டி' : '30-Day Guarantee';
+  if (tWar) tWar.innerText = tLang('30 நாள் கேரண்டி', '30-Day Guarantee', '30 दिन गारंटी');
 
   const sWar = document.getElementById('lblUcWarrantySub');
 
-  if (sWar) sWar.innerText = isTa ? 'இலவச மறுவேலை' : 'Free Rework';
+  if (sWar) sWar.innerText = tLang('இலவச மறுவேலை', 'Free Rework', 'मुफ्त सुधार कार्य');
 
 
   const tInv = document.getElementById('lblUcInvoice');
 
-  if (tInv) tInv.innerText = isTa ? 'டிஜிட்டல் பில்' : 'Digital Invoice';
+  if (tInv) tInv.innerText = tLang('டிஜிட்டல் பில்', 'Digital Invoice', 'डिजिटल बिल');
 
   const sInv = document.getElementById('lblUcInvoiceSub');
 
-  if (sInv) sInv.innerText = isTa ? 'உடனடி ரசீது' : 'Instant Bill';
+  if (sInv) sInv.innerText = tLang('உடனடி ரசீது', 'Instant Bill', 'तुरंत रसीद');
 
 
   const tBook = document.getElementById('lblUcMyBookings');
 
-  if (tBook) tBook.innerText = isTa ? 'முன்பதிவுகள்' : 'My Bookings';
+  if (tBook) tBook.innerText = tLang('முன்பதிவுகள்', 'My Bookings', 'मेरी बुकिंग');
 
   const sBook = document.getElementById('lblUcMyBookingsSub');
 
-  if (sBook) sBook.innerText = isTa ? 'நிலை அறிய' : 'Track Status';
+  if (sBook) sBook.innerText = tLang('நிலை அறிய', 'Track Status', 'स्टेटस देखें');
 
 
   const tSos = document.getElementById('lblUcSos');
 
-  if (tSos) tSos.innerText = isTa ? '24/7 SOS உதவி' : '24/7 SOS Help';
+  if (tSos) tSos.innerText = tLang('24/7 SOS உதவி', '24/7 SOS Help', '24/7 आपातकालीन');
 
   const sSos = document.getElementById('lblUcSosSub');
 
-  if (sSos) sSos.innerText = isTa ? 'காவல்துறை 112' : 'Police 112';
+  if (sSos) sSos.innerText = tLang('காவல்துறை 112', 'Police 112', 'पुलिस 112');
 
 
   const tTech = document.getElementById('lblUcTechPortal');
 
-  if (tTech) tTech.innerText = isTa ? 'தொழிலாளர் போர்டல்' : 'Partner Portal';
+  if (tTech) tTech.innerText = tLang('தொழிலாளர் போர்டல்', 'Partner Portal', 'कारीगर पोर्टल');
 
   const sTech = document.getElementById('lblUcTechPortalSub');
 
-  if (sTech) sTech.innerText = isTa ? 'தொழிலாளர் லாகின்' : 'Technician Login';
+  if (sTech) sTech.innerText = tLang('தொழிலாளர் லாகின்', 'Technician Login', 'कारीगर लॉगिन');
+
+
+  const aiTool = document.getElementById('lblUcAiTool');
+
+  if (aiTool) aiTool.innerText = tLang('Fixr AI உதவி', 'Fixr AI Help', 'Fixr AI सहायता');
+
+  const aiToolSub = document.getElementById('lblUcAiToolSub');
+
+  if (aiToolSub) aiToolSub.innerText = tLang('24/7 AI Chat', '24/7 AI Chat', '24/7 चैट');
+
+
+  const joinTool = document.getElementById('lblUcJoinTool');
+
+  if (joinTool) joinTool.innerText = tLang('தொழிலாளர் பதிவு', 'Join as Partner', 'कारीगर रजिस्ट्रेशन');
+
+  const joinToolSub = document.getElementById('lblUcJoinToolSub');
+
+  if (joinToolSub) joinToolSub.innerText = tLang('₹49 கட்டணம்', '₹49 Fee', '₹49 शुल्क');
 
 
   // --- City Chips ---
 
   const cAll = document.getElementById('cityChipAll');
 
-  if (cAll) cAll.innerText = isTa ? "📍 அனைத்து ஊர்கள்" : "📍 All Cities";
+  if (cAll) cAll.innerText = tLang("📍 அனைத்து ஊர்கள்", "📍 All Cities", "📍 सभी शहर");
 
   const cChn = document.getElementById('cityChipChennai');
 
-  if (cChn) cChn.innerText = isTa ? "சென்னை (Chennai)" : "Chennai";
+  if (cChn) cChn.innerText = tLang("சென்னை (Chennai)", "Chennai", "चेन्नई (Chennai)");
 
   const cCbe = document.getElementById('cityChipCbe');
 
-  if (cCbe) cCbe.innerText = isTa ? "கோவை (Coimbatore)" : "Coimbatore";
+  if (cCbe) cCbe.innerText = tLang("கோவை (Coimbatore)", "Coimbatore", "कोयंबटूर (Coimbatore)");
 
   const cMad = document.getElementById('cityChipMadurai');
 
-  if (cMad) cMad.innerText = isTa ? "மதுரை (Madurai)" : "Madurai";
+  if (cMad) cMad.innerText = tLang("மதுரை (Madurai)", "Madurai", "मदुरै (Madurai)");
 
   const cTri = document.getElementById('cityChipTrichy');
 
-  if (cTri) cTri.innerText = isTa ? "திருச்சி (Trichy)" : "Trichy";
+  if (cTri) cTri.innerText = tLang("திருச்சி (Trichy)", "Trichy", "त्रिची (Trichy)");
 
   const cSal = document.getElementById('cityChipSalem');
 
-  if (cSal) cSal.innerText = isTa ? "சேலம் (Salem)" : "Salem";
+  if (cSal) cSal.innerText = tLang("சேலம் (Salem)", "Salem", "सेलम (Salem)");
 
   const cBlr = document.getElementById('cityChipBlr');
 
-  if (cBlr) cBlr.innerText = isTa ? "பெங்களூரு (Bengaluru)" : "Bengaluru";
+  if (cBlr) cBlr.innerText = tLang("பெங்களூரு (Bengaluru)", "Bengaluru", "बेंगलुरु (Bengaluru)");
 
 
   // --- Promo Strips & Banners ---
 
   const moveinT = document.getElementById('moveinBannerTitle');
 
-  if (moveinT) moveinT.innerText = isTa ? "வீடு மாறுகிறீர்களா? பேக்கர்ஸ் & அக்ரீமென்ட்" : "Moving Homes? Packers & Rental Agreement";
+  if (moveinT) moveinT.innerText = tLang("வீடு மாறுகிறீர்களா? பேக்கர்ஸ் & அக்ரீமென்ட்", "Moving Homes? Packers & Rental Agreement", "मकान बदल रहे हैं? पैकर्स और एग्रीमेंट");
 
   const moveinTag = document.getElementById('moveinBannerTag');
 
-  if (moveinTag) moveinTag.innerText = isTa ? "பார்க்க ➔" : "Explore ➔";
+  if (moveinTag) moveinTag.innerText = tLang("பார்க்க ➔", "Explore ➔", "देखें ➔");
 
   const expStrip = document.getElementById('expressStripText');
 
-  if (expStrip) expStrip.innerText = isTa ? "Fixr Express: அவசர எலக்ட்ரீஷியன் & பிளம்பர் நேரடி சேவை" : "Fixr Express: Emergency Electrician & Plumber Service";
+  if (expStrip) expStrip.innerText = tLang("Fixr Express: அவசர எலக்ட்ரீஷியன் & பிளம்பர் நேரடி சேவை", "Fixr Express: Emergency Electrician & Plumber Service", "Fixr Express: आपातकालीन इलेक्ट्रीशियन और प्लंबर सेवा");
 
   const expTag = document.getElementById('expressStripTag');
 
-  if (expTag) expTag.innerText = isTa ? "அவசர சேவை ➔" : "Emergency ➔";
+  if (expTag) expTag.innerText = tLang("அவசர சேவை ➔", "Emergency ➔", "आपातकालीन ➔");
 
   const featT = document.getElementById('featuredBannerTitle');
 
-  if (featT) featT.innerText = isTa ? "வாடகை வீடு முன்னுரிமை விளம்பரம் (Top Listing ₹99)" : "Promote Your House in Top 3 Spots (₹99 / 7 Days)";
+  if (featT) featT.innerText = tLang("வாடகை வீடு முன்னுரிமை விளம்பரம் (Top Listing ₹99)", "Promote Your House in Top 3 Spots (₹99 / 7 Days)", "मकान टॉप लिस्टिंग में दिखाएं (₹99 / 7 दिन)");
 
   const featBtn = document.getElementById('featuredBannerBtn');
 
-  if (featBtn) featBtn.innerText = isTa ? "விளம்பரம் ➔" : "Promote ➔";
+  if (featBtn) featBtn.innerText = tLang("விளம்பரம் ➔", "Promote ➔", "प्रमोट करें ➔");
 
 
   // --- Action Pills ---
 
   const availTxt = document.getElementById('availToggleText');
 
-  if (availTxt) availTxt.innerText = isTa ? "Available Only (பணியில் உள்ளவர்கள்)" : "Available Only (Active Pros)";
+  if (availTxt) availTxt.innerText = tLang("Available Only (பணியில் உள்ளவர்கள்)", "Available Only (Active Pros)", "केवल उपलब्ध कारीगर");
 
   const expPill = document.getElementById('expressFilterBtn');
 
-  if (expPill) expPill.innerText = isTa ? "⚡ விரைவு அவசர சேவை" : "⚡ Fixr Express";
+  if (expPill) expPill.innerText = tLang("⚡ விரைவு அவசர சேவை", "⚡ Fixr Express", "⚡ Fixr एक्सप्रेस");
 
   const verPill = document.getElementById('proFilterBtn') || document.getElementById('verifiedFilterBtn');
 
-  if (verPill) verPill.innerText = isTa ? "🌟 சரிபார்க்கப்பட்ட தொழிலாளர்கள்" : "🌟 Verified Pros Only";
+  if (verPill) verPill.innerText = tLang("🌟 சரிபார்க்கப்பட்ட தொழிலாளர்கள்", "🌟 Verified Pros Only", "🌟 सत्यापित कारीगर");
 
   const phoPill = document.getElementById('photoDiagPillBtn');
 
-  if (phoPill) phoPill.innerText = isTa ? "📸 பழுது புகைப்படம்" : "📸 Photo Diagnosis";
+  if (phoPill) phoPill.innerText = tLang("📸 பழுது புகைப்படம்", "📸 Photo Diagnosis", "📸 फोटो डायग्नोसिस");
 
   const ratePill = document.getElementById('rateCardPillBtn');
 
-  if (ratePill) ratePill.innerText = isTa ? "📋 சேவைக் கட்டண விவரம்" : "📋 Service Rate Card";
+  if (ratePill) ratePill.innerText = tLang("📋 சேவைக் கட்டண விவரம்", "📋 Service Rate Card", "📋 रेट कार्ड (दरें)");
 
   const sparePill = document.getElementById('sparePricePillBtn');
 
-  if (sparePill) sparePill.innerText = isTa ? "🛡️ உதிரிபாக நியாய விலை" : "🛡️ Spare Parts Fair Price";
+  if (sparePill) sparePill.innerText = tLang("🛡️ உதிரிபாக நியாய விலை", "🛡️ Spare Parts Fair Price", "🛡️ सही पार्ट्स मूल्य");
 
   const bidPill = document.getElementById('biddingPillBtn');
 
-  if (bidPill) bidPill.innerText = isTa ? "🎯 என் பட்ஜெட் என் வேலை" : "🎯 Customer Budget Bidding";
+  if (bidPill) bidPill.innerText = tLang("🎯 என் பட்ஜெட் என் வேலை", "🎯 Customer Budget Bidding", "🎯 मेरा बजट मेरा काम");
 
   const poolPill = document.getElementById('poolPillBtn');
 
-  if (poolPill) poolPill.innerText = isTa ? "🏢 தெரு & அடுக்குமாடி குழு தள்ளுபடி" : "🏢 Community Street Pooling";
+  if (poolPill) poolPill.innerText = tLang("🏢 தெரு & அடுக்குமாடி குழு தள்ளுபடி", "🏢 Community Street Pooling", "🏢 कम्युनिटी ग्रुप छूट");
 
 
   // --- Rental Sub-chips ---
 
   const subAll = document.getElementById('chipSubAll');
 
-  if (subAll) subAll.innerText = isTa ? "அனைத்தும்" : "All";
+  if (subAll) subAll.innerText = tLang("அனைத்தும்", "All", "सभी");
 
   const subHouse = document.getElementById('chipSubHouse');
 
-  if (subHouse) subHouse.innerText = isTa ? "தனி வீடு" : "Individual House";
+  if (subHouse) subHouse.innerText = tLang("தனி வீடு", "Individual House", "स्वतंत्र मकान");
 
   const subLow = document.getElementById('chipSubBudgetLow');
 
-  if (subLow) subLow.innerText = isTa ? "💰 ₹10k-க்குள்" : "💰 Under ₹10k";
+  if (subLow) subLow.innerText = tLang("💰 ₹10k-க்குள்", "💰 Under ₹10k", "💰 ₹10k के अंदर");
 
   const subMid = document.getElementById('chipSubBudgetMid');
 
-  if (subMid) subMid.innerText = isTa ? "💰 ₹10k - ₹15k" : "💰 ₹10k - ₹15k";
+  if (subMid) subMid.innerText = tLang("💰 ₹10k - ₹15k", "💰 ₹10k - ₹15k", "💰 ₹10k - ₹15k");
 
   const subHigh = document.getElementById('chipSubBudgetHigh');
 
-  if (subHigh) subHigh.innerText = isTa ? "💰 ₹15k+" : "💰 ₹15k+";
+  if (subHigh) subHigh.innerText = tLang("💰 ₹15k+", "💰 ₹15k+", "💰 ₹15k+");
 
   const subFavs = document.getElementById('chipSubFavs');
 
-  if (subFavs) subFavs.innerText = isTa ? "❤️ சேமித்தவை" : "❤️ Saved";
+  if (subFavs) subFavs.innerText = tLang("❤️ சேமித்தவை", "❤️ Saved", "❤️ सुरक्षित");
+
+
+  // --- Floating Action Buttons ---
+
+  const suppFab = document.getElementById('supportFabText');
+
+  if (suppFab) suppFab.innerText = tLang("Fixr AI உதவி (24/7)", "Fixr AI Support (24/7)", "Fixr AI सहायता (24/7)");
+
+  const partFab = document.getElementById('partnerFabText');
+
+  if (partFab) partFab.innerText = tLang("தொழிலாளர் பதிவு (₹49)", "Join as Partner (₹49)", "कारीगर रजिस्ट्रेशन (₹49)");
 
 
   // --- Bottom Navigation Bar ---
 
   const nHome = document.getElementById('lblNavHome');
 
-  if (nHome) nHome.innerText = isTa ? 'முகப்பு' : 'Home';
+  if (nHome) nHome.innerText = tLang('முகப்பு', 'Home', 'होम');
 
   const nBid = document.getElementById('lblNavBidding');
 
-  if (nBid) nBid.innerText = isTa ? 'என் பட்ஜெட்' : 'Bidding';
+  if (nBid) nBid.innerText = tLang('பட்ஜெட்', 'Bidding', 'बजट');
 
-  const nVc = document.getElementById('lblNavVoice');
+  const nComm = document.getElementById('lblNavCommunity');
 
-  if (nVc) nVc.innerText = isTa ? 'குரல்வழி' : 'Voice';
+  if (nComm) nComm.innerText = tLang('சமூகம்', 'Community', 'कम्युनिटी');
 
   const nBk = document.getElementById('lblNavBookings');
 
-  if (nBk) nBk.innerText = isTa ? 'முன்பதிவுகள்' : 'Bookings';
+  if (nBk) nBk.innerText = tLang('முன்பதிவு', 'Bookings', 'बुकिंग');
 
   const nAcc = document.getElementById('lblNavAccount');
 
-  if (nAcc) nAcc.innerText = isTa ? 'தொழிலாளர்' : 'Partner';
+  if (nAcc) nAcc.innerText = tLang('தொழிலாளர்', 'Partner', 'कारीगर');
 
 
   // --- Partner / Worker Portal Modal ---
 
   const tpTitle = document.getElementById('techPortalTitle');
 
-  if (tpTitle) tpTitle.innerText = isTa ? "Fixr தொழிலாளர் நிர்வாகம் (Partner Portal)" : "Fixr Partner & Technician Portal";
+  if (tpTitle) tpTitle.innerText = tLang("Fixr தொழிலாளர் நிர்வாகம் (Partner Portal)", "Fixr Partner & Technician Portal", "Fixr कारीगर पोर्टल (Partner Portal)");
 
   const tpSub = document.getElementById('techPortalSub');
 
-  if (tpSub) tpSub.innerText = isTa ? "முன்பதிவுகள், டிஜிட்டல் பில் & கேரண்டி மேலாண்மை" : "Bookings, Digital Invoices & Warranty Management";
+  if (tpSub) tpSub.innerText = tLang("முன்பதிவுகள், டிஜிட்டல் பில் & கேரண்டி மேலாண்மை", "Bookings, Digital Invoices & Warranty Management", "बुकिंग, डिजिटल बिल और गारंटी प्रबंधन");
 
   const tplH = document.getElementById('lblTechLoginHeading');
 
-  if (tplH) tplH.innerText = isTa ? "வணக்கம்! தொழிலாளர் உள்நுழைவு" : "Welcome! Partner / Worker Login";
+  if (tplH) tplH.innerText = tLang("வணக்கம்! தொழிலாளர் பாதுகாப்பான உள்நுழைவு", "Welcome! Partner / Worker Login", "नमस्ते! कारीगर सुरक्षित लॉगिन");
 
   const tplD = document.getElementById('lblTechLoginDesc');
 
-  if (tplD) tplD.innerText = isTa ? "உங்கள் பதிவு செய்த 10 இலக்க மொபைல் எண் அல்லது தொழிலாளர் ID உள்ளிட்டு உள்நுழையவும்." : "Enter your registered 10-digit mobile number or Technician ID to manage bookings.";
+  if (tplD) tplD.innerText = tLang("உங்கள் தனிப்பட்ட முன்பதிவுகள் & பில்களை பிறர் பார்க்காதவாறு 100% பாதுகாக்கப்பட்டுள்ளது.", "Your bookings and customer bills are 100% private and protected.", "आपकी बुकिंग और बिल 100% सुरक्षित और गोपनीय हैं।");
 
   const tplI = document.getElementById('lblTechLoginInput');
 
-  if (tplI) tplI.innerText = isTa ? "📱 பதிவு செய்த மொபைல் எண் / ID:" : "📱 Registered Mobile Number / ID:";
+  if (tplI) tplI.innerText = tLang("📱 பதிவு செய்த மொபைல் எண் / தொழிலாளர் ID:", "📱 Registered Mobile Number / ID:", "📱 रजिस्टर्ड मोबाइल नंबर / आईडी:");
+
+  const pinLbl = document.getElementById('lblTechPinLabel');
+
+  if (pinLbl) pinLbl.innerText = tLang("🔒 ரகசிய 4-இலக்க PIN (Security PIN):", "🔒 4-Digit Security PIN:", "🔒 गुप्त 4-अंकीय पिन (Security PIN):");
+
+  const pinHnt = document.getElementById('lblTechPinHint');
+
+  if (pinHnt) pinHnt.innerText = tLang("(மாதிரி PIN: 8843)", "(Default PIN: 8843)", "(डिफ़ॉल्ट पिन: 8843)");
+
+  const pinInp = document.getElementById('techLoginPin');
+
+  if (pinInp) pinInp.placeholder = tLang("4-இலக்க PIN", "4-digit PIN", "4-अंकीय पिन");
+
+  const lnkOtp = document.getElementById('lnkTechSmsOtp');
+
+  if (lnkOtp) lnkOtp.innerText = tLang("📱 SMS OTP மூலம் உள்நுழைக", "📱 Login via SMS OTP", "📱 SMS OTP द्वारा लॉगिन करें");
 
   const tplBtn = document.getElementById('btnTechLoginSubmit');
 
-  if (tplBtn) tplBtn.innerText = isTa ? "உள்நுழைக (Login) ➔" : "Access Partner Dashboard ➔";
+  if (tplBtn) tplBtn.innerText = tLang("உள்நுழைக (Secure Login) ➔", "Access Partner Dashboard ➔", "सुरक्षित लॉगिन ➔");
 
   const tLogout = document.getElementById('btnTechLogout');
 
-  if (tLogout) tLogout.innerText = isTa ? "🚪 வெளியேறு" : "🚪 Logout";
+  if (tLogout) tLogout.innerText = tLang("🚪 வெளியேறு", "🚪 Logout", "🚪 लॉग आउट");
 
   const tClean = document.getElementById('lblTechCleanupDesc');
 
-  if (tClean) tClean.innerHTML = isTa ? "<b>30-Day Auto Cleanup:</b> 30 நாட்களுக்கு மேற்பட்ட பழைய முன்பதிவுகள் Firebase-லிருந்து தானாக அழிக்கப்படும்." : "<b>30-Day Auto Cleanup:</b> Bookings older than 30 days are automatically deleted from database.";
+  if (tClean) tClean.innerHTML = tLang(
+
+    "<b>30-Day Auto Cleanup:</b> 30 நாட்களுக்கு மேற்பட்ட பழைய முன்பதிவுகள் Firebase-லிருந்து தானாக அழிக்கப்படும்.",
+
+    "<b>30-Day Auto Cleanup:</b> Bookings older than 30 days are automatically deleted from database.",
+
+    "<b>30-Day Auto Cleanup:</b> 30 दिन से पुराने रिकॉर्ड डेटाबेस से स्वतः हटा दिए जाएंगे।"
+
+  );
 
   const tToolInv = document.getElementById('lblTechToolInv');
 
-  if (tToolInv) tToolInv.innerText = isTa ? "🧾 பில் தயாரிக்க" : "🧾 Make Invoice";
+  if (tToolInv) tToolInv.innerText = tLang("🧾 பில் தயாரிக்க", "🧾 Make Invoice", "🧾 बिल बनाएं");
 
   const tToolWar = document.getElementById('lblTechToolWar');
 
-  if (tToolWar) tToolWar.innerText = isTa ? "🛡️ உத்தரவாத அட்டை" : "🛡️ Guarantee Card";
+  if (tToolWar) tToolWar.innerText = tLang("🛡️ உத்தரவாத அட்டை", "🛡️ Guarantee Card", "🛡️ गारंटी कार्ड");
 
   const tToolId = document.getElementById('lblTechToolId');
 
-  if (tToolId) tToolId.innerText = isTa ? "🪪 ID கார்டு" : "🪪 Digital ID";
+  if (tToolId) tToolId.innerText = tLang("🪪 ID கார்டு", "🪪 Digital ID", "🪪 आईडी कार्ड");
 
   const tClose = document.getElementById('btnTechPortalClose');
 
-  if (tClose) tClose.innerText = isTa ? "மூடுக (Close)" : "Close";
+  if (tClose) tClose.innerText = tLang("மூடுக (Close)", "Close", "बंद करें");
 
 
   // --- Warranty Card Modal ---
 
   const wmTitle = document.getElementById('wModalTitle');
 
-  if (wmTitle) wmTitle.innerText = isTa ? "🛡️ Fixr 30-Day Service Guarantee" : "🛡️ Fixr 30-Day Service Guarantee";
+  if (wmTitle) wmTitle.innerText = tLang("🛡️ Fixr 30-Day Service Guarantee", "🛡️ Fixr 30-Day Service Guarantee", "🛡️ Fixr 30-दिन सेवा गारंटी");
 
   const wmSub = document.getElementById('wModalSub');
 
-  if (wmSub) wmSub.innerText = isTa ? "அங்கீகரிக்கப்பட்ட சேவை மறுபரிசீலனை உத்தரவாத அட்டை" : "Official 30-Day Free Rework Service Guarantee Certificate";
+  if (wmSub) wmSub.innerText = tLang("அங்கீகரிக்கப்பட்ட சேவை மறுபரிசீலனை உத்தரவாத அட்டை", "Official 30-Day Free Rework Service Guarantee Certificate", "आधिकारिक 30 दिन मुफ्त सुधार गारंटी प्रमाण पत्र");
 
 
   // --- Invoice Generator Modal ---
 
   const invTitle = document.getElementById('invModalTitle');
 
-  if (invTitle) invTitle.innerText = isTa ? "🧾 டிஜிட்டல் பில் தயாரிப்பாளர் (Invoice Maker)" : "🧾 Instant Digital Invoice Generator";
+  if (invTitle) invTitle.innerText = tLang("🧾 டிஜிட்டல் பில் தயாரிப்பாளர் (Invoice Maker)", "🧾 Instant Digital Invoice Generator", "🧾 डिजिटल बिल जनरेटर (Invoice Maker)");
 
   const invSub = document.getElementById('invModalSub');
 
-  if (invSub) invSub.innerText = isTa ? "தொழிலாளர் மற்றும் வாடிக்கையாளருக்கான தெளிவான சேவை கட்டண ரசீது" : "Verified digital receipt and payment invoice for customers";
+  if (invSub) invSub.innerText = tLang("தொழிலாளர் மற்றும் வாடிக்கையாளருக்கான தெளிவான சேவை கட்டண ரசீது", "Verified digital receipt and payment invoice for customers", "ग्राहक के लिए आधिकारिक सेवा शुल्क रसीद");
 
   const lblITech = document.getElementById('lblInvTechName');
 
-  if (lblITech) lblITech.innerText = isTa ? "தொழிலாளர் / கடை பெயர் (Technician Name):" : "Technician / Business Name:";
+  if (lblITech) lblITech.innerText = tLang("தொழிலாளர் / கடை பெயர் (Technician Name):", "Technician / Business Name:", "कारीगर / दुकान का नाम:");
 
   const lblICust = document.getElementById('lblInvCustName');
 
-  if (lblICust) lblICust.innerText = isTa ? "வாடிக்கையாளர் பெயர்:" : "Customer Name:";
+  if (lblICust) lblICust.innerText = tLang("வாடிக்கையாளர் பெயர்:", "Customer Name:", "ग्राहक का नाम:");
 
   const lblIPhone = document.getElementById('lblInvCustPhone');
 
-  if (lblIPhone) lblIPhone.innerText = isTa ? "வாடிக்கையாளர் மொபைல்:" : "Customer Phone:";
+  if (lblIPhone) lblIPhone.innerText = tLang("வாடிக்கையாளர் மொபைல்:", "Customer Phone:", "ग्राहक का मोबाइल:");
 
   const lblILab = document.getElementById('lblInvLabor');
 
-  if (lblILab) lblILab.innerText = isTa ? "வேலைக் கூலி (Labor Charges):" : "Labor / Service Charges (₹):";
+  if (lblILab) lblILab.innerText = tLang("வேலைக் கூலி (Labor Charges):", "Labor / Service Charges (₹):", "मजदूरी / सेवा शुल्क (₹):");
 
   const lblISpare = document.getElementById('lblInvSpares');
 
-  if (lblISpare) lblISpare.innerText = isTa ? "உதிரிபாகங்கள் (Spares Cost):" : "Spare Parts Cost (₹):";
+  if (lblISpare) lblISpare.innerText = tLang("உதிரிபாகங்கள் (Spares Cost):", "Spare Parts Cost (₹):", "स्पेयर पार्ट्स का खर्च (₹):");
 
 
   // --- My Bookings Modal ---
 
   const mbTitle = document.getElementById('myBookingsTitle');
 
-  if (mbTitle) mbTitle.innerText = isTa ? "📋 எனது முன்பதிவுகள்" : "📋 My Bookings Dashboard";
+  if (mbTitle) mbTitle.innerText = tLang("📋 எனது முன்பதிவுகள்", "📋 My Bookings Dashboard", "📋 मेरी बुकिंग डैशबोर्ड");
 
   const mbSub = document.getElementById('myBookingsSub');
 
-  if (mbSub) mbSub.innerText = isTa ? "நீங்கள் புக் செய்த அனைத்து சேவைகள், பில் மற்றும் உத்தரவாத விவரங்கள்" : "Track all your active bookings, bills, and service guarantees";
+  if (mbSub) mbSub.innerText = tLang("நீங்கள் புக் செய்த அனைத்து சேவைகள், பில் மற்றும் உத்தரவாத விவரங்கள்", "Track all your active bookings, bills, and service guarantees", "अपनी सभी बुकिंग, बिल और गारंटी की जानकारी देखें");
 
 
   // --- SOS Safety Modal ---
 
   const sosTitle = document.getElementById('sosModalTitle');
 
-  if (sosTitle) sosTitle.innerText = isTa ? "🚨 24/7 பாதுகாப்பு & அவசர உதவி (SOS)" : "🚨 24/7 Safety & Emergency SOS Desk";
+  if (sosTitle) sosTitle.innerText = tLang("🚨 24/7 பாதுகாப்பு & அவசர உதவி (SOS)", "🚨 24/7 Safety & Emergency SOS Desk", "🚨 24/7 सुरक्षा एवं आपातकालीन सहायता (SOS)");
 
   const sosSub = document.getElementById('sosModalSub');
 
-  if (sosSub) sosSub.innerText = isTa ? "வாடிக்கையாளர்கள் மற்றும் தொழிலாளர்களின் பாதுகாப்பிற்கு Fixr எப்போதும் துணை நிற்கிறது." : "Customer and technician safety is Fixr\'s topmost commitment.";
+  if (sosSub) sosSub.innerText = tLang("வாடிக்கையாளர்கள் மற்றும் தொழிலாளர்களின் பாதுகாப்பிற்கு Fixr எப்போதும் துணை நிற்கிறது.", "Customer and technician safety is Fixr's topmost commitment.", "ग्राहकों और कारीगरों की सुरक्षा Fixr की सर्वोच्च प्राथमिकता है।");
 
 
   // --- Spare Parts Modal ---
 
   const spTitle = document.getElementById('spareModalTitle');
 
-  if (spTitle) spTitle.innerText = isTa ? "🛡️ உதிரிபாக நியாய விலை சரிபார்ப்பு" : "🛡️ Spare Parts Fair Price Checker";
+  if (spTitle) spTitle.innerText = tLang("🛡️ உதிரிபாக நியாய விலை சரிபார்ப்பு", "🛡️ Spare Parts Fair Price Checker", "🛡️ स्पेयर पार्ट्स सही मूल्य सूची");
 
   const spSub = document.getElementById('spareModalSub');
 
-  if (spSub) spSub.innerText = isTa ? "ஏமாற்றப்படாமல் அசல் சந்தை விலையை சரிபார்க்கவும்!" : "Verify authentic market pricing to prevent overcharging!";
+  if (spSub) spSub.innerText = tLang("ஏமாற்றப்படாமல் அசல் சந்தை விலையை சரிபார்க்கவும்!", "Verify authentic market pricing to prevent overcharging!", "अधिक खर्च से बचें और असली बाजार दरें जानें!");
 
 
   // --- Budget Bidding Modal ---
 
   const bidTitle = document.getElementById('bidModalTitle');
 
-  if (bidTitle) bidTitle.innerText = isTa ? "🎯 'என் பட்ஜெட் என் வேலை'" : "🎯 Customer Budget Bidding";
+  if (bidTitle) bidTitle.innerText = tLang("🎯 'என் பட்ஜெட் என் வேலை'", "🎯 Customer Budget Bidding", "🎯 'मेरा बजट मेरा काम'");
 
   const bidSub = document.getElementById('bidModalSub');
 
-  if (bidSub) bidSub.innerText = isTa ? "உங்கள் வேலையையும், நீங்கள் கொடுக்க விரும்பும் பட்ஜெட் தொகையையும் நீங்களே தீர்மானியுங்கள்!" : "Name your own price; local verified professionals accept your budget directly!";
+  if (bidSub) bidSub.innerText = tLang("உங்கள் வேலையையும், நீங்கள் கொடுக்க விரும்பும் பட்ஜெட் தொகையையும் நீங்களே தீர்மானியுங்கள்!", "Name your own price; local verified professionals accept your budget directly!", "अपना काम और अपना बजट खुद तय करें; स्थानीय कारीगर स्वीकार करेंगे!");
 
 
   // --- Rental Agreement Modal ---
 
   const agrTitle = document.getElementById('agrModalTitle');
 
-  if (agrTitle) agrTitle.innerText = isTa ? "📑 சட்டப்பூர்வ வாடகை ஒப்பந்தம்" : "📑 Legal Rental Agreement";
+  if (agrTitle) agrTitle.innerText = tLang("📑 சட்டப்பூர்வ வாடகை ஒப்பந்தம்", "📑 Legal Rental Agreement", "📑 कानूनी किरायानामा (रेंटल एग्रीमेंट)");
 
   const agrSub = document.getElementById('agrModalSub');
 
-  if (agrSub) agrSub.innerText = isTa ? "வீட்டிலிருந்தே 24 மணி நேரத்தில் ₹100 அரசு முத்திரைத் தாளுடன் (E-Stamp) அக்ரீமென்ட் பெறுக" : "Get legally valid Rental Agreement with ₹100 Govt E-Stamp delivered in 24 hours";
+  if (agrSub) agrSub.innerText = tLang("வீட்டிலிருந்தே 24 மணி நேரத்தில் ₹100 அரசு முத்திரைத் தாளுடன் (E-Stamp) அக்ரீமென்ட் பெறுக", "Get legally valid Rental Agreement with ₹100 Govt E-Stamp delivered in 24 hours", "घर बैठे 24 घंटे में ₹100 सरकारी ई-स्टांप के साथ कानूनी एग्रीमेंट पाएं");
 
   const agrGov = document.getElementById('agrGovTrustBanner');
 
-  if (agrGov) agrGov.innerHTML = isTa ? "🛡️ <b>அரசு அங்கீகாரம்:</b> நோட்டரி வழக்கறிஞர் சரிபார்ப்புடன், நீதிமன்ற செல்லுபடியாகும் வாடகை ஒப்பந்தம்." : "🛡️ <b>Govt Recognized:</b> Verified by Notary Advocate, court-valid rental agreement.";
+  if (agrGov) agrGov.innerHTML = tLang(
+
+    "🛡️ <b>அரசு அங்கீகாரம்:</b> நோட்டரி வழக்கறிஞர் சரிபார்ப்புடன், நீதிமன்ற செல்லுபடியாகும் வாடகை ஒப்பந்தம்.",
+
+    "🛡️ <b>Govt Recognized:</b> Verified by Notary Advocate, court-valid rental agreement.",
+
+    "🛡️ <b>सरकारी मान्यता:</b> नोटरी वकील द्वारा सत्यापित, न्यायालय में मान्य रेंटल एग्रीमेंट।"
+
+  );
 
   const lblAgrO = document.getElementById('lblAgrOwner');
 
-  if (lblAgrO) lblAgrO.innerText = isTa ? "வீட்டு உரிமையாளர் பெயர் (Owner Name)" : "Property Owner Name (Landlord)";
+  if (lblAgrO) lblAgrO.innerText = tLang("வீட்டு உரிமையாளர் பெயர் (Owner Name)", "Property Owner Name (Landlord)", "मकान मालिक का नाम");
 
   const inpAgrO = document.getElementById('agrOwnerName');
 
-  if (inpAgrO) inpAgrO.placeholder = isTa ? "உரிமையாளர் பெயர்" : "Owner Name";
+  if (inpAgrO) inpAgrO.placeholder = tLang("உரிமையாளர் பெயர்", "Owner Name", "मालिक का नाम");
 
   const lblAgrT = document.getElementById('lblAgrTenant');
 
-  if (lblAgrT) lblAgrT.innerText = isTa ? "வாடகைதாரர் பெயர் (Tenant Name)" : "Tenant Name";
+  if (lblAgrT) lblAgrT.innerText = tLang("வாடகைதாரர் பெயர் (Tenant Name)", "Tenant Name", "किरायेदार का नाम");
 
   const inpAgrT = document.getElementById('agrTenantName');
 
-  if (inpAgrT) inpAgrT.placeholder = isTa ? "குடிவருபவர் பெயர்" : "Tenant Name";
+  if (inpAgrT) inpAgrT.placeholder = tLang("குடிவருபவர் பெயர்", "Tenant Name", "किरायेदार का नाम");
 
   const lblAgrA = document.getElementById('lblAgrAddress');
 
-  if (lblAgrA) lblAgrA.innerText = isTa ? "வாடகை வீட்டின் முழு முகவரி (House Address)" : "House Address (Premises)";
+  if (lblAgrA) lblAgrA.innerText = tLang("வாடகை வீட்டின் முழு முகவரி (House Address)", "House Address (Premises)", "किराए के मकान का पता");
 
   const inpAgrA = document.getElementById('agrHouseAddr');
 
-  if (inpAgrA) inpAgrA.placeholder = isTa ? "கதவு எண், தெரு, பகுதி & ஊர்" : "Door No, Street, Area & City";
+  if (inpAgrA) inpAgrA.placeholder = tLang("கதவு எண், தெரு, பகுதி & ஊர்", "Door No, Street, Area & City", "मकान नं, गली, इलाका और शहर");
 
   const lblAgrR = document.getElementById('lblAgrRent');
 
-  if (lblAgrR) lblAgrR.innerText = isTa ? "மாத வாடகை (Rent)" : "Monthly Rent";
+  if (lblAgrR) lblAgrR.innerText = tLang("மாத வாடகை (Rent)", "Monthly Rent", "मासिक किराया");
 
   const lblAgrAdv = document.getElementById('lblAgrAdvance');
 
-  if (lblAgrAdv) lblAgrAdv.innerText = isTa ? "முன்பணம் (Advance)" : "Security Deposit (Advance)";
+  if (lblAgrAdv) lblAgrAdv.innerText = tLang("முன்பணம் (Advance)", "Security Deposit (Advance)", "अग्रिम राशि (डिपॉजिट)");
 
   const lblAgrP = document.getElementById('lblAgrPlan');
 
-  if (lblAgrP) lblAgrP.innerText = isTa ? "ஒப்பந்தத் திட்டம் (Select Plan):" : "Agreement Plan:";
+  if (lblAgrP) lblAgrP.innerText = tLang("ஒப்பந்தத் திட்டம் (Select Plan):", "Agreement Plan:", "एग्रीमेंट प्लान चुनें:");
 
   const optPlan1 = document.getElementById('optAgrPlan1');
 
-  if (optPlan1) optPlan1.innerText = isTa ? "₹299 - Digital PDF அக்ரீமென்ட் (வாட்ஸ்அப்/இமெயில்)" : "₹299 - Digital PDF Agreement (WhatsApp / Email)";
+  if (optPlan1) optPlan1.innerText = tLang("₹299 - Digital PDF அக்ரீமென்ட் (வாட்ஸ்அப்/இமெயில்)", "₹299 - Digital PDF Agreement (WhatsApp / Email)", "₹299 - डिजिटल पीडीएफ एग्रीमेंट (व्हाट्सएप/ईमेल)");
 
   const optPlan2 = document.getElementById('optAgrPlan2');
 
-  if (optPlan2) optPlan2.innerText = isTa ? "₹499 - ₹100 அரசு E-Stamp + நோட்டரி + டோர் டெலிவரி (பிரபலம்)" : "₹499 - ₹100 Govt E-Stamp + Notary + Doorstep Delivery (Popular)";
+  if (optPlan2) optPlan2.innerText = tLang("₹499 - ₹100 அரசு E-Stamp + நோட்டரி + டோர் டெலிவரி (பிரபலம்)", "₹499 - ₹100 Govt E-Stamp + Notary + Doorstep Delivery (Popular)", "₹499 - ₹100 सरकारी ई-स्टांप + नोटरी + होम डिलीवरी (लोकप्रिय)");
 
   const btnAgrPrev = document.getElementById('btnAgrPreview');
 
-  if (btnAgrPrev) btnAgrPrev.innerText = isTa ? "📑 அக்ரீமென்ட் பத்திரத்தை ஆப்பிலேயே பார்க்க (View Agreement In-App)" : "📑 View Agreement Document In-App";
+  if (btnAgrPrev) btnAgrPrev.innerText = tLang("📑 அக்ரீமென்ட் பத்திரத்தை ஆப்பிலேயே பார்க்க (View Agreement In-App)", "📑 View Agreement Document In-App", "📑 एग्रीमेंट दस्तावेज इन-ऐप देखें");
 
   const btnAgrSub = document.getElementById('btnAgrSubmit');
 
-  if (btnAgrSub) btnAgrSub.innerText = isTa ? "🚀 WhatsApp வழியாக அக்ரீமென்ட் ஆர்டர் செய்ய" : "🚀 Order Agreement via WhatsApp";
+  if (btnAgrSub) btnAgrSub.innerText = tLang("🚀 WhatsApp வழியாக அக்ரீமென்ட் ஆர்டர் செய்ய", "🚀 Order Agreement via WhatsApp", "🚀 व्हाट्सएप द्वारा एग्रीमेंट ऑर्डर करें");
 
   const btnAgrCanc = document.getElementById('btnAgrCancel');
 
-  if (btnAgrCanc) btnAgrCanc.innerText = isTa ? "ரத்து" : "Cancel";
+  if (btnAgrCanc) btnAgrCanc.innerText = tLang("ரத்து", "Cancel", "रद्द करें");
 
 
   // --- View Rental Agreement Doc Modal ---
 
   const docTitle = document.getElementById('docModalTitle');
 
-  if (docTitle) docTitle.innerText = isTa ? "📑 சட்டப்பூர்வ வாடகை ஒப்பந்த பத்திரம்" : "📑 Legal Rental Agreement Document";
-
-  const docSub = document.getElementById('docModalSub');
-
-  if (docSub) docSub.innerText = isTa ? "Residential Rental Agreement Document" : "Residential Rental Agreement Document";
+  if (docTitle) docTitle.innerText = tLang("📑 சட்டப்பூர்வ வாடகை ஒப்பந்த பத்திரம்", "📑 Legal Rental Agreement Document", "📑 कानूनी रेंटल एग्रीमेंट दस्तावेज");
 
   const docPrint = document.getElementById('lblDocPrint');
 
-  if (docPrint) docPrint.innerText = isTa ? "🖨️ பிரிண்ட் / PDF சேமிக்க" : "🖨️ Print / Save as PDF";
+  if (docPrint) docPrint.innerText = tLang("🖨️ பிரிண்ட் / PDF சேமிக்க", "🖨️ Print / Save as PDF", "🖨️ प्रिंट / पीडीएफ सेव करें");
 
   const docShare = document.getElementById('lblDocShare');
 
-  if (docShare) docShare.innerText = isTa ? "📲 WhatsApp-ல் அக்ரீமென்ட் அனுப்ப" : "📲 Share Agreement on WhatsApp";
+  if (docShare) docShare.innerText = tLang("📲 WhatsApp-ல் அக்ரீமென்ட் அனுப்ப", "📲 Share Agreement on WhatsApp", "📲 व्हाट्सएप पर एग्रीमेंट भेजें");
 
   const docClose = document.getElementById('btnDocClose');
 
-  if (docClose) docClose.innerText = isTa ? "மூடுக (Close)" : "Close";
+  if (docClose) docClose.innerText = tLang("மூடுக (Close)", "Close", "बंद करें");
 
 
   // --- Community Pooling Modal ---
 
   const poolTitle = document.getElementById('poolModalTitle');
 
-  if (poolTitle) poolTitle.innerText = isTa ? "🏢 தெரு / அபார்ட்மெண்ட் குழு தள்ளுபடி" : "🏢 Street & Apartment Group Discount";
+  if (poolTitle) poolTitle.innerText = tLang("🏢 தெரு / அபார்ட்மெண்ட் குழு தள்ளுபடி", "🏢 Street & Apartment Group Discount", "🏢 मोहल्ला / अपार्टमेंट ग्रुप छूट");
 
   const poolSub = document.getElementById('poolModalSub');
 
-  if (poolSub) poolSub.innerText = isTa ? "ஒரே தெருவில் அல்லது குடியிருப்பில் 2 அல்லது அதற்கு மேற்பட்ட வீடுகள் ஒன்றாக புக் செய்தால் 25% நேரடித் தள்ளுபடி!" : "Book together with 2+ houses in the same street/apartment to get up to 25% discount!";
+  if (poolSub) poolSub.innerText = tLang(
+
+    "ஒரே தெருவில் அல்லது குடியிருப்பில் 2 அல்லது அதற்கு மேற்பட்ட வீடுகள் ஒன்றாக புக் செய்தால் 25% நேரடித் தள்ளுபடி!",
+
+    "Book together with 2+ houses in the same street/apartment to get up to 25% discount!",
+
+    "एक ही गली या अपार्टमेंट के 2 या अधिक घर एक साथ बुक करने पर 25% तक की सीधी छूट पाएं!"
+
+  );
 
   const poolTier = document.getElementById('poolTierTitle');
 
-  if (poolTier) poolTier.innerText = isTa ? "✨ குழு முன்பதிவு தள்ளுபடி அளவுகள்:" : "✨ Group Booking Discount Tiers:";
+  if (poolTier) poolTier.innerText = tLang("✨ குழு முன்பதிவு தள்ளுபடி அளவுகள்:", "✨ Group Booking Discount Tiers:", "✨ ग्रुप बुकिंग छूट स्तर:");
 
   const lblPoolApt = document.getElementById('lblPoolApt');
 
-  if (lblPoolApt) lblPoolApt.innerText = isTa ? "குடியிருப்பு / தெருவின் பெயர் (Apartment or Street Name)" : "Apartment or Street Name";
+  if (lblPoolApt) lblPoolApt.innerText = tLang("குடியிருப்பு / தெருவின் பெயர்", "Apartment or Street Name", "अपार्टमेंट या गली का नाम");
 
   const poolAptInp = document.getElementById('poolAptName');
 
-  if (poolAptInp) poolAptInp.placeholder = isTa ? "எ.கா: ராகவேந்திரா அபார்ட்மெண்ட், வேளச்சேரி" : "e.g. Raghavendra Apartments, Velachery";
+  if (poolAptInp) poolAptInp.placeholder = tLang("எ.கா: ராகவேந்திரா அபார்ட்மெண்ட், வேளச்சேரி", "e.g. Raghavendra Apartments, Velachery", "उदा: राघवेंद्र अपार्टमेंट, वेलाचेरी");
 
   const lblPoolAdd = document.getElementById('lblPoolAddRow');
 
-  if (lblPoolAdd) lblPoolAdd.innerText = isTa ? "➕ மேலும் ஒரு வீடு & சேவை சேர்க்க (Add House & Service)" : "➕ Add Another House & Service";
+  if (lblPoolAdd) lblPoolAdd.innerText = tLang("➕ மேலும் ஒரு வீடு & சேவை சேர்க்க", "➕ Add Another House & Service", "➕ एक और घर और सेवा जोड़ें");
 
   const btnPoolSub = document.getElementById('btnPoolSubmit');
 
-  if (btnPoolSub) btnPoolSub.innerText = isTa ? "🚀 குழு தள்ளுபடியுடன் WhatsApp-ல் புக் செய்ய" : "🚀 Book Group Pool on WhatsApp";
+  if (btnPoolSub) btnPoolSub.innerText = tLang("🚀 குழு தள்ளுபடியுடன் WhatsApp-ல் புக் செய்ய", "🚀 Book Group Pool on WhatsApp", "🚀 ग्रुप डिस्काउंट के साथ व्हाट्सएप पर बुक करें");
 
 
   // --- Photo Diagnosis Modal ---
 
   const photoTitle = document.getElementById('photoModalTitle');
 
-  if (photoTitle) photoTitle.innerText = isTa ? "📸 Photo Diagnosis (பழுது படம் & கட்டணம்)" : "📸 Photo Diagnosis & Upfront Estimate";
+  if (photoTitle) photoTitle.innerText = tLang("📸 Photo Diagnosis (பழுது படம் & கட்டணம்)", "📸 Photo Diagnosis & Upfront Estimate", "📸 फोटो डायग्नोसिस और अग्रिम अनुमान");
 
   const photoSub = document.getElementById('photoModalSub');
 
-  if (photoSub) photoSub.innerText = isTa ? "வீணாக விசிட்டிங் சார்ஜ் கட்டாமல், பழுதான இடத்தை 1 போட்டோ எடுத்து அனுப்பி முன்பே சரியான கட்டணம் & ஆலோசனை பெறுக!" : "Avoid unexpected visiting fees! Send 1 photo of the damaged part to get an accurate upfront estimate & advice.";
+  if (photoSub) photoSub.innerText = tLang(
+
+    "வீணாக விசிட்டிங் சார்ஜ் கட்டாமல், பழுதான இடத்தை 1 போட்டோ எடுத்து அனுப்பி முன்பே சரியான கட்டணம் & ஆலோசனை பெறுக!",
+
+    "Avoid unexpected visiting fees! Send 1 photo of the damaged part to get an accurate upfront estimate & advice.",
+
+    "बेवजह विजिटिंग चार्ज से बचें! खराबी की 1 फोटो भेजकर पहले ही सही अनुमान और सलाह प्राप्त करें।"
+
+  );
 
   const lblPTech = document.getElementById('lblPhotoTech');
 
-  if (lblPTech) lblPTech.innerText = isTa ? "தேர்ந்தெடுக்கப்பட்ட டெக்னீசியன் (Technician)" : "Selected Specialist / Technician";
+  if (lblPTech) lblPTech.innerText = tLang("தேர்ந்தெடுக்கப்பட்ட டெக்னீசியன் (Technician)", "Selected Specialist / Technician", "चुने गए कारीगर / विशेषज्ञ");
 
   const lblPDesc = document.getElementById('lblPhotoDesc');
 
-  if (lblPDesc) lblPDesc.innerText = isTa ? "🛠️ பழுது விவரம் (Problem Description)" : "🛠️ Problem Description";
+  if (lblPDesc) lblPDesc.innerText = tLang("🛠️ பழுது விவரம் (Problem Description)", "🛠️ Problem Description", "🛠️ समस्या का विवरण");
 
   const inpPDesc = document.getElementById('photoDiagDesc');
 
-  if (inpPDesc) inpPDesc.placeholder = isTa ? "எ.கா: AC E1 Error / பைப் ஜாயிண்ட் லீக் ஆகிறது" : "e.g. AC E1 Error / Pipe joint leak";
+  if (inpPDesc) inpPDesc.placeholder = tLang("எ.கா: AC E1 Error / பைப் ஜாயிண்ட் லீக் ஆகிறது", "e.g. AC E1 Error / Pipe joint leak", "उदा: एसी एरर / पाइप में लीकेज");
 
   const btnPSub = document.getElementById('btnPhotoSubmit');
 
-  if (btnPSub) btnPSub.innerText = isTa ? "🚀 WhatsApp-ல் போட்டோ அனுப்பி கட்டணம் அறிக" : "🚀 Send Photos via WhatsApp for Free Estimate";
+  if (btnPSub) btnPSub.innerText = tLang("🚀 WhatsApp-ல் போட்டோ அனுப்பி கட்டணம் அறிக", "🚀 Send Photos via WhatsApp for Free Estimate", "🚀 व्हाट्सएप पर फोटो भेजकर अनुमान जानें");
 
 
   // --- AI Chat Assistant Modal ---
 
   const aiTitle = document.getElementById('aiChatHeaderTitle');
 
-  if (aiTitle) aiTitle.innerText = isTa ? "Fixr AI உதவி மையம் (24/7)" : "Fixr AI Support Assistant (24/7)";
+  if (aiTitle) aiTitle.innerText = tLang("Fixr AI உதவி மையம் (24/7)", "Fixr AI Support Assistant (24/7)", "Fixr AI सहायता केंद्र (24/7)");
 
   const aiStatus = document.getElementById('aiChatOnlineStatus');
 
-  if (aiStatus) aiStatus.innerText = isTa ? "Online Instant Auto-Reply" : "Online Instant Auto-Reply";
+  if (aiStatus) aiStatus.innerText = tLang("Online Instant Auto-Reply", "Online Instant Auto-Reply", "ऑनलाइन त्वरित उत्तर");
 
   const aiInput = document.getElementById('aiChatInput');
 
-  if (aiInput) aiInput.placeholder = isTa ? "உங்கள் கேள்வியை இங்கு தட்டச்சு செய்யவும்..." : "Type your question here...";
+  if (aiInput) aiInput.placeholder = tLang("உங்கள் கேள்வியை இங்கு தட்டச்சு செய்யவும்...", "Type your question here...", "अपना प्रश्न यहाँ लिखें...");
 
 
   // --- Caregiver Modal ---
 
   const careTitle = document.getElementById('careModalTitle');
 
-  if (careTitle) careTitle.innerText = isTa ? "🤝 கேர் டேக்கர் தேவை விவரம்" : "🤝 Caregiver Requirements";
+  if (careTitle) careTitle.innerText = tLang("🤝 கேர் டேக்கர் தேவை விவரம்", "🤝 Caregiver Requirements", "🤝 केयरटेकर सेवा आवश्यकता विवरण");
 
 
   // --- Packers Modal ---
 
   const packTitle = document.getElementById('packersModalTitle');
 
-  if (packTitle) packTitle.innerText = isTa ? "🚚 பேக்கர்ஸ் & மூவர்ஸ் வண்டி தேர்வு" : "🚚 Packers & Movers Vehicle Selection";
+  if (packTitle) packTitle.innerText = tLang("🚚 பேக்கர்ஸ் & மூவர்ஸ் வண்டி தேர்வு", "🚚 Packers & Movers Vehicle Selection", "🚚 पैकर्स एंड मूवर्स वाहन चयन");
 
 
   // --- Cleaning Modal ---
 
   const cleanTitle = document.getElementById('cleaningModalTitle');
 
-  if (cleanTitle) cleanTitle.innerText = isTa ? "✨ டீப் கிளீனிங் & பெயிண்டிங் அளவு தேர்வு" : "✨ Deep Cleaning & Painting Estimator";
+  if (cleanTitle) cleanTitle.innerText = tLang("✨ டீப் கிளீனிங் & பெயிண்டிங் அளவு தேர்வு", "✨ Deep Cleaning & Painting Estimator", "✨ डीप क्लीनिंग और पेंटिंग एस्टिमेटर");
 
 
   // --- Rate Card Modal ---
 
   const rcTitle = document.getElementById('rateCardModalTitle');
 
-  if (rcTitle) rcTitle.innerText = isTa ? "📋 நியாயமான சேவைக் கட்டண விவரம் (Rate Card)" : "📋 Transparent Service Rate Card";
+  if (rcTitle) rcTitle.innerText = tLang("📋 நியாயமான சேவைக் கட்டண விவரம் (Rate Card)", "📋 Transparent Service Rate Card", "📋 आधिकारिक सेवा दर सूची (रेट कार्ड)");
 
 
   // --- Booking Success Modal ---
 
   const bsTitle = document.getElementById('bookingSuccessTitle');
 
-  if (bsTitle) bsTitle.innerText = isTa ? "முன்பதிவு வெற்றிகரமாக முடிந்தது! 🎉" : "Booking Confirmed Successfully! 🎉";
+  if (bsTitle) bsTitle.innerText = tLang("முன்பதிவு வெற்றிகரமாக முடிந்தது! 🎉", "Booking Confirmed Successfully! 🎉", "बुकिंग सफलतापूर्वक संपन्न हुई! 🎉");
 
   const bsSub = document.getElementById('bookingSuccessSub');
 
-  if (bsSub) bsSub.innerText = isTa ? "உங்கள் முன்பதிவு விவரங்கள் SMS வழியாக அனுப்பப்பட்டுள்ளன." : "Your booking confirmation has been sent via SMS.";
+  if (bsSub) bsSub.innerText = tLang("உங்கள் முன்பதிவு விவரங்கள் SMS வழியாக அனுப்பப்பட்டுள்ளன.", "Your booking confirmation has been sent via SMS.", "आपकी बुकिंग की पुष्टि SMS द्वारा भेज दी गई है।");
+
+
+  // --- Login Modal ---
+
+  const lTitle = document.getElementById('loginTitle');
+
+  if (lTitle) lTitle.innerText = tLang("Fixr OTP உள்நுழைவு 👋", "Fixr OTP Login 👋", "Fixr OTP लॉगिन 👋");
+
+  const lSub = document.getElementById('loginSub');
+
+  if (lSub) lSub.innerText = tLang("சேவையை புக் செய்ய உங்கள் மொபைல் எண்ணை உள்ளிடவும்", "Enter your mobile number to book services", "सेवा बुक करने के लिए अपना मोबाइल नंबर दर्ज करें");
+
+  const lNameLbl = document.getElementById('lblLoginName');
+
+  if (lNameLbl) lNameLbl.innerText = tLang("முழு பெயர்", "Full Name", "पूरा नाम");
+
+  const lNameInp = document.getElementById('userName');
+
+  if (lNameInp) lNameInp.placeholder = tLang("உங்கள் பெயர்", "Your Name", "आपका नाम");
+
+  const lPhoneLbl = document.getElementById('lblLoginPhone');
+
+  if (lPhoneLbl) lPhoneLbl.innerText = tLang("10 இலக்க மொபைல் எண்", "10-digit Mobile Number", "10-अंकीय मोबाइल नंबर");
+
+  const lSendBtn = document.getElementById('btnSendOtp');
+
+  if (lSendBtn) lSendBtn.innerText = tLang("OTP பெறுக (SMS OTP) 📲", "Send SMS OTP 📲", "SMS OTP प्राप्त करें 📲");
+
+  const gBtn = document.getElementById("lblLoginGoogleBtn");
+
+  if (gBtn) gBtn.innerText = tLang("Google மூலம் உள்நுழைக", "Sign in with Google", "Google से लॉगिन करें");
+
+
+  // --- Booking Modal ---
+
+  const bookTitle = document.getElementById('bookModalTitle');
+
+  if (bookTitle) bookTitle.innerText = tLang("🗓️ சேவை முன்பதிவு", "🗓️ Service Booking", "🗓️ सेवा बुकिंग");
+
+  const lblDate = document.getElementById('lblBookDate');
+
+  if (lblDate) lblDate.innerText = tLang("📅 வர வேண்டிய தேதி", "📅 Service Date", "📅 सेवा की तारीख");
+
+  const lblTime = document.getElementById('lblBookTime');
+
+  if (lblTime) lblTime.innerText = tLang("⏰ விருப்பமான நேரம்", "⏰ Preferred Time Slot", "⏰ समय स्लॉट");
+
+  const lblAddr = document.getElementById('lblBookAddress');
+
+  if (lblAddr) lblAddr.innerText = tLang("🏠 வீட்டு முகவரி & பகுதி", "🏠 House Address & Area", "🏠 घर का पता और इलाका");
+
+  const bookAddr = document.getElementById('bookAddress');
+
+  if (bookAddr) bookAddr.placeholder = tLang("கதவு எண், தெரு மற்றும் நகரம்", "Door No, Street and City", "मकान नं, गली और शहर");
+
+  const lblNotes = document.getElementById('lblBookNotes');
+
+  if (lblNotes) lblNotes.innerText = tLang("🛠️ பழுது / தேவை விவரம்", "🛠️ Problem / Service Details", "🛠️ समस्या / सेवा का विवरण");
+
+  const bookNotes = document.getElementById('bookNotes');
+
+  if (bookNotes) bookNotes.placeholder = tLang("எ.கா: AC கூலிங் வரவில்லை", "e.g. AC not cooling", "उदा: एसी कूलिंग नहीं कर रहा");
+
+  const lblExpress = document.getElementById('lblBookExpress');
+
+  if (lblExpress) lblExpress.innerText = tLang("⚡ அவசர சேவை தேவை (உடனடி நேரடி வருகை)", "⚡ Emergency Service (Fast Express Arrival)", "⚡ आपातकालीन सेवा (तुरंत आगमन)");
+
+  const descExpress = document.getElementById('bookExpressDesc');
+
+  if (descExpress) descExpress.innerText = tLang("அவசர தேவைக்கு டெக்னீசியன் உடனடியாக நேரடியாக வந்து உதவுவார்.", "Certified pro arrives promptly at your doorstep on high priority.", "आपातकालीन कार्य के लिए कुशल कारीगर तुरंत आपके पते पर पहुंचेंगे।");
+
+  const btnConfBook = document.getElementById('btnConfirmBook');
+
+  if (btnConfBook) btnConfBook.innerText = tLang("முன்பதிவை உறுதி செய் 🚀", "Confirm Booking 🚀", "बुकिंग कन्फर्म करें 🚀");
+
+  const btnCancBook = document.getElementById('btnCancelBook');
+
+  if (btnCancBook) btnCancBook.innerText = tLang("ரத்து", "Cancel", "रद्द करें");
 
 
  
 
-  // AI & Join Tools in scroll
+  // Community Chat Modal
 
-  const aiTool = document.getElementById('lblUcAiTool');
+  const ccTitle = document.getElementById('commChatTitle');
 
-  if (aiTool) aiTool.innerText = isTa ? 'Fixr AI உதவி' : 'Fixr AI Help';
+  if (ccTitle) ccTitle.innerText = tLang("Fixr மக்கள் சமூகம் (Community Chat)", "Fixr Local Community Chat", "Fixr कम्युनिटी चैट (Community)");
 
-  const aiToolSub = document.getElementById('lblUcAiToolSub');
+  const ccSub = document.getElementById('commChatSub');
 
-  if (aiToolSub) aiToolSub.innerText = isTa ? '24/7 AI Chat' : '24/7 AI Chat';
+  if (ccSub) ccSub.innerText = tLang("உள்ளூர் கேள்விகள், உதவி & நேரலை ஆலோசனைகள்", "Ask questions, get local pro recommendations & tips", "स्थानीय लोगों और कारीगरों से सवाल पूछें और सुझाव पाएं");
 
-  const joinTool = document.getElementById('lblUcJoinTool');
+  const ccTip = document.getElementById('commHelpTip');
 
-  if (joinTool) joinTool.innerText = isTa ? 'தொழிலாளர் பதிவு' : 'Join as Partner';
+  if (ccTip) ccTip.innerText = tLang("💡 சர்வீஸ் ஆலோசனை, வாடகை வீடு & குழு உதவி கேட்கலாம்.", "💡 Ask for service advice, house rentals & group help.", "💡 सेवा सलाह, किराए के मकान व ग्रुप सहायता पूछें।");
 
-  const joinToolSub = document.getElementById('lblUcJoinToolSub');
+  const ccSend = document.getElementById('btnCommSend');
 
-  if (joinToolSub) joinToolSub.innerText = isTa ? '₹49 கட்டணம்' : '₹49 Fee';
+  if (ccSend) ccSend.innerText = tLang("பகிரு ➔", "Post ➔", "भेजें ➔");
 
+  const ccInp = document.getElementById('commMsgInput');
 
-  // Tech PIN & Privacy Labels
+  if (ccInp) ccInp.placeholder = tLang("கேள்வி அல்லது தகவலைப் பகிர்க...", "Share question or tip...", "अपना प्रश्न या संदेश लिखें...");
 
-  const pinLbl = document.getElementById('lblTechPinLabel');
+  const ccTool = document.getElementById('lblUcCommTool');
 
-  if (pinLbl) pinLbl.innerText = isTa ? '🔒 ரகசிய 4-இலக்க PIN (Security PIN):' : '🔒 4-Digit Security PIN:';
+  if (ccTool) ccTool.innerText = tLang("மக்கள் சமூகம்", "Community Chat", "कम्युनिटी चैट");
 
-  const pinHnt = document.getElementById('lblTechPinHint');
+  const ccToolSub = document.getElementById('lblUcCommToolSub');
 
-  if (pinHnt) pinHnt.innerText = isTa ? '(மாதிரி PIN: 8843)' : '(Default PIN: 8843)';
-
-  const pinInp = document.getElementById('techLoginPin');
-
-  if (pinInp) pinInp.placeholder = isTa ? '4-இலக்க PIN' : '4-digit PIN';
-
-  const lnkOtp = document.getElementById('lnkTechSmsOtp');
-
-  if (lnkOtp) lnkOtp.innerText = isTa ? '📱 SMS OTP மூலம் உள்நுழைக' : '📱 Login via SMS OTP';
+  if (ccToolSub) ccToolSub.innerText = tLang("உள்ளூர் அரட்டை", "Local Forum", "स्थानीय मंच");
 
 
   // --- Footer ---
 
   const footTrust = document.getElementById('footerTrustText');
 
-  if (footTrust) footTrust.innerText = isTa ? "🛡️ 100% பின்னணி சரிபார்க்கப்பட்ட தொழிலாளர்கள் | 0% கமிஷன் நேரடி தளம்" : "🛡️ 100% Background Verified Technicians | 0% Commission Direct Platform";
+  if (footTrust) footTrust.innerText = tLang(
+
+    "🛡️ 100% பின்னணி சரிபார்க்கப்பட்ட தொழிலாளர்கள் | 0% கமிஷன் நேரடி தளம்",
+
+    "🛡️ 100% Background Verified Technicians | 0% Commission Direct Platform",
+
+    "🛡️ 100% बैकग्राउंड सत्यापित कारीगर | 0% कमीशन डायरेक्ट प्लेटफॉर्म"
+
+  );
 
   const footContact = document.getElementById('footerContactText');
 
-  if (footContact) footContact.innerText = isTa ? "📞 தொடர்பு: +91 9884334097 | ✉️ veeraadspromotions@gmail.com" : "📞 Contact: +91 9884334097 | ✉️ veeraadspromotions@gmail.com";
+  if (footContact) footContact.innerText = tLang(
+
+    "📞 தொடர்பு: +91 9884334097 | ✉️ veeraadspromotions@gmail.com",
+
+    "📞 Contact: +91 9884334097 | ✉️ veeraadspromotions@gmail.com",
+
+    "📞 संपर्क: +91 9884334097 | ✉️ veeraadspromotions@gmail.com"
+
+  );
 
   const footPriv = document.getElementById('footerPrivacyLink');
 
-  if (footPriv) footPriv.innerText = isTa ? "Privacy Policy (தனியுரிமை கொள்கை)" : "Privacy Policy";
+  if (footPriv) footPriv.innerText = tLang("Privacy Policy (தனியுரிமை கொள்கை)", "Privacy Policy", "गोपनीयता नीति (Privacy Policy)");
 
   const footAdm = document.getElementById('lblFooterAdmin');
 
-  if (footAdm) footAdm.innerText = isTa ? "நிர்வாகி உள்நுழைவு (Admin Login)" : "Admin Portal Login";
+  if (footAdm) footAdm.innerText = tLang("நிர்வாகி உள்நுழைவு (Admin Login)", "Admin Portal Login", "एडमिन पोर्टल लॉगिन");
 
   const footCopy = document.getElementById('footerCopyright');
 
-  if (footCopy) footCopy.innerText = isTa ? "© 2026 Fixr Services. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை." : "© 2026 Fixr Services. All rights reserved.";
+  if (footCopy) footCopy.innerText = tLang("© 2026 Fixr Services. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.", "© 2026 Fixr Services. All rights reserved.", "© 2026 Fixr Services. सर्वाधिकार सुरक्षित।");
 
 }
 
@@ -5286,27 +6035,27 @@ function setActiveBottomNav(btnId) {
 
   const categoriesList = [
 
-  { key: "அனைத்தும்", ta: "அனைத்தும் (All India)", en: "All Services" },
+  { key: "அனைத்தும்", ta: "அனைத்தும் (All India)", en: "All Services", hi: "सभी सेवाएं (All India)" },
 
-  { key: "வாடகை வீடுகள்", ta: "🏠 வாடகை வீடுகள்", en: "🏠 House Rentals" },
+  { key: "வாடகை வீடுகள்", ta: "🏠 வாடகை வீடுகள்", en: "🏠 House Rentals", hi: "🏠 किराए के मकान" },
 
-  { key: "பேக்கர்ஸ் & மூவர்ஸ்", ta: "📦 பேக்கர்ஸ் & மூவர்ஸ்", en: "📦 Packers & Movers" },
+  { key: "பேக்கர்ஸ் & மூவர்ஸ்", ta: "📦 பேக்கர்ஸ் & மூவர்ஸ்", en: "📦 Packers & Movers", hi: "📦 पैकर्स & मूवर्स" },
 
-  { key: "வாடகை ஒப்பந்தம்", ta: "📑 வாடகை ஒப்பந்தம்", en: "📑 Rental Agreement" },
+  { key: "வாடகை ஒப்பந்தம்", ta: "📑 வாடகை ஒப்பந்தம்", en: "📑 Rental Agreement", hi: "📑 किराया एग्रीमेंट" },
 
-  { key: "டீப் கிளீனிங்", ta: "✨ டீப் கிளீனிங்", en: "✨ Deep Cleaning" },
+  { key: "டீப் கிளீனிங்", ta: "✨ டீப் கிளீனிங்", en: "✨ Deep Cleaning", hi: "✨ डीप क्लीनिंग" },
 
-  { key: "AC சர்வீஸ்", ta: "❄️ AC சர்வீஸ்", en: "❄️ AC Service" },
+  { key: "AC சர்வீஸ்", ta: "❄️ AC சர்வீஸ்", en: "❄️ AC Service", hi: "❄️ एसी सर्विस" },
 
-  { key: "எலக்ட்ரீஷியன்", ta: "⚡ எலக்ட்ரீஷியன்", en: "⚡ Electrician" },
+  { key: "எலக்ட்ரீஷியன்", ta: "⚡ எலக்ட்ரீஷியன்", en: "⚡ Electrician", hi: "⚡ इलेक्ट्रीशियन" },
 
-  { key: "பிளம்பர்", ta: "🔧 பிளம்பர்", en: "🔧 Plumber" },
+  { key: "பிளம்பர்", ta: "🔧 பிளம்பர்", en: "🔧 Plumber", hi: "🔧 प्लंबर" },
 
-  { key: "RO சர்வீஸ்", ta: "💧 RO சர்வீஸ்", en: "💧 RO Service" },
+  { key: "RO சர்வீஸ்", ta: "💧 RO சர்வீஸ்", en: "💧 RO Service", hi: "💧 आरओ सर्विस" },
 
-  { key: "இன்வெர்ட்டர் & பேட்டரி", ta: "🔋 இன்வெர்ட்டர் & பேட்டரி", en: "🔋 Battery & Inverter" },
+  { key: "இன்வெர்ட்டர் & பேட்டரி", ta: "🔋 இன்வெர்ட்டர் & பேட்டரி", en: "🔋 Battery & Inverter", hi: "🔋 इन्वर्टर और बैटरी" },
 
-  { key: "கேர் டேக்கர்", ta: "❤️ கேர் டேக்கர்", en: "❤️ Care Taker" }
+  { key: "கேர் டேக்கர்", ta: "❤️ கேர் டேக்கர்", en: "❤️ Care Taker", hi: "❤️ केयरटेकर" }
 
   ];
 
@@ -6420,7 +7169,7 @@ function setActiveBottomNav(btnId) {
 
   chip.className = 'chip' + (currentCategory === cat.key ? ' active' : '');
 
-  chip.innerText = (currentLang === 'ta') ? cat.ta : cat.en;
+  chip.innerText = (currentLang === 'hi') ? (cat.hi || cat.en) : ((currentLang === 'ta') ? cat.ta : cat.en);
 
   chip.onclick = () => {
 
@@ -8558,19 +9307,19 @@ function setCityFilter(city) {
 
   if (repairCats.some(c => cat.includes(c))) {
 
-  categoryFeatureBtn = `<button class="btn btn-video" onclick="startPhotoDiagnosis('${item.id}')" title="Photo Diagnosis">📸 ${currentLang === 'ta' ? 'படம்' : 'Photo'}</button>`;
+  categoryFeatureBtn = `<button class="btn btn-video" onclick="startPhotoDiagnosis('${item.id}')" title="Photo Diagnosis">📸 ${tLang('படம்', 'Photo', 'फोटो')}</button>`;
 
   } else if (cat.includes('கேர் டேக்கர்')) {
 
-  categoryFeatureBtn = `<button class="btn btn-video" style="background:#fdf2f8; color:#be185d; border-color:#fbcfe8;" onclick="openCareTakerModal('${item.id}')" title="Care Requirements">🤝 ${currentLang === 'ta' ? 'தேவை' : 'Care'}</button>`;
+  categoryFeatureBtn = `<button class="btn btn-video" style="background:#fdf2f8; color:#be185d; border-color:#fbcfe8;" onclick="openCareTakerModal('${item.id}')" title="Care Requirements">🤝 ${tLang('தேவை', 'Needs', 'जरूरत')}</button>`;
 
   } else if (cat.includes('வாடகை வீடுகள்')) {
 
-  categoryFeatureBtn = `<button class="btn btn-video" style="background:#eff6ff; color:#1d4ed8; border-color:#bfdbfe;" onclick="openPhotoViewer('${item.id}')" title="House Photos">📷 ${currentLang === 'ta' ? 'படங்கள்' : 'Photos'}</button>`;
+  categoryFeatureBtn = `<button class="btn btn-video" style="background:#eff6ff; color:#1d4ed8; border-color:#bfdbfe;" onclick="openPhotoViewer('${item.id}')" title="House Photos">📷 ${tLang('படங்கள்', 'Photos', 'तस्वीरें')}</button>`;
 
   } else if (cat.includes('பேக்கர்ஸ் & மூவர்ஸ்')) {
 
-  categoryFeatureBtn = `<button class="btn btn-video" style="background:#fffbeb; color:#b45309; border-color:#fde68a;" onclick="openPackersQuoteModal('${item.id}')" title="Shifting Vehicle Quote">🚚 ${currentLang === 'ta' ? 'வண்டி' : 'Truck'}</button>`;
+  categoryFeatureBtn = `<button class="btn btn-video" style="background:#fffbeb; color:#b45309; border-color:#fde68a;" onclick="openPackersQuoteModal('${item.id}')" title="Shifting Vehicle Quote">🚚 ${tLang('வண்டி', 'Truck', 'गाड़ी')}</button>`;
 
   } else if (cat.includes('வாடகை ஒப்பந்தம்')) {
 
@@ -12175,7 +12924,7 @@ function openMyBookingsModal() {
 
     const recognition = new SpeechRecognition();
 
-    recognition.lang = isTa ? 'ta-IN' : 'en-IN';
+    recognition.lang = (currentLang === 'hi') ? 'hi-IN' : (currentLang === 'ta' ? 'ta-IN' : 'en-IN');
 
     recognition.interimResults = false;
 
