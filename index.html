@@ -3941,7 +3941,7 @@ body  {
 
     <div class="uc-top-actions">
 
-      <div class="brand" style="font-size:18px; margin-right:4px;">Fix<span style="color:#fde047;">r</span></div>
+      <div class="brand" style="font-size:18px; margin-right:4px;">Fix<span style="color:#38bdf8;">r</span></div>
 
       <button class="lang-btn" id="langToggleBtn" onclick="toggleLanguage()" title="Switch Language (மொழி மாற்று)">EN</button>
 
@@ -6810,11 +6810,7 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 </div>
 
 
-<!-- 28. தொழிலாளர் நிர்வாகப் போர்டல் (Dedicated Technician / Partner Admin Portal) -->
-
-<!-- 29. Language Selection Modal (Tri-Lingual Selector) -->
-
-<div class="modal-overlay" <!-- 30. Fixr Community Chat Modal (Hyperlocal Discussion Feed) -->
+<!-- 30. Fixr Community Chat Modal (Hyperlocal Discussion Feed) -->
 
 <div class="modal-overlay" id="communityChatModal">
 
@@ -6922,7 +6918,9 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 </div>
 
 
-id="langSelectModal">
+<!-- 29. Language Selection Modal (Tri-Lingual Selector) -->
+
+<div class="modal-overlay" id="langSelectModal">
 
   <div class="modal-box" style="max-width: 360px; text-align:center;">
 
@@ -11047,23 +11045,25 @@ function updateI18n() {
 
   const defaultBids = [
 
-  { id: 'bid-1', cat: 'எலக்ட்ரீஷியன்', area: 'வேளச்சேரி, சென்னை', desc: '1 சீலிங் ஃபேன் மாட்ட வேண்டும்', budget: 150, phone: '9884334097', time: '10 நிமிடங்களுக்கு முன்' },
+  { id: 'bid-1', cat: 'எலக்ட்ரீஷியன்', area: 'வேளச்சேரி, சென்னை', desc: '1 சீலிங் ஃபேன் மாட்ட வேண்டும்', budget: 150, phone: '9840123456', time: '10 நிமிடங்களுக்கு முன்' },
 
-  { id: 'bid-2', cat: 'பிளம்பர்', area: 'அண்ணா நகர், சென்னை', desc: 'வாஷ்பேசின் கீழ் பைப் லீக்கேஜ் பழுது', budget: 200, phone: '9884334097', time: 'அரை மணி நேரத்திற்கு முன்' },
+  { id: 'bid-2', cat: 'பிளம்பர்', area: 'அண்ணா நகர், சென்னை', desc: 'வாஷ்பேசின் கீழ் பைப் லீக்கேஜ் பழுது', budget: 200, phone: '9444567890', time: 'அரை மணி நேரத்திற்கு முன்' },
 
-  { id: 'bid-3', cat: 'AC சர்வீஸ்', area: 'தி. நகர், சென்னை', desc: '1 Split AC ஜெட் கிளீனிங் சேவை', budget: 400, phone: '9884334097', time: '1 மணி நேரத்திற்கு முன்' }
+  { id: 'bid-3', cat: 'AC சர்வீஸ்', area: 'தி. நகர், சென்னை', desc: '1 Split AC ஜெட் கிளீனிங் சேவை', budget: 400, phone: '9789012345', time: '1 மணி நேரத்திற்கு முன்' }
 
-  ];
+];
 
-  function openBudgetBiddingModal() {
+
+function openBudgetBiddingModal() {
 
   renderBudgetBids();
 
   openModal('budgetBiddingModal');
 
-  }
+}
 
-  function renderBudgetBids() {
+
+function renderBudgetBids() {
 
   const container = document.getElementById('activeBidsContainer');
 
@@ -11075,39 +11075,83 @@ function updateI18n() {
 
   const allBids = [...customBids, ...defaultBids];
 
+  const mySavedPhone = (localStorage.getItem('fixr_my_bid_phone') || '').replace(/[^0-9]/g, '').slice(-10);
+
+
   allBids.forEach(bid => {
 
-  const div = document.createElement('div');
+    const div = document.createElement('div');
 
-  div.className = 'bid-card';
+    div.className = 'bid-card';
 
-  div.innerHTML = `
+    const bidPhoneDigits = (bid.phone || '').replace(/[^0-9]/g, '').slice(-10);
 
-          <div>
+    const isMine = (bid.isMyBid === true) || (mySavedPhone && bidPhoneDigits === mySavedPhone);
 
-            <div class="bid-title">${bid.desc}</div>
 
-            <div class="bid-sub">📍 ${bid.area} | ${bid.cat} | 🕒 ${bid.time || 'இப்போது'}</div>
+    let actionBtnHtml = '';
 
-          </div>
+    if (isMine) {
 
-          <div style="display:flex; flex-direction:column; align-items:flex-end; gap:4px;">
+      actionBtnHtml = `
 
-            <span class="bid-budget-badge">₹${bid.budget}</span>
+        <span style="background:#f0fdf4; color:#166534; border:1px solid #bbf7d0; font-size:10px; font-weight:bold; padding:4px 8px; border-radius:6px; display:inline-flex; align-items:center; gap:3px;">
 
-            <button class="btn-accept-bid" onclick="acceptBudgetBid('${bid.id}', '${bid.desc}', '${bid.budget}', '${bid.phone}')">ஏற்றுக்கொள் ➔</button>
+          ⏳ உங்கள் பதிவு (காத்திருப்பு)
 
-          </div>
+        </span>
 
-        `;
+      `;
 
-  container.appendChild(div);
+    } else {
+
+      const safeDesc = (bid.desc || '').replace(/'/g, "\\'");
+
+      actionBtnHtml = `
+
+        <button type="button" class="btn-accept-bid" onclick="acceptBudgetBid('${bid.id}', '${safeDesc}', '${bid.budget}', '${bid.phone}')" style="background:#16a34a; color:white; border:none; padding:6px 12px; border-radius:8px; font-size:11px; font-weight:800; cursor:pointer;">
+
+          தொழிலாளர் ஏற்க ➔
+
+        </button>
+
+      `;
+
+    }
+
+
+    div.innerHTML = `
+
+      <div style="flex:1;">
+
+        <div class="bid-title" style="font-size:13px; font-weight:800; color:#0f172a;">${bid.desc}</div>
+
+        <div class="bid-sub" style="font-size:11px; color:#64748b; margin-top:2px;">
+
+          📍 ${bid.area} | ${bid.cat} | 🕒 ${bid.time || 'இப்போது'}
+
+        </div>
+
+      </div>
+
+      <div style="display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
+
+        <span class="bid-budget-badge" style="background:#fef3c7; color:#b45309; padding:2px 8px; border-radius:8px; font-weight:900; font-size:12px; border:1px solid #fde68a;">₹${bid.budget}</span>
+
+        ${actionBtnHtml}
+
+      </div>
+
+    `;
+
+    container.appendChild(div);
 
   });
 
-  }
+}
 
-  function submitCustomerBudgetBid() {
+
+function submitCustomerBudgetBid() {
 
   const cat = document.getElementById('bidCategory').value;
 
@@ -11119,33 +11163,65 @@ function updateI18n() {
 
   const phone = document.getElementById('bidPhone').value.trim();
 
-  if (!area || !desc || !budget || phone.length < 10) {
+  const cleanPhone = phone.replace(/[^0-9]/g, '').slice(-10);
 
-  alert(currentLang === 'ta' ? 'பகுதி, வேலை விவரம், பட்ஜெட் தொகை மற்றும் 10 இலக்க மொபைல் எண்ணை உள்ளிடவும்.' : 'Please enter Area, Description, Budget, and 10-digit Phone.');
 
-  return;
+  if (!area || !desc || !budget || cleanPhone.length < 10) {
+
+    alert(currentLang === 'ta' ? 'பகுதி, வேலை விவரம், பட்ஜெட் தொகை மற்றும் 10 இலக்க மொபைல் எண்ணை உள்ளிடவும்.' : 'Please enter Area, Description, Budget, and 10-digit Phone.');
+
+    return;
 
   }
 
   const newBid = {
 
-  id: 'bid-' + Date.now(),
+    id: 'bid-' + Date.now(),
 
-  cat, area, desc,
+    cat: cat,
 
-  budget: parseInt(budget, 10),
+    area: area,
 
-  phone,
+    desc: desc,
 
-  time: 'இப்போது'
+    budget: parseInt(budget, 10),
+
+    phone: cleanPhone,
+
+    time: 'இப்போது',
+
+    status: 'pending',
+
+    isMyBid: true
 
   };
+
+
+  localStorage.setItem('fixr_my_bid_phone', cleanPhone);
+
 
   const customBids = JSON.parse(localStorage.getItem('fixr_custom_bids') || '[]');
 
   customBids.unshift(newBid);
 
   localStorage.setItem('fixr_custom_bids', JSON.stringify(customBids));
+
+
+  if (db) {
+
+    try {
+
+      db.collection('budget_bids').doc(newBid.id).set(newBid).catch(e => console.warn('Firestore bid write:', e));
+
+    } catch(e) {}
+
+  }
+
+
+  const smsCustMsg = `Fixr: உங்கள் பட்ஜெட் வேலை '${desc.slice(0, 25)}' (₹${budget}) பதிவிடப்பட்டது! உள்ளூர் தொழிலாளர்கள் விரைவில் வாட்ஸ்அப்பில் தொடர்புகொள்வார்கள்.`;
+
+  callFast2Sms(cleanPhone, smsCustMsg);
+
 
   document.getElementById('bidArea').value = '';
 
@@ -11155,23 +11231,85 @@ function updateI18n() {
 
   renderBudgetBids();
 
-  alert(currentLang === 'ta' ? 'வாழ்த்துகள்! உங்கள் பட்ஜெட் வேலை வெற்றிகரமாக ஆப்பில் பதிவிடப்பட்டது. தொழிலாளர்கள் உடனே உங்களை வாட்ஸ்அப்பில் தொடர்புகொள்வார்கள்.' : 'Job posted! Nearby technicians can accept your budget.');
+
+  alert(currentLang === 'ta' ?
+
+    `🎉 உங்கள் பட்ஜெட் வேலை (${desc} - ₹${budget}) வெற்றிகரமாக பதிவிடப்பட்டது!\n\nஉங்களுக்கு SMS அனுப்பப்பட்டுள்ளது. உள்ளூர் தொழிலாளர்கள் இதை ஏற்று உங்களை வாட்ஸ்அப் அல்லது போன் மூலம் நேரடியாகத் தொடர்புகொள்வார்கள்.` :
+
+    `🎉 Job posted successfully! SMS confirmation sent to +91 ${cleanPhone}. Local verified technicians will review and contact you directly.`);
+
+}
+
+
+function acceptBudgetBid(id, desc, budget, customerPhone) {
+
+  const cleanPhone = (customerPhone || '').replace(/[^0-9]/g, '').slice(-10);
+
+  if (!cleanPhone || cleanPhone.length < 10) {
+
+    alert(currentLang === 'ta' ? 'வாடிக்கையாளரின் தொடர்பு எண் கிடைக்கவில்லை.' : 'Customer phone number not available.');
+
+    return;
 
   }
 
-  function acceptBudgetBid(id, desc, budget, customerPhone) {
 
-  const msg = `வணக்கம்! நான் Fixr ஆப்பில் உங்கள் 'என் பட்ஜெட் என் வேலை' பதிவைப் பார்த்தேன்:
+  let techName = 'Fixr Verified Expert';
 
-• வேலை: ${desc}
+  let techPhone = ADMIN_PHONE;
 
-• நீங்கள் நிர்ணயித்த பட்ஜெட்: ₹${budget}
+  if (currentPortalTech && currentPortalTech.name) {
 
-இந்த வேலையை நான் செய்யத் தயாராக உள்ளேன். எப்போது வர வேண்டும் என்று கூறவும்!`;
+    techName = currentPortalTech.name;
 
-  window.open(`https://wa.me/91${customerPhone}?text=${encodeURIComponent(msg)}`, '_blank');
+    techPhone = currentPortalTech.phone || ADMIN_PHONE;
 
   }
+
+
+  const isTa = (currentLang === 'ta');
+
+  const confirmMsg = isTa ?
+
+    `🛠️ இந்த பட்ஜெட் வேலையை நீங்கள் ஏற்க விரும்புகிறீர்களா?\n\n• வேலை: ${desc}\n• பட்ஜெட்: ₹${budget}\n• வாடிக்கையாளர் எண்: +91 ${cleanPhone}\n\n'OK' கொடுத்தால் வாடிக்கையாளருக்கு SMS சென்று, வாடிக்கையாளரின் WhatsApp சேட் திறக்கப்படும்.` :
+
+    `🛠️ Do you want to accept this budget job?\n\n• Job: ${desc}\n• Budget: ₹${budget}\n• Customer Phone: +91 ${cleanPhone}\n\nTap 'OK' to alert customer via SMS and open WhatsApp chat.`;
+
+
+  if (!confirm(confirmMsg)) return;
+
+
+  const smsCustMsg = `Fixr Alert: Technician ${techName} (${techPhone}) has accepted your job '${desc.slice(0, 20)}' for ₹${budget} and is contacting you on WhatsApp!`;
+
+  callFast2Sms(cleanPhone, smsCustMsg);
+
+
+  const waMsg = isTa ?
+
+    `வணக்கம்! நான் Fixr ஆப்பில் உங்கள் 'என் பட்ஜெட் என் வேலை' பதிவைப் பார்த்தேன்:\n` +
+
+    `• வேலை: ${desc}\n` +
+
+    `• நீங்கள் நிர்ணயித்த பட்ஜெட்: ₹${budget}\n\n` +
+
+    `இந்த வேலையை நான் செய்யத் தயாராக உள்ளேன். எப்போது வர வேண்டும் என்று கூறவும்!` :
+
+    `Hello! I saw your Fixr Budget Bidding request:\n` +
+
+    `• Job: ${desc}\n` +
+
+    `• Budget: ₹${budget}\n\n` +
+
+    `I am ready to accept this job. Please let me know your preferred time and address!`;
+
+
+  const targetWa = `https://wa.me/91${cleanPhone}?text=${encodeURIComponent(waMsg)}`;
+
+  window.open(targetWa, '_blank');
+
+}
+
+ 
 
   function openCommunityPoolingModal() {
 
