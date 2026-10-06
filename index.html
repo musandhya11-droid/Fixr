@@ -3884,9 +3884,11 @@ body  {
 
 <div class="splash-box">
 
-<div class="splash-logo-wrap">
+<div class="splash-logo-wrap" style="background: linear-gradient(135deg, #1e293b, #0f172a); border:2.5px solid #38bdf8; box-shadow:0 10px 30px rgba(56,189,248,0.45); display:flex; flex-direction:column; align-items:center; justify-content:center;">
 
-<img src="fixr-logo-192.png" onerror="this.onerror=null;this.src=\'icon-192.png\';" class="splash-logo-img" alt="Fixr Logo">
+  <span style="font-size:40px; line-height:1; filter: drop-shadow(0 4px 10px rgba(56,189,248,0.6));">⚡</span>
+
+  <span style="font-size:11px; font-weight:900; color:#38bdf8; letter-spacing:1.5px; margin-top:2px;">FIXR</span>
 
 </div>
 
@@ -6891,11 +6893,11 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
       </div>
 
-      <div style="display:flex; gap:6px;">
+      <div style="display:flex; gap:8px; align-items:center;">
 
-        <input type="text" id="commMsgInput" class="form-input" placeholder="கேள்வி அல்லது தகவலைப் பகிர்க..." style="flex:1; padding:8px 12px; font-size:12px; border-radius:20px;" onkeypress="if(event.key==='Enter') submitCommunityMessage()">
+        <input type="text" id="commMsgInput" placeholder="கேள்வி அல்லது தகவலைப் பகிர்க..." style="flex:1; min-width:0; padding:10px 14px; font-size:12.5px; border-radius:24px; border:1.5px solid #cbd5e1; background:#f8fafc; outline:none; box-sizing:border-box;" onkeypress="if(event.key==='Enter') submitCommunityMessage()">
 
-        <button type="button" class="submit-btn" onclick="submitCommunityMessage()" style="margin:0; padding:8px 16px; border-radius:20px; font-size:12px; font-weight:800; background:#4338ca; display:flex; align-items:center; gap:4px;" id="btnCommSend">
+        <button type="button" onclick="submitCommunityMessage()" style="flex-shrink:0; width:auto; margin:0; padding:10px 18px; border-radius:24px; font-size:12px; font-weight:800; background:#4338ca; color:white; border:none; display:flex; align-items:center; gap:4px; cursor:pointer;" id="btnCommSend">
 
           பகிரு ➔
 
@@ -7125,15 +7127,21 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
   <div style="display:flex; border-bottom:1px solid #e2e8f0; margin-bottom:10px;">
 
-    <button type="button" id="tabTechActive" onclick="switchTechPortalTab('active')" style="flex:1; padding:8px; border:none; background:none; font-weight:800; font-size:12px; border-bottom:2px solid #0284c7; color:#0284c7; cursor:pointer;">
+    <button type="button" id="tabTechActive" onclick="switchTechPortalTab('active')" style="flex:1; padding:8px 4px; border:none; background:none; font-weight:800; font-size:11.5px; border-bottom:2px solid #0284c7; color:#0284c7; cursor:pointer;">
 
-      🔔 புதிய முன்பதிவுகள் (<span id="techActiveCount">0</span>)
+      🔔 முன்பதிவுகள் (<span id="techActiveCount">0</span>)
 
     </button>
 
-    <button type="button" id="tabTechHistory" onclick="switchTechPortalTab('history')" style="flex:1; padding:8px; border:none; background:none; font-weight:700; font-size:12px; color:#64748b; cursor:pointer;">
+    <button type="button" id="tabTechBids" onclick="switchTechPortalTab('bids')" style="flex:1; padding:8px 4px; border:none; background:none; font-weight:700; font-size:11.5px; color:#64748b; cursor:pointer;">
 
-      📁 பழைய முன்பதிவுகள் (<span id="techHistoryCount">0</span>)
+      🎯 பட்ஜெட் வேலைகள் (<span id="techBidsCount">0</span>)
+
+    </button>
+
+    <button type="button" id="tabTechHistory" onclick="switchTechPortalTab('history')" style="flex:1; padding:8px 4px; border:none; background:none; font-weight:700; font-size:11.5px; color:#64748b; cursor:pointer;">
+
+      📁 வரலாறு (<span id="techHistoryCount">0</span>)
 
     </button>
 
@@ -8017,7 +8025,11 @@ function submitCommunityMessage() {
 
   if (!msgText) {
 
-    alert(tLang('உங்கள் கேள்வி அல்லது தகவலை உள்ளிடவும்.', 'Please type your question or tip.', 'कृपया अपना संदेश या प्रश्न लिखें।'));
+    const alertMsg = currentLang === 'ta' ? 'தயவுசெய்து உங்கள் கேள்வி அல்லது தகவலை உள்ளிடவும்.' : (currentLang === 'hi' ? 'कृपया अपना संदेश या प्रश्न लिखें।' : 'Please type your question or tip.');
+
+    alert(alertMsg);
+
+    if (textInput) textInput.focus();
 
     return;
 
@@ -11056,9 +11068,48 @@ function updateI18n() {
 
 function openBudgetBiddingModal() {
 
+  // Pre-fill phone from logged-in customer if available
+
+  const uSaved = JSON.parse(localStorage.getItem('fixr_user') || '{}');
+
+  const pInp = document.getElementById('bidPhone');
+
+  if (pInp && uSaved && uSaved.phone) {
+
+    pInp.value = uSaved.phone.replace(/[^0-9]/g, '').slice(-10);
+
+  }
+
   renderBudgetBids();
 
   openModal('budgetBiddingModal');
+
+}
+
+
+function deleteMyBid(bidId) {
+
+  const isTa = (currentLang === 'ta');
+
+  if (!confirm(isTa ? 'இந்த பட்ஜெட் வேலையை நீக்க விரும்புகிறீர்களா?' : 'Do you want to cancel this budget job?')) return;
+
+  let customBids = JSON.parse(localStorage.getItem('fixr_custom_bids') || '[]');
+
+  customBids = customBids.filter(b => b.id !== bidId);
+
+  localStorage.setItem('fixr_custom_bids', JSON.stringify(customBids));
+
+  if (db) {
+
+    try { db.collection('budget_bids').doc(bidId).delete().catch(e => {}); } catch(e) {}
+
+  }
+
+  renderBudgetBids();
+
+  if (typeof renderTechBookings === 'function') renderTechBookings();
+
+  alert(isTa ? 'வேலை வெற்றிகரமாக நீக்கப்பட்டது.' : 'Budget job removed.');
 
 }
 
@@ -11071,82 +11122,199 @@ function renderBudgetBids() {
 
   container.innerHTML = '';
 
+ 
+
   const customBids = JSON.parse(localStorage.getItem('fixr_custom_bids') || '[]');
 
   const allBids = [...customBids, ...defaultBids];
 
-  const mySavedPhone = (localStorage.getItem('fixr_my_bid_phone') || '').replace(/[^0-9]/g, '').slice(-10);
+ 
+
+  const uSaved = JSON.parse(localStorage.getItem('fixr_user') || '{}');
+
+  const myCustomerPhone = (localStorage.getItem('fixr_my_bid_phone') || (uSaved && uSaved.phone) || '').replace(/[^0-9]/g, '').slice(-10);
+
+  const isTechLoggedIn = (currentPortalTech !== null);
 
 
-  allBids.forEach(bid => {
+  const myBids = allBids.filter(b => {
 
-    const div = document.createElement('div');
+    const bDigits = (b.phone || '').replace(/[^0-9]/g, '').slice(-10);
 
-    div.className = 'bid-card';
+    return (b.isMyBid === true) || (myCustomerPhone && bDigits === myCustomerPhone);
 
-    const bidPhoneDigits = (bid.phone || '').replace(/[^0-9]/g, '').slice(-10);
+  });
 
-    const isMine = (bid.isMyBid === true) || (mySavedPhone && bidPhoneDigits === mySavedPhone);
+  const otherBids = allBids.filter(b => !myBids.includes(b));
 
 
-    let actionBtnHtml = '';
+  let html = '';
 
-    if (isMine) {
 
-      actionBtnHtml = `
+  // 1. My Posted Jobs Section
 
-        <span style="background:#f0fdf4; color:#166534; border:1px solid #bbf7d0; font-size:10px; font-weight:bold; padding:4px 8px; border-radius:6px; display:inline-flex; align-items:center; gap:3px;">
+  if (myBids.length > 0) {
 
-          ⏳ உங்கள் பதிவு (காத்திருப்பு)
+    html += `
 
-        </span>
+      <div style="font-size:11.5px; font-weight:800; color:#15803d; margin:4px 0 6px; display:flex; justify-content:space-between; align-items:center;">
+
+        <span>📋 நீங்கள் பதிவிட்ட வேலைகள் (${myBids.length}):</span>
+
+      </div>
+
+    `;
+
+    myBids.forEach(bid => {
+
+      html += `
+
+        <div class="bid-card" style="border:1.5px solid #86efac; background:#f0fdf4; margin-bottom:8px;">
+
+          <div style="flex:1;">
+
+            <div class="bid-title" style="font-size:13px; font-weight:800; color:#0f172a;">${bid.desc}</div>
+
+            <div class="bid-sub" style="font-size:11px; color:#166534; margin-top:2px;">
+
+              📍 ${bid.area} | ${bid.cat} | 🕒 ${bid.time || 'இப்போது'}
+
+            </div>
+
+            <div style="margin-top:4px;">
+
+              <span style="background:#dcfce7; color:#15803d; font-size:10px; font-weight:bold; padding:2px 6px; border-radius:6px; border:1px solid #86efac;">
+
+                ⏳ காத்திருப்பு: உங்கள் பகுதி தொழிலாளர்கள் பார்வைக்கு அனுப்பப்பட்டுள்ளது
+
+              </span>
+
+            </div>
+
+          </div>
+
+          <div style="display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
+
+            <span class="bid-budget-badge" style="background:#fef3c7; color:#b45309; padding:2px 8px; border-radius:8px; font-weight:900; font-size:12px; border:1px solid #fde68a;">₹${bid.budget}</span>
+
+            <button type="button" onclick="deleteMyBid('${bid.id}')" style="background:#fee2e2; color:#dc2626; border:1px solid #fca5a5; padding:3px 8px; border-radius:6px; font-size:10px; font-weight:bold; cursor:pointer;" title="Cancel this job">
+
+              🗑️ ரத்து
+
+            </button>
+
+          </div>
+
+        </div>
 
       `;
 
-    } else {
+    });
 
-      const safeDesc = (bid.desc || '').replace(/'/g, "\\'");
+  }
+
+
+  // 2. Live Bids Section
+
+  html += `
+
+    <div style="font-size:11.5px; font-weight:800; color:#0f172a; margin:10px 0 6px; display:flex; justify-content:space-between; align-items:center;">
+
+      <span>🔥 நேரலை வேலை வாய்ப்புகள்:</span>
+
+      <span style="font-size:10px; color:#64748b; font-weight:normal;">தொழிலாளர்கள் பார்வைக்கு</span>
+
+    </div>
+
+  `;
+
+
+  otherBids.forEach(bid => {
+
+    const safeDesc = (bid.desc || '').replace(/'/g, "\\'");
+
+    let actionBtnHtml = '';
+
+    if (isTechLoggedIn) {
 
       actionBtnHtml = `
 
         <button type="button" class="btn-accept-bid" onclick="acceptBudgetBid('${bid.id}', '${safeDesc}', '${bid.budget}', '${bid.phone}')" style="background:#16a34a; color:white; border:none; padding:6px 12px; border-radius:8px; font-size:11px; font-weight:800; cursor:pointer;">
 
-          தொழிலாளர் ஏற்க ➔
+          💼 ஏற்கிறேன் ➔
 
         </button>
+
+      `;
+
+    } else {
+
+      actionBtnHtml = `
+
+        <span style="background:#f1f5f9; color:#64748b; border:1px solid #cbd5e1; font-size:10px; font-weight:bold; padding:3px 6px; border-radius:6px;">
+
+          🔒 தொழிலாளர்களுக்கு மட்டும்
+
+        </span>
 
       `;
 
     }
 
 
-    div.innerHTML = `
+    html += `
 
-      <div style="flex:1;">
+      <div class="bid-card" style="margin-bottom:8px;">
 
-        <div class="bid-title" style="font-size:13px; font-weight:800; color:#0f172a;">${bid.desc}</div>
+        <div style="flex:1;">
 
-        <div class="bid-sub" style="font-size:11px; color:#64748b; margin-top:2px;">
+          <div class="bid-title" style="font-size:13px; font-weight:800; color:#0f172a;">${bid.desc}</div>
 
-          📍 ${bid.area} | ${bid.cat} | 🕒 ${bid.time || 'இப்போது'}
+          <div class="bid-sub" style="font-size:11px; color:#64748b; margin-top:2px;">
+
+            📍 ${bid.area} | ${bid.cat} | 🕒 ${bid.time || 'இப்போது'}
+
+          </div>
+
+        </div>
+
+        <div style="display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
+
+          <span class="bid-budget-badge" style="background:#fef3c7; color:#b45309; padding:2px 8px; border-radius:8px; font-weight:900; font-size:12px; border:1px solid #fde68a;">₹${bid.budget}</span>
+
+          ${actionBtnHtml}
 
         </div>
 
       </div>
 
-      <div style="display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
+    `;
 
-        <span class="bid-budget-badge" style="background:#fef3c7; color:#b45309; padding:2px 8px; border-radius:8px; font-weight:900; font-size:12px; border:1px solid #fde68a;">₹${bid.budget}</span>
+  });
 
-        ${actionBtnHtml}
+
+  if (!isTechLoggedIn) {
+
+    html += `
+
+      <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:10px; padding:10px; margin-top:8px; text-align:center; font-size:11.5px; color:#1e40af;">
+
+        👷 <b>நீங்கள் கைவினைஞரா?</b> வாடிக்கையாளர்களின் பட்ஜெட் வேலைகளை ஏற்று வருமானம் ஈட்ட 'தொழிலாளர் போர்ட்டலில்' உள்நுழையவும்.<br>
+
+        <button type="button" onclick="closeModal('budgetBiddingModal'); openTechPortalModal();" style="margin-top:6px; background:#0284c7; color:white; border:none; padding:6px 14px; border-radius:8px; font-size:11px; font-weight:bold; cursor:pointer;">
+
+          தொழிலாளர் போர்ட்டல் உள்நுழைவு ➔
+
+        </button>
 
       </div>
 
     `;
 
-    container.appendChild(div);
+  }
 
-  });
+
+  container.innerHTML = html;
 
 }
 
@@ -11231,10 +11399,12 @@ function submitCustomerBudgetBid() {
 
   renderBudgetBids();
 
+  if (typeof renderTechBookings === 'function') renderTechBookings();
+
 
   alert(currentLang === 'ta' ?
 
-    `🎉 உங்கள் பட்ஜெட் வேலை (${desc} - ₹${budget}) வெற்றிகரமாக பதிவிடப்பட்டது!\n\nஉங்களுக்கு SMS அனுப்பப்பட்டுள்ளது. உள்ளூர் தொழிலாளர்கள் இதை ஏற்று உங்களை வாட்ஸ்அப் அல்லது போன் மூலம் நேரடியாகத் தொடர்புகொள்வார்கள்.` :
+    `🎉 உங்கள் பட்ஜெட் வேலை (${desc} - ₹${budget}) வெற்றிகரமாக பதிவிடப்பட்டது!\n\nஉங்களுக்கு SMS உறுதிப்படுத்தல் அனுப்பப்பட்டுள்ளது. உங்கள் பகுதி தொழிலாளர்கள் இதை ஏற்று உங்களை வாட்ஸ்அப் அல்லது போன் மூலம் நேரடியாகத் தொடர்புகொள்வார்கள்.` :
 
     `🎉 Job posted successfully! SMS confirmation sent to +91 ${cleanPhone}. Local verified technicians will review and contact you directly.`);
 
@@ -11279,7 +11449,7 @@ function acceptBudgetBid(id, desc, budget, customerPhone) {
   if (!confirm(confirmMsg)) return;
 
 
-  const smsCustMsg = `Fixr Alert: Technician ${techName} (${techPhone}) has accepted your job '${desc.slice(0, 20)}' for ₹${budget} and is contacting you on WhatsApp!`;
+  const smsCustMsg = `Fixr Alert: தொழிலாளர் ${techName} (${techPhone}) உங்கள் '${desc.slice(0, 20)}' (₹${budget}) பட்ஜெட் வேலையை ஏற்றுக்கொண்டார்! WhatsApp-ல் பேசுகிறார்.`;
 
   callFast2Sms(cleanPhone, smsCustMsg);
 
@@ -15528,33 +15698,43 @@ function switchTechPortalTab(tab) {
 
   const tActive = document.getElementById('tabTechActive');
 
+  const tBids = document.getElementById('tabTechBids');
+
   const tHist = document.getElementById('tabTechHistory');
 
-  if (tab === 'active') {
 
-  tActive.style.borderBottom = '2px solid #0284c7';
+  [tActive, tBids, tHist].forEach(btn => {
 
-  tActive.style.color = '#0284c7';
+    if (btn) {
 
-  tHist.style.borderBottom = 'none';
+      btn.style.borderBottom = 'none';
 
-  tHist.style.color = '#64748b';
+      btn.style.color = '#64748b';
 
-  } else {
+      btn.style.fontWeight = '700';
 
-  tHist.style.borderBottom = '2px solid #0284c7';
+    }
 
-  tHist.style.color = '#0284c7';
+  });
 
-  tActive.style.borderBottom = 'none';
 
-  tActive.style.color = '#64748b';
+  const activeBtn = (tab === 'active') ? tActive : ((tab === 'bids') ? tBids : tHist);
+
+  if (activeBtn) {
+
+    activeBtn.style.borderBottom = '2px solid #0284c7';
+
+    activeBtn.style.color = '#0284c7';
+
+    activeBtn.style.fontWeight = '800';
 
   }
+
 
   renderTechBookings();
 
 }
+
 
 function renderTechBookings() {
 
@@ -15562,21 +15742,23 @@ function renderTechBookings() {
 
   if (!container || !currentPortalTech) return;
 
+
   const allBookings = JSON.parse(localStorage.getItem('fixr_my_bookings') || '[]');
 
   const techDigits = (currentPortalTech.phone || '').replace(/[^0-9]/g, '').slice(-10);
 
   const techBookings = allBookings.filter(b => {
 
-  const bTechDigits = (b.techPhone || '').replace(/[^0-9]/g, '').slice(-10);
+    const bTechDigits = (b.techPhone || '').replace(/[^0-9]/g, '').slice(-10);
 
-  return b.techName === currentPortalTech.name || b.techId === currentPortalTech.id || (techDigits && bTechDigits === techDigits);
+    return b.techName === currentPortalTech.name || b.techId === currentPortalTech.id || (techDigits && bTechDigits === techDigits);
 
   });
 
   const activeBookings = techBookings.filter(b => !(b.status || '').includes('முடிந்தது') && !(b.status || '').includes('Completed'));
 
   const historyBookings = techBookings.filter(b => (b.status || '').includes('முடிந்தது') || (b.status || '').includes('Completed'));
+
 
   const actCount = document.getElementById('techActiveCount');
 
@@ -15586,29 +15768,106 @@ function renderTechBookings() {
 
   if (histCount) histCount.innerText = historyBookings.length;
 
+
+  const customBids = JSON.parse(localStorage.getItem('fixr_custom_bids') || '[]');
+
+  const allBids = [...customBids, ...defaultBids];
+
+  const bidsCount = document.getElementById('techBidsCount');
+
+  if (bidsCount) bidsCount.innerText = allBids.length;
+
+
+  // TAB: Bids
+
+  if (currentPortalTab === 'bids') {
+
+    if (allBids.length === 0) {
+
+      container.innerHTML = `<div style="text-align:center; padding:24px; color:#94a3b8; font-size:12px;">தற்போது வாடிக்கையாளர் பட்ஜெட் வேலைகள் எதுவும் இல்லை.</div>`;
+
+      return;
+
+    }
+
+    container.innerHTML = allBids.map(b => {
+
+      const cleanCust = (b.phone || '').replace(/[^0-9]/g, '').slice(-10);
+
+      const safeDesc = (b.desc || '').replace(/'/g, "\\'");
+
+      return `
+
+        <div style="background:#fffdfa; border:1.5px solid #fde68a; border-radius:10px; padding:10px; margin-bottom:8px; font-size:12px;">
+
+          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+
+            <div>
+
+              <b style="color:#0f172a; font-size:13px;">${b.desc}</b>
+
+              <div style="color:#64748b; font-size:11px; margin-top:2px;">📍 ${b.area} | 🛠️ ${b.cat} | 🕒 ${b.time || 'இப்போது'}</div>
+
+              <div style="color:#0284c7; font-size:11px; margin-top:2px;">👤 வாடிக்கையாளர்: <b>+91 ${cleanCust}</b></div>
+
+            </div>
+
+            <span style="background:#fef3c7; color:#b45309; border:1px solid #fde68a; padding:3px 8px; border-radius:8px; font-weight:900; font-size:13px;">
+
+              ₹${b.budget}
+
+            </span>
+
+          </div>
+
+          <div style="margin-top:8px; border-top:1px solid #f1f5f9; padding-top:8px; display:flex; gap:6px;">
+
+            <button type="button" onclick="acceptBudgetBid('${b.id}', '${safeDesc}', '${b.budget}', '${b.phone}')" style="flex:1; background:#16a34a; color:white; border:none; padding:8px; border-radius:8px; font-size:11.5px; font-weight:800; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:4px;">
+
+              💼 இந்த வேலையை நான் ஏற்கிறேன் (Accept Job) ➔
+
+            </button>
+
+            <a href="tel:${cleanCust}" style="background:#f1f5f9; color:#334155; border:1px solid #cbd5e1; padding:8px 10px; border-radius:8px; text-decoration:none; font-size:12px;" title="Call">📞</a>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join('');
+
+    return;
+
+  }
+
+
+  // TAB: Active / History Bookings
+
   const displayList = (currentPortalTab === 'active') ? activeBookings : historyBookings;
 
   if (displayList.length === 0) {
 
-  container.innerHTML = `<div style="text-align:center; padding:24px; color:#94a3b8; font-size:12px;">
+    container.innerHTML = `<div style="text-align:center; padding:24px; color:#94a3b8; font-size:12px;">
 
       ${currentPortalTab === 'active' ? 'தற்போது புதிய முன்பதிவுகள் எதுவும் இல்லை.' : 'பழைய முன்பதிவுகள் எதுவும் இல்லை.'}
 
     </div>`;
 
-  return;
+    return;
 
   }
 
   container.innerHTML = displayList.map(b => `
 
-    <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px; margin-bottom:8px; font-size:11.5px;">
+    <div style="background:#ffffff; border:1px solid #cbd5e1; border-radius:10px; padding:10px; margin-bottom:8px; font-size:12px;">
 
       <div style="display:flex; justify-content:space-between; align-items:flex-start;">
 
         <div>
 
-          <b style="color:#0f172a; font-size:12.5px;">👤 ${b.custName || 'Customer'}</b>
+          <b style="color:#0f172a; font-size:13px;">👤 ${b.custName || 'Customer'}</b>
 
           <div style="color:#2563eb; font-weight:bold;">📞 ${b.custPhone || 'வாடிக்கையாளர் எண்'}</div>
 
@@ -15618,13 +15877,11 @@ function renderTechBookings() {
 
       </div>
 
-      <div style="color:#475569; margin:4px 0;">📅 தேதி: <b>${b.date}</b> (${b.time})</div>
+      <div style="color:#475569; margin:4px 0;">📅 தேதி: <b>${b.date} (${b.time})</b></div>
 
       <div style="color:#475569; margin:2px 0;">🏠 முகவரி: <b>${b.addr}</b></div>
 
       <div style="color:#64748b; font-size:11px;">🛠️ விவரம்: ${b.notes || 'பொது சேவை'}</div>
-
-     
 
       <div style="display:flex; gap:4px; margin-top:8px; border-top:1px solid #e2e8f0; padding-top:6px; flex-wrap:wrap;">
 
@@ -15632,11 +15889,7 @@ function renderTechBookings() {
 
         ${b.custPhone ? `<a href="https://wa.me/91${b.custPhone.replace(/[^0-9]/g,'').slice(-10)}" target="_blank" class="btn" style="background:#16a34a; color:white; padding:4px 8px; border-radius:6px; font-size:10px; text-decoration:none;">💬 WhatsApp</a>` : ''}
 
-        ${currentPortalTab === 'active' ? `
-
-  <button type="button" onclick="setBookingStatus('${b.id}', 'முடிந்தது (Completed)')" style="background:#22c55e; color:white; border:none; padding:4px 8px; border-radius:6px; font-size:10px; font-weight:bold; cursor:pointer;">🏁 வேலை முடிந்தது</button>
-
-  ` : ''}
+        ${currentPortalTab === 'active' ? `<button type="button" onclick="setBookingStatus('${b.id}', 'வேலை முடிந்தது (Completed)')" style="background:#15803d; color:white; border:none; padding:4px 8px; border-radius:6px; font-size:10px; font-weight:bold; cursor:pointer;">🏁 வேலை முடிந்தது</button>` : ''}
 
         <button type="button" onclick="openInvoiceGeneratorForBooking('${b.id}')" style="background:#f8fafc; color:#0f172a; border:1px solid #cbd5e1; padding:4px 8px; border-radius:6px; font-size:10px; font-weight:bold; cursor:pointer;">🧾 பில்</button>
 
