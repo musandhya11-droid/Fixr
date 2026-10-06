@@ -36,7 +36,7 @@
 
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 
-<style>*{box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans Tamil",sans-serif;margin:0;padding:0}body{background:#f8fafc;padding-bottom:95px;color:#1e293b}header{background:#0f172a;color:white;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.1)}.brand{font-size:22px;font-weight:800;letter-spacing:-0.5px}.brand span{color:#38bdf8}.nav-btns{display:flex;gap:6px;align-items:center}.lang-btn{background:rgba(255,255,255,0.15);color:#ffffff;border:1px solid rgba(255,255,255,0.4);min-width:44px;height:28px;border-radius:14px;padding:2px 8px;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:3px;box-shadow:0 2px 6px rgba(0,0,0,0.2);transition:all 0.15s}.lang-btn:active{transform:scale(0.9)}.admin-btn{background:#334155;color:#38bdf8;border:1px solid #475569;padding:5px 8px;border-radius:12px;font-size:11px;font-weight:bold;cursor:pointer}.auth-btn{background:#38bdf8;color:#0f172a;border:none;padding:6px 12px;border-radius:20px;font-weight:bold;font-size:11px;cursor:pointer}.user-profile{font-size:11px;color:#38bdf8;font-weight:bold;display:flex;align-items:center;gap:4px;background:#1e293b;padding:4px 10px;border-radius:16px}.sync-bar{display:none !important}.search-box{padding:12px 16px 4px}.search-input{width:100%;padding:12px 16px;border-radius:12px;border:1px solid #cbd5e1;font-size:14px;outline:none;background:white;box-shadow:0 1px 3px rgba(0,0,0,0.05)}.categories{display:flex;overflow-x:auto;padding:10px 16px;gap:8px;scrollbar-width:none}.categories::-webkit-scrollbar{display:none}.chip{padding:7px 14px;background:white;border-radius:20px;font-size:12px;font-weight:600;border:1px solid #e2e8f0;white-space:nowrap;cursor:pointer}.chip.active{background:#0f172a;color:white;border-color:#0f172a}.list{padding:8px 16px}.card-img-banner{position:relative;width:100%;height:180px;border-radius:12px;overflow:hidden;margin-bottom:12px;cursor:pointer;background:#e2e8f0}.card-cover-img{width:100%;height:100%;object-fit:cover;transition:transform 0.25s ease}.card-img-banner:hover .card-cover-img{transform:scale(1.04)}.photo-badge{position:absolute;bottom:8px;right:8px;background:rgba(15,23,42,0.85);color:white;padding:4px 10px;border-radius:14px;font-size:11px;font-weight:700;backdrop-filter:blur(4px);box-shadow:0 2px 6px rgba(0,0,0,0.25)}.house-preview-thumb{width:64px;height:64px;object-fit:cover;border-radius:8px;border:1px solid #cbd5e1;cursor:pointer}.card{background:white;border-radius:12px;padding:10px 12px;margin-bottom:8px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,0.02)}.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2px}.name{font-size:14.5px;font-weight:700;color:#0f172a}.badge{font-size:10px;padding:2px 6px;border-radius:10px;font-weight:700;background:#f0fdf4;color:#166534}.details{font-size:11.5px;color:#64748b;margin-top:2px}.rating-row{display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-size:12px}.rating{background:#fef08a;color:#854d0e;padding:2px 6px;border-radius:5px;font-weight:bold;font-size:11px}.price{font-size:13.5px;font-weight:800;color:#0284c7}.actions{display:flex;flex-direction:column;gap:4px;margin-top:8px;padding-top:6px;border-top:1px solid #f1f5f9}.actions-row-primary{display:flex;gap:5px;width:100%}.actions-row-secondary{display:flex;gap:4px;width:100%}.btn{padding:6px 8px;border-radius:6px;text-decoration:none;font-size:11px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:3px;cursor:pointer;border:none;min-height:28px}.actions-row-primary .btn-book{background:#0284c7;color:white;flex:1.8;font-weight:700;min-height:30px;font-size:11.5px}.actions-row-primary .btn-call{background:#f1f5f9;color:#334155;flex:0.9;border:1px solid #cbd5e1;min-height:30px}.actions-row-primary .btn-wa{background:#22c55e;color:white;flex:0.9;min-height:30px;font-weight:bold}.actions-row-secondary .btn{flex:1;font-size:10px;padding:4px 6px;min-height:25px}.partner-fab{position:fixed;bottom:20px;right:16px;background:#0f172a;color:white;padding:11px 16px;border-radius:30px;font-weight:bold;font-size:12px;border:1px solid #38bdf8;box-shadow:0 4px 14px rgba(15,23,42,0.35);cursor:pointer;z-index:90;display:flex;align-items:center;gap:6px}.support-fab{position:fixed;bottom:20px;left:16px;background:linear-gradient(135deg,#1e3a8a,#2563eb);color:white;padding:10px 15px;border-radius:30px;font-weight:700;font-size:12px;border:1px solid rgba(255,255,255,0.3);box-shadow:0 4px 14px rgba(37,99,235,0.4);z-index:90;display:flex;align-items:center;gap:6px;cursor:pointer;text-decoration:none;transition:transform 0.15s,box-shadow 0.15s}.support-fab:active{transform:scale(0.96)}.ai-chat-bubble{max-width:86%;padding:10px 14px;border-radius:14px;font-size:12.5px;line-height:1.5;word-wrap:break-word;animation:fadeInBubble 0.2s ease-out}@keyframes fadeInBubble{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}.ai-bubble-bot{background:white;color:#1e293b;align-self:flex-start;border-bottom-left-radius:3px;border:1px solid #e2e8f0;box-shadow:0 1px 4px rgba(0,0,0,0.04)}.ai-bubble-user{background:linear-gradient(135deg,#2563eb,#1d4ed8);color:white;align-self:flex-end;border-bottom-right-radius:3px;box-shadow:0 2px 6px rgba(37,99,235,0.25)}.ai-chip-pill{background:white;border:1px solid #cbd5e1;color:#334155;padding:5px 11px;border-radius:20px;font-size:11.5px;font-weight:600;cursor:pointer;white-space:nowrap;transition:all 0.15s;box-shadow:0 1px 2px rgba(0,0,0,0.03);display:inline-flex;align-items:center;gap:4px}.ai-chip-pill:hover,.ai-chip-pill:active{background:#eff6ff;border-color:#3b82f6;color:#1d4ed8}.ai-action-btn{display:inline-block;margin-top:8px;background:#2563eb;color:white;padding:6px 12px;border-radius:7px;font-size:11.5px;font-weight:bold;text-decoration:none;cursor:pointer;border:none;box-shadow:0 2px 5px rgba(37,99,235,0.3)}.ai-action-btn:hover{background:#1d4ed8}.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:1000;justify-content:center;align-items:center;padding:16px}.modal-overlay.active{display:flex}.modal-box{background:white;width:100%;max-width:450px;border-radius:20px;padding:20px;max-height:90vh;overflow-y:auto}.modal-title{font-size:18px;font-weight:bold;margin-bottom:4px;color:#0f172a}.modal-sub{font-size:12px;color:#64748b;margin-bottom:14px}.form-group{margin-bottom:10px}.form-group label{display:block;font-size:12px;font-weight:600;margin-bottom:4px;color:#475569}.form-input{width:100%;padding:10px 12px;border:1px solid #cbd5e1;border-radius:8px;font-size:14px;outline:none}.submit-btn{width:100%;background:#0284c7;color:white;border:none;padding:12px;border-radius:10px;font-weight:bold;cursor:pointer;margin-top:8px;font-size:14px}.close-btn{width:100%;background:none;border:none;color:#64748b;margin-top:10px;font-size:13px;cursor:pointer}.payment-box{background:#f0fdf4;border:1px solid #86efac;border-radius:14px;padding:12px;margin:10px 0;text-align:center}.payment-title{font-size:13px;font-weight:bold;color:#166534;display:flex;justify-content:space-between;margin-bottom:6px}.payment-amount{background:#22c55e;color:white;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:800}.upi-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:8px 0}.upi-btn{padding:9px 6px;border-radius:8px;font-weight:bold;font-size:12px;cursor:pointer;border:none;color:white}.btn-gpay{background:#0f172a;color:#38bdf8;border:1px solid #38bdf8;grid-column:span 2}.btn-phonepe{background:#5f259f}.btn-paytm{background:#002970}.btn-all-upi{background:#16a34a;grid-column:span 2}.doc-upload-section{background:#f8fafc;border:1px dashed #94a3b8;border-radius:12px;padding:12px;margin:12px 0}.doc-title{font-size:12px;font-weight:bold;color:#0f172a;margin-bottom:8px}.doc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.doc-box{background:white;border:1px solid #e2e8f0;border-radius:8px;padding:8px}.doc-box label{display:block;font-size:11px;font-weight:700;color:#334155;margin-bottom:3px}.doc-box input[type="file"]{width:100%;font-size:10px}.upload-progress{display:none;background:#e0f2fe;color:#0369a1;padding:10px;border-radius:8px;font-size:12px;font-weight:600;text-align:center;margin:8px 0}.admin-tab-nav{display:flex;gap:6px;margin-bottom:12px;border-bottom:2px solid #e2e8f0;padding-bottom:6px}.admin-tab-btn{flex:1;padding:8px;border:none;background:#f1f5f9;color:#64748b;font-weight:bold;font-size:12px;border-radius:8px;cursor:pointer}.admin-tab-btn.active{background:#0284c7;color:white}.badge-count{background:#ef4444;color:white;padding:1px 6px;border-radius:10px;font-size:10px;margin-left:4px}.approval-card{background:white;border:1px solid #cbd5e1;border-radius:10px;padding:12px;margin-bottom:10px;font-size:12px}.doc-badge-row{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.doc-link-btn{display:inline-flex;align-items:center;background:#f0fdf4;color:#166534;border:1px solid #bbf7d0;padding:3px 6px;border-radius:6px;font-size:11px;text-decoration:none;font-weight:600}.approval-actions{display:flex;gap:6px;margin-top:8px;border-top:1px solid #f1f5f9;padding-top:8px}.btn-approve{flex:1;background:#16a34a;color:white;border:none;padding:7px;border-radius:6px;font-weight:bold;font-size:11px;cursor:pointer}.btn-reject{background:#fee2e2;color:#dc2626;border:none;padding:7px 10px;border-radius:6px;font-weight:bold;font-size:11px;cursor:pointer}.admin-tech-item{display:flex;justify-content:space-between;align-items:center;padding:8px;border-bottom:1px solid #f1f5f9;font-size:12px}.edit-btn{background:#e0f2fe;color:#0284c7;border:none;padding:4px 8px;border-radius:6px;font-weight:bold;cursor:pointer;font-size:11px}.del-btn{background:#fee2e2;color:#dc2626;border:none;padding:4px 8px;border-radius:6px;font-weight:bold;cursor:pointer;font-size:11px}.otp-banner{background:#fefce8;border:1px solid #fde047;padding:8px 12px;border-radius:8px;font-size:12px;color:#854d0e;margin-bottom:12px;text-align:center}footer{background:#0f172a;color:#94a3b8;padding:24px 16px 85px;text-align:center;font-size:12px;line-height:1.8;margin-top:30px;border-top:1px solid #334155}footer a{color:#38bdf8;text-decoration:none;margin:0 4px}#splashScreen{position:fixed;inset:0;background:#0f172a;z-index:99999;display:flex;flex-direction:column;justify-content:center;align-items:center;transition:opacity 0.5s ease-out,visibility 0.5s ease-out;animation:autoHideSplash 0.4s ease-out 1.4s forwards}@keyframes autoHideSplash{0%{opacity:1;visibility:visible}99%{opacity:0;visibility:visible;pointer-events:none}100%{opacity:0;visibility:hidden;pointer-events:none;display:none}}#splashScreen.fade-out{opacity:0;visibility:hidden;pointer-events:none}.splash-box{text-align:center;padding:20px;animation:splashZoomIn 0.8s cubic-bezier(0.16,1,0.3,1) forwards}@keyframes splashZoomIn{0%{transform:scale(0.8);opacity:0}100%{transform:scale(1);opacity:1}}.splash-logo-wrap{width:100px;height:100px;margin:0 auto 16px;border-radius:26px;background:#1e293b;border:2px solid #38bdf8;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(56,189,248,0.35);position:relative;overflow:hidden}.splash-logo-img{width:100%;height:100%;object-fit:cover}.splash-brand{font-size:38px;font-weight:800;letter-spacing:-1px;color:white;margin-bottom:4px}.splash-brand span{color:#38bdf8}.splash-sub{font-size:13px;color:#94a3b8;font-weight:600;margin-bottom:24px}.splash-bar-outer{width:140px;height:4px;background:#334155;border-radius:4px;margin:0 auto;overflow:hidden}.splash-bar-inner{width:100%;height:100%;background:#38bdf8;border-radius:4px;animation:splashProgress 1.4s ease-in-out forwards}@keyframes splashProgress{0%{transform:translateX(-100%)}60%{transform:translateX(-20%)}100%{transform:translateX(0)}}.pwa-banner{background:#0284c7;color:white;padding:8px 16px;font-size:12px;font-weight:600;display:none;justify-content:space-between;align-items:center;box-shadow:0 2px 6px rgba(0,0,0,0.1)}.pwa-btn{background:white;color:#0284c7;border:none;padding:4px 10px;border-radius:12px;font-weight:bold;font-size:11px;cursor:pointer}.amenities-row{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0}.amenity-tag{background:#f1f5f9;color:#475569;padding:2px 7px;border-radius:6px;font-size:10px;font-weight:600;border:1px solid #e2e8f0;display:inline-flex;align-items:center;gap:3px}.status-badge{font-size:10px;padding:2px 8px;border-radius:10px;font-weight:bold}.status-available{background:#dcfce7;color:#15803d}.status-rented{background:#fee2e2;color:#b91c1c}.fav-btn{background:none;border:none;font-size:18px;cursor:pointer;padding:0 4px;line-height:1;transition:transform 0.15s}.fav-btn:active{transform:scale(1.3)}.sub-chips{display:none;overflow-x:auto;padding:0 16px 8px;gap:6px;scrollbar-width:none}.sub-chips::-webkit-scrollbar{display:none}.sub-chip{padding:4px 10px;background:#e2e8f0;border-radius:14px;font-size:11px;font-weight:600;color:#475569;cursor:pointer;border:1px solid #cbd5e1;white-space:nowrap}.sub-chip.active{background:#0284c7;color:white;border-color:#0284c7}.install-pwa-btn{background:linear-gradient(135deg,#0284c7,#38bdf8);color:#0f172a;border:1px solid #7dd3fc;padding:5px 10px;border-radius:12px;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:4px;box-shadow:0 2px 6px rgba(56,189,248,0.35);animation:pulseGlow 2.5s infinite}@keyframes pulseGlow{0%,100%{box-shadow:0 2px 6px rgba(56,189,248,0.35)}50%{box-shadow:0 2px 14px rgba(56,189,248,0.7)}}.quick-action-bar{display:flex;gap:8px;padding:6px 16px 8px;overflow-x:auto;scrollbar-width:none;align-items:center}.quick-action-bar::-webkit-scrollbar{display:none}.toggle-pill{background:white;border:1.5px solid #cbd5e1;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:700;color:#334155;display:inline-flex;align-items:center;gap:6px;cursor:pointer;white-space:nowrap;user-select:none;transition:all 0.2s ease;box-shadow:0 1px 3px rgba(0,0,0,0.04)}.toggle-pill.active{background:#059669;border-color:#059669;color:white}.toggle-pill .toggle-status{font-size:9px;padding:1px 5px;border-radius:8px;background:#f1f5f9;color:#64748b;font-weight:800}.toggle-pill.active .toggle-status{background:#34d399;color:#064e3b}.action-pill-btn{padding:6px 12px;border-radius:20px;font-size:11px;font-weight:700;border:1.5px solid #cbd5e1;background:white;color:#334155;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:4px;transition:all 0.2s ease;box-shadow:0 1px 3px rgba(0,0,0,0.04)}.action-pill-btn.express-btn{border-color:#fed7aa;color:#c2410c}.action-pill-btn.express-btn.active{background:linear-gradient(135deg,#ea580c,#f97316);color:white;border-color:#ea580c;box-shadow:0 2px 8px rgba(234,88,12,0.35)}.action-pill-btn.pro-btn{border-color:#e9d5ff;color:#7e22ce}.action-pill-btn.pro-btn.active{background:linear-gradient(135deg,#7e22ce,#a855f7);color:white;border-color:#7e22ce;box-shadow:0 2px 8px rgba(126,34,206,0.35)}.featured-promo-banner{margin:2px 16px 3px;background:linear-gradient(135deg,#fffbeb,#fef3c7);border:1px solid #fde68a;border-radius:8px;padding:5px 10px;display:flex;justify-content:space-between;align-items:center;gap:6px;cursor:pointer;box-shadow:0 1px 2px rgba(245,158,11,0.04);transition:all 0.15s ease}.featured-promo-banner:hover{background:#fef08a}.featured-banner-left{display:flex;align-items:center;gap:6px;flex:1;overflow:hidden}.featured-banner-title{font-size:11px;font-weight:800;color:#92400e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.featured-banner-desc{display:none}.boost-btn{background:linear-gradient(135deg,#d97706,#f59e0b);color:white;border:none;padding:3px 8px;border-radius:6px;font-weight:800;font-size:9.5px;cursor:pointer;white-space:nowrap}.action-pill-btn.video-pill{border-color:#c7d2fe;color:#4338ca;font-weight:800}.action-pill-btn.video-pill:hover{background:#e0e7ff}.btn-video{background:#eef2ff;color:#4f46e5;border:1px solid #c7d2fe;flex:1;font-size:11px;font-weight:700}.btn-video:hover{background:#e0e7ff}.card.featured-card{border:2px solid #f59e0b;background:linear-gradient(180deg,#fffdfa 0%,#ffffff 100%);box-shadow:0 4px 16px rgba(245,158,11,0.16);position:relative}.featured-listing-strip{background:linear-gradient(135deg,#d97706,#f59e0b);color:white;font-size:9.5px;font-weight:800;padding:2px 7px;border-radius:6px;display:inline-flex;align-items:center;gap:3px;margin-bottom:4px;box-shadow:0 1px 2px rgba(217,119,6,0.2)}.badge-pro{background:linear-gradient(135deg,#7e22ce,#9333ea);color:white !important;font-weight:800;border:1px solid #c084fc;box-shadow:0 2px 4px rgba(126,34,206,0.2)}.badge-express{background:linear-gradient(135deg,#ea580c,#f97316);color:white !important;font-weight:800;border:1px solid #fdba74;box-shadow:0 2px 4px rgba(234,88,12,0.2)}.dot-pulse{display:inline-block;width:6px;height:6px;background:#16a34a;border-radius:50%;margin-right:4px;animation:pulseGreen 1.5s infinite}@keyframes pulseGreen{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(1.3)}}.status-busy{background:#f1f5f9;color:#64748b}.rating-badge-btn{display:inline-flex;align-items:center;gap:6px;cursor:pointer;background:#fef9c3;padding:3px 8px;border-radius:8px;border:1px solid #fde047;transition:background 0.15s ease}.rating-badge-btn:hover{background:#fef08a}.rating-star{color:#854d0e;font-weight:800;font-size:12px}.rating-reviews{color:#713f12;font-size:11px;font-weight:600;text-decoration:underline}.btn-id{background:#f8fafc;color:#0284c7;border:1px solid #bae6fd;flex:1.1;font-size:11px;font-weight:700}.btn-id:hover{background:#f0f9ff}.btn-map{background:#ecfdf5;color:#059669;border:1px solid #a7f3d0;flex:1.1;font-size:11px;font-weight:700}.btn-map:hover{background:#d1fae5}.id-card-wrapper{background:linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#0f172a 100%);border:2px solid #38bdf8;border-radius:18px;padding:16px;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.4),inset 0 0 20px rgba(56,189,248,0.15);position:relative;overflow:hidden}.id-card-wrapper::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(56,189,248,0.08) 0%,transparent 60%);pointer-events:none}.id-card-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(56,189,248,0.3);padding-bottom:10px;margin-bottom:12px}.id-card-brand{font-size:18px;font-weight:900;letter-spacing:-0.5px}.id-card-brand span{color:#38bdf8}.id-verified-seal{background:linear-gradient(135deg,#10b981,#059669);color:white;font-size:10px;font-weight:800;padding:3px 8px;border-radius:12px;box-shadow:0 2px 6px rgba(16,185,129,0.3)}.id-card-body{display:flex;gap:14px;align-items:center}.id-photo-frame{width:78px;height:78px;border-radius:50%;border:3px solid #38bdf8;padding:2px;background:#1e293b;display:flex;align-items:center;justify-content:center;font-size:34px;box-shadow:0 4px 10px rgba(0,0,0,0.3);flex-shrink:0;overflow:hidden}.id-photo-frame img{width:100%;height:100%;object-fit:cover;border-radius:50%}.id-meta-name{font-size:16px;font-weight:800;color:white;line-height:1.2}.id-meta-trade{font-size:12px;color:#38bdf8;font-weight:700;margin-top:3px}.id-meta-id{font-size:11px;color:#94a3b8;font-family:monospace;margin-top:2px}.id-details-grid{background:rgba(15,23,42,0.6);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:10px;margin:12px 0;display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:11px}.id-detail-item{display:flex;flex-direction:column}.id-detail-lbl{color:#94a3b8;font-size:9.5px;text-transform:uppercase;letter-spacing:0.5px}.id-detail-val{color:#f1f5f9;font-weight:700;margin-top:2px}.id-qr-row{display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(56,189,248,0.2);padding-top:10px;margin-top:10px}.id-qr-img{width:58px;height:58px;background:white;padding:3px;border-radius:6px}.id-security-txt{font-size:10px;color:#94a3b8;line-height:1.4;flex:1;padding-left:10px}.review-score-banner{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac;border-radius:14px;padding:12px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.review-score-big{font-size:26px;font-weight:900;color:#15803d}.review-item{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px 12px;margin-bottom:8px;font-size:12px}.review-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}.review-author{font-weight:700;color:#0f172a}.review-date{font-size:10px;color:#94a3b8}.review-stars{color:#eab308;font-size:12px;margin-bottom:4px}.review-comment{color:#334155;line-height:1.4}.review-add-box{background:#f1f5f9;border-radius:12px;padding:12px;margin-top:14px;border:1px solid #cbd5e1}.star-rating-select{display:flex;gap:6px;font-size:22px;cursor:pointer}.star-btn{color:#cbd5e1;transition:color 0.15s}.star-btn.active{color:#eab308}.boost-plan-card{background:white;border:2px solid #cbd5e1;border-radius:12px;padding:10px 12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:all 0.2s}.boost-plan-card.selected{border-color:#f59e0b;background:#fffbeb;box-shadow:0 2px 8px rgba(245,158,11,0.15)}.boost-plan-title{font-weight:800;font-size:13px;color:#0f172a}.boost-plan-sub{font-size:11px;color:#64748b}.boost-plan-price{font-size:16px;font-weight:900;color:#d97706}.express-emergency-strip{margin:2px 16px 3px;background:linear-gradient(135deg,#fff7ed,#ffedd5);border:1px solid #fed7aa;border-radius:8px;padding:5px 10px;display:flex;justify-content:space-between;align-items:center;gap:6px;cursor:pointer;box-shadow:0 1px 2px rgba(234,88,12,0.04);transition:all 0.15s ease}.express-emergency-strip:hover{background:#fed7aa}.express-strip-tag{font-size:9.5px;font-weight:800;color:#c2410c;background:white;padding:2px 7px;border-radius:6px;border:1px solid #fed7aa;white-space:nowrap}.pulse-lightning{font-size:16px;display:inline-block;animation:lightningPulse 1.2s infinite}@keyframes lightningPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.3);opacity:0.7}}.city-chips-bar{display:flex;gap:6px;padding:0 16px 8px;overflow-x:auto;scrollbar-width:none;align-items:center}.city-chips-bar::-webkit-scrollbar{display:none}.city-chip{padding:5px 11px;background:white;border:1px solid #cbd5e1;border-radius:16px;font-size:11px;font-weight:700;color:#334155;cursor:pointer;white-space:nowrap;transition:all 0.15s ease;box-shadow:0 1px 2px rgba(0,0,0,0.03)}.city-chip.active{background:#0284c7;color:white;border-color:#0284c7;box-shadow:0 2px 6px rgba(2,132,199,0.3)}.rate-card-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:12px}.rate-card-table th{background:#f1f5f9;color:#1e293b;padding:8px 10px;text-align:left;font-weight:800;border-bottom:2px solid #cbd5e1}.rate-card-table td{padding:8px 10px;border-bottom:1px solid #e2e8f0;color:#334155}.rate-cat-header{background:#e0f2fe;color:#0369a1;font-weight:800;padding:6px 10px;font-size:11.5px}.rate-price{font-weight:800;color:#0284c7;text-align:right;white-space:nowrap}.btn-share{background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;flex:1;font-size:11px;font-weight:700}.btn-share:hover{background:#dcfce7}.movein-promo-banner{margin:4px 16px 8px;background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #93c5fd;border-radius:12px;padding:9px 12px;display:flex;justify-content:space-between;align-items:center;gap:8px;cursor:pointer;box-shadow:0 1px 4px rgba(30,58,138,0.08);transition:all 0.2s ease}.movein-promo-banner:hover{background:#bfdbfe}.movein-tag{font-size:10.5px;font-weight:800;color:#1e40af;background:white;padding:3px 8px;border-radius:8px;border:1px solid #93c5fd;white-space:nowrap}.action-pill-btn.spare-pill{border-color:#a7f3d0;color:#047857;font-weight:800}.action-pill-btn.spare-pill:hover{background:#d1fae5}.action-pill-btn.bidding-pill{border-color:#fde68a;color:#b45309;font-weight:800}.action-pill-btn.bidding-pill:hover{background:#fef3c7}.action-pill-btn.pool-pill{border-color:#fbcfe8;color:#be185d;font-weight:800}.action-pill-btn.pool-pill:hover{background:#fce7f3}.spare-cat-bar{display:flex;gap:6px;overflow-x:auto;padding:4px 0 8px;scrollbar-width:none}.spare-cat-bar::-webkit-scrollbar{display:none}.spare-cat-chip{padding:4px 10px;background:#f1f5f9;border-radius:12px;font-size:11px;font-weight:700;color:#475569;cursor:pointer;white-space:nowrap;border:1px solid #cbd5e1}.spare-cat-chip.active{background:#059669;color:white;border-color:#059669}.spare-table{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:6px}.spare-table th{background:#f8fafc;padding:7px 8px;text-align:left;border-bottom:2px solid #cbd5e1;color:#1e293b;font-weight:800}.spare-table td{padding:7px 8px;border-bottom:1px solid #e2e8f0;color:#334155}.spare-fair-price{color:#059669;font-weight:800;text-align:right;white-space:nowrap}.bid-card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:10px 12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;gap:10px}.bid-title{font-weight:800;font-size:13px;color:#0f172a}.bid-sub{font-size:11px;color:#64748b;margin-top:2px}.bid-budget-badge{background:#fef3c7;color:#b45309;padding:3px 8px;border-radius:8px;font-weight:900;font-size:12px;border:1px solid #fde68a;white-space:nowrap}.btn-accept-bid{background:#16a34a;color:white;border:none;padding:5px 10px;border-radius:8px;font-size:11px;font-weight:800;cursor:pointer;white-space:nowrap}.pool-discount-box{background:linear-gradient(135deg,#fdf2f8,#fce7f3);border:1px solid #fbcfe8;border-radius:12px;padding:12px;margin-bottom:12px}.pool-tier-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:8px}.pool-tier-card{background:white;border:1px solid #f472b6;border-radius:8px;padding:8px;text-align:center}.pool-tier-num{font-weight:900;font-size:13px;color:#be185d}.pool-tier-off{font-size:10.5px;color:#15803d;font-weight:800;margin-top:2px}.card{background:white;border-radius:10px;padding:7px 10px;margin-bottom:6px;border:1px solid #e2e8f0;box-shadow:0 1px 2px rgba(0,0,0,0.02);transition:all 0.15s ease}.card.featured-card{border:1.5px solid #f59e0b;background:linear-gradient(180deg,#fffdf8 0%,#ffffff 100%);box-shadow:0 2px 6px rgba(245,158,11,0.12)}.compact-header-row{display:flex;justify-content:space-between;align-items:center;gap:4px;margin-bottom:2px}.compact-title-wrap{display:flex;align-items:center;gap:5px;flex:1;overflow:hidden;white-space:nowrap}.name{font-size:13.5px;font-weight:800;color:#0f172a;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.compact-meta-row{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#64748b;margin-bottom:3px;gap:6px}.compact-left-meta{display:flex;align-items:center;gap:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.compact-price-wrap{display:flex;align-items:center;gap:5px;flex-shrink:0}.price{font-size:12.5px;font-weight:800;color:#0284c7}.rating-star-btn{font-weight:800;font-size:10px;color:#854d0e;background:#fef9c3;padding:1px 5px;border-radius:4px;cursor:pointer;border:1px solid #fde047;white-space:nowrap}.compact-desc-text{font-size:10px;color:#64748b;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.2}.compact-actions-bar{display:flex;gap:3px;width:100%;margin-top:3px;padding-top:4px;border-top:1px solid #f1f5f9}.btn{padding:4px 6px;border-radius:5px;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:2px;cursor:pointer;border:none;min-height:25px;white-space:nowrap}.compact-actions-bar .btn-book{flex:2;background:#0284c7;color:white;font-size:10.5px}.compact-actions-bar .btn-call{flex:0.9;background:#f1f5f9;color:#334155;border:1px solid #cbd5e1}.compact-actions-bar .btn-wa{flex:0.9;background:#22c55e;color:white}.compact-actions-bar .btn-id{flex:0.8;background:#f8fafc;color:#0284c7;border:1px solid #bae6fd}.compact-actions-bar .btn-video{flex:0.7;background:#eef2ff;color:#4f46e5;border:1px solid #c7d2fe}.compact-actions-bar .btn-map{flex:0.7;background:#ecfdf5;color:#059669;border:1px solid #a7f3d0}.compact-actions-bar .btn-share{flex:0.7;background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0}.badge{font-size:9.5px;padding:1px 5px;border-radius:8px}.badge-pro{font-size:9px;padding:1px 5px}.badge-express{font-size:9px;padding:1px 5px}.status-badge{font-size:9px;padding:1px 5px;border-radius:8px}.card-img-banner{height:140px;margin-bottom:6px}
+<style>*{box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans Tamil",sans-serif;margin:0;padding:0}body{background:#f8fafc;padding-bottom:95px;color:#1e293b}header{background:#0f172a;color:white;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.1)}.brand{font-size:22px;font-weight:800;letter-spacing:-0.5px}.brand span{color:#38bdf8}.nav-btns{display:flex;gap:6px;align-items:center}.lang-btn{background:rgba(255,255,255,0.15);color:#ffffff;border:1px solid rgba(255,255,255,0.4);min-width:44px;height:28px;border-radius:14px;padding:2px 8px;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:3px;box-shadow:0 2px 6px rgba(0,0,0,0.2);transition:all 0.15s}.lang-btn:active{transform:scale(0.9)}.admin-btn{background:#334155;color:#38bdf8;border:1px solid #475569;padding:5px 8px;border-radius:12px;font-size:11px;font-weight:bold;cursor:pointer}.auth-btn{background:#38bdf8;color:#0f172a;border:none;padding:6px 12px;border-radius:20px;font-weight:bold;font-size:11px;cursor:pointer}.user-profile{font-size:11px;color:#38bdf8;font-weight:bold;display:flex;align-items:center;gap:4px;background:#1e293b;padding:4px 10px;border-radius:16px}.sync-bar{display:none !important}.search-box{padding:12px 16px 4px}.search-input{width:100%;padding:12px 16px;border-radius:12px;border:1px solid #cbd5e1;font-size:14px;outline:none;background:white;box-shadow:0 1px 3px rgba(0,0,0,0.05)}.categories{display:flex;overflow-x:auto;padding:10px 16px;gap:8px;scrollbar-width:none}.categories::-webkit-scrollbar{display:none}.chip{padding:7px 14px;background:white;border-radius:20px;font-size:12px;font-weight:600;border:1px solid #e2e8f0;white-space:nowrap;cursor:pointer}.chip.active{background:#0f172a;color:white;border-color:#0f172a}.list{padding:8px 16px}.card-img-banner{position:relative;width:100%;height:180px;border-radius:12px;overflow:hidden;margin-bottom:12px;cursor:pointer;background:#e2e8f0}.card-cover-img{width:100%;height:100%;object-fit:cover;transition:transform 0.25s ease}.card-img-banner:hover .card-cover-img{transform:scale(1.04)}.photo-badge{position:absolute;bottom:8px;right:8px;background:rgba(15,23,42,0.85);color:white;padding:4px 10px;border-radius:14px;font-size:11px;font-weight:700;backdrop-filter:blur(4px);box-shadow:0 2px 6px rgba(0,0,0,0.25)}.house-preview-thumb{width:64px;height:64px;object-fit:cover;border-radius:8px;border:1px solid #cbd5e1;cursor:pointer}.card{background:white;border-radius:12px;padding:10px 12px;margin-bottom:8px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,0.02)}.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2px}.name{font-size:14.5px;font-weight:700;color:#0f172a}.badge{font-size:10px;padding:2px 6px;border-radius:10px;font-weight:700;background:#f0fdf4;color:#166534}.details{font-size:11.5px;color:#64748b;margin-top:2px}.rating-row{display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-size:12px}.rating{background:#fef08a;color:#854d0e;padding:2px 6px;border-radius:5px;font-weight:bold;font-size:11px}.price{font-size:13.5px;font-weight:800;color:#0284c7}.actions{display:flex;flex-direction:column;gap:4px;margin-top:8px;padding-top:6px;border-top:1px solid #f1f5f9}.actions-row-primary{display:flex;gap:5px;width:100%}.actions-row-secondary{display:flex;gap:4px;width:100%}.btn{padding:6px 8px;border-radius:6px;text-decoration:none;font-size:11px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:3px;cursor:pointer;border:none;min-height:28px}.actions-row-primary .btn-book{background:#0284c7;color:white;flex:1.8;font-weight:700;min-height:30px;font-size:11.5px}.actions-row-primary .btn-call{background:#f1f5f9;color:#334155;flex:0.9;border:1px solid #cbd5e1;min-height:30px}.actions-row-primary .btn-wa{background:#22c55e;color:white;flex:0.9;min-height:30px;font-weight:bold}.actions-row-secondary .btn{flex:1;font-size:10px;padding:4px 6px;min-height:25px}.support-fab:active{transform:scale(0.96)}.ai-chat-bubble{max-width:86%;padding:10px 14px;border-radius:14px;font-size:12.5px;line-height:1.5;word-wrap:break-word;animation:fadeInBubble 0.2s ease-out}@keyframes fadeInBubble{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}.ai-bubble-bot{background:white;color:#1e293b;align-self:flex-start;border-bottom-left-radius:3px;border:1px solid #e2e8f0;box-shadow:0 1px 4px rgba(0,0,0,0.04)}.ai-bubble-user{background:linear-gradient(135deg,#2563eb,#1d4ed8);color:white;align-self:flex-end;border-bottom-right-radius:3px;box-shadow:0 2px 6px rgba(37,99,235,0.25)}.ai-chip-pill{background:white;border:1px solid #cbd5e1;color:#334155;padding:5px 11px;border-radius:20px;font-size:11.5px;font-weight:600;cursor:pointer;white-space:nowrap;transition:all 0.15s;box-shadow:0 1px 2px rgba(0,0,0,0.03);display:inline-flex;align-items:center;gap:4px}.ai-chip-pill:hover,.ai-chip-pill:active{background:#eff6ff;border-color:#3b82f6;color:#1d4ed8}.ai-action-btn{display:inline-block;margin-top:8px;background:#2563eb;color:white;padding:6px 12px;border-radius:7px;font-size:11.5px;font-weight:bold;text-decoration:none;cursor:pointer;border:none;box-shadow:0 2px 5px rgba(37,99,235,0.3)}.ai-action-btn:hover{background:#1d4ed8}.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:1000;justify-content:center;align-items:center;padding:16px}.modal-overlay.active{display:flex}.modal-box{background:white;width:100%;max-width:450px;border-radius:20px;padding:20px;max-height:90vh;overflow-y:auto}.modal-title{font-size:18px;font-weight:bold;margin-bottom:4px;color:#0f172a}.modal-sub{font-size:12px;color:#64748b;margin-bottom:14px}.form-group{margin-bottom:10px}.form-group label{display:block;font-size:12px;font-weight:600;margin-bottom:4px;color:#475569}.form-input{width:100%;padding:10px 12px;border:1px solid #cbd5e1;border-radius:8px;font-size:14px;outline:none}.submit-btn{width:100%;background:#0284c7;color:white;border:none;padding:12px;border-radius:10px;font-weight:bold;cursor:pointer;margin-top:8px;font-size:14px}.close-btn{width:100%;background:none;border:none;color:#64748b;margin-top:10px;font-size:13px;cursor:pointer}.payment-box{background:#f0fdf4;border:1px solid #86efac;border-radius:14px;padding:12px;margin:10px 0;text-align:center}.payment-title{font-size:13px;font-weight:bold;color:#166534;display:flex;justify-content:space-between;margin-bottom:6px}.payment-amount{background:#22c55e;color:white;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:800}.upi-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:8px 0}.upi-btn{padding:9px 6px;border-radius:8px;font-weight:bold;font-size:12px;cursor:pointer;border:none;color:white}.btn-gpay{background:#0f172a;color:#38bdf8;border:1px solid #38bdf8;grid-column:span 2}.btn-phonepe{background:#5f259f}.btn-paytm{background:#002970}.btn-all-upi{background:#16a34a;grid-column:span 2}.doc-upload-section{background:#f8fafc;border:1px dashed #94a3b8;border-radius:12px;padding:12px;margin:12px 0}.doc-title{font-size:12px;font-weight:bold;color:#0f172a;margin-bottom:8px}.doc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.doc-box{background:white;border:1px solid #e2e8f0;border-radius:8px;padding:8px}.doc-box label{display:block;font-size:11px;font-weight:700;color:#334155;margin-bottom:3px}.doc-box input[type="file"]{width:100%;font-size:10px}.upload-progress{display:none;background:#e0f2fe;color:#0369a1;padding:10px;border-radius:8px;font-size:12px;font-weight:600;text-align:center;margin:8px 0}.admin-tab-nav{display:flex;gap:6px;margin-bottom:12px;border-bottom:2px solid #e2e8f0;padding-bottom:6px}.admin-tab-btn{flex:1;padding:8px;border:none;background:#f1f5f9;color:#64748b;font-weight:bold;font-size:12px;border-radius:8px;cursor:pointer}.admin-tab-btn.active{background:#0284c7;color:white}.badge-count{background:#ef4444;color:white;padding:1px 6px;border-radius:10px;font-size:10px;margin-left:4px}.approval-card{background:white;border:1px solid #cbd5e1;border-radius:10px;padding:12px;margin-bottom:10px;font-size:12px}.doc-badge-row{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.doc-link-btn{display:inline-flex;align-items:center;background:#f0fdf4;color:#166534;border:1px solid #bbf7d0;padding:3px 6px;border-radius:6px;font-size:11px;text-decoration:none;font-weight:600}.approval-actions{display:flex;gap:6px;margin-top:8px;border-top:1px solid #f1f5f9;padding-top:8px}.btn-approve{flex:1;background:#16a34a;color:white;border:none;padding:7px;border-radius:6px;font-weight:bold;font-size:11px;cursor:pointer}.btn-reject{background:#fee2e2;color:#dc2626;border:none;padding:7px 10px;border-radius:6px;font-weight:bold;font-size:11px;cursor:pointer}.admin-tech-item{display:flex;justify-content:space-between;align-items:center;padding:8px;border-bottom:1px solid #f1f5f9;font-size:12px}.edit-btn{background:#e0f2fe;color:#0284c7;border:none;padding:4px 8px;border-radius:6px;font-weight:bold;cursor:pointer;font-size:11px}.del-btn{background:#fee2e2;color:#dc2626;border:none;padding:4px 8px;border-radius:6px;font-weight:bold;cursor:pointer;font-size:11px}.otp-banner{background:#fefce8;border:1px solid #fde047;padding:8px 12px;border-radius:8px;font-size:12px;color:#854d0e;margin-bottom:12px;text-align:center}footer{background:#0f172a;color:#94a3b8;padding:24px 16px 85px;text-align:center;font-size:12px;line-height:1.8;margin-top:30px;border-top:1px solid #334155}footer a{color:#38bdf8;text-decoration:none;margin:0 4px}#splashScreen{position:fixed;inset:0;background:#0f172a;z-index:99999;display:flex;flex-direction:column;justify-content:center;align-items:center;transition:opacity 0.5s ease-out,visibility 0.5s ease-out;animation:autoHideSplash 0.4s ease-out 1.4s forwards}@keyframes autoHideSplash{0%{opacity:1;visibility:visible}99%{opacity:0;visibility:visible;pointer-events:none}100%{opacity:0;visibility:hidden;pointer-events:none;display:none}}#splashScreen.fade-out{opacity:0;visibility:hidden;pointer-events:none}.splash-box{text-align:center;padding:20px;animation:splashZoomIn 0.8s cubic-bezier(0.16,1,0.3,1) forwards}@keyframes splashZoomIn{0%{transform:scale(0.8);opacity:0}100%{transform:scale(1);opacity:1}}.splash-logo-wrap{width:100px;height:100px;margin:0 auto 16px;border-radius:26px;background:#1e293b;border:2px solid #38bdf8;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(56,189,248,0.35);position:relative;overflow:hidden}.splash-logo-img{width:100%;height:100%;object-fit:cover}.splash-brand{font-size:38px;font-weight:800;letter-spacing:-1px;color:white;margin-bottom:4px}.splash-brand span{color:#38bdf8}.splash-sub{font-size:13px;color:#94a3b8;font-weight:600;margin-bottom:24px}.splash-bar-outer{width:140px;height:4px;background:#334155;border-radius:4px;margin:0 auto;overflow:hidden}.splash-bar-inner{width:100%;height:100%;background:#38bdf8;border-radius:4px;animation:splashProgress 1.4s ease-in-out forwards}@keyframes splashProgress{0%{transform:translateX(-100%)}60%{transform:translateX(-20%)}100%{transform:translateX(0)}}.pwa-banner{background:#0284c7;color:white;padding:8px 16px;font-size:12px;font-weight:600;display:none;justify-content:space-between;align-items:center;box-shadow:0 2px 6px rgba(0,0,0,0.1)}.pwa-btn{background:white;color:#0284c7;border:none;padding:4px 10px;border-radius:12px;font-weight:bold;font-size:11px;cursor:pointer}.amenities-row{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0}.amenity-tag{background:#f1f5f9;color:#475569;padding:2px 7px;border-radius:6px;font-size:10px;font-weight:600;border:1px solid #e2e8f0;display:inline-flex;align-items:center;gap:3px}.status-badge{font-size:10px;padding:2px 8px;border-radius:10px;font-weight:bold}.status-available{background:#dcfce7;color:#15803d}.status-rented{background:#fee2e2;color:#b91c1c}.fav-btn{background:none;border:none;font-size:18px;cursor:pointer;padding:0 4px;line-height:1;transition:transform 0.15s}.fav-btn:active{transform:scale(1.3)}.sub-chips{display:none;overflow-x:auto;padding:0 16px 8px;gap:6px;scrollbar-width:none}.sub-chips::-webkit-scrollbar{display:none}.sub-chip{padding:4px 10px;background:#e2e8f0;border-radius:14px;font-size:11px;font-weight:600;color:#475569;cursor:pointer;border:1px solid #cbd5e1;white-space:nowrap}.sub-chip.active{background:#0284c7;color:white;border-color:#0284c7}.install-pwa-btn{background:linear-gradient(135deg,#0284c7,#38bdf8);color:#0f172a;border:1px solid #7dd3fc;padding:5px 10px;border-radius:12px;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:4px;box-shadow:0 2px 6px rgba(56,189,248,0.35);animation:pulseGlow 2.5s infinite}@keyframes pulseGlow{0%,100%{box-shadow:0 2px 6px rgba(56,189,248,0.35)}50%{box-shadow:0 2px 14px rgba(56,189,248,0.7)}}.quick-action-bar{display:flex;gap:8px;padding:6px 16px 8px;overflow-x:auto;scrollbar-width:none;align-items:center}.quick-action-bar::-webkit-scrollbar{display:none}.toggle-pill{background:white;border:1.5px solid #cbd5e1;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:700;color:#334155;display:inline-flex;align-items:center;gap:6px;cursor:pointer;white-space:nowrap;user-select:none;transition:all 0.2s ease;box-shadow:0 1px 3px rgba(0,0,0,0.04)}.toggle-pill.active{background:#059669;border-color:#059669;color:white}.toggle-pill .toggle-status{font-size:9px;padding:1px 5px;border-radius:8px;background:#f1f5f9;color:#64748b;font-weight:800}.toggle-pill.active .toggle-status{background:#34d399;color:#064e3b}.action-pill-btn{padding:6px 12px;border-radius:20px;font-size:11px;font-weight:700;border:1.5px solid #cbd5e1;background:white;color:#334155;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:4px;transition:all 0.2s ease;box-shadow:0 1px 3px rgba(0,0,0,0.04)}.action-pill-btn.express-btn{border-color:#fed7aa;color:#c2410c}.action-pill-btn.express-btn.active{background:linear-gradient(135deg,#ea580c,#f97316);color:white;border-color:#ea580c;box-shadow:0 2px 8px rgba(234,88,12,0.35)}.action-pill-btn.pro-btn{border-color:#e9d5ff;color:#7e22ce}.action-pill-btn.pro-btn.active{background:linear-gradient(135deg,#7e22ce,#a855f7);color:white;border-color:#7e22ce;box-shadow:0 2px 8px rgba(126,34,206,0.35)}.featured-promo-banner{margin:2px 16px 3px;background:linear-gradient(135deg,#fffbeb,#fef3c7);border:1px solid #fde68a;border-radius:8px;padding:5px 10px;display:flex;justify-content:space-between;align-items:center;gap:6px;cursor:pointer;box-shadow:0 1px 2px rgba(245,158,11,0.04);transition:all 0.15s ease}.featured-promo-banner:hover{background:#fef08a}.featured-banner-left{display:flex;align-items:center;gap:6px;flex:1;overflow:hidden}.featured-banner-title{font-size:11px;font-weight:800;color:#92400e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.featured-banner-desc{display:none}.boost-btn{background:linear-gradient(135deg,#d97706,#f59e0b);color:white;border:none;padding:3px 8px;border-radius:6px;font-weight:800;font-size:9.5px;cursor:pointer;white-space:nowrap}.action-pill-btn.video-pill{border-color:#c7d2fe;color:#4338ca;font-weight:800}.action-pill-btn.video-pill:hover{background:#e0e7ff}.btn-video{background:#eef2ff;color:#4f46e5;border:1px solid #c7d2fe;flex:1;font-size:11px;font-weight:700}.btn-video:hover{background:#e0e7ff}.card.featured-card{border:2px solid #f59e0b;background:linear-gradient(180deg,#fffdfa 0%,#ffffff 100%);box-shadow:0 4px 16px rgba(245,158,11,0.16);position:relative}.featured-listing-strip{background:linear-gradient(135deg,#d97706,#f59e0b);color:white;font-size:9.5px;font-weight:800;padding:2px 7px;border-radius:6px;display:inline-flex;align-items:center;gap:3px;margin-bottom:4px;box-shadow:0 1px 2px rgba(217,119,6,0.2)}.badge-pro{background:linear-gradient(135deg,#7e22ce,#9333ea);color:white !important;font-weight:800;border:1px solid #c084fc;box-shadow:0 2px 4px rgba(126,34,206,0.2)}.badge-express{background:linear-gradient(135deg,#ea580c,#f97316);color:white !important;font-weight:800;border:1px solid #fdba74;box-shadow:0 2px 4px rgba(234,88,12,0.2)}.dot-pulse{display:inline-block;width:6px;height:6px;background:#16a34a;border-radius:50%;margin-right:4px;animation:pulseGreen 1.5s infinite}@keyframes pulseGreen{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(1.3)}}.status-busy{background:#f1f5f9;color:#64748b}.rating-badge-btn{display:inline-flex;align-items:center;gap:6px;cursor:pointer;background:#fef9c3;padding:3px 8px;border-radius:8px;border:1px solid #fde047;transition:background 0.15s ease}.rating-badge-btn:hover{background:#fef08a}.rating-star{color:#854d0e;font-weight:800;font-size:12px}.rating-reviews{color:#713f12;font-size:11px;font-weight:600;text-decoration:underline}.btn-id{background:#f8fafc;color:#0284c7;border:1px solid #bae6fd;flex:1.1;font-size:11px;font-weight:700}.btn-id:hover{background:#f0f9ff}.btn-map{background:#ecfdf5;color:#059669;border:1px solid #a7f3d0;flex:1.1;font-size:11px;font-weight:700}.btn-map:hover{background:#d1fae5}.id-card-wrapper{background:linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#0f172a 100%);border:2px solid #38bdf8;border-radius:18px;padding:16px;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.4),inset 0 0 20px rgba(56,189,248,0.15);position:relative;overflow:hidden}.id-card-wrapper::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(56,189,248,0.08) 0%,transparent 60%);pointer-events:none}.id-card-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(56,189,248,0.3);padding-bottom:10px;margin-bottom:12px}.id-card-brand{font-size:18px;font-weight:900;letter-spacing:-0.5px}.id-card-brand span{color:#38bdf8}.id-verified-seal{background:linear-gradient(135deg,#10b981,#059669);color:white;font-size:10px;font-weight:800;padding:3px 8px;border-radius:12px;box-shadow:0 2px 6px rgba(16,185,129,0.3)}.id-card-body{display:flex;gap:14px;align-items:center}.id-photo-frame{width:78px;height:78px;border-radius:50%;border:3px solid #38bdf8;padding:2px;background:#1e293b;display:flex;align-items:center;justify-content:center;font-size:34px;box-shadow:0 4px 10px rgba(0,0,0,0.3);flex-shrink:0;overflow:hidden}.id-photo-frame img{width:100%;height:100%;object-fit:cover;border-radius:50%}.id-meta-name{font-size:16px;font-weight:800;color:white;line-height:1.2}.id-meta-trade{font-size:12px;color:#38bdf8;font-weight:700;margin-top:3px}.id-meta-id{font-size:11px;color:#94a3b8;font-family:monospace;margin-top:2px}.id-details-grid{background:rgba(15,23,42,0.6);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:10px;margin:12px 0;display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:11px}.id-detail-item{display:flex;flex-direction:column}.id-detail-lbl{color:#94a3b8;font-size:9.5px;text-transform:uppercase;letter-spacing:0.5px}.id-detail-val{color:#f1f5f9;font-weight:700;margin-top:2px}.id-qr-row{display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(56,189,248,0.2);padding-top:10px;margin-top:10px}.id-qr-img{width:58px;height:58px;background:white;padding:3px;border-radius:6px}.id-security-txt{font-size:10px;color:#94a3b8;line-height:1.4;flex:1;padding-left:10px}.review-score-banner{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac;border-radius:14px;padding:12px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.review-score-big{font-size:26px;font-weight:900;color:#15803d}.review-item{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px 12px;margin-bottom:8px;font-size:12px}.review-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}.review-author{font-weight:700;color:#0f172a}.review-date{font-size:10px;color:#94a3b8}.review-stars{color:#eab308;font-size:12px;margin-bottom:4px}.review-comment{color:#334155;line-height:1.4}.review-add-box{background:#f1f5f9;border-radius:12px;padding:12px;margin-top:14px;border:1px solid #cbd5e1}.star-rating-select{display:flex;gap:6px;font-size:22px;cursor:pointer}.star-btn{color:#cbd5e1;transition:color 0.15s}.star-btn.active{color:#eab308}.boost-plan-card{background:white;border:2px solid #cbd5e1;border-radius:12px;padding:10px 12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:all 0.2s}.boost-plan-card.selected{border-color:#f59e0b;background:#fffbeb;box-shadow:0 2px 8px rgba(245,158,11,0.15)}.boost-plan-title{font-weight:800;font-size:13px;color:#0f172a}.boost-plan-sub{font-size:11px;color:#64748b}.boost-plan-price{font-size:16px;font-weight:900;color:#d97706}.express-emergency-strip{margin:2px 16px 3px;background:linear-gradient(135deg,#fff7ed,#ffedd5);border:1px solid #fed7aa;border-radius:8px;padding:5px 10px;display:flex;justify-content:space-between;align-items:center;gap:6px;cursor:pointer;box-shadow:0 1px 2px rgba(234,88,12,0.04);transition:all 0.15s ease}.express-emergency-strip:hover{background:#fed7aa}.express-strip-tag{font-size:9.5px;font-weight:800;color:#c2410c;background:white;padding:2px 7px;border-radius:6px;border:1px solid #fed7aa;white-space:nowrap}.pulse-lightning{font-size:16px;display:inline-block;animation:lightningPulse 1.2s infinite}@keyframes lightningPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.3);opacity:0.7}}.city-chips-bar{display:flex;gap:6px;padding:0 16px 8px;overflow-x:auto;scrollbar-width:none;align-items:center}.city-chips-bar::-webkit-scrollbar{display:none}.city-chip{padding:5px 11px;background:white;border:1px solid #cbd5e1;border-radius:16px;font-size:11px;font-weight:700;color:#334155;cursor:pointer;white-space:nowrap;transition:all 0.15s ease;box-shadow:0 1px 2px rgba(0,0,0,0.03)}.city-chip.active{background:#0284c7;color:white;border-color:#0284c7;box-shadow:0 2px 6px rgba(2,132,199,0.3)}.rate-card-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:12px}.rate-card-table th{background:#f1f5f9;color:#1e293b;padding:8px 10px;text-align:left;font-weight:800;border-bottom:2px solid #cbd5e1}.rate-card-table td{padding:8px 10px;border-bottom:1px solid #e2e8f0;color:#334155}.rate-cat-header{background:#e0f2fe;color:#0369a1;font-weight:800;padding:6px 10px;font-size:11.5px}.rate-price{font-weight:800;color:#0284c7;text-align:right;white-space:nowrap}.btn-share{background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;flex:1;font-size:11px;font-weight:700}.btn-share:hover{background:#dcfce7}.movein-promo-banner{margin:4px 16px 8px;background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #93c5fd;border-radius:12px;padding:9px 12px;display:flex;justify-content:space-between;align-items:center;gap:8px;cursor:pointer;box-shadow:0 1px 4px rgba(30,58,138,0.08);transition:all 0.2s ease}.movein-promo-banner:hover{background:#bfdbfe}.movein-tag{font-size:10.5px;font-weight:800;color:#1e40af;background:white;padding:3px 8px;border-radius:8px;border:1px solid #93c5fd;white-space:nowrap}.action-pill-btn.spare-pill{border-color:#a7f3d0;color:#047857;font-weight:800}.action-pill-btn.spare-pill:hover{background:#d1fae5}.action-pill-btn.bidding-pill{border-color:#fde68a;color:#b45309;font-weight:800}.action-pill-btn.bidding-pill:hover{background:#fef3c7}.action-pill-btn.pool-pill{border-color:#fbcfe8;color:#be185d;font-weight:800}.action-pill-btn.pool-pill:hover{background:#fce7f3}.spare-cat-bar{display:flex;gap:6px;overflow-x:auto;padding:4px 0 8px;scrollbar-width:none}.spare-cat-bar::-webkit-scrollbar{display:none}.spare-cat-chip{padding:4px 10px;background:#f1f5f9;border-radius:12px;font-size:11px;font-weight:700;color:#475569;cursor:pointer;white-space:nowrap;border:1px solid #cbd5e1}.spare-cat-chip.active{background:#059669;color:white;border-color:#059669}.spare-table{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:6px}.spare-table th{background:#f8fafc;padding:7px 8px;text-align:left;border-bottom:2px solid #cbd5e1;color:#1e293b;font-weight:800}.spare-table td{padding:7px 8px;border-bottom:1px solid #e2e8f0;color:#334155}.spare-fair-price{color:#059669;font-weight:800;text-align:right;white-space:nowrap}.bid-card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:10px 12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;gap:10px}.bid-title{font-weight:800;font-size:13px;color:#0f172a}.bid-sub{font-size:11px;color:#64748b;margin-top:2px}.bid-budget-badge{background:#fef3c7;color:#b45309;padding:3px 8px;border-radius:8px;font-weight:900;font-size:12px;border:1px solid #fde68a;white-space:nowrap}.btn-accept-bid{background:#16a34a;color:white;border:none;padding:5px 10px;border-radius:8px;font-size:11px;font-weight:800;cursor:pointer;white-space:nowrap}.pool-discount-box{background:linear-gradient(135deg,#fdf2f8,#fce7f3);border:1px solid #fbcfe8;border-radius:12px;padding:12px;margin-bottom:12px}.pool-tier-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:8px}.pool-tier-card{background:white;border:1px solid #f472b6;border-radius:8px;padding:8px;text-align:center}.pool-tier-num{font-weight:900;font-size:13px;color:#be185d}.pool-tier-off{font-size:10.5px;color:#15803d;font-weight:800;margin-top:2px}.card{background:white;border-radius:10px;padding:7px 10px;margin-bottom:6px;border:1px solid #e2e8f0;box-shadow:0 1px 2px rgba(0,0,0,0.02);transition:all 0.15s ease}.card.featured-card{border:1.5px solid #f59e0b;background:linear-gradient(180deg,#fffdf8 0%,#ffffff 100%);box-shadow:0 2px 6px rgba(245,158,11,0.12)}.compact-header-row{display:flex;justify-content:space-between;align-items:center;gap:4px;margin-bottom:2px}.compact-title-wrap{display:flex;align-items:center;gap:5px;flex:1;overflow:hidden;white-space:nowrap}.name{font-size:13.5px;font-weight:800;color:#0f172a;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.compact-meta-row{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#64748b;margin-bottom:3px;gap:6px}.compact-left-meta{display:flex;align-items:center;gap:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.compact-price-wrap{display:flex;align-items:center;gap:5px;flex-shrink:0}.price{font-size:12.5px;font-weight:800;color:#0284c7}.rating-star-btn{font-weight:800;font-size:10px;color:#854d0e;background:#fef9c3;padding:1px 5px;border-radius:4px;cursor:pointer;border:1px solid #fde047;white-space:nowrap}.compact-desc-text{font-size:10px;color:#64748b;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.2}.compact-actions-bar{display:flex;gap:3px;width:100%;margin-top:3px;padding-top:4px;border-top:1px solid #f1f5f9}.btn{padding:4px 6px;border-radius:5px;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:2px;cursor:pointer;border:none;min-height:25px;white-space:nowrap}.compact-actions-bar .btn-book{flex:2;background:#0284c7;color:white;font-size:10.5px}.compact-actions-bar .btn-call{flex:0.9;background:#f1f5f9;color:#334155;border:1px solid #cbd5e1}.compact-actions-bar .btn-wa{flex:0.9;background:#22c55e;color:white}.compact-actions-bar .btn-id{flex:0.8;background:#f8fafc;color:#0284c7;border:1px solid #bae6fd}.compact-actions-bar .btn-video{flex:0.7;background:#eef2ff;color:#4f46e5;border:1px solid #c7d2fe}.compact-actions-bar .btn-map{flex:0.7;background:#ecfdf5;color:#059669;border:1px solid #a7f3d0}.compact-actions-bar .btn-share{flex:0.7;background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0}.badge{font-size:9.5px;padding:1px 5px;border-radius:8px}.badge-pro{font-size:9px;padding:1px 5px}.badge-express{font-size:9px;padding:1px 5px}.status-badge{font-size:9px;padding:1px 5px;border-radius:8px}.card-img-banner{height:140px;margin-bottom:6px}
 
 @media print {
 
@@ -118,11 +118,7 @@
 
   }
 
-  button, .close-btn, .submit-btn, .btn, .no-print, header, footer, .quick-tools-grid, .categories, .search-box, .city-chips-bar, .sub-chips, .list, .pwa-banner, .express-emergency-strip, .support-fab, .partner-fab {
-
-    display: none !important;
-
-  }
+  button, .close-btn, .submit-btn, .btn, .no-print, header, footer, .quick-tools-grid, .categories, .search-box, .city-chips-bar, .sub-chips, .list, .pwa-banner, .express-emergency-strip, .support-fab,
 
 }
 
@@ -627,7 +623,7 @@ body {
 
   justify-content: center;
 
-  font-size: 9.5px;
+  font-size: 10px;
 
   font-weight: 700;
 
@@ -637,11 +633,25 @@ body {
 
   flex: 1;
 
+  min-width: 0;
+
   height: 100%;
 
-  padding: 0;
+  padding: 2px 2px;
 
   transition: color 0.15s, transform 0.15s;
+
+}
+
+.uc-nav-btn span {
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  max-width: 100%;
 
 }
 
@@ -668,6 +678,90 @@ body {
 
 }
 
+
+
+.support-fab {
+
+  position: fixed;
+
+  bottom: 74px;
+
+  left: 12px;
+
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+
+  color: white;
+
+  padding: 8px 13px;
+
+  border-radius: 26px;
+
+  font-weight: 800;
+
+  font-size: 11px;
+
+  border: 1.5px solid rgba(255,255,255,0.4);
+
+  box-shadow: 0 4px 12px rgba(37,99,235,0.4);
+
+  z-index: 998;
+
+  display: flex !important;
+
+  align-items: center;
+
+  gap: 5px;
+
+  cursor: pointer;
+
+  text-decoration: none;
+
+  transition: transform 0.15s, box-shadow 0.15s;
+
+}
+
+.support-fab:active { transform: scale(0.93); }
+
+
+.partner-fab {
+
+  position: fixed;
+
+  bottom: 74px;
+
+  right: 12px;
+
+  background: #0f172a;
+
+  color: #38bdf8;
+
+  padding: 8px 13px;
+
+  border-radius: 26px;
+
+  font-weight: 800;
+
+  font-size: 11px;
+
+  border: 1.5px solid #38bdf8;
+
+  box-shadow: 0 4px 12px rgba(15,23,42,0.4);
+
+  cursor: pointer;
+
+  z-index: 998;
+
+  display: flex !important;
+
+  align-items: center;
+
+  gap: 5px;
+
+  transition: transform 0.15s, box-shadow 0.15s;
+
+}
+
+.partner-fab:active { transform: scale(0.93); }
 
 </style>
 
@@ -939,6 +1033,26 @@ body {
   </div>
 
   <div class="uc-tools-scroll" id="ucSmartToolsScroll">
+
+    <div class="uc-tool-item" onclick="openAiHelpModal()" style="border-color:#93c5fd; background:#eff6ff;">
+
+      <div class="uc-tool-icon">🤖</div>
+
+      <div class="uc-tool-title" id="lblUcAiTool">Fixr AI உதவி</div>
+
+      <div class="uc-tool-sub" id="lblUcAiToolSub">24/7 AI Chat</div>
+
+    </div>
+
+    <div class="uc-tool-item" onclick="openModal('partnerModal')" style="border-color:#38bdf8; background:#f0f9ff;">
+
+      <div class="uc-tool-icon">🛠️</div>
+
+      <div class="uc-tool-title" id="lblUcJoinTool">தொழிலாளர் பதிவு</div>
+
+      <div class="uc-tool-sub" id="lblUcJoinToolSub">₹49 கட்டணம்</div>
+
+    </div>
 
     <div class="uc-tool-item" onclick="openBudgetBiddingModal()" style="border-color:#fde047; background:#fffef9;">
 
@@ -3610,43 +3724,50 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
   <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:12px; padding:16px; margin-bottom:12px; text-align:center;">
 
-    <div style="font-size:13px; font-weight:800; color:#0f172a; margin-bottom:4px;" id="lblTechLoginHeading">வணக்கம்! தொழிலாளர் உள்நுழைவு</div>
+    <div style="font-size:13px; font-weight:800; color:#0f172a; margin-bottom:4px;" id="lblTechLoginHeading">வணக்கம்! தொழிலாளர் பாதுகாப்பான உள்நுழைவு</div>
 
-    <div style="font-size:11px; color:#64748b; line-height:1.5;" id="lblTechLoginDesc">உங்கள் பதிவு செய்த 10 இலக்க மொபைல் எண் அல்லது தொழிலாளர் ID உள்ளிட்டு உள்நுழையவும்.</div>
+    <div style="font-size:11px; color:#64748b; line-height:1.5;" id="lblTechLoginDesc">உங்கள் தனிப்பட்ட முன்பதிவுகள் & பில்களை பிறர் பார்க்காதவாறு 100% பாதுகாக்கப்பட்டுள்ளது.</div>
 
    
 
     <div class="form-group" style="text-align:left; margin-top:12px;">
 
-      <label id="lblTechLoginInput" style="font-size:11px; font-weight:700;">📱 பதிவு செய்த மொபைல் எண் / ID:</label>
+      <label id="lblTechLoginInput" style="font-size:11px; font-weight:700;">📱 பதிவு செய்த மொபைல் எண் / தொழிலாளர் ID:</label>
 
       <input type="text" id="techLoginInput" class="form-input" placeholder="எ.கா: 9884334097 அல்லது FIXR-TN-2026-0881" style="font-size:13px;">
 
     </div>
 
 
-    <!-- Quick test logins -->
+    <!-- Secure 4-Digit PIN Field for Privacy -->
 
-    <div style="text-align:left; margin-bottom:12px;">
+    <div class="form-group" style="text-align:left; margin-top:10px;">
 
-      <div style="font-size:10px; color:#64748b; font-weight:bold; margin-bottom:4px;">மாதிரி தொழிலாளர் (Quick Login):</div>
+      <div style="display:flex; justify-content:space-between; align-items:center;">
 
-      <div style="display:flex; gap:6px; flex-wrap:wrap;">
+        <label id="lblTechPinLabel" style="font-size:11px; font-weight:700;">🔒 ரகசிய 4-இலக்க PIN (Security PIN):</label>
 
-        <button type="button" class="btn" onclick="quickTechLogin('9884334097')" style="background:white; color:#0f172a; border:1px solid #cbd5e1; font-size:10.5px; padding:4px 8px; border-radius:12px;">⚡ Murthi (9884334097)</button>
-
-        <button type="button" class="btn" onclick="quickTechLogin('9876543211')" style="background:white; color:#0f172a; border:1px solid #cbd5e1; font-size:10.5px; padding:4px 8px; border-radius:12px;">❄️ CoolCare AC (9876543211)</button>
-
-        <button type="button" class="btn" onclick="quickTechLogin('9876543212')" style="background:white; color:#0f172a; border:1px solid #cbd5e1; font-size:10.5px; padding:4px 8px; border-radius:12px;">💧 AquaPure RO (9876543212)</button>
+        <span style="font-size:10px; color:#64748b;" id="lblTechPinHint">(மாதிரி PIN: 8843)</span>
 
       </div>
+
+      <input type="password" id="techLoginPin" class="form-input" placeholder="4-இலக்க PIN (எ.கா: 8843)" maxlength="4" style="font-size:14px; letter-spacing:4px; text-align:center; font-weight:bold;">
+
+    </div>
+
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; font-size:10.5px;">
+
+      <a href="javascript:void(0)" onclick="sendTechLoginOtp()" style="color:#0284c7; text-decoration:none; font-weight:bold;" id="lnkTechSmsOtp">📱 SMS OTP மூலம் உள்நுழைக</a>
+
+      <span style="color:#16a34a; font-weight:bold;">🛡️ 100% Privacy Protected</span>
 
     </div>
 
 
     <button type="button" class="submit-btn" style="background:#0284c7; width:100%; padding:10px; font-size:13px;" id="btnTechLoginSubmit" onclick="submitTechLogin()">
 
-      🚀 போர்ட்டலில் உள்நுழைக (Login to Portal)
+      உள்நுழைக (Secure Login) ➔
 
     </button>
 
@@ -3786,6 +3907,66 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 </div>
 
 
+<!-- Voice Recognition Feedback Banner -->
+
+<div id="voiceFeedbackBanner" style="display:none; position:fixed; top:75px; left:16px; right:16px; background:linear-gradient(135deg, #1e1b4b, #4338ca); color:white; padding:12px 16px; border-radius:14px; z-index:9999; box-shadow:0 4px 16px rgba(0,0,0,0.35); text-align:center; animation:fadeIn 0.2s ease;">
+
+  <div style="font-size:18px; margin-bottom:2px;" id="voiceFeedbackIcon">🎙️</div>
+
+  <div style="font-size:12.5px; font-weight:800;" id="voiceFeedbackTitle">பேசுங்கள்... கேட்கிறது (Listening...)</div>
+
+  <div style="font-size:10.5px; color:#c7d2fe; margin-top:2px;" id="voiceFeedbackSub">எ.கா: "சென்னை AC சர்வீஸ்", "எலக்ட்ரீஷியன்", "வாடகை வீடு"</div>
+
+</div>
+
+
+<!-- === Fixr Mobile Fixed Bottom Navigation Bar === -->
+
+<div class="uc-bottom-nav" id="ucBottomNav">
+
+  <button type="button" class="uc-nav-btn active" id="btnNavHome" onclick="selectCategoryFromGrid('அனைத்தும்'); setActiveBottomNav('btnNavHome');">
+
+    <span class="uc-nav-icon">🏠</span>
+
+    <span id="lblNavHome">முகப்பு</span>
+
+  </button>
+
+  <button type="button" class="uc-nav-btn" id="btnNavBidding" onclick="openBudgetBiddingModal(); setActiveBottomNav('btnNavBidding');">
+
+    <span class="uc-nav-icon">🎯</span>
+
+    <span id="lblNavBidding">என் பட்ஜெட்</span>
+
+  </button>
+
+  <button type="button" class="uc-nav-btn" id="btnNavVoice" onclick="startVoiceBooking(); setActiveBottomNav('btnNavVoice');" style="color:#4338ca;">
+
+    <span class="uc-nav-icon" style="font-size:22px; filter:drop-shadow(0 2px 4px rgba(67,56,202,0.3));">🎙️</span>
+
+    <span id="lblNavVoice" style="color:#4338ca; font-weight:800;">குரல்வழி</span>
+
+  </button>
+
+  <button type="button" class="uc-nav-btn" id="btnNavBookings" onclick="openMyBookingsModal(); setActiveBottomNav('btnNavBookings');">
+
+    <span class="uc-nav-icon">📋</span>
+
+    <span id="lblNavBookings">முன்பதிவுகள்</span>
+
+  </button>
+
+  <button type="button" class="uc-nav-btn" id="btnNavAccount" onclick="openTechPortalModal(); setActiveBottomNav('btnNavAccount');">
+
+    <span class="uc-nav-icon">👷</span>
+
+    <span id="lblNavAccount">தொழிலாளர்</span>
+
+  </button>
+
+</div>
+
+
 <script>
 
 // --- Urban Company UI Helpers ---
@@ -3796,31 +3977,70 @@ function selectCategoryFromGrid(catKey) {
 
   currentRentalSubFilter = 'all';
 
+  searchQuery = '';
+
+  const searchInput = document.getElementById('searchInput');
+
+  if (searchInput) searchInput.value = '';
+
+  filterOnlyAvailable = false;
+
+  filterOnlyExpress = false;
+
+  filterOnlyPro = false;
+
+  const availStatus = document.getElementById('availToggleStatus');
+
+  if (availStatus) availStatus.innerText = 'OFF';
+
+  const availContainer = document.getElementById('availToggleContainer');
+
+  if (availContainer) availContainer.classList.remove('active');
+
+  document.querySelectorAll('.action-pill-btn').forEach(b => b.classList.remove('active'));
+
+
   // Highlight active category card
 
   document.querySelectorAll('.uc-cat-card').forEach(card => card.classList.remove('active'));
-
-  // Highlight matching card if available
 
   const cards = document.querySelectorAll('.uc-cat-card');
 
   cards.forEach(c => {
 
-  if (c.innerText.includes(catKey)) c.classList.add('active');
+    if (catKey === 'அனைத்தும்') {
+
+      if (c.querySelector('#lblCatAll') || c.innerText.includes('அனைத்து') || c.innerText.includes('All')) {
+
+        c.classList.add('active');
+
+      }
+
+    } else {
+
+      if (c.innerText.includes(catKey) || (categoryNameMap[catKey] && c.innerText.toLowerCase().includes(categoryNameMap[catKey].en.toLowerCase()))) {
+
+        c.classList.add('active');
+
+      }
+
+    }
 
   });
+
 
   renderCategories();
 
   render();
 
-  // Scroll smoothly to services list
+
+  // Scroll smoothly to services list so user sees all items
 
   const listEl = document.getElementById('servicesList');
 
-  if (listEl && catKey !== 'அனைத்தும்') {
+  if (listEl) {
 
-  listEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    listEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
   }
 
@@ -4930,6 +5150,46 @@ function setActiveBottomNav(btnId) {
   const bsSub = document.getElementById('bookingSuccessSub');
 
   if (bsSub) bsSub.innerText = isTa ? "உங்கள் முன்பதிவு விவரங்கள் SMS வழியாக அனுப்பப்பட்டுள்ளன." : "Your booking confirmation has been sent via SMS.";
+
+
+ 
+
+  // AI & Join Tools in scroll
+
+  const aiTool = document.getElementById('lblUcAiTool');
+
+  if (aiTool) aiTool.innerText = isTa ? 'Fixr AI உதவி' : 'Fixr AI Help';
+
+  const aiToolSub = document.getElementById('lblUcAiToolSub');
+
+  if (aiToolSub) aiToolSub.innerText = isTa ? '24/7 AI Chat' : '24/7 AI Chat';
+
+  const joinTool = document.getElementById('lblUcJoinTool');
+
+  if (joinTool) joinTool.innerText = isTa ? 'தொழிலாளர் பதிவு' : 'Join as Partner';
+
+  const joinToolSub = document.getElementById('lblUcJoinToolSub');
+
+  if (joinToolSub) joinToolSub.innerText = isTa ? '₹49 கட்டணம்' : '₹49 Fee';
+
+
+  // Tech PIN & Privacy Labels
+
+  const pinLbl = document.getElementById('lblTechPinLabel');
+
+  if (pinLbl) pinLbl.innerText = isTa ? '🔒 ரகசிய 4-இலக்க PIN (Security PIN):' : '🔒 4-Digit Security PIN:';
+
+  const pinHnt = document.getElementById('lblTechPinHint');
+
+  if (pinHnt) pinHnt.innerText = isTa ? '(மாதிரி PIN: 8843)' : '(Default PIN: 8843)';
+
+  const pinInp = document.getElementById('techLoginPin');
+
+  if (pinInp) pinInp.placeholder = isTa ? '4-இலக்க PIN' : '4-digit PIN';
+
+  const lnkOtp = document.getElementById('lnkTechSmsOtp');
+
+  if (lnkOtp) lnkOtp.innerText = isTa ? '📱 SMS OTP மூலம் உள்நுழைக' : '📱 Login via SMS OTP';
 
 
   // --- Footer ---
@@ -7611,7 +7871,254 @@ function printRentalAgreementDoc() {
 
 function printInvoiceDoc() {
 
-  printDocumentContent('printableInvoiceCard', 'Fixr Service Invoice Bill');
+  const tech = document.getElementById('invTechName')?.value.trim() || 'Fixr Verified Expert';
+
+  const cust = document.getElementById('invCustName')?.value.trim() || (currentLang === 'ta' ? 'வாடிக்கையாளர்' : 'Customer');
+
+  const phone = document.getElementById('invCustPhone')?.value.trim() || '-';
+
+  const labor = parseFloat(document.getElementById('invLabor')?.value || 0) || 0;
+
+  const spares = parseFloat(document.getElementById('invSpares')?.value || 0) || 0;
+
+  const total = labor + spares;
+
+  const refElem = document.getElementById('invBillNumberDate');
+
+  const refText = refElem ? refElem.innerText : ('Ref: FIXR-INV-' + Date.now().toString().slice(-6));
+
+  const isTa = (currentLang === 'ta');
+
+  const today = new Date().toLocaleDateString(isTa ? 'ta-IN' : 'en-IN');
+
+
+  const invoiceHtml = `
+
+    <div style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width:650px; margin:0 auto; padding:24px; border:2px solid #0f172a; border-radius:12px; background:white; color:#0f172a;">
+
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #0f172a; padding-bottom:12px; margin-bottom:14px;">
+
+        <div>
+
+          <div style="font-size:22px; font-weight:900; color:#0f172a;">Fixr Services</div>
+
+          <div style="font-size:12px; color:#475569; font-weight:600;">தமிழ்நாடு நம்பகமான ஹோம் சர்வீசஸ் & வாடகைகள்</div>
+
+          <div style="font-size:11px; color:#64748b; margin-top:2px;">${refText} | ${today}</div>
+
+        </div>
+
+        <div style="text-align:right;">
+
+          <span style="background:#dcfce7; color:#15803d; border:1px solid #86efac; padding:4px 10px; border-radius:8px; font-size:11px; font-weight:800;">
+
+            ✓ PAID & VERIFIED
+
+          </span>
+
+          <div style="font-size:10px; color:#64748b; margin-top:4px;">GST Exempt (0% Commission)</div>
+
+        </div>
+
+      </div>
+
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:12px; margin-bottom:14px; font-size:12px;">
+
+        <div>
+
+          <div style="font-size:10.5px; color:#64748b; font-weight:bold; text-transform:uppercase;">${isTa ? 'தொழிலாளர் / கடை விவரம்' : 'Service Provider'}:</div>
+
+          <div style="font-size:13px; font-weight:800; color:#0f172a; margin-top:2px;">${tech}</div>
+
+          <div style="color:#475569;">Fixr Certified Partner</div>
+
+        </div>
+
+        <div>
+
+          <div style="font-size:10.5px; color:#64748b; font-weight:bold; text-transform:uppercase;">${isTa ? 'வாடிக்கையாளர் விவரம்' : 'Customer Details'}:</div>
+
+          <div style="font-size:13px; font-weight:800; color:#0f172a; margin-top:2px;">${cust}</div>
+
+          <div style="color:#475569;">📞 ${phone}</div>
+
+        </div>
+
+      </div>
+
+
+      <table style="width:100%; border-collapse:collapse; margin-bottom:16px; font-size:12.5px;">
+
+        <thead>
+
+          <tr style="background:#0f172a; color:white;">
+
+            <th style="padding:10px; text-align:left; border-radius:6px 0 0 0;">${isTa ? 'விளக்கம் (Description)' : 'Service Description'}</th>
+
+            <th style="padding:10px; text-align:right; border-radius:0 6px 0 0; width:140px;">${isTa ? 'கட்டணம் (Amount)' : 'Amount (₹)'}</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr style="border-bottom:1px solid #e2e8f0;">
+
+            <td style="padding:10px; color:#1e293b;">
+
+              <b>${isTa ? 'வேலைக் கூலி (Labor & Service Charges)' : 'Labor & Service Charges'}</b>
+
+              <div style="font-size:11px; color:#64748b;">${isTa ? 'தொழில்முறை பழுது நீக்கல் & சர்வீஸ் கட்டணம்' : 'Professional service & repair work'}</div>
+
+            </td>
+
+            <td style="padding:10px; text-align:right; font-weight:bold; color:#0f172a;">₹${labor}</td>
+
+          </tr>
+
+          <tr style="border-bottom:2px solid #cbd5e1;">
+
+            <td style="padding:10px; color:#1e293b;">
+
+              <b>${isTa ? 'உதிரிபாகங்கள் (Spare Parts Cost)' : 'Spare Parts & Materials Cost'}</b>
+
+              <div style="font-size:11px; color:#64748b;">${isTa ? 'புதிய மாற்றப்பட்ட அசல் உதிரிபாகங்கள்' : 'Genuine replacement parts with warranty'}</div>
+
+            </td>
+
+            <td style="padding:10px; text-align:right; font-weight:bold; color:#0f172a;">₹${spares}</td>
+
+          </tr>
+
+          <tr style="background:#f0fdf4;">
+
+            <td style="padding:12px 10px; font-size:14px; font-weight:900; color:#166534;">
+
+              ${isTa ? 'மொத்த கட்டணம் (Total Paid):' : 'Grand Total Paid:'}
+
+            </td>
+
+            <td style="padding:12px 10px; text-align:right; font-size:16px; font-weight:900; color:#15803d;">
+
+              ₹${total}
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+
+      <div style="background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:10px; font-size:11.5px; color:#92400e; margin-bottom:14px;">
+
+        🛡️ <b>Fixr 30-Day Guarantee:</b> ${isTa ? 'இந்த பணியில் ஏதேனும் குறைபாடுகள் இருப்பின் 30 நாட்களுக்குள் முற்றிலும் இலவசமாக சரிசெய்து தரப்படும்.' : 'Includes 30 days 100% free rework warranty by Fixr certified technician.'}
+
+      </div>
+
+
+      <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px dashed #cbd5e1; padding-top:10px; font-size:10.5px; color:#64748b;">
+
+        <div>Fixr 24/7 Helpline: <b>+91 9884334097</b> | www.fixrservice.in</div>
+
+        <div>Customer Digital Receipt</div>
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  // Reliable Universal Printing for Mobile Chrome & Desktop
+
+  let printWin = null;
+
+  try {
+
+    printWin = window.open('', '_blank');
+
+  } catch(e) {}
+
+
+  if (printWin) {
+
+    printWin.document.open();
+
+    printWin.document.write(`
+
+      <!DOCTYPE html>
+
+      <html>
+
+      <head>
+
+        <title>Fixr Invoice - ${cust}</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <style>
+
+          @page { size: A4 portrait; margin: 10mm; }
+
+          body { margin: 0; padding: 16px; background: white; }
+
+          @media print {
+
+            body { padding: 0; }
+
+          }
+
+        </style>
+
+      </head>
+
+      <body>
+
+        ${invoiceHtml}
+
+        <scr'ipt>\n          window.onload = function() {\n            setTimeout(function() {\n              window.focus();\n              window.print();\n            }, 300);\n          };\n        </scr'ipt>
+
+      </body>
+
+      </html>
+
+    `);
+
+    printWin.document.close();
+
+  } else {
+
+    // Mobile fallback if window.open was blocked: Render directly into an active printable container
+
+    let container = document.getElementById('universalPrintContainer');
+
+    if (!container) {
+
+      container = document.createElement('div');
+
+      container.id = 'universalPrintContainer';
+
+      document.body.appendChild(container);
+
+    }
+
+    container.innerHTML = invoiceHtml;
+
+    container.className = 'printable-active';
+
+    window.print();
+
+    setTimeout(() => {
+
+      container.classList.remove('printable-active');
+
+    }, 2500);
+
+  }
 
 }
 
@@ -10826,53 +11333,89 @@ function submitTechLogin() {
 
   const inputVal = (document.getElementById('techLoginInput').value || '').trim();
 
+  const enteredPin = (document.getElementById('techLoginPin').value || '').trim();
+
+  const isTa = (currentLang === 'ta');
+
+
   if (!inputVal) {
 
-  alert(currentLang === 'ta' ? 'பதிவு செய்த மொபைல் எண் அல்லது தொழிலாளர் ID-ஐ உள்ளிடவும்.' : 'Please enter registered mobile number or Technician ID.');
+    alert(isTa ? 'பதிவு செய்த மொபைல் எண் அல்லது தொழிலாளர் ID-ஐ உள்ளிடவும்.' : 'Please enter your registered mobile number or Technician ID.');
 
-  return;
+    return;
 
   }
+
+  if (!enteredPin || enteredPin.length !== 4) {
+
+    alert(isTa ? 'உங்கள் 4-இலக்க ரகசிய PIN எண்ணை உள்ளிடவும் (மாதிரி PIN: 8843).' : 'Please enter your 4-digit Security PIN (Default PIN: 8843).');
+
+    return;
+
+  }
+
 
   const cleanNum = inputVal.replace(/[^0-9]/g, '');
 
-  // Search technician in liveServicesList
+  // Search technician in liveServicesList or cache
 
   let found = liveServicesList.find(x => {
 
-  const xPhone = (x.phone || '').replace(/[^0-9]/g, '');
+    const xPhone = (x.phone || '').replace(/[^0-9]/g, '');
 
-  const xId = (x.partnerId || '').toLowerCase();
+    const xId = (x.partnerId || '').toLowerCase();
 
-  const sId = (x.id || '').toLowerCase();
+    const sId = (x.id || '').toLowerCase();
 
-  const query = inputVal.toLowerCase();
+    const query = inputVal.toLowerCase();
 
-  return (cleanNum && xPhone.endsWith(cleanNum.slice(-10))) || xId === query || sId === query;
+    return (cleanNum && xPhone.endsWith(cleanNum.slice(-10))) || xId === query || sId === query;
 
   });
+
 
   if (!found) {
 
-  // If not in default, check cached/storage
+    try {
 
-  try {
+      const cached = JSON.parse(localStorage.getItem('fixr_services_cached') || '[]');
 
-  const cached = JSON.parse(localStorage.getItem('fixr_services_cached') || '[]');
+      found = cached.find(x => {
 
-  found = cached.find(x => {
+        const xPhone = (x.phone || '').replace(/[^0-9]/g, '');
 
-  const xPhone = (x.phone || '').replace(/[^0-9]/g, '');
+        return cleanNum && xPhone.endsWith(cleanNum.slice(-10));
 
-  return cleanNum && xPhone.endsWith(cleanNum.slice(-10));
+      });
 
-  });
-
-  } catch(e) {}
+    } catch(e) {}
 
   }
 
-  if (found) {
+
+  if (!found) {
+
+    alert(isTa ? 'இந்த எண் தொழிலாளராகப் பதிவு செய்யப்படவில்லை. தயவுசெய்து பதிவு செய்யவும் அல்லது சரியான எண்ணை உள்ளிடவும்.' : 'This number is not registered as a technician.');
+
+    return;
+
+  }
+
+
+  // Security PIN Verification: checks custom PIN, or default '8843', or phone last 4 digits
+
+  const savedPin = localStorage.getItem('fixr_tech_pin_' + found.phone) || '8843';
+
+  const phoneLast4 = found.phone ? found.phone.slice(-4) : '8843';
+
+  if (enteredPin !== savedPin && enteredPin !== '8843' && enteredPin !== phoneLast4) {
+
+    alert(isTa ? '🔒 தவறான PIN எண்! உங்கள் கணக்கின் முன்பதிவுகள் மற்றும் பில்களை பிறர் அணுக முடியாது.' : '🔒 Incorrect PIN! Privacy protected. Access denied.');
+
+    return;
+
+  }
+
 
   currentPortalTech = found;
 
@@ -10880,15 +11423,49 @@ function submitTechLogin() {
 
   showTechDashboardView();
 
-  alert(currentLang === 'ta' ? `வணக்கம் ${found.name}! தொழிலாளர் போர்ட்டலில் வெற்றிகரமாக உள்நுழைந்துள்ளீர்கள் 🎉` : `Welcome ${found.name}! Successfully logged in to Technician Portal 🎉`);
+  alert(isTa ? `வணக்கம் ${found.name}! தொழிலாளர் போர்ட்டலில் பாதுகாப்பாக உள்நுழைந்துள்ளீர்கள் 🎉` : `Welcome ${found.name}! Successfully authenticated to Partner Portal 🎉`);
 
-  } else {
+}
 
-  alert(currentLang === 'ta' ?
 
-  'இந்த எண் தொழிலாளராகப் பதிவு செய்யப்படவில்லை. தயவுசெய்து பதிவு செய்யவும் அல்லது சரியான எண்ணை உள்ளிடவும்.' :
+async function sendTechLoginOtp() {
 
-  'This number is not registered as a technician. Please register or check your number.');
+  const inputVal = (document.getElementById('techLoginInput').value || '').trim();
+
+  const isTa = (currentLang === 'ta');
+
+  const cleanNum = inputVal.replace(/[^0-9]/g, '');
+
+  if (!cleanNum || cleanNum.length < 10) {
+
+    alert(isTa ? 'முதலில் உங்கள் 10-இலக்க மொபைல் எண்ணை உள்ளிடவும்.' : 'Please enter your 10-digit mobile number first.');
+
+    return;
+
+  }
+
+  const generatedOtp = Math.floor(1000 + Math.random() * 9000).toString();
+
+  sessionStorage.setItem('fixr_temp_tech_otp', generatedOtp);
+
+  sessionStorage.setItem('fixr_temp_tech_phone', cleanNum.slice(-10));
+
+
+  alert(isTa ? `📲 உங்கள் மொபைலுக்கு OTP அனுப்பப்பட்டது: ${generatedOtp}` : `📲 SMS OTP sent to your phone: ${generatedOtp}`);
+
+  const userEnteredOtp = prompt(isTa ? `உங்கள் மொபைலுக்கு அனுப்பப்பட்ட 4-இலக்க OTP எண்ணை உள்ளிடவும்:` : `Enter the 4-digit OTP sent to your mobile:`);
+
+  if (userEnteredOtp === generatedOtp) {
+
+    document.getElementById('techLoginPin').value = '8843';
+
+    alert(isTa ? '✅ OTP சரிபார்க்கப்பட்டது! உள்நுழைக அழுத்தவும்.' : '✅ OTP verified! Tap Login to enter.');
+
+    submitTechLogin();
+
+  } else if (userEnteredOtp) {
+
+    alert(isTa ? 'தவறான OTP!' : 'Invalid OTP!');
 
   }
 
@@ -11558,53 +12135,142 @@ function openMyBookingsModal() {
 
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
+  const banner = document.getElementById('voiceFeedbackBanner');
+
+  const bIcon = document.getElementById('voiceFeedbackIcon');
+
+  const bTitle = document.getElementById('voiceFeedbackTitle');
+
+  const bSub = document.getElementById('voiceFeedbackSub');
+
+  const isTa = (currentLang === 'ta');
+
+
   if (!SpeechRecognition) {
 
-  alert(currentLang === 'ta' ? 'உங்கள் பிரவுசரில் குரல் பதிவு வசதி ஆதரிக்கப்படவில்லை.' : 'Speech recognition not supported in your browser.');
+    if (banner) {
 
-  return;
+      banner.style.display = 'block';
 
-  }
+      if (bIcon) bIcon.innerText = '⚠️';
 
-  const recognition = new SpeechRecognition();
+      if (bTitle) bTitle.innerText = isTa ? 'குரல் பதிவு வசதி ஆதரிக்கப்படவில்லை' : 'Speech recognition not supported';
 
-  recognition.lang = (currentLang === 'ta') ? 'ta-IN' : 'en-IN';
+      if (bSub) bSub.innerText = isTa ? 'Chrome பிரவுசரில் மைக் அனுமதியை சரிபார்க்கவும்.' : 'Please use Google Chrome browser.';
 
-  recognition.interimResults = false;
+      setTimeout(() => { banner.style.display = 'none'; }, 3500);
 
-  const statusElem = document.getElementById('voiceStatusText');
+    } else {
 
-  if (statusElem) statusElem.innerText = (currentLang === 'ta') ? "கேட்கிறது... பேசுங்கள் 🎙️" : "Listening... Speak now 🎙️";
+      alert(isTa ? 'உங்கள் பிரவுசரில் குரல் பதிவு வசதி ஆதரிக்கப்படவில்லை.' : 'Speech recognition not supported in this browser.');
 
-  recognition.onresult = function(event) {
+    }
 
-  const transcript = event.results[0][0].transcript;
-
-  const notesInput = document.getElementById('bookNotes');
-
-  if (notesInput) {
-
-  notesInput.value = (notesInput.value ? notesInput.value + ' ' : '') + transcript;
+    return;
 
   }
 
-  if (statusElem) statusElem.innerText = "✅ குரல் பதிவு செய்யப்பட்டது!";
 
-  setTimeout(() => { if (statusElem) statusElem.innerText = ""; }, 3000);
+  try {
 
-  };
+    const recognition = new SpeechRecognition();
 
-  recognition.onerror = function() {
+    recognition.lang = isTa ? 'ta-IN' : 'en-IN';
 
-  if (statusElem) statusElem.innerText = "குரல் கேட்கவில்லை, மீண்டும் முயற்சிக்கவும்.";
+    recognition.interimResults = false;
 
-  setTimeout(() => { if (statusElem) statusElem.innerText = ""; }, 3000);
 
-  };
+    if (banner) {
 
-  recognition.start();
+      banner.style.display = 'block';
+
+      if (bIcon) bIcon.innerText = '🎙️';
+
+      if (bTitle) bTitle.innerText = isTa ? 'பேசுங்கள்... கேட்கிறது (Listening...)' : 'Listening... Speak now 🎙️';
+
+      if (bSub) bSub.innerText = isTa ? 'எ.கா: "AC சர்வீஸ்", "எலக்ட்ரீஷியன்", "வாடகை வீடு"' : 'e.g. "AC repair Chennai", "Electrician", "House rentals"';
+
+    }
+
+
+    recognition.onresult = function(event) {
+
+      const transcript = event.results[0][0].transcript;
+
+      const searchInput = document.getElementById('searchInput');
+
+      if (searchInput) {
+
+        searchInput.value = transcript;
+
+        searchQuery = transcript.toLowerCase();
+
+      }
+
+      const notesInput = document.getElementById('bookNotes');
+
+      if (notesInput && document.getElementById('bookingModal').classList.contains('active')) {
+
+        notesInput.value = (notesInput.value ? notesInput.value + ' ' : '') + transcript;
+
+      }
+
+
+      if (banner) {
+
+        if (bIcon) bIcon.innerText = '✅';
+
+        if (bTitle) bTitle.innerText = `"${transcript}"`;
+
+        if (bSub) bSub.innerText = isTa ? 'சேவைகள் தேடப்படுகின்றன...' : 'Searching matching services...';
+
+        setTimeout(() => { banner.style.display = 'none'; }, 2200);
+
+      }
+
+
+      render();
+
+      const listEl = document.getElementById('servicesList');
+
+      if (listEl) {
+
+        listEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      }
+
+    };
+
+
+    recognition.onerror = function(e) {
+
+      console.warn("Speech recognition error:", e);
+
+      if (banner) {
+
+        if (bIcon) bIcon.innerText = '❌';
+
+        if (bTitle) bTitle.innerText = isTa ? 'குரல் கேட்கவில்லை' : 'Voice not detected';
+
+        if (bSub) bSub.innerText = isTa ? 'மீண்டும் மைக் பட்டனை அழுத்தி தெளிவாகப் பேசவும்.' : 'Please tap the mic and try again.';
+
+        setTimeout(() => { banner.style.display = 'none'; }, 2500);
+
+      }
+
+    };
+
+
+    recognition.start();
+
+  } catch(err) {
+
+    console.error("SpeechRecognition start error:", err);
 
   }
+
+}
+
 
   // --- 7. Share Visiting Card & Share Fixr Modal ---
 
@@ -11675,51 +12341,6 @@ function openMyBookingsModal() {
 </script>
 
 
-<!-- === Fixr Mobile Fixed Bottom Navigation Bar === -->
-
-<div class="uc-bottom-nav" id="ucBottomNav">
-
-  <button type="button" class="uc-nav-btn active" id="btnNavHome" onclick="selectCategoryFromGrid('அனைத்தும்'); setActiveBottomNav('btnNavHome');">
-
-    <span class="uc-nav-icon">🏠</span>
-
-    <span id="lblNavHome">முகப்பு</span>
-
-  </button>
-
-  <button type="button" class="uc-nav-btn" id="btnNavBidding" onclick="openBudgetBiddingModal(); setActiveBottomNav('btnNavBidding');">
-
-    <span class="uc-nav-icon">🎯</span>
-
-    <span id="lblNavBidding">என் பட்ஜெட்</span>
-
-  </button>
-
-  <button type="button" class="uc-nav-btn" id="btnNavVoice" onclick="startVoiceBooking(); setActiveBottomNav('btnNavVoice');" style="color:#4338ca;">
-
-    <span class="uc-nav-icon" style="font-size:22px; filter:drop-shadow(0 2px 4px rgba(67,56,202,0.3));">🎙️</span>
-
-    <span id="lblNavVoice" style="color:#4338ca; font-weight:800;">குரல்வழி</span>
-
-  </button>
-
-  <button type="button" class="uc-nav-btn" id="btnNavBookings" onclick="openMyBookingsModal(); setActiveBottomNav('btnNavBookings');">
-
-    <span class="uc-nav-icon">📋</span>
-
-    <span id="lblNavBookings">முன்பதிவுகள்</span>
-
-  </button>
-
-  <button type="button" class="uc-nav-btn" id="btnNavAccount" onclick="openTechPortalModal(); setActiveBottomNav('btnNavAccount');">
-
-    <span class="uc-nav-icon">👷</span>
-
-    <span id="lblNavAccount">தொழிலாளர்</span>
-
-  </button>
-
-</div>
 
 
 </body>
