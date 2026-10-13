@@ -1,0 +1,141 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ─────────────────────────────
+    // Helper functions
+    // ─────────────────────────────
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return signedIn()
+        && exists(
+          /databases/$(database)/documents/users/$(request.auth.uid)
+        )
+        && get(
+          /databases/$(database)/documents/users/$(request.auth.uid)
+        ).data.role == "admin";
+    }
+
+    // ─────────────────────────────
+    // SERVICES
+    // Public users can view services.
+    // Only Admin can create/update/delete.
+    // ─────────────────────────────
+
+    match /services/{serviceId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    // ─────────────────────────────
+    // BOOKINGS
+    // Customer must be logged in to create.
+    // Admin can manage all bookings.
+    // Existing app does not yet store uid
+    // inside booking documents.
+    // ─────────────────────────────
+
+    match /bookings/{bookingId} {
+      allow create: if signedIn();
+      allow read: if isAdmin();
+      allow update, delete: if isAdmin();
+    }
+
+    // ─────────────────────────────
+    // PARTNER REQUESTS
+    // Anyone can submit a partner application.
+    // Only Admin can view/change applications.
+    // ─────────────────────────────
+
+    match /partner_requests/{requestId} {
+      allow create: if
+        request.resource.data.status == "pending";
+
+      allow read, update, delete: if isAdmin();
+    }
+
+    // ─────────────────────────────
+    // PHOTO DIAGNOSIS REQUESTS
+    // Logged-in users can submit.
+    // Admin can manage.
+    // ─────────────────────────────
+
+    match /photo_diagnosis_requests/{requestId} {
+      allow create: if signedIn();
+      allow read, update, delete: if isAdmin();
+    }
+
+    // ─────────────────────────────
+    // BUDGET BIDS
+    // Logged-in users can create.
+    // Admin can manage/delete.
+    // ─────────────────────────────
+
+    match /budget_bids/{bidId} {
+      allow create: if signedIn();
+      allow read: if signedIn();
+      allow update, delete: if isAdmin();
+    }
+
+    // ─────────────────────────────
+    // COMMUNITY
+    // Logged-in users can post.
+    // Public can read community posts.
+    // ─────────────────────────────
+
+    match /community_messages/{messageId} {
+      allow read: if true;
+      allow create: if signedIn();
+      allow update, delete: if isAdmin();
+    }
+
+    // ─────────────────────────────
+    // USER PROFILES
+    // User can create/read/update only
+    // their own profile.
+    //
+    // IMPORTANT:
+    // Users cannot change their own role.
+    // Admin role must be assigned securely.
+    // ─────────────────────────────
+
+    match /users/{userId} {
+
+      allow create: if signedIn()
+        && request.auth.uid == userId
+        && request.resource.data.role == "customer";
+
+      allow read: if signedIn()
+        && (
+          request.auth.uid == userId
+          || isAdmin()
+        );
+
+      allow update: if signedIn()
+        && (
+          isAdmin()
+          ||
+          (
+            request.auth.uid == userId
+            && request.resource.data.role ==
+               resource.data.role
+          )
+        );
+
+      allow delete: if isAdmin();
+    }
+
+    // ─────────────────────────────
+    // Everything else DENIED
+    // ─────────────────────────────
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
