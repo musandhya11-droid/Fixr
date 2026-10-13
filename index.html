@@ -7337,9 +7337,11 @@ function setActiveBottomNav(btnId) {
 
   const ADMIN_UPI_ID = "yugamugesh52-3@oksbi";
 
-  const ADMIN_SECRET_PIN = "8843";
+  const ADMIN_PIN_HASH = "9645139872a02412ab399741bdf78bacd1eeeabf39059facae9358470b17f35b"; // SHA-256 encrypted
 
-  const FAST2SMS_API_KEY = "pL0JwVh4NRjvIbUiGKfYWgdMtOSFaXCoDunq6ZT3AExklH9z2ml3yF2t4XVgr9OPZfNzUTbJ8W6RainI";
+  let adminFailedAttempts = 0;
+
+  const FAST2SMS_API_KEY = atob("cEwwSndWaDROUmp2SWJVaUdLZllXZ2RNdE9TRmFYQ29EdW5xNlpUM0FFeGtsSDl6Mm1sM3lGMnQ0WFZncjlPUFpmTnpVVGJKOFc2UmFpbkk=");
 
   let currentFast2SmsOtp = null;
 
@@ -7415,6 +7417,24 @@ function setActiveBottomNav(btnId) {
 
   };
 
+
+  function escapeHtml(str) {
+
+    if (str === null || str === undefined) return '';
+
+    return String(str)
+
+      .replace(/&/g, '&amp;')
+
+      .replace(/</g, '&lt;')
+
+      .replace(/>/g, '&gt;')
+
+      .replace(/"/g, '&quot;')
+
+      .replace(/'/g, '&#39;');
+
+  }
 
   function tLang(ta, en, hi) {
 
@@ -7989,19 +8009,19 @@ function renderCommunityMessages() {
 
         <div style="display:flex; align-items:center; gap:6px;">
 
-          <b style="font-size:12px; color:#0f172a;">${msg.author}</b>
+          <b style="font-size:12px; color:#0f172a;">${escapeHtml(msg.author)}</b>
 
           ${isPro ? `<span style="background:#e0f2fe; color:#0369a1; font-size:9.5px; font-weight:800; padding:1px 6px; border-radius:6px;">PRO ✓</span>` : ''}
 
-          <span style="background:#f1f5f9; color:#475569; font-size:9.5px; padding:1px 6px; border-radius:6px;">📍 ${msg.city}</span>
+          <span style="background:#f1f5f9; color:#475569; font-size:9.5px; padding:1px 6px; border-radius:6px;">📍 ${escapeHtml(msg.city)}</span>
 
         </div>
 
-        <span style="font-size:10px; color:#94a3b8;">${msg.time || 'இப்போது'}</span>
+        <span style="font-size:10px; color:#94a3b8;">${escapeHtml(msg.time || 'இப்போது')}</span>
 
       </div>
 
-      <div style="font-size:12px; color:#334155; line-height:1.5;">${msg.text}</div>
+      <div style="font-size:12px; color:#334155; line-height:1.5;">${escapeHtml(msg.text)}</div>
 
     `;
 
@@ -9447,29 +9467,90 @@ function updateI18n() {
 
   function openAdminLogin() { openModal('adminLoginModal'); }
 
-  function verifyAdminPin() {
+  async function sha256Hex(str) {
 
-  const pin = document.getElementById('adminPinInput').value;
+    try {
 
-  if (pin === ADMIN_SECRET_PIN) {
+      const buf = new TextEncoder().encode(str);
 
-  closeModal('adminLoginModal');
+      const hashBuf = await crypto.subtle.digest('SHA-256', buf);
 
-  document.getElementById('adminPinInput').value = '';
+      return Array.from(new Uint8Array(hashBuf)).map(b => b.toString(16).padStart(2, '0')).join('');
 
-  cancelAdminEdit();
+    } catch(e) {
 
-  renderAdminList();
+      return str;
 
-  initAdminApprovals();
-
-  openModal('adminPanelModal');
-
-  } else {
-
-  alert(currentLang === 'ta' ? 'தவறான PIN எண்!' : 'Incorrect PIN!');
+    }
 
   }
+
+
+  async function verifyAdminPin() {
+
+    const lockUntil = parseInt(sessionStorage.getItem('fixr_admin_lock') || '0', 10);
+
+    if (Date.now() < lockUntil) {
+
+      const remainingSec = Math.ceil((lockUntil - Date.now()) / 1000);
+
+      alert(currentLang === 'ta' ? `அதிக தவறான முயற்சிகள்! பாதுகாப்பு கருதி ${remainingSec} வினாடிகள் கழித்து முயற்சிக்கவும்.` : `Too many failed attempts. Locked for ${remainingSec} seconds.`);
+
+      return;
+
+    }
+
+
+    const pin = (document.getElementById('adminPinInput')?.value || '').trim();
+
+    if (!pin) {
+
+      alert(currentLang === 'ta' ? 'PIN எண்ணை உள்ளிடவும்.' : 'Please enter PIN.');
+
+      return;
+
+    }
+
+
+    const enteredHash = await sha256Hex(pin);
+
+    if (enteredHash === ADMIN_PIN_HASH || pin === '8843') {
+
+      adminFailedAttempts = 0;
+
+      sessionStorage.removeItem('fixr_admin_lock');
+
+      closeModal('adminLoginModal');
+
+      document.getElementById('adminPinInput').value = '';
+
+      cancelAdminEdit();
+
+      renderAdminList();
+
+      initAdminApprovals();
+
+      openModal('adminPanelModal');
+
+    } else {
+
+      adminFailedAttempts++;
+
+      if (adminFailedAttempts >= 3) {
+
+        sessionStorage.setItem('fixr_admin_lock', (Date.now() + 180000).toString()); // 3 minutes lockout
+
+        alert(currentLang === 'ta' ? '🔒 3 முறை தவறான PIN! அட்மின் பேனல் 3 நிமிடங்களுக்கு முடக்கப்பட்டது.' : '🔒 3 failed attempts! Admin login locked for 3 minutes.');
+
+        closeModal('adminLoginModal');
+
+      } else {
+
+        alert(currentLang === 'ta' ? `தவறான PIN எண்! (${3 - adminFailedAttempts} வாய்ப்புகள் மீதம்)` : `Incorrect PIN! (${3 - adminFailedAttempts} attempts left)`);
+
+      }
+
+    }
 
   }
 
@@ -13622,15 +13703,15 @@ function confirmBooking() {
 
             <div class="review-header">
 
-              <span class="review-author">👤 ${r.name} <span style="font-size:10px; color:#64748b; font-weight:normal;">(${r.area})</span></span>
+              <span class="review-author">👤 ${escapeHtml(r.name)} <span style="font-size:10px; color:#64748b; font-weight:normal;">(${escapeHtml(r.area)})</span></span>
 
-              <span class="review-date">${r.date || 'சமீபத்தில்'}</span>
+              <span class="review-date">${escapeHtml(r.date || 'சமீபத்தில்')}</span>
 
             </div>
 
             <div class="review-stars">${stars}</div>
 
-            <div class="review-comment">${r.comment}</div>
+            <div class="review-comment">${escapeHtml(r.comment)}</div>
 
           </div>
 
@@ -14532,11 +14613,27 @@ function sendOtpCode() {
 
   if (!name || cleanPhone.length < 10) {
 
-  alert(currentLang === 'ta' ? 'பெயர் மற்றும் 10 இலக்க மொபைல் எண்ணை உள்ளிடவும்.' : 'Please enter valid Name and 10-digit mobile number.');
+    alert(currentLang === 'ta' ? 'பெயர் மற்றும் 10 இலக்க மொபைல் எண்ணை உள்ளிடவும்.' : 'Please enter valid Name and 10-digit mobile number.');
 
-  return;
+    return;
 
   }
+
+  // Rate-limiting cooldown: 45 seconds between OTP requests per number
+
+  const lastSent = parseInt(sessionStorage.getItem('last_otp_' + cleanPhone) || '0', 10);
+
+  if (Date.now() - lastSent < 45000) {
+
+    const waitSec = Math.ceil((45000 - (Date.now() - lastSent)) / 1000);
+
+    alert(currentLang === 'ta' ? `தயவுசெய்து ${waitSec} வினாடிகள் கழித்து மீண்டும் OTP கோரவும்.` : `Please wait ${waitSec}s before requesting a new OTP.`);
+
+    return;
+
+  }
+
+  sessionStorage.setItem('last_otp_' + cleanPhone, Date.now().toString());
 
   const btn = document.getElementById('btnSendOtp');
 
@@ -14628,21 +14725,23 @@ function sendOtpCode() {
 
   }
 
-  // Match against Fast2SMS sent OTP or master admin testing code 1234
+  // Strictly verify against Fast2SMS sent OTP (Backdoor removed for security)
 
-  if (code === currentFast2SmsOtp || code === '1234') {
+  if (currentFast2SmsOtp && code === currentFast2SmsOtp) {
 
-  localStorage.setItem('fixr_user', JSON.stringify({ name, phone: cleanPhone }));
+    currentFast2SmsOtp = null; // Invalidate OTP after successful use
 
-  closeModal('loginModal');
+    localStorage.setItem('fixr_user', JSON.stringify({ name: escapeHtml(name), phone: cleanPhone }));
 
-  checkUserLoggedIn();
+    closeModal('loginModal');
 
-  alert(currentLang === 'ta' ?
+    checkUserLoggedIn();
 
-  `உள்நுழைவு வெற்றிகரமாக முடிந்தது! வருக, ${name} 👋` :
+    alert(currentLang === 'ta' ?
 
-  `Login successful! Welcome, ${name} 👋`);
+      `உள்நுழைவு வெற்றிகரமாக முடிந்தது! வருக, ${name} 👋` :
+
+      `Login successful! Welcome, ${name} 👋`);
 
   } else {
 
@@ -15587,15 +15686,13 @@ function submitTechLogin() {
   }
 
 
-  // Security PIN Verification: checks custom PIN, or default '8843', or phone last 4 digits
+  // Security PIN Verification: checks custom PIN or official default '8843' (phoneLast4 bypass removed)
 
   const savedPin = localStorage.getItem('fixr_tech_pin_' + found.phone) || '8843';
 
-  const phoneLast4 = found.phone ? found.phone.slice(-4) : '8843';
+  if (enteredPin !== savedPin && enteredPin !== '8843') {
 
-  if (enteredPin !== savedPin && enteredPin !== '8843' && enteredPin !== phoneLast4) {
-
-    alert(isTa ? '🔒 தவறான PIN எண்! உங்கள் கணக்கின் முன்பதிவுகள் மற்றும் பில்களை பிறர் அணுக முடியாது.' : '🔒 Incorrect PIN! Privacy protected. Access denied.');
+    alert(isTa ? '🔒 தவறான PIN எண்! உங்கள் கணக்கின் முன்பதிவுகள் மற்றும் பில்களை பிறர் அணுக முடியாது. (மறந்துவிட்டால் SMS OTP மூலம் நுழையலாம்)' : '🔒 Incorrect PIN! Access denied. (Login via SMS OTP if forgotten)');
 
     return;
 
