@@ -7021,11 +7021,11 @@ URL முகவரிப் பட்டியில் உள்ள <b>Install
 
         <label id="lblTechPinLabel" style="font-size:11px; font-weight:700;">🔒 ரகசிய 4-இலக்க PIN (Security PIN):</label>
 
-        <span style="font-size:10px; color:#64748b;" id="lblTechPinHint">(மாதிரி PIN: 8843)</span>
+        <span style="font-size:10px; color:#64748b;" id="lblTechPinHint">(ரகசிய PIN)</span>
 
       </div>
 
-      <input type="password" id="techLoginPin" class="form-input" placeholder="4-இலக்க PIN (எ.கா: 8843)" maxlength="4" style="font-size:14px; letter-spacing:4px; text-align:center; font-weight:bold;">
+      <input type="password" id="techLoginPin" class="form-input" placeholder="• • • •" maxlength="4" style="font-size:14px; letter-spacing:4px; text-align:center; font-weight:bold;">
 
     </div>
 
@@ -8613,11 +8613,11 @@ function updateI18n() {
 
   const pinHnt = document.getElementById('lblTechPinHint');
 
-  if (pinHnt) pinHnt.innerText = tLang("(மாதிரி PIN: 8843)", "(Default PIN: 8843)", "(डिफ़ॉल्ट पिन: 8843)");
+  if (pinHnt) pinHnt.innerText = tLang("(ரகசிய PIN)", "(Secret PIN)", "(गुप्त पिन)");
 
   const pinInp = document.getElementById('techLoginPin');
 
-  if (pinInp) pinInp.placeholder = tLang("4-இலக்க PIN", "4-digit PIN", "4-अंकीय पिन");
+  if (pinInp) pinInp.placeholder = "• • • •";
 
   const lnkOtp = document.getElementById('lnkTechSmsOtp');
 
@@ -9514,7 +9514,7 @@ function updateI18n() {
 
     const enteredHash = await sha256Hex(pin);
 
-    if (enteredHash === ADMIN_PIN_HASH || pin === '8843') {
+    if (enteredHash === ADMIN_PIN_HASH) {
 
       adminFailedAttempts = 0;
 
@@ -15632,7 +15632,7 @@ function submitTechLogin() {
 
   if (!enteredPin || enteredPin.length !== 4) {
 
-    alert(isTa ? 'உங்கள் 4-இலக்க ரகசிய PIN எண்ணை உள்ளிடவும் (மாதிரி PIN: 8843).' : 'Please enter your 4-digit Security PIN (Default PIN: 8843).');
+    alert(isTa ? 'உங்கள் 4-இலக்க ரகசிய PIN எண்ணை உள்ளிடவும்.' : 'Please enter your 4-digit Security PIN.');
 
     return;
 
@@ -15726,6 +15726,41 @@ async function sendTechLoginOtp() {
 
   }
 
+  let found = liveServicesList.find(x => {
+
+    const xPhone = (x.phone || '').replace(/[^0-9]/g, '');
+
+    return cleanNum && xPhone.endsWith(cleanNum.slice(-10));
+
+  });
+
+  if (!found) {
+
+    try {
+
+      const cached = JSON.parse(localStorage.getItem('fixr_services_cached') || '[]');
+
+      found = cached.find(x => {
+
+        const xPhone = (x.phone || '').replace(/[^0-9]/g, '');
+
+        return cleanNum && xPhone.endsWith(cleanNum.slice(-10));
+
+      });
+
+    } catch(e) {}
+
+  }
+
+  if (!found) {
+
+    alert(isTa ? 'இந்த எண் தொழிலாளராகப் பதிவு செய்யப்படவில்லை.' : 'This number is not registered as a technician.');
+
+    return;
+
+  }
+
+
   const generatedOtp = Math.floor(1000 + Math.random() * 9000).toString();
 
   sessionStorage.setItem('fixr_temp_tech_otp', generatedOtp);
@@ -15733,17 +15768,19 @@ async function sendTechLoginOtp() {
   sessionStorage.setItem('fixr_temp_tech_phone', cleanNum.slice(-10));
 
 
-  alert(isTa ? `📲 உங்கள் மொபைலுக்கு OTP அனுப்பப்பட்டது: ${generatedOtp}` : `📲 SMS OTP sent to your phone: ${generatedOtp}`);
+  alert(isTa ? '📲 உங்கள் மொபைலுக்கு OTP அனுப்பப்பட்டது: ' + generatedOtp : '📲 SMS OTP sent to your phone: ' + generatedOtp);
 
-  const userEnteredOtp = prompt(isTa ? `உங்கள் மொபைலுக்கு அனுப்பப்பட்ட 4-இலக்க OTP எண்ணை உள்ளிடவும்:` : `Enter the 4-digit OTP sent to your mobile:`);
+  const userEnteredOtp = prompt(isTa ? 'உங்கள் மொபைலுக்கு அனுப்பப்பட்ட 4-இலக்க OTP எண்ணை உள்ளிடவும்:' : 'Enter the 4-digit OTP sent to your mobile:');
 
   if (userEnteredOtp === generatedOtp) {
 
-    document.getElementById('techLoginPin').value = '8843';
+    currentPortalTech = found;
 
-    alert(isTa ? '✅ OTP சரிபார்க்கப்பட்டது! உள்நுழைக அழுத்தவும்.' : '✅ OTP verified! Tap Login to enter.');
+    localStorage.setItem('fixr_tech_session', JSON.stringify(found));
 
-    submitTechLogin();
+    showTechDashboardView();
+
+    alert(isTa ? '✅ OTP சரிபார்க்கப்பட்டது! வருக ' + found.name + ' 🎉' : '✅ OTP verified! Welcome ' + found.name + ' 🎉');
 
   } else if (userEnteredOtp) {
 
